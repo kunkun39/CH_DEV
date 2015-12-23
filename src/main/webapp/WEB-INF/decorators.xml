@@ -1,0 +1,9 @@
+<decorators defaultdir="/WEB-INF/decorators">
+
+    <excludes>
+    </excludes>
+    <decorator name="main" page="main.jsp">
+        <pattern>/chapp/*</pattern>
+        <pattern>/security/*</pattern>
+    </decorator>
+</decorators>
