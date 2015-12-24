@@ -44,7 +44,7 @@
     </bean>
 
     <!--管理员部分-->
-    <bean id="adminManageOverviewController" class="com.changhong.app.web.controller.AdminManageOverviewController" />
+    <bean id="adminManageOverviewController" class="com.changhong.app.web.controller.admin.AdminManageOverviewController" />
 
     <!--客户部分-->
 

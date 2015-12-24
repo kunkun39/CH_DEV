@@ -1,4 +1,4 @@
-package com.changhong.app.web.controller;
+package com.changhong.app.web.controller.admin;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
