@@ -32,6 +32,7 @@
                 <!--管理员部分-->
 
                 <!--客户部分-->
+                <prop key="/security/clientappoverview.html">clientAppOverivewController</prop>
 
             </props>
 
@@ -47,5 +48,6 @@
     <!--客户部分-->
 
     <!--客户应用部分-->
+    <bean id="clientAppOverivewController" class="com.changhong.app.web.controller.client.ClientAppOverivewController"/>
 
 </beans>

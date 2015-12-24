@@ -185,8 +185,8 @@ a.color4:hover {
 /*我的服务*/
 
 .back-con {
-	width: 800px;
-	height: 1263px;
+	width: 1000px;
+	min-height: 1000px;
 	border: 1px solid #e6e6e6;
 	margin: 34px auto 120px;
 }
@@ -197,14 +197,14 @@ a.color4:hover {
 }
 
 .back-con-l {
-	width: 177px;
+	width: 160px;
 	border-right: 1px solid #e6e6e6;
 	height: 100%;
 	padding: 15px 0;
 }
 
 .back-con-r {
-	width: 817px;
+	width: 830px;
 	padding: 25px;
 }
 

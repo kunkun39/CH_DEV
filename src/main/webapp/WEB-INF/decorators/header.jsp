@@ -24,9 +24,9 @@
 
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right nav-ul">
-                <li <c:if test="${PAGE_KEY == 'INDEX'}">class="cur"</c:if>><a href="javascript:void(0);">首页</a></li>
+                <li <c:if test="${PAGE_KEY == 'INDEX'}">class="cur"</c:if>><a href="${pageContext.request.contextPath}/chapp/index.html">首页</a></li>
                 <li><a href="introduce.html">关于我们</a></li>
-                <li><a href="service.html">我的服务</a></li>
+                <li <c:if test="${PAGE_KEY == 'CLIENT'}">class="cur"</c:if>><a href="${pageContext.request.contextPath}/security/clientappoverview.html">我的服务</a></li>
                 <li><a href="contact.html">联系我们</a></li>
                 <li class="no-border"><a href="login.html">登录</a>&nbsp;|&nbsp;<a href="register.html">注册</a></li>
             </ul>
