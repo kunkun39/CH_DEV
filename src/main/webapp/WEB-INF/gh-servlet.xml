@@ -30,7 +30,7 @@
                 <prop key="/chapp/index.html">indexController</prop>
 
                 <!--管理员部分-->
-
+                <prop key="/security/adminmanageoverview.html">adminManageOverviewController</prop>
                 <!--客户部分-->
                 <prop key="/security/clientappoverview.html">clientAppOverivewController</prop>
 
@@ -44,6 +44,7 @@
     </bean>
 
     <!--管理员部分-->
+    <bean id="adminManageOverviewController" class="com.changhong.app.web.controller.AdminManageOverviewController" />
 
     <!--客户部分-->
 
