@@ -28,7 +28,7 @@
 <div class="back-con">
     <jsp:include page="/WEB-INF/jsp/admin/adminmenu.jsp"/>
     <div class="back-con-r fl">
-        <div class="leftTab-content active" id="bs-tabcon3">
+        <div class="leftTab-content active" id="bs-tabcon1">
             <h4 class="font16">我的应用</h4>
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#tab1">全部</a></li>
@@ -105,7 +105,7 @@
                 <div id="tab7"></div>
             </div>
         </div>
-        <div class="leftTab-content" id="bs-tabcon1">
+        <div class="leftTab-content" id="bs-tabcon2">
             <h4 class="font16">系统用户</h4>
             <div class="input-group">
                 <input type="text" placeholder="联系人/邮箱" class="input-sm form-control">
@@ -119,9 +119,8 @@
                 <thead>
                     <tr>
                         <th style="padding-left: 20px;">联系人</th>
-                        <th>用户邮箱</th>
+                        <th>联系方式</th>
                         <th>状态</th>
-                        <th>激活</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -170,7 +169,7 @@
                 <li><a href="#">Go</a></li>
             </ul>
         </div>
-        <div class="leftTab-content" id="bs-tabcon2">
+        <div class="leftTab-content" id="bs-tabcon3">
             <h4 class="font16">发布者</h4>
             <div class="input-group">
                 <input type="text" placeholder="用户名" class="input-sm form-control">

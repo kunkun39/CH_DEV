@@ -28,7 +28,7 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
         return auths.isEmpty() ? null : auths.get(0);
     }
 
-    public List<AdminUser> loadAdminUsers(String name, int startPosition, int pageSize) {
+    public List<AdminUser> loadAdminUsersByName(String name, int startPosition, int pageSize) {
         StringBuilder builder = new StringBuilder();
         builder.append("from AdminUser u");
         if (StringUtils.hasText(name)) {
@@ -41,6 +41,23 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
         query.setFirstResult(startPosition);
 
         List<AdminUser> users = query.list();
+        return users;
+    }
+
+    public List<AdminUser> loadAdminUsersByContactway(String contactway, int startPosition, int pageSize) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("from AdminUser u");
+        if (StringUtils.hasText(contactway)) {
+            builder.append(" where u.contactWay like '%" + contactway + "%'");
+        }
+
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        Query query = session.createQuery(builder.toString());
+        query.setMaxResults(pageSize);
+        query.setFirstResult(startPosition);
+
+        List<AdminUser> users = query.list();
+
         return users;
     }
 
