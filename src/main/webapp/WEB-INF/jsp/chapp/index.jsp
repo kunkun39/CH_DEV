@@ -92,13 +92,6 @@
                     <p>完全自主开发新型日发送量可达一万条</p>
                 </a>
             </li>
-            <li class="col-md-3 col-sm-6">
-                <a href="javascript:void(0)" title="龙门编剧" class="apply-ul-a">
-                    <img src="${pageContext.request.contextPath}/images/longmen.png" alt="龙门编剧" width="70" height="70" />
-                    <h3>龙门编剧</h3>
-                    <p>完全自主开发新型日发送量可达一万条</p>
-                </a>
-            </li>
         </ul>
     </main>
     <div class="container">

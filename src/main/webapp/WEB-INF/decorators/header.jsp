@@ -28,7 +28,7 @@
                 <li><a href="introduce.html">关于我们</a></li>
                 <li><a href="service.html">我的服务</a></li>
                 <li><a href="contact.html">联系我们</a></li>
-                <li class="no-border"><a target="_blank" href="login.html">登录</a>&nbsp;|&nbsp;<a target="_blank" href="register.html">注册</a></li>
+                <li class="no-border"><a href="login.html">登录</a>&nbsp;|&nbsp;<a href="register.html">注册</a></li>
             </ul>
         </div>
     </div>
