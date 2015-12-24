@@ -11,7 +11,7 @@
 
         <security:intercept-url pattern="/chapp/**" access="ROLE_ANONYMOUS,ROLE_USRE,ROLE_ADMIN"/>
 
-        <security:intercept-url pattern="/security/**" access="ROLE_USRE,ROLE_ADMIN"/>
+        <security:intercept-url pattern="/security/**" access="ROLE_ANONYMOUS,ROLE_USRE,ROLE_ADMIN"/>
 
         <!-- 指定登陆页面、成功页面、失败页面-->
         <security:form-login login-page="/chapp/login.html" authentication-success-handler-ref="appMarketAuthenticationSuccessHandler"/>
