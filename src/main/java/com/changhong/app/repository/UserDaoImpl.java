@@ -44,11 +44,11 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
         return users;
     }
 
-    public List<AdminUser> loadAdminUsersByContactway(String contactway, int startPosition, int pageSize) {
+    public List<AdminUser> loadAdminUsersByNameOrContactway(String keyWords, int startPosition, int pageSize) {
         StringBuilder builder = new StringBuilder();
         builder.append("from AdminUser u");
-        if (StringUtils.hasText(contactway)) {
-            builder.append(" where u.contactWay like '%" + contactway + "%'");
+        if (StringUtils.hasText(keyWords)) {
+            builder.append(" where u.username like '%" + keyWords + "%' or u.contactway like '%" + keyWords + "%'");
         }
 
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
@@ -68,6 +68,16 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
             builder.append(" where u.name like '%" + name + "%' or u.username like '%" + name + "%'");
         }
         List list =  getHibernateTemplate().find(builder.toString());
+        return ((Long)list.get(0)).intValue();
+    }
+
+    public int loadAdminUserSizeByNameOrContactway(String keyWords) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("select count(u.id) from AdminUser u");
+        if(StringUtils.hasText(keyWords)) {
+            builder.append(" where u.username like '%" + keyWords + "%' or u.contactway like '%" + keyWords + "%'");
+        }
+        List list = getHibernateTemplate().find(builder.toString());
         return ((Long)list.get(0)).intValue();
     }
 

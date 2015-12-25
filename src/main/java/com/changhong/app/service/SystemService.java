@@ -1,6 +1,7 @@
 package com.changhong.app.service;
 
 import com.changhong.app.domain.AdminUser;
+import com.changhong.app.web.facade.dto.AdminUserDto;
 
 import java.util.List;
 
@@ -12,5 +13,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface SystemService {
+    List<AdminUserDto> obtainAdminUsers(String keyWords, int startPosition, int pageSize);
 
+    int obtainAdminUserSize(String keyWords);
 }

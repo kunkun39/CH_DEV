@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by IntelliJ IDEA.
  * User: Administrator
- * Date: 15-12-24
- * Time: 上午10:37
+ * Date: 15-12-25
+ * Time: 下午1:36
  * To change this template use File | Settings | File Templates.
  */
-public class AdminManageOverviewController extends AbstractController {
+public class AdminAppManageController extends AbstractController{
+
     @Override
     protected ModelAndView handleRequestInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
-
-        return new ModelAndView("admin/manageoverview");
+        return new ModelAndView("admin/appmanage");
     }
 }

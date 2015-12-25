@@ -1,5 +1,7 @@
 package com.changhong.app.web.facade.dto;
 
+import java.io.Serializable;
+
 /**
  * Created by IntelliJ IDEA.
  * User: Administrator
@@ -7,7 +9,7 @@ package com.changhong.app.web.facade.dto;
  * Time: 下午6:04
  * To change this template use File | Settings | File Templates.
  */
-public class AdminUserDto {
+public class AdminUserDto implements Serializable {
     private int id;
 
     private String name;

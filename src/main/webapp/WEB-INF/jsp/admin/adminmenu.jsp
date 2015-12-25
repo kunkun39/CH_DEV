@@ -9,8 +9,8 @@
 <div class="back-con-l">
     <h5 class="color7"><i class="server-icon"></i>后台管理</h5>
     <ul class="back-con-l-ul">
-        <li class="cur"><a href="javascript:void(0);">应用</a></li>
-        <li><a href="javascript:void(0);">系统用户</a></li>
-        <li><a href="javascript:void(0);">发布者</a></li>
+        <li class="cur"><a href="${pageContext.request.contextPath}/security/adminappmanage.html">应用</a></li>
+        <li><a href="${pageContext.request.contextPath}/security/adminusers.html">系统用户</a></li>
+        <li><a href="${pageContext.request.contextPath}/security/admindeveloper.html">发布者</a></li>
     </ul>
 </div>

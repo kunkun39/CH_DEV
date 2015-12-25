@@ -30,7 +30,9 @@
                 <prop key="/chapp/index.html">indexController</prop>
 
                 <!--管理员部分-->
-                <prop key="/security/adminmanageoverview.html">adminManageOverviewController</prop>
+                <prop key="/security/adminusers.html">adminUserManageController</prop>
+                <prop key="/security/admindeveloper.html">adminDevaloperController</prop>
+                <prop key="/security/adminappmanage.html">adminAppManageController</prop>
                 <!--客户部分-->
                 <prop key="/security/clientappoverview.html">clientAppOverivewController</prop>
 
@@ -44,8 +46,13 @@
     </bean>
 
     <!--管理员部分-->
-    <bean id="adminManageOverviewController" class="com.changhong.app.web.controller.admin.AdminManageOverviewController" />
+    <bean id="adminUserManageController" class="com.changhong.app.web.controller.admin.AdminUserManageController">
+        <property name="systemService" ref="systemService"/>
+    </bean>
 
+    <bean id="adminAppManageController" class="com.changhong.app.web.controller.admin.AdminAppManageController" />
+
+    <bean id="adminDevaloperController" class="com.changhong.app.web.controller.admin.AdminDevaloperController" />
     <!--客户部分-->
 
     <!--客户应用部分-->
