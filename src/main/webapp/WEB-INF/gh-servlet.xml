@@ -50,7 +50,10 @@
         <property name="systemService" ref="systemService"/>
     </bean>
 
-    <bean id="adminAppManageController" class="com.changhong.app.web.controller.admin.AdminAppManageController" />
+    <bean id="adminAppManageController" class="com.changhong.app.web.controller.admin.AdminAppManageController">
+        <property name="systemService" ref="systemService"/>
+        <property name="fileRequestHost" value="${application.file.request.path}"/>
+    </bean>
 
     <bean id="adminDevaloperController" class="com.changhong.app.web.controller.admin.AdminDevaloperController" />
     <!--客户部分-->

@@ -29,13 +29,14 @@ public class AdminUserManageController extends AbstractController {
     protected ModelAndView handleRequestInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
         Map<String, Object> model = new HashMap<String, Object>();
 
-        int current = ServletRequestUtils.getIntParameter(httpServletRequest, "current", 1);
+        int currentPage = ServletRequestUtils.getIntParameter(httpServletRequest, "current", 1);
         String keyWords = StringUtils.trimWhitespace(ServletRequestUtils.getStringParameter(httpServletRequest, "keywords", ""));
 
         AdminUserOverviewPaging paging = new AdminUserOverviewPaging(systemService);
-        constractPaging(paging, current, keyWords);
+        constractPaging(paging, currentPage, keyWords);
         List<AdminUserDto> dtoList = paging.getItems();
         model.put("adminusers", dtoList);
+        model.put("MANAGE_KEY","USERS");
 
         return new ModelAndView("admin/adminuser", model);
     }

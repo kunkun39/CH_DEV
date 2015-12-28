@@ -29,9 +29,9 @@
         <div class="leftTab-content active" id="bs-tabcon1">
             <h4 class="font16">我的应用</h4>
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#tab1">全部</a></li>
+                <li><a href="#tab1">全部</a></li>
                 <li><a href="#tab2">新创建</a></li>
-                <li><a href="#tab3">待审核</a></li>
+                <li class="active"><a href="#tab3">待审核</a></li>
                 <li><a href="#tab4">拒绝通过</a></li>
                 <li><a href="#tab5">待上架</a></li>
                 <li><a href="#tab6">已上架</a></li>
@@ -57,6 +57,42 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <c:forEach items="${apps}" var = "app">
+                                <tr>
+                                    <td style="padding: 20px;">
+                                        <img src="${fileRequestHost}upload/${app.iconActualFileName}" width="96" height="96" class="fl" />
+                                        <div class="fl" style="margin-left: 13px;margin-top: 10px;">
+                                            <h4>${app.appName}</h4>
+                                            <p class="font12 color9">${app.appVersionInt}</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h5>${app.appName}</h5>
+                                        <p class="font12">${app.appDescription}</p>
+                                    </td>
+                                    <td>
+                                        <c:if test="${apps.appStatus == 'CREATED'}">新创建</c:if>
+                                        <c:if test="${apps.appStatus == 'WAITING'}">待审核</c:if>
+                                        <c:if test="${apps.appStatus == 'PASSED'}">审核通过</c:if>
+                                        <c:if test="${apps.appStatus == 'REJECTED'}"><span class="color7">拒绝通过</span></c:if>
+                                        <c:if test="${apps.appStatus == 'SHELVES'}">已上架</c:if>
+                                        <c:if test="${apps.appStatus == 'OFFSHELVES'}">已下架</c:if>
+                                    </td>
+                                    <td>
+                                        <ul class="pagination">
+                                            <c:if test="${apps.appStatus == 'CREATED'}"><li><a href="#">查看应用</a></li></c:if>
+                                            <c:if test="${apps.appStatus == 'WAITING'}">
+                                                <li><a href="#">查看应用</a></li>
+                                                <li><a href="#">通过审核</a></li>
+                                            </c:if>
+                                            <c:if test="${apps.appStatus == 'PASSED'}"><li><a href="#">查看应用</a></li></c:if>
+                                            <c:if test="${apps.appStatus == 'REJECTED'}"><li><a href="#">查看应用</a></li></c:if>
+                                            <c:if test="${apps.appStatus == 'SHELVES'}"><li><a href="#">查看应用</a></li></c:if>
+                                            <c:if test="${apps.appStatus == 'OFFSHELVES'}"><li><a href="#">查看应用</a></li></c:if>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                             <tr>
                                 <td style="padding: 20px;">
                                     <img src="${pageContext.request.contextPath}/images/longmen.png" width="96" height="96" class="fl" />

@@ -5,6 +5,8 @@ import org.springframework.web.servlet.mvc.AbstractController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.
@@ -17,6 +19,9 @@ public class AdminDevaloperController extends AbstractController{
 
     @Override
     protected ModelAndView handleRequestInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
-        return new ModelAndView("admin/developer");
+        Map<String, Object> model = new HashMap<String, Object>();
+
+        model.put("MANAGE_KEY","DEVELOPER");
+        return new ModelAndView("admin/developer", model);
     }
 }

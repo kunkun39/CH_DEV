@@ -1,7 +1,7 @@
 package com.changhong.app.service;
 
-import com.changhong.app.domain.AdminUser;
 import com.changhong.app.web.facade.dto.AdminUserDto;
+import com.changhong.app.web.facade.dto.MarketAppDto;
 
 import java.util.List;
 
@@ -16,4 +16,8 @@ public interface SystemService {
     List<AdminUserDto> obtainAdminUsers(String keyWords, int startPosition, int pageSize);
 
     int obtainAdminUserSize(String keyWords);
+
+    List<MarketAppDto> obtainMarketApps(String appName, String appStatus, int startPosition, int pageSize);
+
+    int obtainMarketAppSize(String appName, String appStatus);
 }
