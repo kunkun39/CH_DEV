@@ -2,9 +2,8 @@ package com.changhong.app.web.facade.assember;
 
 import com.changhong.app.domain.*;
 import com.changhong.app.repository.EntityLoadHolder;
-import com.changhong.app.web.facade.dto.MarketAppDto;
+import com.changhong.app.web.facade.dto.MarketAppDTO;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +15,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class MarketAppWebAssember {
-    public static MarketApp DtoToDomain(MarketAppDto dto) {
+    public static MarketApp DtoToDomain(MarketAppDTO dto) {
         MarketApp marketApp = null;
         // 有问题
         if (dto != null) {
@@ -85,11 +84,11 @@ public class MarketAppWebAssember {
         return marketApp;
     }
 
-    public static MarketAppDto DomainToDto(MarketApp marketApp) {
-        MarketAppDto dto = null;
+    public static MarketAppDTO DomainToDto(MarketApp marketApp) {
+        MarketAppDTO dto = null;
 
         if (marketApp != null) {
-            dto = new MarketAppDto();
+            dto = new MarketAppDTO();
 
             dto.setId(marketApp.getId());
             dto.setAppKey(marketApp.getAppKey());
@@ -138,8 +137,8 @@ public class MarketAppWebAssember {
         return dto;
     }
 
-    public static List<MarketAppDto> DomainToDto(List<MarketApp> marketAppList) {
-        List<MarketAppDto> dtoList = new ArrayList<MarketAppDto>();
+    public static List<MarketAppDTO> DomainToDto(List<MarketApp> marketAppList) {
+        List<MarketAppDTO> dtoList = new ArrayList<MarketAppDTO>();
 
         for(MarketApp marketApp : marketAppList) {
             dtoList.add(DomainToDto(marketApp));

@@ -2,8 +2,7 @@ package com.changhong.app.web.facade.assember;
 
 import com.changhong.app.domain.AdminUser;
 import com.changhong.app.repository.EntityLoadHolder;
-import com.changhong.app.web.facade.dto.AdminUserDto;
-import org.directwebremoting.annotations.DataTransferObject;
+import com.changhong.app.web.facade.dto.AdminUserDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,7 @@ import java.util.List;
  */
 public class AdminUserWebAssember {
 
-    public static AdminUser DtoToDomain(AdminUserDto dto) {
+    public static AdminUser DtoToDomain(AdminUserDTO dto) {
         AdminUser adminUser = null;
 
         if (dto != null) {
@@ -33,21 +32,21 @@ public class AdminUserWebAssember {
 
                     newClassFlg = false;
                 }
+            }
 
-                if (newClassFlg) {
-                    adminUser = new AdminUser(dto.getName(), dto.getContactWay(), dto.getUsername(), dto.getPassword());
-                }
+            if (newClassFlg) {
+                adminUser = new AdminUser(dto.getName(), dto.getContactWay(), dto.getUsername(), dto.getPassword());
             }
         }
 
         return adminUser;
     }
 
-    public static AdminUserDto DomainToDto(AdminUser adminUser) {
-        AdminUserDto dto = null;
+    public static AdminUserDTO DomainToDto(AdminUser adminUser) {
+        AdminUserDTO dto = null;
 
         if (adminUser != null) {
-            dto = new AdminUserDto();
+            dto = new AdminUserDTO();
             dto.setId(adminUser.getId());
             dto.setName(adminUser.getName());
             dto.setUsername(adminUser.getUsername());
@@ -59,8 +58,8 @@ public class AdminUserWebAssember {
         return dto;
     }
 
-    public static List<AdminUserDto> DomainToDto(List<AdminUser> adminUserList) {
-        List<AdminUserDto> dtoList = new ArrayList<AdminUserDto>();
+    public static List<AdminUserDTO> DomainToDto(List<AdminUser> adminUserList) {
+        List<AdminUserDTO> dtoList = new ArrayList<AdminUserDTO>();
 
         for(AdminUser adminUser : adminUserList) {
             dtoList.add(DomainToDto(adminUser));
