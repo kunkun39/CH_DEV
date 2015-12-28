@@ -39,8 +39,8 @@
                     <tr>
                         <th style="text-align: center;width:15%">用户名</th>
                         <th style="text-align: center;width:35%">联系方式</th>
-                        <th style="text-align: center;width:10%">状态</th>
-                        <th style="text-align: center;width:10%">激活</th>
+                        <th style="text-align: center;width:15%">状态</th>
+                        <th style="text-align: center;width:15%">激活</th>
                         <th style="text-align: center;width:20%">操作</th>
                     </tr>
                 </thead>
@@ -49,11 +49,11 @@
                         <tr>
                             <td style="text-align: center;width:15%">${user.username}</td>
                             <td style="text-align: center;width:35%">${user.contactWay}</td>
-                            <td style="text-align: center;width:10%">
+                            <td style="text-align: center;width:15%">
                                 <c:if test="${user.enabled}"><span class="color10">在用</span></c:if>
                                 <c:if test="${!user.enabled}"><span class="color7">停止使用</span></c:if>
                             </td>
-                            <td style="text-align: center;width:10%">
+                            <td style="text-align: center;width:15%">
                                 <c:if test="${user.active}"><span class="color10">已激活</span></c:if>
                                 <c:if test="${!user.active}"><span class="color7">未激活</span></c:if>
                             </td>
