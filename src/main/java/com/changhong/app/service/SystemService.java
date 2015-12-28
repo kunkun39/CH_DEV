@@ -1,7 +1,8 @@
 package com.changhong.app.service;
 
-import com.changhong.app.web.facade.dto.AdminUserDto;
-import com.changhong.app.web.facade.dto.MarketAppDto;
+import com.changhong.app.web.facade.dto.AdminUserDTO;
+import com.changhong.app.web.facade.dto.ClientUserDTO;
+import com.changhong.app.web.facade.dto.MarketAppDTO;
 
 import java.util.List;
 
@@ -13,11 +14,15 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface SystemService {
-    List<AdminUserDto> obtainAdminUsers(String keyWords, int startPosition, int pageSize);
+    List<AdminUserDTO> obtainAdminUsers(String keyWords, int startPosition, int pageSize);
 
     int obtainAdminUserSize(String keyWords);
 
-    List<MarketAppDto> obtainMarketApps(String appName, String appStatus, int startPosition, int pageSize);
+    List<ClientUserDTO> obtainClientUsers(String name, int startPosition, int pageSize);
+
+    int ObtainClientUserSize(String name);
+
+    List<MarketAppDTO> obtainMarketApps(String appName, String appStatus, int startPosition, int pageSize);
 
     int obtainMarketAppSize(String appName, String appStatus);
 }

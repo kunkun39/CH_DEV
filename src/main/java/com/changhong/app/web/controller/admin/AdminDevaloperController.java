@@ -21,6 +21,8 @@ public class AdminDevaloperController extends AbstractController{
     protected ModelAndView handleRequestInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
         Map<String, Object> model = new HashMap<String, Object>();
 
+
+
         model.put("MANAGE_KEY","DEVELOPER");
         return new ModelAndView("admin/developer", model);
     }

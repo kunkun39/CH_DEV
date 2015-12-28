@@ -1,7 +1,7 @@
 package com.changhong.app.web.controller.admin;
 
 import com.changhong.app.service.SystemService;
-import com.changhong.app.web.facade.dto.AdminUserDto;
+import com.changhong.app.web.facade.dto.AdminUserDTO;
 import com.changhong.app.web.paging.AdminUserOverviewPaging;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -34,7 +34,7 @@ public class AdminUserManageController extends AbstractController {
 
         AdminUserOverviewPaging paging = new AdminUserOverviewPaging(systemService);
         constractPaging(paging, currentPage, keyWords);
-        List<AdminUserDto> dtoList = paging.getItems();
+        List<AdminUserDTO> dtoList = paging.getItems();
         model.put("adminusers", dtoList);
         model.put("MANAGE_KEY","USERS");
 

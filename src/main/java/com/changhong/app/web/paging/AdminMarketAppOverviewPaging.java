@@ -1,7 +1,7 @@
 package com.changhong.app.web.paging;
 
 import com.changhong.app.service.SystemService;
-import com.changhong.app.web.facade.dto.MarketAppDto;
+import com.changhong.app.web.facade.dto.MarketAppDTO;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import java.util.List;
  * Time: 下午10:27
  * To change this template use File | Settings | File Templates.
  */
-public class AdminMarketAppOverviewPaging extends AbstractPaging<MarketAppDto> {
+public class AdminMarketAppOverviewPaging extends AbstractPaging<MarketAppDTO> {
 
     private SystemService systemService;
 
@@ -24,7 +24,7 @@ public class AdminMarketAppOverviewPaging extends AbstractPaging<MarketAppDto> {
         this.systemService = systemService;
     }
     @Override
-    public List<MarketAppDto> getItems() {
+    public List<MarketAppDTO> getItems() {
         return systemService.obtainMarketApps(appName, appStatus, getStartPosition(), getPageSize());
     }
 

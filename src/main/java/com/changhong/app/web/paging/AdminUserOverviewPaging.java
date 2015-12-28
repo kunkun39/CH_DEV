@@ -1,7 +1,7 @@
 package com.changhong.app.web.paging;
 
 import com.changhong.app.service.SystemService;
-import com.changhong.app.web.facade.dto.AdminUserDto;
+import com.changhong.app.web.facade.dto.AdminUserDTO;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import java.util.List;
  * Time: 上午10:11
  * To change this template use File | Settings | File Templates.
  */
-public class AdminUserOverviewPaging extends AbstractPaging<AdminUserDto>{
+public class AdminUserOverviewPaging extends AbstractPaging<AdminUserDTO>{
 
     private SystemService systemService;
 
@@ -22,7 +22,7 @@ public class AdminUserOverviewPaging extends AbstractPaging<AdminUserDto>{
         this.systemService = systemService;
     }
     @Override
-    public List<AdminUserDto> getItems() {
+    public List<AdminUserDTO> getItems() {
         return systemService.obtainAdminUsers(keyWords, getStartPosition(), getPageSize());
     }
 

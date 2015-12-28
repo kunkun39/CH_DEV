@@ -2,7 +2,7 @@ package com.changhong.app.web.controller.admin;
 
 import com.changhong.app.domain.AppStatus;
 import com.changhong.app.service.SystemService;
-import com.changhong.app.web.facade.dto.MarketAppDto;
+import com.changhong.app.web.facade.dto.MarketAppDTO;
 import com.changhong.app.web.paging.AdminMarketAppOverviewPaging;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -38,7 +38,7 @@ public class AdminAppManageController extends AbstractController{
 
         AdminMarketAppOverviewPaging paging = new AdminMarketAppOverviewPaging(systemService);
         constractPaging(paging, currentPage, appName, appStatus);
-        List<MarketAppDto> marketAppDtoList = paging.getItems();
+        List<MarketAppDTO> marketAppDtoList = paging.getItems();
 
         model.put("apps", marketAppDtoList);
         model.put("fileRequestHost", fileRequestHost);
