@@ -13,7 +13,7 @@ import java.util.Map;
  * Date: 15-10-14
  * Time: 下午2:35
  */
-public class ClientAppOverivewController extends AbstractController {
+public class ClientSelfInfoController extends AbstractController {
 
 
     @Override
@@ -21,8 +21,8 @@ public class ClientAppOverivewController extends AbstractController {
         Map<String, Object> model = new HashMap<String, Object>();
 
         model.put("PAGE_KEY", "CLIENT");
-        model.put("MENU_KEY", "APPS");
+        model.put("MENU_KEY", "INFO");
 
-        return new ModelAndView("client/clientappoverview", model);
+        return new ModelAndView("client/clientselfinfo", model);
     }
 }

@@ -33,8 +33,11 @@
                 <prop key="/security/adminusers.html">adminUserManageController</prop>
                 <prop key="/security/admindeveloper.html">adminDevaloperController</prop>
                 <prop key="/security/adminappmanage.html">adminAppManageController</prop>
+
                 <!--客户部分-->
                 <prop key="/security/clientappoverview.html">clientAppOverivewController</prop>
+                <prop key="/security/clientselfinfo.html">clientSelfInfoController</prop>
+                <prop key="/security/clientchangepass.html">clientChangePassController</prop>
 
             </props>
 
@@ -60,5 +63,9 @@
 
     <!--客户应用部分-->
     <bean id="clientAppOverivewController" class="com.changhong.app.web.controller.client.ClientAppOverivewController"/>
+
+    <bean id="clientSelfInfoController" class="com.changhong.app.web.controller.client.ClientSelfInfoController"/>
+
+    <bean id="clientChangePassController" class="com.changhong.app.web.controller.client.ClientChangePassController"/>
 
 </beans>
