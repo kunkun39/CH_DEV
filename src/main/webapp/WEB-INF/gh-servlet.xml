@@ -61,7 +61,9 @@
         <property name="fileRequestHost" value="${application.file.request.path}"/>
     </bean>
 
-    <bean id="adminDevaloperController" class="com.changhong.app.web.controller.admin.AdminDevaloperController" />
+    <bean id="adminDevaloperController" class="com.changhong.app.web.controller.admin.AdminDevaloperController">
+        <property name="systemService" ref="systemService"/>
+    </bean>
     <!--客户部分-->
 
     <!--客户应用部分-->

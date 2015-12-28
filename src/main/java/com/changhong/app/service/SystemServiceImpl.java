@@ -17,12 +17,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * User: Administrator
+ * User: pengjie
  * Date: 15-12-25
  * Time: 上午10:27
  */
 @Service("systemService")
-public class SyetemServiceImpl implements SystemService {
+public class SystemServiceImpl implements SystemService {
 
     @Autowired
     private UserDao userDao;

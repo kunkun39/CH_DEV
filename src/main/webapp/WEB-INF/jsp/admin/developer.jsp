@@ -1,9 +1,7 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: Administrator
+  User: pengjie
   Date: 15-12-25
   Time: 下午1:28
-  To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
@@ -39,30 +37,39 @@
             <table class="table table-condensed table-bordered table-hover table-view-1">
                 <thead>
                     <tr>
-                        <th style="padding-left: 20px;">用户名</th>
-                        <th>联系方式</th>
-                        <th>状态</th>
+                        <th style="text-align: center;width:15%">用户名</th>
+                        <th style="text-align: center;width:35%">联系方式</th>
+                        <th style="text-align: center;width:10%">状态</th>
+                        <th style="text-align: center;width:10%">激活</th>
+                        <th style="text-align: center;width:20%">操作</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td style="padding-left: 20px;">
-                            欧阳,休克
-                        </td>
-                        <td>
-                            mulingwang@qq.com
-                        </td>
-                        <td><span class="color10">在用</span></td>
-                    </tr>
-                    <tr>
-                        <td style="padding-left: 20px;">
-                            欧阳,休克
-                        </td>
-                        <td>
-                            mulingwang@qq.com
-                        </td>
-                        <td><span class="color7">停止使用</span></td>
-                    </tr>
+                    <c:forEach items="${users}" var="user">
+                        <tr>
+                            <td style="text-align: center;width:15%">${user.username}</td>
+                            <td style="text-align: center;width:35%">${user.contactWay}</td>
+                            <td style="text-align: center;width:10%">
+                                <c:if test="${user.enabled}"><span class="color10">在用</span></c:if>
+                                <c:if test="${!user.enabled}"><span class="color7">停止使用</span></c:if>
+                            </td>
+                            <td style="text-align: center;width:10%">
+                                <c:if test="${user.active}"><span class="color10">已激活</span></c:if>
+                                <c:if test="${!user.active}"><span class="color7">未激活</span></c:if>
+                            </td>
+                            <td style="text-align: center;width:20%">
+                                <c:if test="${user.enabled && user.active}">
+                                    <input type="button" class="btn-blue-sm color1" value="停止使用" />
+                                </c:if>
+                                <c:if test="${!user.enabled && user.active}">
+                                    <input type="button" class="btn-blue-sm color1" value="重新使用" />
+                                </c:if>
+                                <c:if test="${!user.active}">
+                                    <input type="button" class="btn-disabled-sm" value="等待激活" />
+                                </c:if>
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
             <ul class="pagination">
