@@ -28,14 +28,16 @@
     <div class="back-con-r fl">
         <div class="leftTab-content active" id="bs-tabcon1">
             <h4 class="font16">系统用户</h4>
-            <div class="input-group">
-                <input type="text" placeholder="联系人/邮箱" class="input-sm form-control">
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-sm">
-                    <i class="search-icon"></i>
-                    </button>
-                </span>
-            </div>
+            <form id="searchAdminUserForm" action="${pageContext.request.contextPath}/security/adminusers.html" method="post">
+                <div class="input-group">
+                    <input type="text" name="keywords" placeholder="联系人/邮箱" class="input-sm form-control" value="${paging.keyWords}">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-sm" onclick="searchAdminUser();">
+                        <i class="search-icon"></i>
+                        </button>
+                    </span>
+                </div>
+            </form>
             <table class="table table-condensed table-bordered table-hover table-view-1">
                 <thead>
                     <tr>
@@ -88,5 +90,12 @@
 <%--结尾菜单部分***********************************************************--%>
 
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
+
+<script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
+<script type="text/javascript">
+    function searchAdminUser() {
+        jQuery("#searchAdminUserForm").submit();
+    }
+</script>
 </body>
 </html>

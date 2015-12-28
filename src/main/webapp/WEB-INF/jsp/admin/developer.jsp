@@ -26,14 +26,16 @@
     <div class="back-con-r fl">
         <div class="leftTab-content active" id="bs-tabcon1">
             <h4 class="font16">发布者</h4>
-            <div class="input-group">
-                <input type="text" placeholder="用户名" class="input-sm form-control">
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-sm">
-                    <i class="search-icon"></i>
-                    </button>
-                </span>
-            </div>
+            <form id="searchDeveloperForm" action="${pageContext.request.contextPath}/security/admindeveloper.html" method="post">
+                <div class="input-group">
+                    <input id="name" type="text" name="name" placeholder="用户名" class="input-sm form-control" value="${paging.name}">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-sm" onclick="searchDevelpoerUser();">
+                        <i class="search-icon"></i>
+                        </button>
+                    </span>
+                </div>
+            </form>
             <table class="table table-condensed table-bordered table-hover table-view-1">
                 <thead>
                     <tr>
@@ -96,5 +98,12 @@
 <%--结尾菜单部分***********************************************************--%>
 
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
+
+<script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
+<script type="text/javascript">
+    function searchDevelpoerUser() {
+        jQuery("#searchDeveloperForm").submit();
+    }
+</script>
 </body>
 </html>

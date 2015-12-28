@@ -48,7 +48,7 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
         StringBuilder builder = new StringBuilder();
         builder.append("from AdminUser u");
         if (StringUtils.hasText(keyWords)) {
-            builder.append(" where u.username like '%" + keyWords + "%' or u.contactway like '%" + keyWords + "%'");
+            builder.append(" where u.username like '%" + keyWords + "%' or u.contactWay like '%" + keyWords + "%'");
         }
 
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
@@ -75,7 +75,7 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
         StringBuilder builder = new StringBuilder();
         builder.append("select count(u.id) from AdminUser u");
         if(StringUtils.hasText(keyWords)) {
-            builder.append(" where u.username like '%" + keyWords + "%' or u.contactway like '%" + keyWords + "%'");
+            builder.append(" where u.username like '%" + keyWords + "%' or u.contactWay like '%" + keyWords + "%'");
         }
         List list = getHibernateTemplate().find(builder.toString());
         return ((Long)list.get(0)).intValue();

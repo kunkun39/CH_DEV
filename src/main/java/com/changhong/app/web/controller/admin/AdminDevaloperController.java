@@ -33,6 +33,7 @@ public class AdminDevaloperController extends AbstractController{
         AdminDeveloperOverviewPaging paging = new AdminDeveloperOverviewPaging(systemService);
         constractPaging(paging, currentPage, name);
         List<ClientUserDTO> clientUserDTOList = paging.getItems();
+        model.put("paging", paging);
         model.put("users", clientUserDTOList);
         model.put("MANAGE_KEY","DEVELOPER");
         return new ModelAndView("admin/developer", model);

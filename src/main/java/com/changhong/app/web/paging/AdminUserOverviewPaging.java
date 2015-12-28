@@ -29,7 +29,6 @@ public class AdminUserOverviewPaging extends AbstractPaging<AdminUserDTO>{
         if (totalItemSize < 0) {
             totalItemSize = systemService.obtainAdminUserSize(keyWords);
         }
-        totalItemSize = systemService.obtainAdminUserSize(keyWords);
 
         return totalItemSize;
     }
