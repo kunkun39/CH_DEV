@@ -32,6 +32,10 @@ public class ClientServiceImpl implements ClientService {
         return AppCategoryWebAssember.toAppCategoryDTOList(categories, includeChildren);
     }
 
+    public boolean obtainAppPackageNameDuplicate(int appId, String appPackage) {
+        return clientDao.loadAppPackageDuplicate(appId, appPackage);
+    }
+
     public MarketAppDTO obtainMarketAppInformationFromFile(MarketAppDTO app, MultipartFile uploadApkFile, MultipartFile uploadIconFile, MultipartFile uploadPosterFile) {
         return documentService.uploadAppApkData(app, uploadApkFile, uploadIconFile, uploadPosterFile);
     }

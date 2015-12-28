@@ -17,4 +17,8 @@ public class ClientDaoImpl extends HibernateEntityObjectDao implements ClientDao
         return getHibernateTemplate().find("from AppCategory a where a.parent is NULL");
     }
 
+    public boolean loadAppPackageDuplicate(int appId, String appPackage) {
+        List list = getHibernateTemplate().find("select count(a.id) from MarketApp a where a.id <> ? and a.appPackage = ?", new Object[]{appId, appPackage});
+        return ((Long)list.get(0)).intValue() > 0 ? true : false;
+    }
 }

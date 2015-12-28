@@ -12,4 +12,6 @@ import java.util.List;
 public interface ClientDao extends EntityObjectDao {
 
     List<AppCategory> loadAllFirstLevelCategory();
+
+    boolean loadAppPackageDuplicate(int appId, String appPackage);
 }

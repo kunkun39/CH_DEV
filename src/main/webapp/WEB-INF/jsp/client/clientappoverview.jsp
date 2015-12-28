@@ -44,12 +44,15 @@
             </ul>
             <div class="tab-content">
                 <div id="tab1">
+                    <br/><a href="${pageContext.request.contextPath}/security/appfirststep.html">
+                        <input type="button" class="btn-blue color1" value="添加应用"/>
+                    </a>
                     <div class="input-group">
                         <input type="text" placeholder="应用名称" class="input-sm form-control">
                         <span class="input-group-btn">
-                                <button type="button" class="btn btn-sm">
+                            <button type="button" class="btn btn-sm">
                                 <i class="search-icon"></i>
-                                </button>
+                            </button>
                         </span>
                     </div>
                     <table class="table table-condensed table-bordered table-hover">

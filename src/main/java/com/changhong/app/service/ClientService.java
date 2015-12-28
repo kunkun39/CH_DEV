@@ -13,9 +13,11 @@ import java.util.List;
  */
 public interface ClientService {
 
-     /*App Flow Part*******************************************************************************/
+    /*App Flow Part*******************************************************************************/
 
-     List<AppCategoryDTO> obtainAllFirstLevelCategory(boolean includeChildren);
+    List<AppCategoryDTO> obtainAllFirstLevelCategory(boolean includeChildren);
+
+    boolean obtainAppPackageNameDuplicate(int appId, String appPackage);
 
     MarketAppDTO obtainMarketAppInformationFromFile(MarketAppDTO app, MultipartFile uploadApkFile, MultipartFile uploadIconFile, MultipartFile uploadPosterFile);
 
