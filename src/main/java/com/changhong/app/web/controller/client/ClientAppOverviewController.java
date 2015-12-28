@@ -13,7 +13,7 @@ import java.util.Map;
  * Date: 15-10-14
  * Time: 下午2:35
  */
-public class ClientAppOverivewController extends AbstractController {
+public class ClientAppOverviewController extends AbstractController {
 
 
     @Override

@@ -8,11 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by IntelliJ IDEA.
- * User: Administrator
+ * User: Jack Wang
  * Date: 15-12-24
  * Time: 下午6:11
- * To change this template use File | Settings | File Templates.
  */
 public class AdminUserWebAssember {
 

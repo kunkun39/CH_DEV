@@ -6,11 +6,9 @@ import com.changhong.app.web.facade.dto.AdminUserDTO;
 import java.util.List;
 
 /**
- * Created by IntelliJ IDEA.
- * User: Administrator
+ * User: Jack Wang
  * Date: 15-12-25
  * Time: 上午10:11
- * To change this template use File | Settings | File Templates.
  */
 public class AdminUserOverviewPaging extends AbstractPaging<AdminUserDTO>{
 

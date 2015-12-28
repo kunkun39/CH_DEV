@@ -1,19 +1,18 @@
 package com.changhong.app.service;
 
 import com.changhong.app.web.facade.dto.AdminUserDTO;
-import com.changhong.app.web.facade.dto.ClientUserDTO;
 import com.changhong.app.web.facade.dto.MarketAppDTO;
+import com.changhong.app.web.facade.dto.ClientUserDTO;
 
 import java.util.List;
 
 /**
- * Created by IntelliJ IDEA.
- * User: Administrator
+ * User: Jack Wang
  * Date: 15-12-24
  * Time: 下午5:55
- * To change this template use File | Settings | File Templates.
  */
 public interface SystemService {
+
     List<AdminUserDTO> obtainAdminUsers(String keyWords, int startPosition, int pageSize);
 
     int obtainAdminUserSize(String keyWords);

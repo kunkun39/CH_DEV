@@ -55,7 +55,7 @@ public class MarketAppDTO implements Serializable{
 
     private String apkActualFileName;
 
-    private String apkFakeFileName;
+    private String apkUploadFileName;
 
     private int ownerId;
 
@@ -217,12 +217,12 @@ public class MarketAppDTO implements Serializable{
         this.apkActualFileName = apkActualFileName;
     }
 
-    public String getApkFakeFileName() {
-        return apkFakeFileName;
+    public String getApkUploadFileName() {
+        return apkUploadFileName;
     }
 
-    public void setApkFakeFileName(String apkFakeFileName) {
-        this.apkFakeFileName = apkFakeFileName;
+    public void setApkUploadFileName(String apkUploadFileName) {
+        this.apkUploadFileName = apkUploadFileName;
     }
 
     public int getAppPosterId() {

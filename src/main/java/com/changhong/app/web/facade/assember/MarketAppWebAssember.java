@@ -8,13 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by IntelliJ IDEA.
- * User: Administrator
+ * User: Jack Wang
  * Date: 15-12-25
  * Time: 下午3:28
- * To change this template use File | Settings | File Templates.
  */
 public class MarketAppWebAssember {
+
     public static MarketApp DtoToDomain(MarketAppDTO dto) {
         MarketApp marketApp = null;
         // 有问题
@@ -52,9 +51,9 @@ public class MarketAppWebAssember {
                     appFile = new AppFile();
                     marketApp.setAppFile(appFile);
                 }
-                appFile.setId(dto.getAppId());
-                appFile.setActualFileName(dto.getAppActualFileName());
-                appFile.setUploadFileName(dto.getAppUploadFileName());
+                appFile.setId(dto.getApkFileId());
+                appFile.setActualFileName(dto.getApkActualFileName());
+                appFile.setUploadFileName(dto.getApkUploadFileName());
 
                 AppPoster appPoster = marketApp.getAppPoster();
                 if (null == appPoster) {
@@ -116,9 +115,9 @@ public class MarketAppWebAssember {
 
             AppFile appFile = marketApp.getAppFile();
             if (appFile != null) {
-                dto.setAppId(appFile.getId());
-                dto.setAppActualFileName(appFile.getActualFileName());
-                dto.setAppUploadFileName(appFile.getUploadFileName());
+                dto.setApkFileId(appFile.getId());
+                dto.setApkActualFileName(appFile.getActualFileName());
+                dto.setApkUploadFileName(appFile.getUploadFileName());
             }
 
             AppPoster appPoster = marketApp.getAppPoster();

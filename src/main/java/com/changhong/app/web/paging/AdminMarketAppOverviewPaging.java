@@ -6,11 +6,9 @@ import com.changhong.app.web.facade.dto.MarketAppDTO;
 import java.util.List;
 
 /**
- * Created by IntelliJ IDEA.
  * User: Administrator
  * Date: 15-12-26
  * Time: 下午10:27
- * To change this template use File | Settings | File Templates.
  */
 public class AdminMarketAppOverviewPaging extends AbstractPaging<MarketAppDTO> {
 

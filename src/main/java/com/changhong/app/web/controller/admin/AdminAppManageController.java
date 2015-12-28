@@ -16,11 +16,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by IntelliJ IDEA.
- * User: Administrator
+ * User: Jack Wang
  * Date: 15-12-25
  * Time: 下午1:36
- * To change this template use File | Settings | File Templates.
  */
 public class AdminAppManageController extends AbstractController{
 

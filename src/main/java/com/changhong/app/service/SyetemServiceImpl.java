@@ -17,11 +17,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Created by IntelliJ IDEA.
  * User: Administrator
  * Date: 15-12-25
  * Time: 上午10:27
- * To change this template use File | Settings | File Templates.
  */
 @Service("systemService")
 public class SyetemServiceImpl implements SystemService {
@@ -44,7 +42,6 @@ public class SyetemServiceImpl implements SystemService {
 
     public List<ClientUserDTO> obtainClientUsers(String name, int startPosition, int pageSize) {
         List<ClientUser> clientUserList = userDao.loadAdminDevelopers(name, startPosition, pageSize);
-
         return ClientUserWebAssember.DomainToDto(clientUserList);
     }
 

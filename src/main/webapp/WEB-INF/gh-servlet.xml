@@ -35,9 +35,12 @@
                 <prop key="/security/adminappmanage.html">adminAppManageController</prop>
 
                 <!--客户部分-->
-                <prop key="/security/clientappoverview.html">clientAppOverivewController</prop>
+                <prop key="/security/clientappoverview.html">clientAppOverviewController</prop>
                 <prop key="/security/clientselfinfo.html">clientSelfInfoController</prop>
                 <prop key="/security/clientchangepass.html">clientChangePassController</prop>
+
+                <!--应用流程部分-->
+                <prop key="/security/appfirststep.html">clientAppFirstStepController</prop>
 
             </props>
 
@@ -62,10 +65,16 @@
     <!--客户部分-->
 
     <!--客户应用部分-->
-    <bean id="clientAppOverivewController" class="com.changhong.app.web.controller.client.ClientAppOverivewController"/>
+    <bean id="clientAppOverviewController" class="com.changhong.app.web.controller.client.ClientAppOverviewController"/>
 
     <bean id="clientSelfInfoController" class="com.changhong.app.web.controller.client.ClientSelfInfoController"/>
 
     <bean id="clientChangePassController" class="com.changhong.app.web.controller.client.ClientChangePassController"/>
+
+    <!--应用流程部分-->
+    <bean id="clientAppFirstStepController" class="com.changhong.app.web.controller.client.ClientAppFirstStepController">
+        <property name="clientService" ref="clientService"/>
+        <property name="serverContext" value="${application.context}"/>
+    </bean>
 
 </beans>
