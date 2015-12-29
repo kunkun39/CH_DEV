@@ -42,6 +42,7 @@ public class ClientAppFirstStepController extends SimpleFormController {
         List<AppCategoryDTO> categories = clientService.obtainAllFirstLevelCategory(true);
         request.setAttribute("categories", categories);
         request.setAttribute("STEP_KEY", "FIRST");
+        request.setAttribute("PAGE_KEY", "CLIENT");
 
         boolean allowSee = true;
         MarketAppDTO app = new MarketAppDTO();
