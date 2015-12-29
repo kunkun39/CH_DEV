@@ -90,6 +90,12 @@ a.color4:hover {
 	background-position: -7px -50px;
 }
 
+.wrong-icon {
+	width: 68px;
+	height: 68px;
+	display: inline-block;
+	background-position: -7px -200px;
+}
 
 /*确认信息*/
 

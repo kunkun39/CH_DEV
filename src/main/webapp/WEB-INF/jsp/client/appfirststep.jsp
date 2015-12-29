@@ -144,7 +144,7 @@
             </div>
             <div class="panel-con-email row">
                 <div class="col-sm-4 text-right">
-                    <span class="reg-icon email-icon"></span>
+                    <span class="reg-icon wrong-icon"></span>
                 </div>
                 <div class="col-sm-8">
                     <p class="font16" style="margin: 10px 0 0;">感谢使用开发者应用接入平台，你没有权限访问该页面</p>
