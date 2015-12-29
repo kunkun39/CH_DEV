@@ -123,7 +123,15 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">&nbsp;</label>
                     <div class="col-sm-9">
-                        <a href="${pageContext.request.contextPath}/security/appfirststep.html?appId=${marketApp.id}"><input type="button" class="btn-blue color1" value="修 改" /></a>
+                        <a href="${pageContext.request.contextPath}/security/clientappoverview.html"><input type="button" class="btn-blue color1" value="返  回" /></a>
+                        <c:choose>
+                            <c:when test="${marketApp.appStatus == 'WAITING'}">
+                                <a href="${pageContext.request.contextPath}/security/appfirststep.html?appId=${marketApp.id}"><input type="button" class="btn-blue color1" value="修 改" /></a>
+                            </c:when>
+                            <c:when test="${marketApp.appStatus == 'SHELVES'}">
+                                <a href="${pageContext.request.contextPath}/security/appfirststep.html?appId=${marketApp.id}"><input type="button" class="btn-blue color1" value="更 新" /></a>
+                            </c:when>
+                        </c:choose>
                     </div>
                 </div>
             </form>

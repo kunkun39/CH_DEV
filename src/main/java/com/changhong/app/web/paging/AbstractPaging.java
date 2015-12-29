@@ -21,7 +21,7 @@ public abstract class AbstractPaging<T> implements Paging<T> {
     }
 
     public int getPageSize() {
-        return 20;
+        return 10;
     }
 
     public abstract List<T> getItems();

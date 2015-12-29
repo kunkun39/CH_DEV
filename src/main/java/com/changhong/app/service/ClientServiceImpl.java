@@ -5,6 +5,7 @@ import com.changhong.app.domain.AppHistory;
 import com.changhong.app.domain.AppStatus;
 import com.changhong.app.domain.MarketApp;
 import com.changhong.app.repository.ClientDao;
+import com.changhong.app.utils.SecurityUtils;
 import com.changhong.app.web.event.AppCreateAction;
 import com.changhong.app.web.event.AppStatusChangeAction;
 import com.changhong.app.web.facade.assember.AppCategoryWebAssember;
@@ -61,7 +62,7 @@ public class ClientServiceImpl implements ClientService {
             AppHistory history = AppHistory.generateAppCreateHistory(action);
             clientDao.saveOrUpdate(history);
         } else {
-            AppStatusChangeAction action = new AppStatusChangeAction(false, marketApp.getId(), AppStatus.CREATED, AppStatus.CREATED, "");
+            AppStatusChangeAction action = new AppStatusChangeAction(false, marketApp.getId(), AppStatus.WAITING, AppStatus.WAITING, "");
             AppHistory history = AppHistory.generateAppStatusChangeHistory(action);
             clientDao.saveOrUpdate(history);
         }
@@ -71,6 +72,19 @@ public class ClientServiceImpl implements ClientService {
 
     public MarketAppDTO obtainMarketApp(int appId) {
         MarketApp app = (MarketApp) clientDao.findById(appId, MarketApp.class);
-        return MarketAppWebAssember.toMarketAppDTO(app);
+        return MarketAppWebAssember.toMarketAppDetailsDTO(app);
+    }
+
+    /*App Overview Part***************************************************************************/
+
+    public List<MarketAppDTO> obtainMarketApps(String appName, String appStatus, int startPosition, int pageSize) {
+        int currentClientId = SecurityUtils.currectAuthenticationId();
+        List<MarketApp> apps = clientDao.loadMarketApps(currentClientId, appName, appStatus, startPosition, pageSize);
+        return MarketAppWebAssember.toMarketAppDTOList(apps);
+    }
+
+    public int obtainMarketAppSize(String appName, String appStatus) {
+        int currentClientId = SecurityUtils.currectAuthenticationId();
+        return clientDao.loadMarketAppSize(currentClientId, appName, appStatus);
     }
 }

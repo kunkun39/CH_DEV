@@ -1,6 +1,7 @@
 package com.changhong.app.repository;
 
 import com.changhong.app.domain.AppCategory;
+import com.changhong.app.domain.MarketApp;
 
 import java.util.List;
 
@@ -14,4 +15,8 @@ public interface ClientDao extends EntityObjectDao {
     List<AppCategory> loadAllFirstLevelCategory();
 
     boolean loadAppPackageDuplicate(int appId, String appPackage);
+
+    List<MarketApp> loadMarketApps(int clientId, String appName, String appStatus, int startPosition, int pageSize);
+
+    int loadMarketAppSize(int clientId, String appName, String appStatus);
 }

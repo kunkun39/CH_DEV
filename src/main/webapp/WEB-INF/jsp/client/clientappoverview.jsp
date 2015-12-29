@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@ taglib prefix="ch" uri="http://www.chanhong.com" %>
 <!DOCTYPE html>
 <!--[if IE 8 ]>
 <html class="ie8"> <![endif]-->
@@ -34,82 +35,70 @@
         <div class="leftTab-content active">
             <h4 class="font16">我的应用</h4>
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#tab1">全部</a></li>
-                <li><a href="#tab2">新创建</a></li>
-                <li><a href="#tab3">待审核</a></li>
-                <li><a href="#tab4">拒绝通过</a></li>
-                <li><a href="#tab5">待上架</a></li>
-                <li><a href="#tab6">已上架</a></li>
-                <li><a href="#tab7">已下架</a></li>
+                <li <c:if test="${paging.appStatus == 'ALL'}">class="active"</c:if>><a href="javascript:void(0);" onclick="resetStatus('ALL')">全部</a></li>
+                <li <c:if test="${paging.appStatus == 'WAITING'}">class="active"</c:if>><a href="javascript:void(0);" onclick="resetStatus('WAITING')">待审核</a></li>
+                <li <c:if test="${paging.appStatus == 'REJECTED'}">class="active"</c:if>><a href="javascript:void(0);" onclick="resetStatus('REJECTED')">拒绝通过</a></li>
+                <li <c:if test="${paging.appStatus == 'PASSED'}">class="active"</c:if>><a href="javascript:void(0);" onclick="resetStatus('PASSED')">待上架</a></li>
+                <li <c:if test="${paging.appStatus == 'SHELVES'}">class="active"</c:if>><a href="javascript:void(0);" onclick="resetStatus('SHELVES')">已上架</a></li>
+                <li <c:if test="${paging.appStatus == 'OFFSHELVES'}">class="active"</c:if>><a href="javascript:void(0);" onclick="resetStatus('OFFSHELVES')">已下架</a></li>
             </ul>
             <div class="tab-content">
                 <div id="tab1">
                     <br/><a href="${pageContext.request.contextPath}/security/appfirststep.html">
                         <input type="button" class="btn-blue color1" value="添加应用"/>
                     </a>
-                    <div class="input-group">
-                        <input type="text" placeholder="应用名称" class="input-sm form-control">
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-sm">
-                                <i class="search-icon"></i>
-                            </button>
-                        </span>
-                    </div>
+                    <form id="client_app_search" action="${pageContext.request.contextPath}/security/clientappoverview.html" method="post">
+                        <div class="input-group">
+                            <input id="appStatus" name="appStatus" type="hidden" value="${paging.appStatus}"/>
+                            <input id="appName" name="appName" type="text" placeholder="应用名称" class="input-sm form-control"/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-sm" onclick="searchClientApp();">
+                                    <i class="search-icon"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
                     <table class="table table-condensed table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th style="padding-left: 20px;">应用图标/名称</th>
-                                <th>类型/介绍</th>
+                                <th>类别/介绍</th>
                                 <th>状态</th>
                                 <th>操作</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <c:forEach items="${apps}" var="app">
                             <tr>
                                 <td style="padding: 20px;">
-                                    <img src="${pageContext.request.contextPath}/images/longmen.png" width="70" height="70" class="fl" />
+                                    <img width="70" height="70" alt="" class="fl" src="${fileRequestHost}upload/${app.appKey}/${app.iconActualFileName}"/>
                                     <div class="fl" style="margin-left: 13px;margin-top: 10px;">
-                                        <h5>影视娱乐</h5>
-                                        <p class="font12 color9">版本4.0</p>
+                                        <h5>${app.appName}</h5>
+                                        <p class="font12 color9">版本${app.appVersion}</p>
                                     </div>
                                 </td>
                                 <td>
-                                    <h5>影视娱乐</h5>
-                                    <p class="font12 color9">完全自主开发新型日发送量可达1000万条</p>
+                                    <h5>${app.fullCategoryName}</h5>
+                                    <p class="font12 color9">${app.appDescription}</p>
                                 </td>
-                                <td>新创建</td>
+                                <td>${app.appStatusName}</td>
                                 <td>
-                                    <a class="color4" href="javascript:;">编辑应用</a>
+                                    <c:if test="${app.appStatus == 'REJECTED'}">
+                                        <a class="color4" href="${pageContext.request.contextPath}/security/appfirststep.html?appId=${app.id}">查看</a>
+                                    </c:if>
+                                    <c:if test="${app.appStatus != 'REJECTED'}">
+                                        <a class="color4" href="${pageContext.request.contextPath}/security/appsecondstep.html?appId=${app.id}">查看</a>
+                                    </c:if>
                                 </td>
                             </tr>
+                            </c:forEach>
                         </tbody>
                     </table>
 
                     <ul class="pagination">
-                        <li class="cur"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">6</a></li>
-                        <li><a href="#">7</a></li>
-                        <li><a href="#">8</a></li>
-                        <li><a href="#">...</a></li>
-                        <li><a href="#">18</a></li>
-                        <li><a href="#">下一页</a></li>
-                        <li>
-                            <label>跳转到</label>
-                            <input type="text" class="input-page" />
-                        </li>
-                        <li><a href="#">Go</a></li>
+                        <ch:paging urlMapping="${pageContext.request.contextPath}/security/clientappoverview.html" paging="${paging}"/>
                     </ul>
                 </div>
-                <div id="tab2"></div>
-                <div id="tab3"></div>
-                <div id="tab4"></div>
-                <div id="tab5"></div>
-                <div id="tab6"></div>
-                <div id="tab7"></div>
             </div>
         </div>
     </div>
@@ -126,6 +115,18 @@
 <script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
 <![endif]-->
 <script src="${pageContext.request.contextPath}/javascript/vendor/tab.js"></script>
+
+<script type="text/javascript">
+    function resetStatus(appStatus) {
+        jQuery("#appStatus").val(appStatus);
+        searchClientApp()
+    }
+
+    function searchClientApp() {
+        jQuery("#client_app_search").submit();
+    }
+
+</script>
 
 </body>
 </html>

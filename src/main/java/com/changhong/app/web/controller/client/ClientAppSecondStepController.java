@@ -31,7 +31,6 @@ public class ClientAppSecondStepController extends AbstractController {
     @Override
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Map<String, Object> model = new HashMap<String, Object>();
-        request.setAttribute("STEP_KEY", "SECOND");
         List<AppCategoryDTO> categories = clientService.obtainAllFirstLevelCategory(true);
         request.setAttribute("categories", categories);
 
@@ -41,6 +40,7 @@ public class ClientAppSecondStepController extends AbstractController {
         if (app.getOwnerId() == SecurityUtils.currectAuthenticationId()) {
             allowSee = true;
             model.put("marketApp", app);
+            model.put("STEP_KEY", app.decideWhichStepNow());
         }
 
 //        List<AppHistoryDTO> histories = systemService.obtainAppChangeHistory(appId);

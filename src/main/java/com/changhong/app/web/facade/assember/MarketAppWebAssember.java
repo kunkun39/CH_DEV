@@ -19,7 +19,7 @@ public class MarketAppWebAssember {
         int appId = dto.getId();
         if (appId > 0) {
             app = (MarketApp) EntityLoadHolder.getUserDao().findById(appId, MarketApp.class);
-            app.setAppStatus(AppStatus.CREATED);
+            app.setAppStatus(AppStatus.WAITING);
         } else {
             app = new MarketApp();
         }
@@ -65,7 +65,7 @@ public class MarketAppWebAssember {
         return app;
     }
 
-    public static MarketAppDTO toMarketAppDTO(MarketApp marketApp) {
+    public static MarketAppDTO toMarketAppDetailsDTO(MarketApp marketApp) {
         MarketAppDTO dto = null;
 
         if (marketApp != null) {
@@ -118,11 +118,45 @@ public class MarketAppWebAssember {
         return dto;
     }
 
-    public static List<MarketAppDTO> DomainToDto(List<MarketApp> marketAppList) {
+    public static MarketAppDTO toMarketAppListDTO(MarketApp marketApp) {
+        MarketAppDTO dto = null;
+
+        if (marketApp != null) {
+            dto = new MarketAppDTO();
+
+            dto.setId(marketApp.getId());
+            dto.setAppKey(marketApp.getAppKey());
+            dto.setAppName(marketApp.getAppName());
+            dto.setAppDescription(marketApp.getAppDescription());
+            dto.setAppVersion(marketApp.getAppVersion());
+            dto.setAppPackage(marketApp.getAppPackage());
+            dto.setAppSize(marketApp.getAppSize());
+            dto.setAppStatus(marketApp.getAppStatus().name());
+            dto.setAppStatusName(marketApp.getAppStatus().getDescription());
+
+            AppCategory appCategory = marketApp.getAppCategory();
+            if (appCategory != null) {
+                dto.setCategoryId(appCategory.getId());
+                dto.setCategoryName(appCategory.getCategoryName());
+                dto.setFullCategoryName(appCategory.getFullCategoryPath());
+            }
+
+            AppIcon appIcon = marketApp.getAppIcon();
+            if (appIcon != null) {
+                dto.setAppIconId(appIcon.getId());
+                dto.setIconActualFileName(appIcon.getActualFileName());
+                dto.setIconUploadFileName(appIcon.getUploadFileName());
+            }
+        }
+
+        return dto;
+    }
+
+    public static List<MarketAppDTO> toMarketAppDTOList(List<MarketApp> marketAppList) {
         List<MarketAppDTO> dtoList = new ArrayList<MarketAppDTO>();
 
         for(MarketApp marketApp : marketAppList) {
-            dtoList.add(toMarketAppDTO(marketApp));
+            dtoList.add(toMarketAppListDTO(marketApp));
         }
 
         return dtoList;

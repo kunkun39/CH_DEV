@@ -43,7 +43,7 @@ public class ClientAppFirstStepController extends SimpleFormController {
         request.setAttribute("categories", categories);
         request.setAttribute("STEP_KEY", "FIRST");
 
-        boolean allowSee = false;
+        boolean allowSee = true;
         MarketAppDTO app = new MarketAppDTO();
 
         int appId = ServletRequestUtils.getIntParameter(request, "appId", -1);

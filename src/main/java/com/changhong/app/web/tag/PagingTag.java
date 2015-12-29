@@ -20,9 +20,9 @@ public class PagingTag extends TagSupport {
     private String last = "后一页";
     private String previous = "前一页";
     private String next = "下一页";
-    private String goToSpecificPage = "OK";
+    private String goToSpecificPage = "跳转到";
     private String currentPageNumberParameter = "current";
-    private String delimiter = "&nbsp;&nbsp;&nbsp;";
+    private String delimiter = "";
     private boolean showPageInformation = Boolean.TRUE;
     private boolean showFirstPageLink = Boolean.TRUE;
     private boolean showLastPageLink = Boolean.TRUE;
@@ -53,52 +53,55 @@ public class PagingTag extends TagSupport {
         buffer.append(createPreviousPageLink());
         buffer.append(createNextPageLink());
         buffer.append(showLastPageLink ? createLastPageLink() : "");
-        buffer.append(showPageInformation ? createPageInformation() : "");
         buffer.append(showGoTo ? createGoToSpecificPageLink() : "");
+        buffer.append(showPageInformation ? createPageInformation() : "");
 
         return buffer.toString();
     }
 
-    private String createGoToSpecificPageLink() {
-        String goToSpecificPageLink = "<input id=\"specificPageNumber\" type=\"text\" value=\"" + paging.getCurrentPageNumber() + "\"/>" + delimiter + "<a href=\"javascript:void(0);\" onclick=\"" + createGotoClick() + "\" >" + goToSpecificPage + "</a>";
-        return goToSpecificPageLink;
-    }
-
-    private String createLastPageLink() {
-        String lastLink = "<a style=\"color:red;\" href=\"" + createHref(paging.getTotalPages()) + "\"" + createLinkClick(paging.getTotalPages()) + " >" + last + "</a>";
-        return lastLink + delimiter;
-    }
-
-    private String createFirstPageLink() {
-        String firstLink = "<a style=\"color:red;\" href=\"" + createHref(1) + "\"" + createLinkClick(1) + " >" + first + "</a>";
+     private String createFirstPageLink() {
+        String firstLink = "<li><a style=\"color:#B94A48;\" href=\"" + createHref(1) + "\"" + createLinkClick(1) + " >" + first + "</a></li>";
         return firstLink + delimiter;
     }
 
-    private String createPageInformation() {
-        return delimiter + "(" + paging.getCurrentPageNumber() + " / " + paging.getTotalPages() + ")" + delimiter;
-    }
-
-    private String createNextPageLink() {
-        if (paging.hasNextPage()) {
-            return "<a style=\"color:red;\" href=\"" + createHref(paging.getNextPageNumber()) + "\"" + createLinkClick(paging.getNextPageNumber()) + " >" + next + "</a>" + delimiter;
-        } else {
-            return next + delimiter;
-        }
-    }
-
     private String createPreviousPageLink() {
-        String prevLink = previous;
+        String prevLink = "";
         if (paging.hasPreviousPage()) {
-            prevLink = "<a style=\"color:red;\" href=\"" + createHref(paging.getPreviousPageNumber()) + "\"" + createLinkClick(paging.getPreviousPageNumber()) + " >" + previous + "</a>";
+            prevLink = "<li><a style=\"color:#B94A48;\" href=\"" + createHref(paging.getPreviousPageNumber()) + "\"" + createLinkClick(paging.getPreviousPageNumber()) + " >" + previous + "</a></li>";
+        } else {
+            prevLink = "<li><a href=\"javascript:void(0);\">" + previous + "</a></li>";
         }
         return prevLink + delimiter;
     }
 
+    private String createNextPageLink() {
+        if (paging.hasNextPage()) {
+            return "<li><a style=\"color:#B94A48;\" href=\"" + createHref(paging.getNextPageNumber()) + "\"" + createLinkClick(paging.getNextPageNumber()) + " >" + next + "</a><li>" + delimiter;
+        } else {
+            return "<li><a href=\"javascript:void(0);\">" + next + "</a></li>" + delimiter;
+        }
+    }
+
+    private String createLastPageLink() {
+        String lastLink = "<li><a style=\"color:#B94A48;\" href=\"" + createHref(paging.getTotalPages()) + "\"" + createLinkClick(paging.getTotalPages()) + " >" + last + "</a></li>";
+        return lastLink;
+    }
+
+    private String createPageInformation() {
+        return delimiter + "<li><a href=\"javascript:void(0);\">(" + paging.getCurrentPageNumber() + " / " + paging.getTotalPages() + ")</a></i>" + delimiter;
+    }
+
+    private String createGoToSpecificPageLink() {
+//        String goToSpecificPageLink = "<input id=\"specificPageNumber\" type=\"text\" class=\"text\" style=\"width:25px\" value=\"" + paging.getCurrentPageNumber() + "\"/>&nbsp;" + "<a href=\"javascript:void(0);\" class=\"btn btn-success btn-mini\" onclick=\"" + createGotoClick() + "\" >" + goToSpecificPage + "</a>";
+        String goToSpecificPageLink = "<li><label>" + goToSpecificPage + "</label><input id=\"specificPageNumber\" type=\"text\" class=\"input-page\" value=\"" + paging.getCurrentPageNumber() + "\"/></li><li><a href=\"javascript:void(0);\" onclick=\"" + createGotoClick() + "\">Go</a></li>";
+        return goToSpecificPageLink;
+    }
+
     private String createGotoClick() {
         if (StringUtils.hasText(function)) {
-            return function + "('" + urlMapping + getCurrentPageNumberParameter() + "'+document.getElementById('specificPageNumber').value);";
+            return function + "('" + urlMapping + getCurrentPageNumberParameter() + "'+document.getElementById('specificPageNumber').value)" + "+'" + getParameterValues() + "'";
         } else {
-            String defaultAction = "this.href='" + urlMapping + getCurrentPageNumberParameter() + "'+document.getElementById('specificPageNumber').value;";
+            String defaultAction = "this.href='" + urlMapping + getCurrentPageNumberParameter() + "'+document.getElementById('specificPageNumber').value" + "+'" + getParameterValues() + "'";
             String errorhandleAction = "this.href='" + urlMapping + getCurrentPageNumberParameter() + 1 + "'";
             return "if(document.getElementById('specificPageNumber').value.match(/\\D+/) != null || " +
                     " document.getElementById('specificPageNumber').value == '' || " +

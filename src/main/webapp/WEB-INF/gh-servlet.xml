@@ -68,7 +68,10 @@
     <!--客户部分-->
 
     <!--客户应用部分-->
-    <bean id="clientAppOverviewController" class="com.changhong.app.web.controller.client.ClientAppOverviewController"/>
+    <bean id="clientAppOverviewController" class="com.changhong.app.web.controller.client.ClientAppOverviewController">
+        <property name="clientService" ref="clientService"/>
+        <property name="fileRequestHost" value="${application.file.request.path}"/>
+    </bean>
 
     <bean id="clientSelfInfoController" class="com.changhong.app.web.controller.client.ClientSelfInfoController"/>
 

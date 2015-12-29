@@ -22,4 +22,10 @@ public interface ClientService {
     int obtainMarketAppInformationFromFile(MarketAppDTO app, MultipartFile uploadApkFile, MultipartFile uploadIconFile, MultipartFile uploadPosterFile);
 
     MarketAppDTO obtainMarketApp(int appId);
+
+    /*App Overview Part***************************************************************************/
+
+    List<MarketAppDTO> obtainMarketApps(String appName, String appStatus, int startPosition, int pageSize);
+
+    int obtainMarketAppSize(String appName, String appStatus);
 }

@@ -19,15 +19,22 @@
             <h4 class="step-bar"></h4>
         </li>
         <li class="cofirm-step-li">
-            <h4 class="step-circular color1">3</h4>
+            <h4 class="step-circular color1 <c:if test="${STEP_KEY=='THIRD'}">step-cur</c:if>">3</h4>
             <span class="color7 font12">审核通过</span>
         </li>
         <li>
             <h4 class="step-bar"></h4>
         </li>
         <li class="cofirm-step-li">
-            <h4 class="step-circular color1">4</h4>
+            <h4 class="step-circular color1 <c:if test="${STEP_KEY=='FOURTH'}">step-cur</c:if>">4</h4>
             <span class="color7 font12">上架成功</span>
+        </li>
+        <li>
+            <h4 class="step-bar"></h4>
+        </li>
+        <li class="cofirm-step-li">
+            <h4 class="step-circular color1 <c:if test="${STEP_KEY=='FIFTH'}">step-cur</c:if>">5</h4>
+            <span class="color7 font12">已下架</span>
         </li>
     </ul>
 </div>

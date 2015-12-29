@@ -51,7 +51,7 @@ public class SystemServiceImpl implements SystemService {
 
     public List<MarketAppDTO> obtainMarketApps(String appName, String appStatus, int startPosition, int pageSize) {
         List<MarketApp> marketAppList = systemDao.loadMarketApps(appName, appStatus, startPosition, pageSize);
-        return MarketAppWebAssember.DomainToDto(marketAppList);
+        return MarketAppWebAssember.toMarketAppDTOList(marketAppList);
     }
 
     public int obtainMarketAppSize(String appName, String appStatus) {

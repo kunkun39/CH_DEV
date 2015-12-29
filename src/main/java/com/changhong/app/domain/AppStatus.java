@@ -6,7 +6,6 @@ package com.changhong.app.domain;
  * Time: 下午2:34
  */
 public enum AppStatus {
-    CREATED("待提交"),
     WAITING("待审核"),
     PASSED("审核通过"),
     REJECTED("已拒绝"),

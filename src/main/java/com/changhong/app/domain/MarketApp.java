@@ -43,7 +43,7 @@ public class MarketApp extends EntityBase {
     private ClientUser owner;
 
     public MarketApp() {
-        this.appStatus = AppStatus.CREATED;
+        this.appStatus = AppStatus.WAITING;
         this.createTime = new DateTime();
 
         ClientUser owner = new ClientUser();
