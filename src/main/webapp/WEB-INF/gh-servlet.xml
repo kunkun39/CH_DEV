@@ -41,6 +41,7 @@
 
                 <!--应用流程部分-->
                 <prop key="/security/appfirststep.html">clientAppFirstStepController</prop>
+                <prop key="/security/appsecondstep.html">clientAppSecondStepController</prop>
 
             </props>
 
@@ -77,6 +78,13 @@
     <bean id="clientAppFirstStepController" class="com.changhong.app.web.controller.client.ClientAppFirstStepController">
         <property name="clientService" ref="clientService"/>
         <property name="serverContext" value="${application.context}"/>
+        <property name="fileRequestHost" value="${application.file.request.path}"/>
+    </bean>
+
+    <bean id="clientAppSecondStepController" class="com.changhong.app.web.controller.client.ClientAppSecondStepController">
+        <property name="clientService" ref="clientService"/>
+        <property name="systemService" ref="systemService"/>
+        <property name="fileRequestHost" value="${application.file.request.path}"/>
     </bean>
 
 </beans>

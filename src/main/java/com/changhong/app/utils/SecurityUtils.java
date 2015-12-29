@@ -1,6 +1,7 @@
 package com.changhong.app.utils;
 
 import com.changhong.app.domain.Auth;
+import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -48,8 +49,11 @@ public class SecurityUtils {
     }
 
     public static int currectAuthenticationId() {
-        Auth user = currentAuthentication();
-        if (user == null) return -1;
-        return user.getId();
+//        Auth user = currentAuthentication();
+//        if (user == null) return -1;
+//        return user.getId();
+
+        //TODO:here set the fake id
+        return 1;
     }
 }

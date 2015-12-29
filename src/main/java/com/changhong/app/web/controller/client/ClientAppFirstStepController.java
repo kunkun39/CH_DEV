@@ -2,6 +2,7 @@ package com.changhong.app.web.controller.client;
 
 import com.changhong.app.service.ClientService;
 import com.changhong.app.utils.CHFileUtils;
+import com.changhong.app.utils.SecurityUtils;
 import com.changhong.app.web.facade.dto.AppCategoryDTO;
 import com.changhong.app.web.facade.dto.MarketAppDTO;
 import org.springframework.util.StringUtils;
@@ -24,11 +25,7 @@ import java.util.List;
  */
 public class ClientAppFirstStepController extends SimpleFormController {
 
-    public final static String CLINET_UPLOAD_APP_INFO = "CLINET_UPLOAD_APP_INFO";
-
-    private final static int MAX_ICON_IMAGE_SIZE = 1024 * 20;
-
-    private final static int MAX_POSTER_IMAGE_SIZE = 1024 * 200;
+    private String fileRequestHost;
 
     private String serverContext;
 
@@ -44,67 +41,26 @@ public class ClientAppFirstStepController extends SimpleFormController {
     protected Object formBackingObject(HttpServletRequest request) throws Exception {
         List<AppCategoryDTO> categories = clientService.obtainAllFirstLevelCategory(true);
         request.setAttribute("categories", categories);
-
         request.setAttribute("STEP_KEY", "FIRST");
-        return new MarketAppDTO();
+
+        boolean allowSee = true;
+        MarketAppDTO app = new MarketAppDTO();
+
+        int appId = ServletRequestUtils.getIntParameter(request, "appId", -1);
+        if (appId > 0) {
+            app = clientService.obtainMarketApp(appId);
+            if (app.getOwnerId() != SecurityUtils.currectAuthenticationId()) {
+                allowSee = false;
+            }
+        }
+
+        request.setAttribute("allowSee", allowSee);
+        request.setAttribute("fileRequestHost", fileRequestHost);
+        return app;
     }
 
     @Override
     protected void onBindAndValidate(HttpServletRequest request, Object command, BindException errors) throws Exception {
-        String appName = ServletRequestUtils.getStringParameter(request, "appName", "");
-        if (!StringUtils.hasText(appName)) {
-            errors.rejectValue("appName", "app.name.empty");
-        }
-        String appPackage = ServletRequestUtils.getStringParameter(request, "appPackage", "");
-        if (!StringUtils.hasText(appPackage)) {
-            errors.rejectValue("appPackage", "app.package.empty");
-        } else {
-            boolean duplicate = clientService.obtainAppPackageNameDuplicate(-1, appPackage);
-            if (duplicate) {
-                errors.rejectValue("appPackage", "app.package.duplicate");
-            }
-        }
-
-        //check file is empty
-        DefaultMultipartHttpServletRequest multipartRequest = (DefaultMultipartHttpServletRequest) request;
-        MultipartFile appIconUploadFile = multipartRequest.getFile("appIconUploadFile");
-        MultipartFile appPosterUploadFile = multipartRequest.getFile("appPosterUploadFile");
-        MultipartFile appApkUploadFile = multipartRequest.getFile("appApkUploadFile");
-
-        if (appIconUploadFile == null || appIconUploadFile.getSize() <= 0) {
-            errors.rejectValue("appIconId", "app.icon.empty");
-        }
-        if (appPosterUploadFile == null || appPosterUploadFile.getSize() <= 0) {
-            errors.rejectValue("appPosterId", "app.poster.empty");
-        }
-        if (appApkUploadFile == null || appApkUploadFile.getSize() <= 0) {
-            errors.rejectValue("apkFileId", "app.apk.empty");
-        }
-
-        //check file format is right
-        if (appIconUploadFile != null && appIconUploadFile.getSize() > 0) {
-            if (!CHFileUtils.isImageFile(appIconUploadFile.getOriginalFilename()) && !errors.hasFieldErrors("appIconId")) {
-                errors.rejectValue("appIconId", "app.image.format");
-            } else {
-                if (appIconUploadFile.getSize() > MAX_ICON_IMAGE_SIZE) {
-                    errors.rejectValue("appIconId", "app.image.bigger");
-                }
-            }
-        }
-        if (appPosterUploadFile != null && appPosterUploadFile.getSize() > 0) {
-            if (!CHFileUtils.isImageFile(appPosterUploadFile.getOriginalFilename()) && !errors.hasFieldErrors("appPosterId")) {
-                errors.rejectValue("appPosterId", "app.image.format");
-            } else {
-                if (appIconUploadFile.getSize() > MAX_POSTER_IMAGE_SIZE) {
-                    errors.rejectValue("appPosterId", "app.image.bigger");
-                }
-            }
-        }
-        if (appApkUploadFile != null && appApkUploadFile.getSize() > 0) {
-            if (!CHFileUtils.isAndroidAppFile(appApkUploadFile.getOriginalFilename()) && !errors.hasFieldErrors("appFileId")) {
-                errors.rejectValue("apkFileId", "app.not.apk");
-            }
-        }
     }
 
     @Override
@@ -119,10 +75,13 @@ public class ClientAppFirstStepController extends SimpleFormController {
         MultipartFile iconFile = multipartRequest.getFile("appIconUploadFile");
         MultipartFile posterFile = multipartRequest.getFile("appPosterUploadFile");
 
-        clientService.obtainMarketAppInformationFromFile(app, apkFile, iconFile, posterFile);
-        request.getSession().setAttribute(CLINET_UPLOAD_APP_INFO, app);
+        int appId = clientService.obtainMarketAppInformationFromFile(app, apkFile, iconFile, posterFile);
 
-        return new ModelAndView(new RedirectView("/" + serverContext + "/security/appsecondstep.html"));
+        return new ModelAndView(new RedirectView("/" + serverContext + "/security/appsecondstep.html?appId=" + appId));
+    }
+
+    public void setFileRequestHost(String fileRequestHost) {
+        this.fileRequestHost = fileRequestHost;
     }
 
     public void setServerContext(String serverContext) {

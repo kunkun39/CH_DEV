@@ -19,6 +19,7 @@ public interface ClientService {
 
     boolean obtainAppPackageNameDuplicate(int appId, String appPackage);
 
-    MarketAppDTO obtainMarketAppInformationFromFile(MarketAppDTO app, MultipartFile uploadApkFile, MultipartFile uploadIconFile, MultipartFile uploadPosterFile);
+    int obtainMarketAppInformationFromFile(MarketAppDTO app, MultipartFile uploadApkFile, MultipartFile uploadIconFile, MultipartFile uploadPosterFile);
 
+    MarketAppDTO obtainMarketApp(int appId);
 }

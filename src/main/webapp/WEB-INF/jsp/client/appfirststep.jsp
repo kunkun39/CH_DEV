@@ -29,9 +29,11 @@
 <%--内容部分***********************************************************--%>
 
 <div class="container">
-    <div class="panel panel-default">
+
+    <c:if test="${allowSee}">
+        <div class="panel panel-default">
         <div class="panel-heading">
-            应用信息上传
+            提交应用信息
         </div>
 
         <%--步骤的头***********************************************************--%>
@@ -81,6 +83,9 @@
                         <input type="file" id="appIconUploadFile" name="appIconUploadFile" required="required" style="width: 320px" onchange="validateIconImage(this)"/>
                         <span class="help-block color6">请编辑应用图标: 像素:150*150，大小<30K</span>
                         <span id="icon_error_show" class="help-block color5" style="display: none;"></span>
+                        <c:if test="${marketApp.id > 0}">
+                            <img width="70" height="70" alt="" src="${fileRequestHost}upload/${marketApp.appKey}/${marketApp.iconActualFileName}"/>
+                        </c:if>
                     </div>
                 </div>
 
@@ -90,6 +95,9 @@
                         <input type="file" id="appPosterUploadFile" name="appPosterUploadFile" required="required" style="width: 320px" onchange="validatePosterImage(this)"/>
                         <span class="help-block color6">请编辑应用图标: 像素:800*450，大小<200K</span>
                         <span id="poster_error_show" class="help-block color5" style="display: none;"></span>
+                        <c:if test="${marketApp.id > 0}">
+                            <img width="200" height="112" alt="" src="${fileRequestHost}upload/${marketApp.appKey}/${marketApp.posterActualFileName}"/>
+                        </c:if>
                     </div>
                 </div>
 
@@ -99,6 +107,9 @@
                         <input type="file" id="appApkUploadFile" name="appApkUploadFile" required="required" style="width: 320px" onchange="validateApkFile(this)"/>
                         <span class="help-block color6">请编辑应用APK文件</span>
                         <span id="apk_error_show" class="help-block color5" style="display: none;"></span>
+                        <c:if test="${marketApp.id > 0}">
+                            <span class="help-block color10">已上传应用APK文件:${marketApp.apkUploadFileName}</span>
+                        </c:if>
                     </div>
                 </div>
 
@@ -114,8 +125,8 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">&nbsp;</label>
                     <div class="col-sm-9">
-                        <input type="button" class="btn-blue color1" value="返  回" />
-                        <input type="button" class="btn-blue color1" value="下一步" onclick="submitAppInfo(this.form)"/>
+                        <a href="${pageContext.request.contextPath}/security/clientappoverview.html"><input type="button" class="btn-blue color1" value="返  回" /></a>
+                        <input type="button" class="btn-blue color1" value="提  交" onclick="submitAppInfo(this.form)"/>
                     </div>
                 </div>
 
@@ -124,6 +135,25 @@
             </div>
         </spring-form:form>
     </div>
+    </c:if>
+
+    <c:if test="${!allowSee}">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                页面禁止访问
+            </div>
+            <div class="panel-con-email row">
+                <div class="col-sm-4 text-right">
+                    <span class="reg-icon email-icon"></span>
+                </div>
+                <div class="col-sm-8">
+                    <p class="font16" style="margin: 10px 0 0;">感谢使用开发者应用接入平台，你没有权限访问该页面</p>
+                    <p style="margin:0 0 28px;color: #999;">可能你的会话已经超时或者你还未登陆系统</p>
+                    <a href="${pageContext.request.contextPath}/chapp/index.html"><input type="button" class="btn-blue color1" value="返  回" /></a>
+                </div>
+            </div>
+        </div>
+    </c:if>
 </div>
 
 <%--开头菜单部分***********************************************************--%>
@@ -149,12 +179,23 @@
     var posterImageValidate = false;
     var apkFileValidate = false;
 
+    var appId = '${marketApp.id}';
+    if(appId > 0) {
+        appNameValidate = true;
+        appPackageValidate = true;
+        appDescValidate = true;
+        iconImageValidate = true;
+        posterImageValidate = true;
+        apkFileValidate = true;
+    }
+
     function validateAppName() {
         //验证应用名称
         var appName = jQuery("#appName").val();
         if(appName == null || appName == '') {
             jQuery("#name_error_show").html("应用名称不能为空");
             jQuery("#name_error_show").css("display", "block");
+            appNameValidate = false;
         } else {
             jQuery("#name_error_show").css("display", "none");
             appNameValidate = true;
@@ -164,14 +205,15 @@
     function validateAppPackage() {
         var appPackage = jQuery("#appPackage").val();
         if(appPackage == null || appPackage == '') {
-            canSubmit = false;
             jQuery("#package_error_show").html("应用包名不能为空");
             jQuery("#package_error_show").css("display", "block");
+            appPackageValidate = false;
         } else {
             SystemDWRHandler.validatePackageNameDuplicate(-1, appPackage, function(result) {
                 if(result) {
                     jQuery("#package_error_show").html("应用包名不能为空");
                     jQuery("#package_error_show").css("display", "block");
+                    appPackageValidate = false;
                 } else {
                     jQuery("#package_error_show").css("display", "none");
                     appPackageValidate = true;
@@ -194,6 +236,7 @@
         if (!/.(jpg|jpeg|png|JPG|JPEG|PNG)$/.test(iconFileName)) {
             jQuery("#icon_error_show").html("图片格式必须为jpg,jepg,png，请重新选择图片");
             jQuery("#icon_error_show").css("display", "block");
+            iconImageValidate = false;
         } else {
             jQuery("#view_image_1").attr("src", url).load(function() {
                 width = this.width;
@@ -202,6 +245,7 @@
                 if (width != 150 || height != 150 || size > 20*1024) {
                     jQuery("#icon_error_show").html("应用图标大小必须为150*150, 大小小于20K");
                     jQuery("#icon_error_show").css("display", "block");
+                    iconImageValidate = false;
                 } else {
                     jQuery("#icon_error_show").css("display", "none");
                     iconImageValidate = true;
@@ -224,6 +268,7 @@
         if (!/.(jpg|jpeg|png|JPG|JPEG|PNG)$/.test(posterFileName)) {
             jQuery("#poster_error_show").html("图片格式必须为jpg,jepg,png，请重新选择图片");
             jQuery("#poster_error_show").css("display", "block");
+            posterImageValidate = false;
         } else {
             jQuery("#view_image_2").attr("src", url).load(function() {
                 width = this.width;
@@ -232,6 +277,7 @@
                 if (width != 800 || height != 450 || size > 200*1024) {
                     jQuery("#poster_error_show").html("应用图标大小必须为150*150, 大小小于20K");
                     jQuery("#poster_error_show").css("display", "block");
+                    posterImageValidate = false;
                 } else {
                     jQuery("#poster_error_show").css("display", "none");
                     posterImageValidate = true;
@@ -246,6 +292,7 @@
         if(!/.(apk|APK)$/.test(appApkUploadFile)) {
             jQuery("#apk_error_show").html("文件格式必须为apk");
             jQuery("#apk_error_show").css("display", "block");
+            apkFileValidate = false;
         } else {
             jQuery("#apk_error_show").css("display", "none");
             apkFileValidate = true;
@@ -258,6 +305,7 @@
         if(appDescription == null || appDescription == '') {
             jQuery("#desc_error_show").html("描述不能为空");
             jQuery("#desc_error_show").css("display", "block");
+            appDescValidate = false;
         } else {
             jQuery("#desc_error_show").css("display", "none");
             appDescValidate = true;
@@ -271,7 +319,7 @@
             jQuery("#name_error_show").css("display", "block");
             canSubmit = false;
         } else {
-            jQuery("#name_error_show").css("display", "block");
+            jQuery("#name_error_show").css("display", "none");
         }
 
         if(!appPackageValidate) {
@@ -279,7 +327,7 @@
             jQuery("#package_error_show").css("display", "block");
             canSubmit = false;
         } else {
-            jQuery("#package_error_show").css("display", "block");
+            jQuery("#package_error_show").css("display", "none");
         }
 
         if(!iconImageValidate) {
@@ -287,7 +335,7 @@
             jQuery("#icon_error_show").css("display", "block");
             canSubmit = false;
         } else {
-            jQuery("#icon_error_show").css("display", "block");
+            jQuery("#icon_error_show").css("display", "none");
         }
 
         if(!posterImageValidate) {
@@ -295,7 +343,7 @@
             jQuery("#poster_error_show").css("display", "block");
             canSubmit = false;
         } else {
-            jQuery("#poster_error_show").css("display", "block");
+            jQuery("#poster_error_show").css("display", "none");
         }
 
         if(!apkFileValidate) {
@@ -303,7 +351,7 @@
             jQuery("#apk_error_show").css("display", "block");
             canSubmit = false;
         } else {
-            jQuery("#apkr_error_show").css("display", "block");
+            jQuery("#apkr_error_show").css("display", "none");
         }
 
         if(!appDescValidate) {
@@ -311,7 +359,7 @@
             jQuery("#desc_error_show").css("display", "block");
             canSubmit = false;
         } else {
-            jQuery("#desc_error_show").css("display", "block");
+            jQuery("#desc_error_show").css("display", "none");
         }
 
         if(canSubmit) {

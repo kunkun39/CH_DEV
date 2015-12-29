@@ -1,8 +1,14 @@
 package com.changhong.app.service;
 
 import com.changhong.app.domain.AppCategory;
+import com.changhong.app.domain.AppHistory;
+import com.changhong.app.domain.AppStatus;
+import com.changhong.app.domain.MarketApp;
 import com.changhong.app.repository.ClientDao;
+import com.changhong.app.web.event.AppCreateAction;
+import com.changhong.app.web.event.AppStatusChangeAction;
 import com.changhong.app.web.facade.assember.AppCategoryWebAssember;
+import com.changhong.app.web.facade.assember.MarketAppWebAssember;
 import com.changhong.app.web.facade.dto.AppCategoryDTO;
 import com.changhong.app.web.facade.dto.MarketAppDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +42,35 @@ public class ClientServiceImpl implements ClientService {
         return clientDao.loadAppPackageDuplicate(appId, appPackage);
     }
 
-    public MarketAppDTO obtainMarketAppInformationFromFile(MarketAppDTO app, MultipartFile uploadApkFile, MultipartFile uploadIconFile, MultipartFile uploadPosterFile) {
-        return documentService.uploadAppApkData(app, uploadApkFile, uploadIconFile, uploadPosterFile);
+    public int obtainMarketAppInformationFromFile(MarketAppDTO app, MultipartFile uploadApkFile, MultipartFile uploadIconFile, MultipartFile uploadPosterFile) {
+        MarketAppDTO marketAppDTO = documentService.uploadAppApkData(app, uploadApkFile, uploadIconFile, uploadPosterFile);
+        MarketApp marketApp = MarketAppWebAssember.toMarketAppDomain(marketAppDTO);
+
+        //generate app change history
+        boolean created = false;
+        if (marketApp.getId() <= 0) {
+            created = true;
+        }
+
+        clientDao.saveOrUpdate(marketApp);
+        documentService.deleteNotUsedFiles(app);
+
+        //generate app change history
+        if (created) {
+            AppCreateAction action = new AppCreateAction(marketApp.getId());
+            AppHistory history = AppHistory.generateAppCreateHistory(action);
+            clientDao.saveOrUpdate(history);
+        } else {
+            AppStatusChangeAction action = new AppStatusChangeAction(false, marketApp.getId(), AppStatus.CREATED, AppStatus.CREATED, "");
+            AppHistory history = AppHistory.generateAppStatusChangeHistory(action);
+            clientDao.saveOrUpdate(history);
+        }
+
+        return marketApp.getId();
+    }
+
+    public MarketAppDTO obtainMarketApp(int appId) {
+        MarketApp app = (MarketApp) clientDao.findById(appId, MarketApp.class);
+        return MarketAppWebAssember.toMarketAppDTO(app);
     }
 }

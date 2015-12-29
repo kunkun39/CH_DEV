@@ -1,6 +1,7 @@
 package com.changhong.app.web.facade.dto;
 
 import com.changhong.app.domain.Document;
+import com.changhong.app.utils.CHStringUtils;
 
 import java.io.Serializable;
 
@@ -58,6 +59,10 @@ public class MarketAppDTO implements Serializable{
     private String apkUploadFileName;
 
     private int ownerId;
+
+    public MarketAppDTO() {
+        this.appKey = CHStringUtils.getRandomString(8);
+    }
 
     public int getId() {
         return id;

@@ -14,76 +14,58 @@ import java.util.List;
  */
 public class MarketAppWebAssember {
 
-    public static MarketApp DtoToDomain(MarketAppDTO dto) {
-        MarketApp marketApp = null;
-        // 有问题
-        if (dto != null) {
-            boolean newClassFlg = true;
-            if (dto.getId() > 0) {
-                marketApp = (MarketApp) EntityLoadHolder.getUserDao().findById(dto.getId(), MarketApp.class);
-                if (marketApp != null) {
-                    newClassFlg = false;
-                }
-
-                if (newClassFlg) {
-                    marketApp = new MarketApp();
-                }
-
-                marketApp.setAppKey(dto.getAppKey());
-                marketApp.setAppName(dto.getAppName());
-                marketApp.setAppDescription(dto.getAppDescription());
-                marketApp.setAppVersionInt(dto.getAppVersionInt());
-                marketApp.setAppVersion(dto.getAppVersion());
-                marketApp.setAppPackage(dto.getAppPackage());
-                marketApp.setAppSize(dto.getAppSize());
-
-                AppIcon appIcon = marketApp.getAppIcon();
-                if (null == appIcon) {
-                    appIcon = new AppIcon();
-                    marketApp.setAppIcon(appIcon);
-                }
-                appIcon.setId(dto.getAppIconId());
-                appIcon.setActualFileName(dto.getIconActualFileName());
-                appIcon.setUploadFileName(dto.getIconUploadFileName());
-
-                AppFile appFile = marketApp.getAppFile();
-                if (null == appFile) {
-                    appFile = new AppFile();
-                    marketApp.setAppFile(appFile);
-                }
-                appFile.setId(dto.getApkFileId());
-                appFile.setActualFileName(dto.getApkActualFileName());
-                appFile.setUploadFileName(dto.getApkUploadFileName());
-
-                AppPoster appPoster = marketApp.getAppPoster();
-                if (null == appPoster) {
-                    appPoster = new AppPoster();
-                    marketApp.setAppPoster(appPoster);
-                }
-                appPoster.setId(dto.getAppPosterId());
-                appPoster.setActualFileName(dto.getPosterActualFileName());
-                appPoster.setUploadFileName(dto.getPosterUploadFileName());
-
-                AppCategory appCategory = marketApp.getAppCategory();
-                if (null == appCategory) {
-                    appCategory = new AppCategory();
-                    marketApp.setAppCategory(appCategory);
-                }
-                appCategory.setId(dto.getCategoryId());
-
-                ClientUser owner = marketApp.getOwner();
-                if (null == owner) {
-                    owner = new ClientUser();
-                    marketApp.setOwner(owner);
-                }
-                owner.setId(dto.getOwnerId());
-            }
+    public static MarketApp toMarketAppDomain(MarketAppDTO dto) {
+        MarketApp app = null;
+        int appId = dto.getId();
+        if (appId > 0) {
+            app = (MarketApp) EntityLoadHolder.getUserDao().findById(appId, MarketApp.class);
+            app.setAppStatus(AppStatus.CREATED);
+        } else {
+            app = new MarketApp();
         }
 
-        return marketApp;
+        app.setAppKey(dto.getAppKey());
+        app.setAppName(dto.getAppName());
+        app.setAppDescription(dto.getAppDescription());
+        app.setAppVersionInt(Integer.valueOf(dto.getAppVersionInt()));
+        app.setAppVersion(dto.getAppVersion());
+        app.setAppPackage(dto.getAppPackage());
+        app.setAppSize(dto.getAppSize());
+
+        AppIcon appIcon = app.getAppIcon();
+        if (appIcon == null) {
+            appIcon = new AppIcon();
+            app.setAppIcon(appIcon);
+        }
+        appIcon.setUploadFileName(dto.getIconUploadFileName());
+        appIcon.setActualFileName(dto.getIconActualFileName());
+
+        AppPoster appPoster = app.getAppPoster();
+        if (appPoster == null) {
+            appPoster = new AppPoster();
+            app.setAppPoster(appPoster);
+        }
+        appPoster.setActualFileName(dto.getPosterActualFileName());
+        appPoster.setUploadFileName(dto.getPosterUploadFileName());
+
+        AppFile appFile = app.getAppFile();
+        if (appFile == null) {
+            appFile = new AppFile();
+            app.setAppFile(appFile);
+        }
+        appFile.setActualFileName(dto.getApkActualFileName());
+        appFile.setUploadFileName(dto.getApkUploadFileName());
+
+        if (app.getAppCategory() == null || app.getAppCategory().getId() != dto.getCategoryId()) {
+            AppCategory category = new AppCategory();
+            category.setId(dto.getCategoryId());
+            app.setAppCategory(category);
+        }
+
+        return app;
     }
 
-    public static MarketAppDTO DomainToDto(MarketApp marketApp) {
+    public static MarketAppDTO toMarketAppDTO(MarketApp marketApp) {
         MarketAppDTO dto = null;
 
         if (marketApp != null) {
@@ -140,7 +122,7 @@ public class MarketAppWebAssember {
         List<MarketAppDTO> dtoList = new ArrayList<MarketAppDTO>();
 
         for(MarketApp marketApp : marketAppList) {
-            dtoList.add(DomainToDto(marketApp));
+            dtoList.add(toMarketAppDTO(marketApp));
         }
 
         return dtoList;
