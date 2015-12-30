@@ -30,6 +30,7 @@
             <props>
                 <prop key="/chapp/index.html">indexController</prop>
                 <prop key="/chapp/aboutus.html">aboutUsController</prop>
+                <prop key="/chapp/contactus.html">contactusController</prop>
 
                 <!--管理员部分-->
                 <prop key="/security/adminusers.html">adminUserManageController</prop>
@@ -55,6 +56,7 @@
         <property name="projectVersion" value="${application.version}"/>
     </bean>
     <bean id="aboutUsController" class="com.changhong.app.web.controller.AboutUsController"/>
+    <bean id="contactusController" class="com.changhong.app.web.controller.ContactUsController"/>
 
     <!--管理员部分-->
     <bean id="adminUserManageController" class="com.changhong.app.web.controller.admin.AdminUserManageController">
@@ -87,13 +89,15 @@
     <bean id="clientChangePassController" class="com.changhong.app.web.controller.client.ClientChangePassController"/>
 
     <!--应用流程部分-->
-    <bean id="clientAppFirstStepController" class="com.changhong.app.web.controller.client.ClientAppFirstStepController">
+    <bean id="clientAppFirstStepController"
+          class="com.changhong.app.web.controller.client.ClientAppFirstStepController">
         <property name="clientService" ref="clientService"/>
         <property name="serverContext" value="${application.context}"/>
         <property name="fileRequestHost" value="${application.file.request.path}"/>
     </bean>
 
-    <bean id="clientAppSecondStepController" class="com.changhong.app.web.controller.client.ClientAppSecondStepController">
+    <bean id="clientAppSecondStepController"
+          class="com.changhong.app.web.controller.client.ClientAppSecondStepController">
         <property name="clientService" ref="clientService"/>
         <property name="systemService" ref="systemService"/>
         <property name="fileRequestHost" value="${application.file.request.path}"/>
