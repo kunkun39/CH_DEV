@@ -35,26 +35,15 @@ public class AdminUserAddController extends SimpleFormController {
 
     @Override
     protected void onBindAndValidate(HttpServletRequest request, Object command, BindException errors) throws Exception {
-        String userName = ServletRequestUtils.getStringParameter(request, "username", "");
-        String password = ServletRequestUtils.getStringParameter(request, "password", "");
-        if (!StringUtils.hasText(userName)) {
-            errors.rejectValue("username", "admin.username.empty");
-        }
-        else if (systemService.hasSameAdminUser(userName)) {
-            errors.rejectValue("username", "admin.username.duplicate");
-        }
 
-        if (!StringUtils.hasText(password)) {
-            AdminUserDTO dto = (AdminUserDTO) command;
-            dto.setPassword("");
-            errors.rejectValue("password", "admin.password.empty");
-        }
     }
 
     @Override
     protected ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object command, BindException errors) throws Exception {
         AdminUserDTO dto = (AdminUserDTO) command;
-        systemService.insertAdminUser(dto);
+        if (StringUtils.hasText(dto.getUsername()) && StringUtils.hasText(dto.getPassword())) {
+            systemService.insertAdminUser(dto);
+        }
         return new ModelAndView(new RedirectView("/" + serverContext + "/security/adminusers.html"));
     }
 

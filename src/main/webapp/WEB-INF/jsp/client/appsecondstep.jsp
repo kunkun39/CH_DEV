@@ -38,7 +38,7 @@
 
             <%--步骤的头***********************************************************--%>
 
-            <jsp:include page="/WEB-INF/jsp/client/appsteptitle.jsp"/>
+            <jsp:include page="/WEB-INF/jsp/common/appsteptitle.jsp"/>
 
             <form class="form-horizontal">
                 <div class="form-body">

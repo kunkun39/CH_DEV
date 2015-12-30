@@ -38,7 +38,7 @@
 
         <%--步骤的头***********************************************************--%>
 
-        <jsp:include page="/WEB-INF/jsp/client/appsteptitle.jsp"/>
+        <jsp:include page="/WEB-INF/jsp/common/appsteptitle.jsp"/>
 
         <spring-form:form id="marketAppForm" commandName="marketApp" cssClass="form-horizontal" method="post" enctype="multipart/form-data">
             <input type="hidden" name="method" value="save"/>

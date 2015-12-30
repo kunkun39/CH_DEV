@@ -63,7 +63,7 @@
                                         <img src="${fileRequestHost}upload/${app.iconActualFileName}" width="96" height="96" class="fl" />
                                         <div class="fl" style="margin-left: 13px;margin-top: 10px;">
                                             <h4>${app.appName}</h4>
-                                            <p class="font12 color9">${app.appVersionInt}</p>
+                                            <p class="font12 color9">版本${app.appVersion}</p>
                                         </div>
                                     </td>
                                     <td>
@@ -71,25 +71,15 @@
                                         <p class="font12">${app.appDescription}</p>
                                     </td>
                                     <td>
-                                        <c:if test="${apps.appStatus == 'CREATED'}">新创建</c:if>
-                                        <c:if test="${apps.appStatus == 'WAITING'}">待审核</c:if>
-                                        <c:if test="${apps.appStatus == 'PASSED'}">审核通过</c:if>
-                                        <c:if test="${apps.appStatus == 'REJECTED'}"><span class="color7">拒绝通过</span></c:if>
-                                        <c:if test="${apps.appStatus == 'SHELVES'}">已上架</c:if>
-                                        <c:if test="${apps.appStatus == 'OFFSHELVES'}">已下架</c:if>
+                                        <c:if test="${app.appStatus == 'CREATED'}">新创建</c:if>
+                                        <c:if test="${app.appStatus == 'WAITING'}">待审核</c:if>
+                                        <c:if test="${app.appStatus == 'PASSED'}">审核通过</c:if>
+                                        <c:if test="${app.appStatus == 'REJECTED'}"><span class="color7">拒绝通过</span></c:if>
+                                        <c:if test="${app.appStatus == 'SHELVES'}">已上架</c:if>
+                                        <c:if test="${app.appStatus == 'OFFSHELVES'}">已下架</c:if>
                                     </td>
                                     <td>
-                                        <ul class="pagination">
-                                            <c:if test="${apps.appStatus == 'CREATED'}"><li><a href="#">查看应用</a></li></c:if>
-                                            <c:if test="${apps.appStatus == 'WAITING'}">
-                                                <li><a href="#">查看应用</a></li>
-                                                <li><a href="#">通过审核</a></li>
-                                            </c:if>
-                                            <c:if test="${apps.appStatus == 'PASSED'}"><li><a href="#">查看应用</a></li></c:if>
-                                            <c:if test="${apps.appStatus == 'REJECTED'}"><li><a href="#">查看应用</a></li></c:if>
-                                            <c:if test="${apps.appStatus == 'SHELVES'}"><li><a href="#">查看应用</a></li></c:if>
-                                            <c:if test="${apps.appStatus == 'OFFSHELVES'}"><li><a href="#">查看应用</a></li></c:if>
-                                        </ul>
+                                        <a class="color4" href="javascript:;">查看详情</a>
                                     </td>
                                 </tr>
                             </c:forEach>
