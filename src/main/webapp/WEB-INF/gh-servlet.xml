@@ -35,6 +35,7 @@
                 <prop key="/security/adminusers.html">adminUserManageController</prop>
                 <prop key="/security/admindeveloper.html">adminDevaloperController</prop>
                 <prop key="/security/adminappmanage.html">adminAppManageController</prop>
+                <prop key="/security/adminuseradd.html">adminUserAddController</prop>
 
                 <!--客户部分-->
                 <prop key="/security/clientappoverview.html">clientAppOverviewController</prop>
@@ -52,8 +53,6 @@
 
     <bean id="indexController" class="com.changhong.app.web.controller.IndexController">
         <property name="projectVersion" value="${application.version}"/>
-        <property name="systemService" ref="systemService"/>
-        <property name="fileRequestHost" value="${application.file.request.path}"/>
     </bean>
     <bean id="aboutUsController" class="com.changhong.app.web.controller.AboutUsController"/>
 
@@ -69,6 +68,11 @@
 
     <bean id="adminDevaloperController" class="com.changhong.app.web.controller.admin.AdminDevaloperController">
         <property name="systemService" ref="systemService"/>
+    </bean>
+
+    <bean id="adminUserAddController" class="com.changhong.app.web.controller.admin.AdminUserAddController">
+        <property name="systemService" ref="systemService"/>
+        <property name="serverContext" value="${application.context}"/>
     </bean>
     <!--客户部分-->
 

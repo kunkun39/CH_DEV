@@ -27,4 +27,6 @@ public interface UserDao extends EntityObjectDao {
 
     int loadAdminDeveloperSize(String name);
 
+    List<AdminUser> loadAdminUserByName(String userName);
+
 }

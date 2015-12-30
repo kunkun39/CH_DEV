@@ -106,4 +106,14 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
         List list =  getHibernateTemplate().find(builder.toString());
         return ((Long)list.get(0)).intValue();
     }
+
+    public List<AdminUser> loadAdminUserByName(String userName) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("from AdminUser u");
+        if (StringUtils.hasText(userName)) {
+            builder.append(" where u.username='" + userName + "'");
+        }
+        List<AdminUser> users =  getHibernateTemplate().find(builder.toString());
+        return users;
+    }
 }

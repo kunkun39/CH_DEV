@@ -33,7 +33,7 @@ public class SystemServiceImpl implements SystemService {
     public List<AdminUserDTO> obtainAdminUsers(String keyWords, int startPosition, int pageSize) {
         List<AdminUser> adminUserList = userDao.loadAdminUsersByNameOrContactway(keyWords, startPosition, pageSize);
 
-        return AdminUserWebAssember.DomainToDto(adminUserList);
+        return AdminUserWebAssember.toAdminUserDTO(adminUserList);
     }
 
     public int obtainAdminUserSize(String keyWords) {
@@ -56,5 +56,24 @@ public class SystemServiceImpl implements SystemService {
 
     public int obtainMarketAppSize(String appName, String appStatus) {
         return systemDao.loadMarketAppSize(appName, appStatus);
+    }
+
+    public int insertAdminUser(AdminUserDTO dto) {
+        AdminUser adminUser = AdminUserWebAssember.toAdminUserDomain(dto);
+        if (adminUser != null) {
+            userDao.saveOrUpdate(adminUser);
+            return adminUser.getId();
+        }
+        else {
+            return 0;
+        }
+    }
+
+    public boolean hasSameAdminUser(String username) {
+        List<AdminUser> userList = userDao.loadAdminUserByName(username);
+        if (userList == null || userList.isEmpty()) {
+            return false;
+        }
+        return true;
     }
 }

@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class AdminUserWebAssember {
 
-    public static AdminUser DtoToDomain(AdminUserDTO dto) {
+    public static AdminUser toAdminUserDomain(AdminUserDTO dto) {
         AdminUser adminUser = null;
 
         if (dto != null) {
@@ -40,7 +40,7 @@ public class AdminUserWebAssember {
         return adminUser;
     }
 
-    public static AdminUserDTO DomainToDto(AdminUser adminUser) {
+    public static AdminUserDTO toAdminUserDTO(AdminUser adminUser) {
         AdminUserDTO dto = null;
 
         if (adminUser != null) {
@@ -56,11 +56,11 @@ public class AdminUserWebAssember {
         return dto;
     }
 
-    public static List<AdminUserDTO> DomainToDto(List<AdminUser> adminUserList) {
+    public static List<AdminUserDTO> toAdminUserDTO(List<AdminUser> adminUserList) {
         List<AdminUserDTO> dtoList = new ArrayList<AdminUserDTO>();
 
         for(AdminUser adminUser : adminUserList) {
-            dtoList.add(DomainToDto(adminUser));
+            dtoList.add(toAdminUserDTO(adminUser));
         }
 
         return dtoList;

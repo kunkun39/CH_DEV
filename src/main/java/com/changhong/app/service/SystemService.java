@@ -24,4 +24,8 @@ public interface SystemService {
     List<MarketAppDTO> obtainMarketApps(String appName, String appStatus, int startPosition, int pageSize);
 
     int obtainMarketAppSize(String appName, String appStatus);
+
+    int insertAdminUser(AdminUserDTO dto);
+
+    boolean hasSameAdminUser(String username);
 }
