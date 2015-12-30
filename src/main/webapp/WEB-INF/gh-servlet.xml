@@ -17,6 +17,7 @@
         <property name="maxUploadSize" value="1024000000"/>
     </bean>
 
+    <!--视图解析器-->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
@@ -28,6 +29,7 @@
         <property name="mappings">
             <props>
                 <prop key="/chapp/index.html">indexController</prop>
+                <prop key="/chapp/aboutus.html">aboutUsController</prop>
 
                 <!--管理员部分-->
                 <prop key="/security/adminusers.html">adminUserManageController</prop>
@@ -50,7 +52,10 @@
 
     <bean id="indexController" class="com.changhong.app.web.controller.IndexController">
         <property name="projectVersion" value="${application.version}"/>
+        <property name="systemService" ref="systemService"/>
+        <property name="fileRequestHost" value="${application.file.request.path}"/>
     </bean>
+    <bean id="aboutUsController" class="com.changhong.app.web.controller.AboutUsController"/>
 
     <!--管理员部分-->
     <bean id="adminUserManageController" class="com.changhong.app.web.controller.admin.AdminUserManageController">
