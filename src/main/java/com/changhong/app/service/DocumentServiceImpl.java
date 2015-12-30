@@ -105,7 +105,9 @@ public class DocumentServiceImpl implements DocumentService {
             //set app info
             app.setAppVersionInt(Integer.valueOf(map.get("versionCode")));
             app.setAppVersion(map.get("versionName"));
+            /** remove this, we get from page
             app.setAppPackage(map.get("packageName"));
+            **/
             app.setAppSize(map.get("fileSize"));
         }
 

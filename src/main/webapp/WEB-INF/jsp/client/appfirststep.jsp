@@ -71,7 +71,7 @@
                 <div class="form-group">
                     <label for=" " class="col-sm-3 control-label">应用包名</label>
                     <div class="col-sm-9">
-                        <spring-form:input path="appPackage" class="form-control" required="required" maxlength="20" onblur="validateAppPackage()"/>
+                        <spring-form:input path="appPackage" class="form-control" required="required" maxlength="80" onblur="validateAppPackage()"/>
                         <span class="help-block color6">请编辑应用包名</span>
                         <span id="package_error_show" class="help-block color5" style="display: none;"></span>
                     </div>
@@ -160,8 +160,28 @@
 
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
 
+<%--弹出框部分***********************************************************--%>
+<div class="modal fade" id="infoPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">开发者应用接入平台</h4>
+            </div>
+            <div class="modal-body">
+                请确认是否要提交该应用信息到系统审核？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" onclick="confirmSubmitForm();">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <%--Javascript部分***********************************************************--%>
 <script src="${pageContext.request.contextPath}/javascript/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/javascript/vendor/bootstrap.min.js"></script>
 <!--[if lt IE 9]>
 <script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
 <script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
@@ -211,7 +231,7 @@
         } else {
             SystemDWRHandler.validatePackageNameDuplicate(-1, appPackage, function(result) {
                 if(result) {
-                    jQuery("#package_error_show").html("应用包名不能为空");
+                    jQuery("#package_error_show").html("应用包名有重复");
                     jQuery("#package_error_show").css("display", "block");
                     appPackageValidate = false;
                 } else {
@@ -224,7 +244,7 @@
 
     function validateIconImage(obj) {
         var url, width, height, size;
-        if ($.browser.msie) {
+        if ($.support.msie) {
             url = obj.value;
         } else {
             url = window.URL.createObjectURL(obj.files[0]);
@@ -256,7 +276,7 @@
 
     function validatePosterImage(obj) {
         var url, width, height, size;
-        if ($.browser.msie) {
+        if ($.support.msie) {
             url = obj.value;
         } else {
             url = window.URL.createObjectURL(obj.files[0]);
@@ -312,7 +332,7 @@
         }
     }
 
-    function submitAppInfo(form) {
+    function submitAppInfo() {
         var canSubmit = true;
         if(!appNameValidate) {
             jQuery("#name_error_show").html("应用名称未通过验证");
@@ -360,11 +380,15 @@
             canSubmit = false;
         } else {
             jQuery("#desc_error_show").css("display", "none");
-        }
+//        }
 
         if(canSubmit) {
-            form.submit();
+            jQuery("#infoPopup").modal();
         }
+    }
+
+    function confirmSubmitForm() {
+        jQuery("#marketAppForm").submit();
     }
 
 </script>
