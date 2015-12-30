@@ -380,7 +380,7 @@
             canSubmit = false;
         } else {
             jQuery("#desc_error_show").css("display", "none");
-//        }
+        }
 
         if(canSubmit) {
             jQuery("#infoPopup").modal();
