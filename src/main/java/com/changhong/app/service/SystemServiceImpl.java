@@ -1,6 +1,7 @@
 package com.changhong.app.service;
 
 import com.changhong.app.domain.AdminUser;
+import com.changhong.app.domain.AppStatus;
 import com.changhong.app.domain.ClientUser;
 import com.changhong.app.domain.MarketApp;
 import com.changhong.app.repository.SystemDao;
@@ -75,5 +76,20 @@ public class SystemServiceImpl implements SystemService {
             return false;
         }
         return true;
+    }
+
+    public MarketAppDTO obtainMarketApp(int appId) {
+        MarketApp marketApp = (MarketApp) systemDao.findById(appId, MarketApp.class);
+        return MarketAppWebAssember.toMarketAppDetailsDTO(marketApp);
+    }
+
+    public void updateMarketAppStatus(int appId, String appStatus) {
+        if (AppStatus.isAppStatus(appStatus)) {
+            MarketApp marketApp = (MarketApp) systemDao.findById(appId, MarketApp.class);
+
+            if (marketApp != null) {
+                marketApp.setAppStatus(AppStatus.valueOf(appStatus));
+            }
+        }
     }
 }

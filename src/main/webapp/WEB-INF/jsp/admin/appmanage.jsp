@@ -79,7 +79,7 @@
                                         <c:if test="${app.appStatus == 'OFFSHELVES'}">已下架</c:if>
                                     </td>
                                     <td>
-                                        <a class="color4" href="javascript:;">查看详情</a>
+                                        <a class="color4" href="${pageContext.request.contextPath}/security/adminappoperate.html?appId=${app.id}">查看详情</a>
                                     </td>
                                 </tr>
                             </c:forEach>

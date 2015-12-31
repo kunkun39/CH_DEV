@@ -4,13 +4,7 @@
 <div class="form-group">
     <label for="" class="col-sm-3 control-label">应用类别</label>
     <div class="col-sm-9">
-        <c:forEach items="${categories}" var="category">
-        <c:forEach items="${category.children}" var="child">
-            <c:if test="${child.id == marketApp.categoryId}">
-                <input class="form-control" value="${category.categoryName}-> ${child.categoryName}" readonly="true"/>
-            </c:if>
-        </c:forEach>
-    </c:forEach>
+        <input class="form-control" value="${marketApp.fullCategoryName}" readonly="true"/>
     </div>
 </div>
 
@@ -76,5 +70,14 @@
     <label for="" class="col-sm-3 control-label">应用描述</label>
     <div class="col-sm-9">
         <textarea rows="8" cols="69" readonly="true">${marketApp.appDescription}</textarea>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="" class="col-sm-3 control-label">APK文件</label>
+    <div class="col-sm-9">
+        <a href="${fileRequestHost}upload/${marketApp.appKey}/${marketApp.apkActualFileName}">
+            <p class="apply-detail-p"><i class="path-icon"></i><span class="color8">${marketApp.apkUploadFileName}</span></p>
+        </a>
     </div>
 </div>

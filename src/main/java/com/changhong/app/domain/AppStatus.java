@@ -1,5 +1,7 @@
 package com.changhong.app.domain;
 
+import org.springframework.util.StringUtils;
+
 /**
  * User: Jack Wang
  * Date: 15-7-30
@@ -24,5 +26,15 @@ public enum AppStatus {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public static boolean isAppStatus(String appStatus) {
+        if (StringUtils.hasText(appStatus) &&
+            (appStatus.equals("WAITING") || appStatus.equals("PASSED") ||
+             appStatus.equals("REJECTED") || appStatus.equals("SHELVES") ||
+             appStatus.equals("OFFSHELVES"))) {
+            return true;
+        }
+        return false;
     }
 }
