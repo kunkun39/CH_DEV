@@ -60,6 +60,48 @@
                     </div>
                 </div>
             </form>
+
+            <h5 class="moreApply text-center" style="margin-bottom: 40px;">
+				<a href="uploadApply.html" charset="moreApply-a" id="appHis-a">查看应用历史
+					<span class="moreico"></span>
+				</a>
+			</h5>
+			<!--加载开始-->
+			<div class="load-more text-center">
+				<div class="loading" ></div>
+				<div class="load-nomore" style="display: none;" >没有更多了</div>
+			</div>
+			<!--加载结束-->
+
+			<table class="table table-condensed table-bordered table-hover table-view-1" id="appHis-table" style="display: none;">
+				<thead>
+					<tr>
+						<th style="padding-left: 20px;">时间</th>
+						<th>操作</th>
+						<th>细节</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td style="padding-left: 20px;">
+							欧阳,休克
+						</td>
+						<td>
+							<a href="javascript:;" class=" ">激活</a>
+						</td>
+						<td><span class="color10">在用</span></td>
+					</tr>
+					<tr>
+						<td style="padding-left: 20px;">
+							欧阳,休克
+						</td>
+						<td>
+							<a href="javascript:;" class=" ">激活</a>
+						</td>
+						<td><span class="color7">停止使用</span></td>
+					</tr>
+				</tbody>
+			</table>
         </div>
     </c:if>
 
