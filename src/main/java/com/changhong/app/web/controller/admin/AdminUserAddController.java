@@ -30,6 +30,7 @@ public class AdminUserAddController extends SimpleFormController {
     }
     @Override
     protected Object formBackingObject(HttpServletRequest request) throws Exception {
+        request.setAttribute("PAGE_KEY", "ADMIN");
         return new AdminUserDTO();
     }
 

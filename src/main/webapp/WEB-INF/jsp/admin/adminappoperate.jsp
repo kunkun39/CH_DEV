@@ -24,8 +24,11 @@
 
         <%--引用appsteptitle***********************************************************--%>
         <jsp:include page="/WEB-INF/jsp/common/appsteptitle.jsp"/>
-        <form class="form-horizontal">
+        <form id="appForm" class="form-horizontal" action="${pageContext.request.contextPath}/security/adminappmanage.html" method="get">
             <div class="form-body">
+                <input id="appStatus" name="current" type="hidden" value="${paging.appStatus}"/>
+                <input id="appStatus" name="appStatus" type="hidden" value="${paging.appStatus}"/>
+                <input id="appStatus" name="appName" type="hidden" value="${paging.appStatus}"/>
                 <jsp:include page="/WEB-INF/jsp/common/appinfo.jsp"/>
 
                 <div class="form-group">

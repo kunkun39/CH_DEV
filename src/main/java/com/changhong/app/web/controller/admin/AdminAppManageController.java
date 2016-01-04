@@ -38,6 +38,7 @@ public class AdminAppManageController extends AbstractController{
         constractPaging(paging, currentPage, appName, appStatus);
         List<MarketAppDTO> marketAppDtoList = paging.getItems();
 
+        model.put("PAGE_KEY", "ADMIN");
         model.put("apps", marketAppDtoList);
         model.put("fileRequestHost", fileRequestHost);
         model.put("paging", paging);

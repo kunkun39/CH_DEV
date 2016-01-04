@@ -33,6 +33,8 @@ public class AdminUserManageController extends AbstractController {
         AdminUserOverviewPaging paging = new AdminUserOverviewPaging(systemService);
         constractPaging(paging, currentPage, keyWords);
         List<AdminUserDTO> dtoList = paging.getItems();
+
+        model.put("PAGE_KEY", "ADMIN");
         model.put("paging", paging);
         model.put("adminusers", dtoList);
         model.put("MANAGE_KEY","USERS");

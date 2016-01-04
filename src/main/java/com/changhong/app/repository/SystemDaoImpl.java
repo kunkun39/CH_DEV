@@ -27,6 +27,7 @@ public class SystemDaoImpl extends HibernateEntityObjectDao implements SystemDao
         if (StringUtils.hasText(appStatus)) {
             builder.append(" and m.appStatus='" + appStatus + "'");
         }
+        builder.append(" order by m.id desc");
 
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
         Query query = session.createQuery(builder.toString());

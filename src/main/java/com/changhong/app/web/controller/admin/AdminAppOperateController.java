@@ -30,6 +30,7 @@ public class AdminAppOperateController extends AbstractController{
 
         MarketAppDTO dto = systemService.obtainMarketApp(appId);
 
+        model.put("PAGE_KEY", "ADMIN");
         model.put("marketApp", dto);
         model.put("fileRequestHost", fileRequestHost);
         model.put("STEP_KEY", dto.decideWhichStepNow());

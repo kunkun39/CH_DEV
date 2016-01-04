@@ -53,10 +53,10 @@
                     <table class="table table-condensed table-bordered table-hover table-view-1">
                         <thead>
                             <tr>
-                                <th style="padding-left: 20px;">应用图标/名称</th>
-                                <th>类型/介绍</th>
-                                <th>状态</th>
-                                <th>操作</th>
+                                <th style="padding-left: 20px;width: 25%">应用图标/名称</th>
+                                <th style="width: 40%">类别/介绍</th>
+                                <th style="width: 15%">状态</th>
+                                <th style="width: 20%">操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -82,7 +82,8 @@
                                         <c:if test="${app.appStatus == 'OFFSHELVES'}">已下架</c:if>
                                     </td>
                                     <td>
-                                        <a class="color4" href="${pageContext.request.contextPath}/security/adminappoperate.html?appId=${app.id}">查看详情</a>
+                                        <a class="btn-blue color1" href="${pageContext.request.contextPath}/security/adminappoperate.html?appId=${app.id}">查看</a>
+                                        <a class="btn-blue color1" href="${pageContext.request.contextPath}/security/apphistory.html?appId=${app.id}">历史</a>
                                     </td>
                                 </tr>
                             </c:forEach>

@@ -50,6 +50,7 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
         if (StringUtils.hasText(keyWords)) {
             builder.append(" where u.username like '%" + keyWords + "%' or u.contactWay like '%" + keyWords + "%'");
         }
+        builder.append(" order by u.id desc");
 
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
         Query query = session.createQuery(builder.toString());
@@ -87,6 +88,7 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
         if (StringUtils.hasText(name)) {
             builder.append(" where u.name like '%" + name + "%' or u.username like '%" + name + "%'");
         }
+        builder.append(" order by u.id desc");
 
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
         Query query = session.createQuery(builder.toString());

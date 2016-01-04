@@ -33,7 +33,7 @@ public class CommonAppHistoryController extends AbstractController {
         int appId = ServletRequestUtils.getIntParameter(request, "appId", -1);
         Map<String, Object> model = new HashMap<String, Object>();
         if (SecurityUtils.isAdminRole()) {
-            model.put("PAGE_KEY", "MANAGE_KEY");
+            model.put("PAGE_KEY", "ADMIN");
         } else {
             MarketAppDTO appDTO = clientService.obtainMarketApp(appId);
             int currentUserId = SecurityUtils.currectAuthenticationId();

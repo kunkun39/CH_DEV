@@ -37,7 +37,8 @@
                         href="${pageContext.request.contextPath}/security/clientappoverview.html">我的服务</a></li>
 
                 <security:authorize ifAnyGranted="ROLE_ADMIN">
-                    <li <c:if test="${PAGE_KEY == 'ADMIN'}">class="active"</c:if>><a href="${pageContext.request.contextPath}/chapp/adminmenu.html">后台管理</a></li>
+                    <li <c:if test="${PAGE_KEY == 'ADMIN'}">class="active"</c:if>><a
+                        href="${pageContext.request.contextPath}/security/adminappmanage.html">后台管理</a></li>
                 </security:authorize>
                 <li>
                     <ch:user context="${pageContext.request.contextPath}"/>
