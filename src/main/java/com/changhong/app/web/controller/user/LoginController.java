@@ -14,6 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginController extends AbstractController {
     @Override
     protected ModelAndView handleRequestInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
-        return new ModelAndView("chapp/login");//返回user目录下的login.jsp页面
+        return new ModelAndView("chapp/login");//返回chapp目录下的login.jsp页面
     }
 }
