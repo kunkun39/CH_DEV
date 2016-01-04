@@ -28,7 +28,7 @@ public class UserRegisterController extends SimpleFormController {
     public UserRegisterController() {
         setCommandClass(ClientUserDTO.class);
         setCommandName("user");
-        setFormView("/user/userregister");
+        setFormView("/chapp/register");
     }
 
     /**
