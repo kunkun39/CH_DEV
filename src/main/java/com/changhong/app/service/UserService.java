@@ -1,6 +1,8 @@
 package com.changhong.app.service;
 
+import com.changhong.app.web.facade.dto.ClientUserDTO;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -10,4 +12,12 @@ import java.util.List;
  * Time: 上午9:46
  */
 public interface UserService extends UserDetailsService {
+
+  /*User Register and Login Part Part***************************************************************/
+
+    boolean obtainClientUserExist(String username);
+
+    ClientUserDTO obtainClientUserById(int clientId);
+
+    void changeClientUserDetails(ClientUserDTO userDTO);
 }

@@ -33,13 +33,14 @@ public class UserTag extends TagSupport {
 
         Auth auth = SecurityUtils.currentAuthentication();
         if (auth == null) {
-            buffer.append("<a href=\"" + context + "/chapp/login.html\">登陆</a>|<a href=\"" + context + "/chapp/clientregister.html\">注册</a>");
+            buffer.append("<a href=\"" + context + "/chapp/login.html\">登陆</a>|<a href=\"" + context + "/chapp/userregister.html\">注册</a>");
         } else {
             buffer.append("<a href=\"" + context + "/j_spring_security_logout\">退出</a>");
         }
 
         return buffer.toString();
     }
+
 
     protected void writeMessage(String urlInfo) throws IOException {
         pageContext.getOut().write(urlInfo);
