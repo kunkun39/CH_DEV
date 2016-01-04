@@ -44,11 +44,11 @@
             </ul>
             <div class="tab-content">
                 <div id="tab1">
-                    <br/><a href="${pageContext.request.contextPath}/security/appfirststep.html">
-                        <input type="button" class="btn-blue color1" value="添加应用"/>
-                    </a>
                     <form id="client_app_search" action="${pageContext.request.contextPath}/security/clientappoverview.html" method="post">
                         <div class="input-group">
+                            <a href="${pageContext.request.contextPath}/security/appfirststep.html">
+                                <input type="button" class="btn-blue color1 fl" value="添加应用"/>
+                            </a>
                             <input id="appStatus" name="appStatus" type="hidden" value="${paging.appStatus}"/>
                             <input id="appName" name="appName" type="text" placeholder="应用名称" class="input-sm form-control"/>
                             <span class="input-group-btn">

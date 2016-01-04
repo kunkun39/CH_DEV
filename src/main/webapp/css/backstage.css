@@ -6,6 +6,7 @@ body { font-size: 14px; color: #212121; }
 		width: 128px;
 	}*/
 }
+/*按钮*/
 .reg-content { border-bottom: 1px dotted #c2c2c2; }
 .btn-blue, .btn-yellow, btn-disabled { width: 132px; height: 34px; line-height: 34px; border: 0; border-radius: 3px; }
 a.btn-blue { text-align: center; display: inline-block; color: #fff; max-width: 50px; }
@@ -13,6 +14,11 @@ a.btn-blue { text-align: center; display: inline-block; color: #fff; max-width: 
 .btn-yellow { background-color: #f0b412; }
 .btn-disabled, .btn-disabled-sm { background-color: #e8e8e8; color: #a6a6a6; }
 a.color4:hover { color: #3292ff; }
+.btn, .btn-blue-sm, .btn-disabled-sm,.btn-blue, .btn-yellow{outline: none !important;filter: none;-webkit-box-shadow: none;
+	-moz-box-shadow: none;box-shadow: none;text-shadow: none;cursor: pointer;}
+.btn:focus,.btn:active:focus,.btn.active:focus,.btn.focus,.btn:active.focus,.btn.active.focus {outline: none;}
+.btn:active{ background-image: none;outline: 0;-webkit-box-shadow: none;box-shadow: none;}
+
 /*注册成功*/
 .panel-con { width: 154px; margin: 0 auto; padding: 170px 0; }
 .panel-con-email { padding: 72px 0 110px; }
@@ -24,7 +30,7 @@ a.color4:hover { color: #3292ff; }
 .cofirm-step-ul { overflow: hidden; padding: 43px 0 34px; }
 .cofirm-step li { float: left; }
 .step-circular { width: 40px; height: 40px; margin-left: 20px; line-height: 40px; background-position: -85px -4px; }
-.step-bar { width: 102px; height: 3px; background: #c2c3c4; margin: 28px 0 49px 0; }
+.step-bar { width: 80px; height: 3px; background: #c2c3c4; margin: 28px 0 49px 0; }
 .step-cur { background-position: -20px -4px; }
 .cofirm-step-li { width: 80px; }
 .cofirm-apply { margin: 43px auto 13px; }
@@ -60,7 +66,9 @@ a.color4:hover { color: #3292ff; }
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover { color: #10bdcc; cursor: default; background-color: #fff; border: none; border-bottom: 3px solid #10bdcc; }
 .input-group .input-sm { width: 220px; height: 32px; border: 1px solid #e7e7eb; border-radius: 0; }
 .input-group-btn { width: 32px; height: 32px; border: 1px solid #e7e7eb; }
-.btn { background-color: #fff; }
+.btn{ background-color: #fff; }
+.ie8 .btn{margin-left: -2px;}
+
 .search-icon { width: 14px; height: 14px; display: inline-block; vertical-align: middle; background-position: -101px -62px; }
 .input-group { margin: 16px 0; }
 /*表格*/
