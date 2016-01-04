@@ -1,37 +1,13 @@
 /*联系我们*/
-.banner{
-  /*background: url(../images/aboutus-banner.jpg) no-repeat;
-  background-size: cover;
-  min-height: 835px;*/
- position: relative;
-}
-.banner .banner-img{
-	
-  width: 100%;
-}
-.font-h1{
-	font-size: 45px;
-}
-.contact,.introduce{
-	position: absolute;
-	left: 50%;
-	top:50%;
-}
-.contact{
-	width: 290px;
-	margin-top: -145px;
-	margin-left:-145px;
-}
-
-.introduce{
-	width: 640px;
-	margin-top: -145px;
-	margin-left:-320px;
-	
-}
+.banner { position: relative; }
+.banner .banner-img { width: 100%; }
+.font-h1 { font-size: 45px; }
+.contact, .introduce { position: absolute; left: 50%; top: 50%; }
+.contact { width: 290px; margin-top: -145px; margin-left: -145px; }
+.introduce { width: 640px; margin-top: -145px; margin-left: -320px; }
 /*.contact-logo{
 	background: url(../images/introduce-icon.png) no-repeat;
-	
+
 }
 .contact-logo{
 	margin: 0 auto;
@@ -39,46 +15,14 @@
 	height: 66px;
 	background-position: -163px -116px;
 }*/
-
-
-.map{
-	padding: 38px 0 42px;
-	border-bottom: 1px dashed #ddd;
-}
+.map { padding: 38px 0 42px; border-bottom: 1px dashed #ddd; }
 /*平台介绍*/
-.introduceStep{
-	margin-bottom: 215px;
-}
-.introduceStep h2{
-	font-size: 20px;
-	font-weight: bold;
-	padding:8px 0 12px;
-}
-.introduceStep .col-md-4{
-	padding: 0 60px;
-}
-.procedure-header,.step-logo{
-	background-image: url("../images/introduce-icon.png");
-	background-repeat: no-repeat;
-	
-}
-.procedure-header{
-	background-position: 0 -9px;
-	width:322px ;
-	margin: 37px auto;
-	height: 71px;
-}
-.step-logo{
-	width: 74px;
-	height: 84px;
-	margin: 0 auto;
-}
-.step-logo1{
-	background-position: -23px -100px ;
-}
-.step-logo2{
-	background-position: -127px -100px;
-}
-.step-logo3{
-	background-position: -229px -100px;
-}
+.introduceStep { margin-bottom: 215px; }
+.introduceStep h2 { font-size: 20px; font-weight: bold; padding: 8px 0 12px; }
+.introduceStep .col-md-4 { padding: 0 60px; }
+.procedure-header, .step-logo { background-image: url("../images/introduce-icon.png"); background-repeat: no-repeat; }
+.procedure-header { background-position: 0 -9px; width: 322px; margin: 37px auto; height: 71px; }
+.step-logo { width: 74px; height: 84px; margin: 0 auto; }
+.step-logo1 { background-position: -23px -100px; }
+.step-logo2 { background-position: -127px -100px; }
+.step-logo3 { background-position: -229px -100px; }
