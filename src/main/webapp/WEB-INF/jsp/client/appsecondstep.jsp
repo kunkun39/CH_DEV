@@ -67,7 +67,7 @@
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
 
 <%--Javascript部分***********************************************************--%>
-<script src="${pageContext.request.contextPath}/javascript/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
 <!--[if lt IE 9]>
 <script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
 <script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>

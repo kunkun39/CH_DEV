@@ -30,7 +30,9 @@ btn-disabled {
 }
 
 a.btn-blue {
+    text-align: center;
 	display: inline-block;
+    max-width: 60px;
 	color: #fff;
 }
 

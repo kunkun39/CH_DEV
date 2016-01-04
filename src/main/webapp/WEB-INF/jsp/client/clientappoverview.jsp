@@ -61,10 +61,10 @@
                     <table class="table table-condensed table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th style="padding-left: 20px;">应用图标/名称</th>
-                                <th>类别/介绍</th>
-                                <th>状态</th>
-                                <th>操作</th>
+                                <th style="padding-left: 20px;width: 25%">应用图标/名称</th>
+                                <th style="width: 40%">类别/介绍</th>
+                                <th style="width: 15%">状态</th>
+                                <th style="width: 20%">操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -84,11 +84,12 @@
                                 <td>${app.appStatusName}</td>
                                 <td>
                                     <c:if test="${app.appStatus == 'REJECTED'}">
-                                        <a class="color4" href="${pageContext.request.contextPath}/security/appfirststep.html?appId=${app.id}">查看</a>
+                                        <a class="btn-blue color4" href="${pageContext.request.contextPath}/security/appfirststep.html?appId=${app.id}">查看</a>
                                     </c:if>
                                     <c:if test="${app.appStatus != 'REJECTED'}">
-                                        <a class="color4" href="${pageContext.request.contextPath}/security/appsecondstep.html?appId=${app.id}">查看</a>
+                                        <a class="btn-blue color4" href="${pageContext.request.contextPath}/security/appsecondstep.html?appId=${app.id}">查看</a>
                                     </c:if>
+                                    <a class="btn-blue color10" href="${pageContext.request.contextPath}/security/apphistory.html?appId=${app.id}">历史</a>
                                 </td>
                             </tr>
                             </c:forEach>

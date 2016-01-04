@@ -47,6 +47,9 @@
                 <prop key="/security/clientselfinfo.html">clientSelfInfoController</prop>
                 <prop key="/security/clientchangepass.html">clientChangePassController</prop>
 
+                <!--公用部分-->
+                <prop key="/security/apphistory.html">commonAppHistoryController</prop>
+
                 <!--应用流程部分-->
                 <prop key="/security/appfirststep.html">clientAppFirstStepController</prop>
                 <prop key="/security/appsecondstep.html">clientAppSecondStepController</prop>
@@ -92,6 +95,7 @@
         <property name="systemService" ref="systemService"/>
         <property name="serverContext" value="${application.context}"/>
     </bean>
+
     <!--客户部分-->
 
     <!--客户应用部分-->
@@ -103,6 +107,9 @@
     <bean id="clientSelfInfoController" class="com.changhong.app.web.controller.client.ClientSelfInfoController"/>
 
     <bean id="clientChangePassController" class="com.changhong.app.web.controller.client.ClientChangePassController"/>
+
+    <!--客户部分-->
+    <bean id="commonAppHistoryController" class="com.changhong.app.web.controller.common.CommonAppHistoryController"/>
 
     <!--应用流程部分-->
     <bean id="clientAppFirstStepController"
