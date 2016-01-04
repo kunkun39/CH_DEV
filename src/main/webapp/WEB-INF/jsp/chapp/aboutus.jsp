@@ -27,7 +27,7 @@
     <%--主题菜单部分************************************************************--%>
     <%--banner(广告)层--%>
     <div class="content banner">
-        <img src="${pageContext.request.contextPath}/images/introduce-banner.jpg" class="banner-img" />
+        <img width="100%" height="350px" src="${pageContext.request.contextPath}/images/introduce-banner.jpg" class="banner-img" />
         <div class="text-center introduce" >
             <!--<div class="contact-logo">
             </div>-->
