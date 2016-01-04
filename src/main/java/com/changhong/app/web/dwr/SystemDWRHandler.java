@@ -21,4 +21,8 @@ public class SystemDWRHandler {
     public boolean validateUserNameDuplicate(String userName) {
         return systemService.hasSameAdminUser(userName);
     }
+
+    public void updateDeveloperStatus(int developerId, boolean enabled) {
+        systemService.updateDeloperStatus(developerId, enabled);
+    }
 }

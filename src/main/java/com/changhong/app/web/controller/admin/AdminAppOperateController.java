@@ -32,6 +32,7 @@ public class AdminAppOperateController extends AbstractController{
 
         model.put("marketApp", dto);
         model.put("fileRequestHost", fileRequestHost);
+        model.put("STEP_KEY", dto.decideWhichStepNow());
 
         return new ModelAndView("admin/adminappoperate", model);
     }

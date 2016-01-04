@@ -51,7 +51,7 @@
                         <tr>
                             <td style="text-align: center;width:15%">${user.username}</td>
                             <td style="text-align: center;width:35%">${user.contactWay}</td>
-                            <td style="text-align: center;width:15%">
+                            <td id="user_status_${user.id}" style="text-align: center;width:15%">
                                 <c:if test="${user.enabled}"><span class="color10">在用</span></c:if>
                                 <c:if test="${!user.enabled}"><span class="color7">停止使用</span></c:if>
                             </td>
@@ -59,12 +59,12 @@
                                 <c:if test="${user.active}"><span class="color10">已激活</span></c:if>
                                 <c:if test="${!user.active}"><span class="color7">未激活</span></c:if>
                             </td>
-                            <td style="text-align: center;width:20%">
+                            <td id="user_option_${user.id}" style="text-align: center;width:20%">
                                 <c:if test="${user.enabled && user.active}">
-                                    <input type="button" class="btn-blue-sm color1" value="停止使用" />
+                                    <input type="button" class="btn-blue-sm color1" value="停止使用" onclick="changeDeveloperStatus(${user.id}, false);"/>
                                 </c:if>
                                 <c:if test="${!user.enabled && user.active}">
-                                    <input type="button" class="btn-blue-sm color1" value="重新使用" />
+                                    <input type="button" class="btn-blue-sm color1" value="重新使用" onclick="changeDeveloperStatus(${user.id}, true);"/>
                                 </c:if>
                                 <c:if test="${!user.active}">
                                     <input type="button" class="btn-disabled-sm" value="等待激活" />
@@ -99,10 +99,28 @@
 
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
 
-<script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/javascript/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/dwr/engine.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/dwr/util.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/dwr/interface/SystemDWRHandler.js" type="text/javascript"></script>
 <script type="text/javascript">
     function searchDevelpoerUser() {
         jQuery("#searchDeveloperForm").submit();
+    }
+
+    function changeDeveloperStatus(developerId,currentStatus) {
+        SystemDWRHandler.updateDeveloperStatus(developerId, currentStatus, function() {
+            var userStatusAction = jQuery("#user_status_" + developerId);
+            var userOptionAction = jQuery("#user_option_" + developerId);
+            if (currentStatus) {
+                userStatusAction.html("<span class=\"color10\">在用</span>");
+                userOptionAction.html("<input type=\"button\" class=\"btn-blue-sm color1\" value=\"停止使用\" onclick=\"changeDeveloperStatus(" + developerId + ", false);\"/>");
+            }
+            else {
+                userStatusAction.html("<span class=\"color7\">停止使用</span>");
+                userOptionAction.html("<input type=\"button\" class=\"btn-blue-sm color1\" value=\"重新使用\" onclick=\"changeDeveloperStatus(" + developerId + ", true);\"/>");
+            }
+        });
     }
 </script>
 </body>

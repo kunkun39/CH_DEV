@@ -29,24 +29,27 @@
         <div class="leftTab-content active" id="bs-tabcon1">
             <h4 class="font16">我的应用</h4>
             <ul class="nav nav-tabs">
-                <li><a href="#tab1">全部</a></li>
-                <li><a href="#tab2">新创建</a></li>
-                <li class="active"><a href="#tab3">待审核</a></li>
-                <li><a href="#tab4">拒绝通过</a></li>
-                <li><a href="#tab5">待上架</a></li>
-                <li><a href="#tab6">已上架</a></li>
-                <li><a href="#tab7">已下架</a></li>
+                <li <c:if test="${paging.appStatus == ''}">class="active"</c:if>><a href="javascript:void(0);" onclick="searchAppsByStatus('');">全部</a></li>
+                <li <c:if test="${paging.appStatus == 'CREATED'}">class="active"</c:if>><a href="javascript:void(0);" onclick="searchAppsByStatus('CREATED');">新创建</a></li>
+                <li <c:if test="${paging.appStatus == 'WAITING'}">class="active"</c:if>><a href="javascript:void(0);" onclick="searchAppsByStatus('WAITING');">待审核</a></li>
+                <li <c:if test="${paging.appStatus == 'REJECTED'}">class="active"</c:if>><a href="javascript:void(0);" onclick="searchAppsByStatus('REJECTED');">拒绝通过</a></li>
+                <li <c:if test="${paging.appStatus == 'PASSED'}">class="active"</c:if>><a href="javascript:void(0);" onclick="searchAppsByStatus('PASSED');">待上架</a></li>
+                <li <c:if test="${paging.appStatus == 'SHELVES'}">class="active"</c:if>><a href="javascript:void(0);" onclick="searchAppsByStatus('SHELVES');">已上架</a></li>
+                <li <c:if test="${paging.appStatus == 'OFFSHELVES'}">class="active"</c:if>><a href="javascript:void(0);" onclick="searchAppsByStatus('OFFSHELVES');">已下架</a></li>
             </ul>
             <div class="tab-content">
                 <div id="tab1">
-                    <div class="input-group">
-                        <input type="text" placeholder="应用名称" class="input-sm form-control">
-                        <span class="input-group-btn">
-                                <button type="button" class="btn btn-sm">
+                    <form id="searchAppsForm" action="${pageContext.request.contextPath}/security/adminappmanage.html" method="post">
+                        <div class="input-group">
+                            <input id="appStatus" name="appStatus" type="hidden" value="${paging.appStatus}"/>
+                            <input type="text" name="appName" placeholder="应用名称" class="input-sm form-control">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-sm" onclick="searchApps();">
                                 <i class="search-icon"></i>
                                 </button>
-                        </span>
-                    </div>
+                            </span>
+                        </div>
+                    </form>
                     <table class="table table-condensed table-bordered table-hover table-view-1">
                         <thead>
                             <tr>
@@ -60,7 +63,7 @@
                             <c:forEach items="${apps}" var = "app">
                                 <tr>
                                     <td style="padding: 20px;">
-                                        <img src="${fileRequestHost}upload/${app.iconActualFileName}" width="96" height="96" class="fl" />
+                                        <img src="${fileRequestHost}upload/${app.appKey}/${app.iconActualFileName}" width="96" height="96" class="fl" />
                                         <div class="fl" style="margin-left: 13px;margin-top: 10px;">
                                             <h4>${app.appName}</h4>
                                             <p class="font12 color9">版本${app.appVersion}</p>
@@ -83,23 +86,6 @@
                                     </td>
                                 </tr>
                             </c:forEach>
-                            <tr>
-                                <td style="padding: 20px;">
-                                    <img src="${pageContext.request.contextPath}/images/longmen.png" width="96" height="96" class="fl" />
-                                    <div class="fl" style="margin-left: 13px;margin-top: 10px;">
-                                        <h4>影视娱乐</h4>
-                                        <p class="font12 color9">版本4.0</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <h5>影视娱乐</h5>
-                                    <p class="font12">完全自主开发新型日发送量可达1000万条</p>
-                                </td>
-                                <td>新创建</td>
-                                <td>
-                                    <a class="color4" href="javascript:;">设为待审核</a>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                     <ul class="pagination">
@@ -134,5 +120,17 @@
 <%--结尾菜单部分***********************************************************--%>
 
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
+
+<script src="${pageContext.request.contextPath}/javascript/jquery.min.js"></script>
+<script type="text/javascript">
+    function searchAppsByStatus(searchStatus) {
+        jQuery("#appStatus").val(searchStatus);
+        jQuery("#searchAppsForm").submit();
+    }
+
+    function searchApps() {
+        jQuery("#searchAppsForm").submit();
+    }
+</script>
 </body>
 </html>

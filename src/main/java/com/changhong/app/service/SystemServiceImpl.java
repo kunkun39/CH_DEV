@@ -92,4 +92,12 @@ public class SystemServiceImpl implements SystemService {
             }
         }
     }
+
+    public void updateDeloperStatus(int developerId, boolean enabled) {
+        ClientUser clientUser = (ClientUser) userDao.findById(developerId, ClientUser.class);
+
+        if(clientUser != null) {
+            clientUser.setEnabled(enabled);
+        }
+    }
 }

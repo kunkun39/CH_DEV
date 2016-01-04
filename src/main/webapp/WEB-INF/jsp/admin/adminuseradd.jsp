@@ -76,7 +76,7 @@
 
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
 
-<script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/javascript/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/dwr/engine.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/dwr/util.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/dwr/interface/SystemDWRHandler.js" type="text/javascript"></script>

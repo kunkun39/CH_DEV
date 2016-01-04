@@ -45,6 +45,9 @@
                             <c:when test="${marketApp.appStatus == 'SHELVES'}">
                                 <input type="button" class="btn-blue color1" value="下  架" onclick="adminAppStatusChange(${marketApp.id}, 'OFFSHELVES');"/>
                             </c:when>
+                            <c:when test="${marketApp.appStatus == 'OFFSHELVES'}">
+                                <input type="button" class="btn-blue color1" value="重新上架" onclick="adminAppStatusChange(${marketApp.id}, 'SHELVES');"/>
+                            </c:when>
                         </c:choose>
                     </div>
                 </div>
@@ -57,7 +60,7 @@
 
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
 
-<script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/javascript/jquery.min.js"></script>
 <script type="text/javascript">
     function adminAppStatusChange(appId, appStatus) {
         window.location.href='${pageContext.request.contextPath}/security/adminappstatuschange.html?appId=' + appId + '&appStatus=' + appStatus;
