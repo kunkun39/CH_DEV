@@ -1,10 +1,13 @@
 package com.changhong.app.service;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.changhong.app.domain.AppCategory;
 import com.changhong.app.domain.AppHistory;
 import com.changhong.app.domain.AppStatus;
 import com.changhong.app.domain.MarketApp;
 import com.changhong.app.repository.ClientDao;
+import com.changhong.app.utils.JodaUtils;
 import com.changhong.app.utils.SecurityUtils;
 import com.changhong.app.web.event.AppCreateAction;
 import com.changhong.app.web.event.AppStatusChangeAction;
@@ -86,5 +89,23 @@ public class ClientServiceImpl implements ClientService {
     public int obtainMarketAppSize(String appName, String appStatus) {
         int currentClientId = SecurityUtils.currectAuthenticationId();
         return clientDao.loadMarketAppSize(currentClientId, appName, appStatus);
+    }
+
+    public JSONArray obtainAppHistoryByPage(int startNumber, int appId) {
+        List<AppHistory> histories = clientDao.loadAppHistoryByPage(startNumber, appId);
+        JSONArray array = new JSONArray();
+
+        if (histories != null) {
+            for (AppHistory history : histories) {
+                JSONObject o = new JSONObject();
+                o.put("time", JodaUtils.toFullString(history.getTimestamp()));
+                o.put("title", history.getChangeTitle());
+                o.put("desc", history.getChangeDescription());
+
+                array.add(o);
+            }
+        }
+
+        return array;
     }
 }

@@ -109,7 +109,9 @@
     <bean id="clientChangePassController" class="com.changhong.app.web.controller.client.ClientChangePassController"/>
 
     <!--客户部分-->
-    <bean id="commonAppHistoryController" class="com.changhong.app.web.controller.common.CommonAppHistoryController"/>
+    <bean id="commonAppHistoryController" class="com.changhong.app.web.controller.common.CommonAppHistoryController">
+        <property name="clientService" ref="clientService"/>
+    </bean>
 
     <!--应用流程部分-->
     <bean id="clientAppFirstStepController"

@@ -2,6 +2,7 @@ package com.changhong.app.web.dwr;
 
 import com.changhong.app.service.ClientService;
 import com.changhong.app.service.SystemService;
+import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,10 @@ public class SystemDWRHandler {
 
     public boolean validateUserNameDuplicate(String userName) {
         return systemService.hasSameAdminUser(userName);
+    }
+
+    public String obtainAppHistoryByPage(int startNumber, int appId) throws JSONException {
+        return clientService.obtainAppHistoryByPage(startNumber, appId).toString();
     }
 
     public void updateDeveloperStatus(int developerId, boolean enabled) {

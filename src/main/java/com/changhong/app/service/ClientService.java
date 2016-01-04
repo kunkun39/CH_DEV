@@ -1,5 +1,6 @@
 package com.changhong.app.service;
 
+import com.alibaba.fastjson.JSONArray;
 import com.changhong.app.web.facade.dto.AppCategoryDTO;
 import com.changhong.app.web.facade.dto.MarketAppDTO;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,4 +29,7 @@ public interface ClientService {
     List<MarketAppDTO> obtainMarketApps(String appName, String appStatus, int startPosition, int pageSize);
 
     int obtainMarketAppSize(String appName, String appStatus);
+
+    JSONArray obtainAppHistoryByPage(int startNumber, int appId);
+
 }

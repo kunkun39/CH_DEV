@@ -28,7 +28,6 @@
 <%--内容部分***********************************************************--%>
 
 <div class="back-con" id="commit_form_mask">
-
     <h5 class="moreApply text-center" style="margin-bottom: 40px;">
         <a href="javascript:void(0);" charset="moreApply-a">
             查看应用历史
@@ -40,31 +39,46 @@
     <table class="table table-condensed table-bordered table-hover table-view-1" id="appHis-table">
         <thead>
             <tr>
-                <th style="padding-left: 20px; width: 20%">时间</th>
+                <th style="padding-left: 20px; width: 20%">时间/标题</th>
                 <th>细节</th>
             </tr>
         </thead>
         <tbody id="rank_list_content">
             <%--<tr>--%>
-                <%--<td style="padding-left: 20px;">--%>
+                <%--<td style="padding-left: 20px;" colspan="2">--%>
                     <%--欧阳,休克--%>
                 <%--</td>--%>
-                <%--<td><span class="color10">在用</span></td>--%>
+            <%--</tr>--%>
+            <%--<tr>--%>
+                <%--<td style="padding-left: 20px; font-size:11px;" colspan="2">--%>
+                    <%--没有更多了m, 没有更多了没有更多了没有更多了没有更多了没有更多了没有更多了没有更多了没有更多了--%>
+                <%--</td>--%>
             <%--</tr>--%>
         </tbody>
     </table>
 
     <!--加载开始-->
     <div id="add_more_info" class="load-more text-center" style="display: none;">
-        <div class="load-nomore" style="display: none;" >没有更多了</div>
+        <div class="load-nomore">没有更多了</div>
     </div>
 
-    <h5 class="moreApply text-center" style="margin-bottom: 40px;">
+    <h5 id="show_more_info" class="moreApply text-center" style="margin-bottom: 40px;">
         <a href="javascript:void(0);" onclick="addMoreContent()" charset="moreApply-a" id="appHis-a">
             查看更多
             <span class="moreico"></span>
         </a>
     </h5>
+
+    <div style="text-align: center;">
+        <c:choose>
+            <c:when test="${PAGE_KEY == 'ADMIN'}">
+                <a href="${pageContext.request.contextPath}/security/adminappoverview.html"><input type="button" class="btn-blue color1" value="返  回" /></a>
+            </c:when>
+            <c:otherwise>
+                <a href="${pageContext.request.contextPath}/security/clientappoverview.html"><input type="button" class="btn-blue color1" value="返  回" /></a>
+            </c:otherwise>
+        </c:choose>
+    </div>
 </div>
 
 <%--开头菜单部分***********************************************************--%>
@@ -86,6 +100,7 @@
 
 <script type="text/javascript">
     var startNumber = 0;
+    var appId = '${appId}';
 
     jQuery(document).ready(function(){
         addMoreContent();
@@ -93,33 +108,35 @@
 
     function addMoreContent() {
         jQuery('#commit_form_mask').mask("正在加载数据，请耐心等待!");
-//        var contentContainer = jQuery("#rank_list_content");
-//        SystemDWRHandler.obtainPageAppsByStartNumber(startNumber, function(result) {
-//            var statisticData = JSON.parse(result);
-//
-//            if(statisticData.length > 0) {
-//                contentContainer.html(contentContainer.html() + "</div><h1>排名" + (startNumber + 1) + " - " + (startNumber + 20) + "</h1></div>");
-//            } else {
-//                jQuery("#add_more_info").css("display", "block");
-//            }
-//
-//            for(var i=0; i<statisticData.length; i++) {
-//                var appValues = statisticData[i];
-//                var newContent = "<li><div class=\"left peity_bar_good\">" +
-//                        "<img style=\"width:40px;height:40px\" src=\"" + fileRequestHost + appValues.appKey + "/" + appValues.iconActualFileName + "\"/></div>" +
-//                        "<div style='text-overflow:ellipsis;white-space:nowrap;' class=\"right\"><strong>" + appValues.downloadTimes + "</strong>" + appValues.appFullName + " [" + appValues.appVersion + "]</div></li>";
-//
-//                contentContainer.html(contentContainer.html() + newContent);
-//            }
-//
-//            if(statisticData.length > 0) {
-//                contentContainer.html(contentContainer.html() + "</br></br>");
-//            }
-//
-//            startNumber = startNumber + 20;
-//            jQuery('#commit_form_mask').unmask();
-//            window.location.hash = "#add_more_button";
-//        });
+        var contentContainer = jQuery("#rank_list_content");
+        SystemDWRHandler.obtainAppHistoryByPage(startNumber, appId, function(result) {
+            var statisticData = JSON.parse(result);
+
+            if(statisticData.length <= 0) {
+                jQuery("#add_more_info").css("display", "block");
+            }
+
+            if(statisticData.length < 20) {
+                jQuery("#show_more_info").css("display", "none");
+                jQuery("#add_more_info").css("display", "block");
+            }
+
+            for(var i=0; i<statisticData.length; i++) {
+                var historyValues = statisticData[i];
+                var newContent = "<tr><td style=\"padding-left: 20px;\" colspan=\"2\">[" + historyValues.time + "]" + historyValues.title + "</td></tr>" +
+                        "<tr><td style=\"padding-left: 20px; font-size:11px;\" colspan=\"2\">" + historyValues.desc + "</td></tr>";
+
+                contentContainer.html(contentContainer.html() + newContent);
+            }
+
+            if(statisticData.length > 0) {
+                contentContainer.html(contentContainer.html() + "</br></br>");
+            }
+
+            startNumber = startNumber + 20;
+            jQuery('#commit_form_mask').unmask();
+            window.location.hash = "#add_more_button";
+        });
     }
 
     function closeMoreInfo() {

@@ -1,6 +1,7 @@
 package com.changhong.app.repository;
 
 import com.changhong.app.domain.AppCategory;
+import com.changhong.app.domain.AppHistory;
 import com.changhong.app.domain.MarketApp;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -60,5 +61,18 @@ public class ClientDaoImpl extends HibernateEntityObjectDao implements ClientDao
         Query query = session.createQuery(builder.toString());
 
         return ((Long)query.list().get(0)).intValue();
+    }
+
+    public List<AppHistory> loadAppHistoryByPage(int startNumber, int appId) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("from AppHistory a where a.marketApp.id = " + appId + " order by a.id desc");
+
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        Query query = session.createQuery(builder.toString());
+        query.setMaxResults(20);
+        query.setFirstResult(startNumber);
+
+        List<AppHistory> histories = query.list();
+        return histories;
     }
 }

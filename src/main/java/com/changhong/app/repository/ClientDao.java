@@ -1,6 +1,7 @@
 package com.changhong.app.repository;
 
 import com.changhong.app.domain.AppCategory;
+import com.changhong.app.domain.AppHistory;
 import com.changhong.app.domain.MarketApp;
 
 import java.util.List;
@@ -19,4 +20,6 @@ public interface ClientDao extends EntityObjectDao {
     List<MarketApp> loadMarketApps(int clientId, String appName, String appStatus, int startPosition, int pageSize);
 
     int loadMarketAppSize(int clientId, String appName, String appStatus);
+
+    List<AppHistory> loadAppHistoryByPage(int startNumber, int appId);
 }
