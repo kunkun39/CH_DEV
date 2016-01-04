@@ -94,7 +94,7 @@
 
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
 
-<script src="${pageContext.request.contextPath}/javascript/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
 <script type="text/javascript">
     function searchAdminUser() {
         jQuery("#searchAdminUserForm").submit();

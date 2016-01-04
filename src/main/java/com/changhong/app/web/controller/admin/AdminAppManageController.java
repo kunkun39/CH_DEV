@@ -42,7 +42,7 @@ public class AdminAppManageController extends AbstractController{
         model.put("fileRequestHost", fileRequestHost);
         model.put("paging", paging);
         model.put("MANAGE_KEY","APPS");
-        return new ModelAndView("admin/appmanage", model);
+        return new ModelAndView("admin/adminappoverview", model);
     }
 
     private void constractPaging(AdminMarketAppOverviewPaging paging, int currentPage, String appName, String appStarus) {

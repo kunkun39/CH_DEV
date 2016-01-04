@@ -10,7 +10,7 @@
 <div class="back-con-l">
     <h5 class="color7"><i class="server-icon"></i>后台管理</h5>
     <ul class="back-con-l-ul">
-        <a href="${pageContext.request.contextPath}/security/adminappmanage.html">
+        <a href="${pageContext.request.contextPath}/security/adminappoverview.html">
             <li <c:if test="${MANAGE_KEY == 'APPS'}">class="cur"</c:if>>应用</li>
         </a>
         <a href="${pageContext.request.contextPath}/security/adminusers.html">

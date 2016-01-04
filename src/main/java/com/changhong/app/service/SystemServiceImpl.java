@@ -1,11 +1,9 @@
 package com.changhong.app.service;
 
-import com.changhong.app.domain.AdminUser;
-import com.changhong.app.domain.AppStatus;
-import com.changhong.app.domain.ClientUser;
-import com.changhong.app.domain.MarketApp;
+import com.changhong.app.domain.*;
 import com.changhong.app.repository.SystemDao;
 import com.changhong.app.repository.UserDao;
+import com.changhong.app.web.event.AppStatusChangeAction;
 import com.changhong.app.web.facade.assember.AdminUserWebAssember;
 import com.changhong.app.web.facade.assember.ClientUserWebAssember;
 import com.changhong.app.web.facade.assember.MarketAppWebAssember;
@@ -88,6 +86,8 @@ public class SystemServiceImpl implements SystemService {
             MarketApp marketApp = (MarketApp) systemDao.findById(appId, MarketApp.class);
 
             if (marketApp != null) {
+                AppStatusChangeAction action = new AppStatusChangeAction(true, appId, marketApp.getAppStatus(), AppStatus.valueOf(appStatus), "");
+                systemDao.saveOrUpdate(AppHistory.generateAppStatusChangeHistory(action));
                 marketApp.setAppStatus(AppStatus.valueOf(appStatus));
             }
         }
