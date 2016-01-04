@@ -162,7 +162,7 @@
 
 <%--Javascript部分***********************************************************--%>
 <script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
-<script src="${pageContext.request.contextPath}/javascript/vendor/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/javascript/vendor/bootstrap.js"></script>
 <!--[if lt IE 9]>
 <script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
 <script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>

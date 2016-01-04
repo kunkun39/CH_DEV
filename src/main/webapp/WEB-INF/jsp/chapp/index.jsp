@@ -114,7 +114,7 @@
 <script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
 <![endif]-->
 <script src="${pageContext.request.contextPath}/javascript/vendor/nav.js"></script>
-<script src="${pageContext.request.contextPath}/javascript/vendor/jquery.roundabout.js"></script>
+<script src="${pageContext.request.contextPath}/javascript/vendor/round.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#img-slider li').bind({

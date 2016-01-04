@@ -81,7 +81,7 @@
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
 
 <script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/bootstrap.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/javascript/jquery.prettyPhoto.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/javascript/jquery.isotope.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/javascript/owl.carousel.js"></script>
