@@ -14,7 +14,7 @@
         <security:intercept-url pattern="/security/**" access="ROLE_ANONYMOUS,ROLE_USRE,ROLE_ADMIN"/>
 
         <!-- 指定登陆页面、成功页面、失败页面-->
-        <security:form-login login-page="/user/login.html" authentication-success-handler-ref="appMarketAuthenticationSuccessHandler"/>
+        <security:form-login login-page="/chapp/login.html" authentication-success-handler-ref="appMarketAuthenticationSuccessHandler"/>
 
         <!-- logout 页面，logout后清除session -->
         <security:logout logout-success-url="/chapp/index.html" invalidate-session="true"/>
