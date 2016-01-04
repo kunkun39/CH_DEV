@@ -29,15 +29,14 @@ public class SecurityUtils {
     }
     
     public static String currentAuthenticationRole() {
-//        try {
-//            SecurityContext securityContent = SecurityContextHolder.getContext();
-//            Collection<GrantedAuthority> authorities = securityContent.getAuthentication().getAuthorities();
-//            GrantedAuthority authority = new ArrayList<GrantedAuthority>(authorities).get(0);
-//            return authority.getAuthority();
-//        } catch (Exception e) {
-//            return null;
-//        }
-        return "ROLE_ADMIN";
+        try {
+            SecurityContext securityContent = SecurityContextHolder.getContext();
+            Collection<GrantedAuthority> authorities = securityContent.getAuthentication().getAuthorities();
+            GrantedAuthority authority = new ArrayList<GrantedAuthority>(authorities).get(0);
+            return authority.getAuthority();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public static Auth currentAuthentication() {
@@ -50,11 +49,8 @@ public class SecurityUtils {
     }
 
     public static int currectAuthenticationId() {
-//        Auth user = currentAuthentication();
-//        if (user == null) return -1;
-//        return user.getId();
-
-        //TODO:here set the fake id
-        return 1;
+        Auth user = currentAuthentication();
+        if (user == null) return -1;
+        return user.getId();
     }
 }
