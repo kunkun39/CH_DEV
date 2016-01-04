@@ -24,6 +24,8 @@
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
     </bean>
 
+    <bean class="com.changhong.app.exception.ApplicationExceptionHandler"/>
+
     <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="order" value="0"/>
         <property name="mappings">
@@ -57,7 +59,9 @@
     <bean id="indexController" class="com.changhong.app.web.controller.IndexController">
         <property name="projectVersion" value="${application.version}"/>
     </bean>
+
     <bean id="aboutUsController" class="com.changhong.app.web.controller.AboutUsController"/>
+
     <bean id="contactusController" class="com.changhong.app.web.controller.ContactUsController"/>
 
     <!--管理员部分-->

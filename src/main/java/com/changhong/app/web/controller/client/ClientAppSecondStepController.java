@@ -1,5 +1,6 @@
 package com.changhong.app.web.controller.client;
 
+import com.changhong.app.exception.CHSecurityException;
 import com.changhong.app.service.ClientService;
 import com.changhong.app.service.SystemService;
 import com.changhong.app.utils.SecurityUtils;
@@ -38,18 +39,12 @@ public class ClientAppSecondStepController extends AbstractController {
 
         int appId = ServletRequestUtils.getIntParameter(request, "appId", -1);
         MarketAppDTO app = clientService.obtainMarketApp(appId);
-        boolean allowSee = false;
-        if (app.getOwnerId() == SecurityUtils.currectAuthenticationId()) {
-            allowSee = true;
-            model.put("marketApp", app);
-            model.put("STEP_KEY", app.decideWhichStepNow());
+        if (app.getOwnerId() != SecurityUtils.currectAuthenticationId()) {
+            throw new CHSecurityException("app first step with edit app is not your app");
         }
+        model.put("marketApp", app);
+        model.put("STEP_KEY", app.decideWhichStepNow());
 
-//        List<AppHistoryDTO> histories = systemService.obtainAppChangeHistory(appId);
-//        request.setAttribute("histories", histories);
-
-        model.put("allowSee", allowSee);
-        model.put("fileRequestHost", fileRequestHost);
         return new ModelAndView("client/appsecondstep", model);
     }
 

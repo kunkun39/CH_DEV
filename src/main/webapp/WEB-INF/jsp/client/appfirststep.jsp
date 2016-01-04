@@ -30,8 +30,7 @@
 
 <div class="container">
 
-    <c:if test="${allowSee}">
-        <div class="panel panel-default">
+    <div class="panel panel-default">
         <div class="panel-heading">
             提交应用信息
         </div>
@@ -135,25 +134,7 @@
             </div>
         </spring-form:form>
     </div>
-    </c:if>
 
-    <c:if test="${!allowSee}">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                页面禁止访问
-            </div>
-            <div class="panel-con-email row">
-                <div class="col-sm-4 text-right">
-                    <span class="reg-icon wrong-icon"></span>
-                </div>
-                <div class="col-sm-8">
-                    <p class="font16" style="margin: 10px 0 0;">感谢使用开发者应用接入平台，你没有权限访问该页面</p>
-                    <p style="margin:0 0 28px;color: #999;">可能你的会话已经超时或者你还未登陆系统</p>
-                    <a href="${pageContext.request.contextPath}/chapp/index.html"><input type="button" class="btn-blue color1" value="返  回" /></a>
-                </div>
-            </div>
-        </div>
-    </c:if>
 </div>
 
 <%--开头菜单部分***********************************************************--%>

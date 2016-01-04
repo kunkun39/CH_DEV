@@ -1,5 +1,6 @@
 package com.changhong.app.web.controller.client;
 
+import com.changhong.app.exception.CHSecurityException;
 import com.changhong.app.service.ClientService;
 import com.changhong.app.utils.CHFileUtils;
 import com.changhong.app.utils.SecurityUtils;
@@ -44,18 +45,16 @@ public class ClientAppFirstStepController extends SimpleFormController {
         request.setAttribute("STEP_KEY", "FIRST");
         request.setAttribute("PAGE_KEY", "CLIENT");
 
-        boolean allowSee = true;
         MarketAppDTO app = new MarketAppDTO();
 
         int appId = ServletRequestUtils.getIntParameter(request, "appId", -1);
         if (appId > 0) {
             app = clientService.obtainMarketApp(appId);
             if (app.getOwnerId() != SecurityUtils.currectAuthenticationId()) {
-                allowSee = false;
+                throw new CHSecurityException("app first step with edit app is not your app");
             }
         }
 
-        request.setAttribute("allowSee", allowSee);
         request.setAttribute("fileRequestHost", fileRequestHost);
         return app;
     }
