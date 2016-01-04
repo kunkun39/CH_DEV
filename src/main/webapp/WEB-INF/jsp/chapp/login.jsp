@@ -16,7 +16,6 @@
     <script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
     <script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
     <![endif]-->
-    <base target="_blank"/>
 </head>
 
 <body>
@@ -28,7 +27,7 @@
         <div class="panel-heading">
             登录
         </div>
-        <form class="form-horizontal" role="form" name="sentMessage" id="contactForm" action="${pageContext.request.contextPath}/j_spring_security_check">
+        <form class="form-horizontal" id="contactForm" action="${pageContext.request.contextPath}/j_spring_security_check" method="post">
             <div class="form-body">
                 <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">邮箱</label>
@@ -41,7 +40,7 @@
                     <label for="inputPassword" class="col-sm-2 control-label">密码</label>
 
                     <div class="col-sm-10">
-                        <input type="password" cname="j_password" class="form-control" required="required" id="inputPassword" placeholder="请输入密码">
+                        <input type="password" name="j_password" class="form-control" required="required" id="inputPassword" placeholder="请输入密码">
                     </div>
                 </div>
                 <div class="form-group">
@@ -49,7 +48,7 @@
 
                     <div class="col-sm-10">
                         <input type="button" class="btn-yellow color1"  value="注册"  onclick="registerClient();"/>
-                        <input type="submit" class="btn-blue color1 " value="登录"/>
+                        <input type="submit" class="btn-blue color1" value="登录"/>
                         <br/>
                         <c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
                             <label style="color: red; padding-left: 10px;">对不起, 用户名或者密码不正确!</label>
@@ -77,7 +76,7 @@
 
 <script type="text/javascript">
     function registerClient() {
-        window.location.href = "${pageContext.request.contextPath}/chapp/userregister.html";
+        window.location.href = "${pageContext.request.contextPath}/chapp/register.html";
     }
 </script>
 </body>

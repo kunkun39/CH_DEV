@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
  * Time:10:01
  */
 public class LoginController extends AbstractController {
+
     @Override
     protected ModelAndView handleRequestInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
+
         return new ModelAndView("chapp/login");//返回chapp目录下的login.jsp页面
     }
 }

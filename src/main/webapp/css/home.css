@@ -7,7 +7,7 @@ background-repeat: no-repeat; height: 613px; position: relative; overflow: hidde
 .index-header { background-position: 0 -10px; width: 368px; }
 .list-header { background-position: -22px -115px; width: 326px; height: 71px; }
 .moreico { display: inline-block; vertical-align: middle; background-position: -14px -201px; width: 16px; height: 16px; }
-.apply-ul-a { display: block; margin: 0 auto; width: 216px; height: 284px; padding: 47px 37px 0; }
+.apply-ul-a { display: block; margin: 0 auto; width: 200px; height: 240px; padding: 37px 27px 0; }
 .apply-ul-a p { color: #6e6e6e; }
 .apply-ul-a:hover { background: url(../images/apply-hover.png) 0 0 no-repeat; }
 .apply-ul-a:hover h3 { color: #0e90e4; }

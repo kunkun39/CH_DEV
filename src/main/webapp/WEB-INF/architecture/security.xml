@@ -22,7 +22,7 @@
 
         <!-- session 失效后跳转的页面，最大登陆次数 -->
         <security:session-management>
-            <security:concurrency-control max-sessions="1" expired-url="/user/login.html"/>
+            <security:concurrency-control max-sessions="1" expired-url="/chapp/login.html"/>
         </security:session-management>
 
         <!-- 使 用记住用户名、密码功能，指定数据源和加密的key -->
@@ -34,7 +34,7 @@
     </security:authentication-manager>
 
     <bean id="appMarketAuthenticationSuccessHandler" class="com.changhong.app.web.security.AppMarketAuthenticationSuccessHandler">
-        <property name="adminTargetUrl" value="/chapp/adminmenu.html"/>
-        <property name="clientTargetUrl" value="/chapp/serviceus.html"/>
+        <property name="adminTargetUrl" value="/security/adminappoverview.html"/>
+        <property name="clientTargetUrl" value="/security/clientappoverview.html"/>
     </bean>
 </beans>

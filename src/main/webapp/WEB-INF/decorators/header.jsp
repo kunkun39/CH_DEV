@@ -27,9 +27,12 @@
             <ul class="nav navbar-nav navbar-right nav-ul">
                 <li <c:if test="${PAGE_KEY == 'INDEX'}">class="cur"</c:if>><a
                         href="${pageContext.request.contextPath}/chapp/index.html">首页</a></li>
+
                 <li <c:if test="${PAGE_KEY == 'ABOUTUS'}">class="cur"</c:if>><a href="${pageContext.request.contextPath}/chapp/aboutus.html">关于我们</a></li>
+
                 <li <c:if test="${PAGE_KEY == 'CONTACTUS'}">class="cur"</c:if>><a
                         href="${pageContext.request.contextPath}/chapp/contactus.html">联系我们</a></li>
+
                 <li <c:if test="${PAGE_KEY == 'CLIENT'}">class="cur"</c:if>><a
                         href="${pageContext.request.contextPath}/security/clientappoverview.html">我的服务</a></li>
 
