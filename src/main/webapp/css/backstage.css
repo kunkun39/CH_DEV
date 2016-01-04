@@ -8,7 +8,7 @@ body { font-size: 14px; color: #212121; }
 }
 .reg-content { border-bottom: 1px dotted #c2c2c2; }
 .btn-blue, .btn-yellow, btn-disabled { width: 132px; height: 34px; line-height: 34px; border: 0; border-radius: 3px; }
-a.btn-blue { display: inline-block; color: #fff; }
+a.btn-blue { text-align: center; display: inline-block; color: #fff; max-width: 50px; }
 .btn-blue, .btn-blue-sm { background-color: #15b4cc; margin-right: 14px; }
 .btn-yellow { background-color: #f0b412; }
 .btn-disabled, .btn-disabled-sm { background-color: #e8e8e8; color: #a6a6a6; }
