@@ -16,8 +16,8 @@ font-family: "\5FAE\8F6F\96C5\9ED1", "\5B8B\4F53", Arial, serif; max-width: 800p
 	color: #bec1c8;
 }*/
 
-.nav-ul.navbar-nav li.no-border { border: none; padding-left: 27px; color: #c6cad2; }
-.nav-ul.navbar-nav li.no-border a { padding-left: 0; padding-right: 0; font-size: 12px; }
+.nav-ul.navbar-nav li.no-border { border: none; padding-left: 27px; color: #c6cad2;}
+.nav-ul.navbar-nav li.no-border a { padding-left: 0; padding-right: 0; }
 .collapsing, .collapse.in { background-color: #fff; }
 /*.collapse.in li{
 	height: 36px; line-height: 36px;
