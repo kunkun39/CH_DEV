@@ -40,7 +40,7 @@
             </ul>
             <div class="tab-content">
                 <div id="tab1">
-                    <form id="searchAppsForm" action="${pageContext.request.contextPath}/security/adminappmanage.html" method="post">
+                    <form id="searchAppsForm" action="${pageContext.request.contextPath}/security/adminappoverview.html" method="post">
                         <div class="input-group">
                             <input id="appStatus" name="appStatus" type="hidden" value="${paging.appStatus}"/>
                             <input type="text" name="appName" placeholder="应用名称" class="input-sm form-control">
