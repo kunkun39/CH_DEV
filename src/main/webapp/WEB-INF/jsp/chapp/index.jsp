@@ -29,7 +29,20 @@
 <%--内容部分***********************************************************--%>
 
 <!--banner开始-->
-
+<div class="homepage-banner">
+<div style="width:728px;height:200px;margin-top:0px;">
+</div>
+<div style="width:728px;height:200px;margin:0px auto;">
+		<ul class="round">
+			<li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header1.jpg" alt="" /></li>
+			<li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header2.jpg" alt="" /></li>
+			<li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header3.jpg" alt="" /></li>
+			<li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header4.jpg" alt="" /></li>
+			<li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header5.jpg" alt="" /></li>
+			<li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header6.jpg" alt="" /></li>
+		</ul>
+</div>
+</div>
 <!--banner结束-->
 
 <div class="content">
@@ -65,14 +78,18 @@
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
 
 <%--Javascript部分***********************************************************--%>
-<script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
 <!--[if lt IE 9]>
 <script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
 <script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
 <![endif]-->
 <script src="${pageContext.request.contextPath}/javascript/vendor/nav.js"></script>
 <script src="${pageContext.request.contextPath}/javascript/vendor/round.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/round/jquery.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/round/jquery.roundabout.js"></script>
 <script type="text/javascript">
+    $(document).ready(function() {
+		$('.round').roundabout();
+	});
     $(document).ready(function() {
         $('#img-slider li').bind({
             reposition: function() {
