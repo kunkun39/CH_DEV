@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@ taglib prefix="ch" uri="http://www.chanhong.com" %>
 <!DOCTYPE html>
 <html class="activity-no">
 <head>
@@ -69,22 +70,7 @@
                 </tbody>
             </table>
             <ul class="pagination">
-                <li class="cur"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">6</a></li>
-                <li><a href="#">7</a></li>
-                <li><a href="#">8</a></li>
-                <li><a href="#">...</a></li>
-                <li><a href="#">18</a></li>
-                <li><a href="#">下一页</a></li>
-                <li>
-                    <label>跳转到</label>
-                    <input type="text" class="input-page" />
-                </li>
-                <li><a href="#">Go</a></li>
+                <ch:numberpaging urlMapping="${pageContext.request.contextPath}/security/adminusers.html" paging="${paging}"/>
             </ul>
         </div>
     </div>
