@@ -58,7 +58,7 @@
                             <c:forEach items="${apps}" var = "app">
                                 <tr>
                                     <td style="padding: 20px;">
-                                        <img src="${fileRequestHost}upload/${app.iconActualFileName}" width="96" height="96" class="fl" />
+                                        <img src="${fileRequestHost}/${app.iconActualFileName}" width="96" height="96" class="fl" />
                                         <div class="fl" style="margin-left: 13px;margin-top: 10px;">
                                             <h4>${app.appName}</h4>
                                             <p class="font12 color9">${app.appVersionInt}</p>

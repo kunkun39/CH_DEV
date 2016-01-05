@@ -46,14 +46,14 @@
 <div class="form-group">
     <label for="" class="col-sm-3 control-label">应用图标</label>
     <div class="col-sm-9">
-        <img width="70" height="70" alt="" src="${fileRequestHost}upload/${marketApp.appKey}/${marketApp.iconActualFileName}"/>
+        <img width="70" height="70" alt="" src="${fileRequestHost}/${marketApp.appKey}/${marketApp.iconActualFileName}"/>
     </div>
 </div>
 
 <div class="form-group">
     <label for="" class="col-sm-3 control-label">应用海报</label>
     <div class="col-sm-9">
-         <img width="500" height="260" alt="" src="${fileRequestHost}upload/${marketApp.appKey}/${marketApp.posterActualFileName}"/>
+         <img width="500" height="260" alt="" src="${fileRequestHost}/${marketApp.appKey}/${marketApp.posterActualFileName}"/>
     </div>
 </div>
 
@@ -76,7 +76,7 @@
 <div class="form-group">
     <label for="" class="col-sm-3 control-label">APK文件</label>
     <div class="col-sm-9">
-        <a href="${fileRequestHost}upload/${marketApp.appKey}/${marketApp.apkActualFileName}">
+        <a href="${fileRequestHost}/${marketApp.appKey}/${marketApp.apkActualFileName}">
             <p class="apply-detail-p"><i class="path-icon"></i><span class="color8">${marketApp.apkUploadFileName}</span></p>
         </a>
     </div>

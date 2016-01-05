@@ -83,7 +83,7 @@
                         <span class="help-block color6">请编辑应用图标: 像素:150*150，大小<30K</span>
                         <span id="icon_error_show" class="help-block color5" style="display: none;"></span>
                         <c:if test="${marketApp.id > 0}">
-                            <img width="70" height="70" alt="" src="${fileRequestHost}upload/${marketApp.appKey}/${marketApp.iconActualFileName}"/>
+                            <img width="70" height="70" alt="" src="${fileRequestHost}/${marketApp.appKey}/${marketApp.iconActualFileName}"/>
                         </c:if>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                         <span class="help-block color6">请编辑应用图标: 像素:800*450，大小<200K</span>
                         <span id="poster_error_show" class="help-block color5" style="display: none;"></span>
                         <c:if test="${marketApp.id > 0}">
-                            <img width="200" height="112" alt="" src="${fileRequestHost}upload/${marketApp.appKey}/${marketApp.posterActualFileName}"/>
+                            <img width="200" height="112" alt="" src="${fileRequestHost}/${marketApp.appKey}/${marketApp.posterActualFileName}"/>
                         </c:if>
                     </div>
                 </div>
@@ -176,8 +176,8 @@
     var appNameValidate = false;
     var appPackageValidate = false;
     var appDescValidate = false;
-    var iconImageValidate = false;
-    var posterImageValidate = false;
+    var iconImageValidate = true;
+    var posterImageValidate = true;
     var apkFileValidate = false;
 
     var appId = '${marketApp.id}';
@@ -315,6 +315,8 @@
 
     function submitAppInfo() {
         var canSubmit = true;
+        iconImageValidate = true;
+        posterImageValidate = true;
         if(!appNameValidate) {
             jQuery("#name_error_show").html("应用名称未通过验证");
             jQuery("#name_error_show").css("display", "block");
