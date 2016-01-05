@@ -66,7 +66,7 @@
     </main>
     <div class="container">
         <h5 class="moreApply text-center">
-            <a href="marketapplistoverview.html" charset="moreApply-a">查看更多应用
+            <a href="${pageContext.request.contextPath}/chapp/marketapplistoverview.html" charset="moreApply-a">查看更多应用
             <span class="moreico"></span>
             </a>
         </h5>
