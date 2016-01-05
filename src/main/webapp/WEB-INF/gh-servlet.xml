@@ -47,10 +47,12 @@
                 <prop key="/security/clientappoverview.html">clientAppOverviewController</prop>
                 <prop key="/security/clientselfinfo.html">clientSelfInfoController</prop>
                 <prop key="/security/clientchangepass.html">clientChangePassController</prop>
-				
-				  <!--用户部分-->
+
+                <!--用户部分-->
                 <prop key="/chapp/login.html">loginController</prop>
-                <prop key="/chapp/register.html">userRegisterController</prop>
+                <prop key="/chapp/userregister.html">userRegisterController</prop>
+                <prop key="/chapp/userregistercode.html">userRegisterCodeController</prop>
+                <prop key="/chapp/agreecondition.html">userAgreeConditionController</prop>
 
                 <!--公用部分-->
                 <prop key="/security/apphistory.html">commonAppHistoryController</prop>
@@ -110,13 +112,19 @@
         <property name="serverContext" value="${application.context}"/>
     </bean>
 
-	<!--用户部分 -->
+    <!--用户部分 -->
     <bean id="loginController" class="com.changhong.app.web.controller.user.LoginController"/>
 
     <bean id="userRegisterController" class="com.changhong.app.web.controller.user.UserRegisterController">
         <property name="userService" ref="userService"/>
         <property name="serverContext" value="${application.context}"/>
     </bean>
+
+    <bean id="userRegisterCodeController" class="com.changhong.app.web.controller.user.UserRegisterCodeController">
+    </bean>
+    <bean id="userAgreeConditionController" class="com.changhong.app.web.controller.user.UserAgreeConditionController">
+    </bean>
+
 
     <!--客户应用部分-->
     <bean id="clientAppOverviewController" class="com.changhong.app.web.controller.client.ClientAppOverviewController">
