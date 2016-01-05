@@ -39,25 +39,25 @@
 <%--<div id="main-slide" class="carousel slide" data-ride="carousel">--%>
 <%--<div class="carousel-inner">--%>
 <div class="item active">
-    <img width="100%" height="350px"  src="${pageContext.request.contextPath}/images/aboutus-banner.jpg" alt="slider">
+    <img width="100%" height="350px" src="${pageContext.request.contextPath}/images/aboutus-banner.jpg" alt="slider">
 </div>
 
 <div class="col-md-12 text-center " style="margin-top: -320px">
     <div class="item-log">
-        <img class="img-logo" src="${pageContext.request.contextPath}/images/aboutus-logo.jpg" >
+        <img class="img-logo" src="${pageContext.request.contextPath}/images/aboutus-logo.jpg">
     </div>
 
-    <h2 class="color1 font-h1" style="font-size: 45px">联系我们</h2>
+    <h2 class="color3 font-h1" style="font-size: 45px">联系我们</h2>
 
     <div style="margin-top: 41px">
         <h3>
-            <p class="color1 h4">四川省成都市高新区天府大道111号</p>
+            <p class="color3 h4">四川省成都市高新区天府大道111号</p>
 
-            <p class="color2 h4">sjdfsdfjk@kjcrrf.com</p>
+            <p class="color3 h4">sjdfsdfjk@kjcrrf.com</p>
 
-            <p class="color2 h4">1800-1231-234</p>
+            <p class="color3 h4">1800-1231-234</p>
 
-            <p class="color1 h4" style="margin-top: -1px">1322-1238-795</p>
+            <p class="color3 h4" style="margin-top: -1px">1322-1238-795</p>
         </h3>
     </div>
 </div>
