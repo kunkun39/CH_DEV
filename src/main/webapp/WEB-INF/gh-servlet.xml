@@ -37,7 +37,7 @@
                 <!--管理员部分-->
                 <prop key="/security/adminusers.html">adminUserManageController</prop>
                 <prop key="/security/admindeveloper.html">adminDevaloperController</prop>
-                <prop key="/security/adminappmanage.html">adminAppManageController</prop>
+                <prop key="/security/adminappoverview.html">adminAppOverviewController</prop>
                 <prop key="/security/adminuseradd.html">adminUserAddController</prop>
                 <prop key="/security/adminappoperate.html">adminAppOperateController</prop>
                 <prop key="/security/adminappstatuschange.html">adminAppStatusChangeController</prop>
@@ -76,7 +76,7 @@
         <property name="systemService" ref="systemService"/>
     </bean>
 
-    <bean id="adminAppManageController" class="com.changhong.app.web.controller.admin.AdminAppManageController">
+    <bean id="adminAppOverviewController" class="com.changhong.app.web.controller.admin.AdminAppOverviewController">
         <property name="systemService" ref="systemService"/>
         <property name="fileRequestHost" value="${application.file.request.path}"/>
     </bean>

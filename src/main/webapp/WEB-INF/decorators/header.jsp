@@ -37,7 +37,7 @@
                         href="${pageContext.request.contextPath}/security/clientappoverview.html">我的服务</a></li>
 
                 <security:authorize ifAnyGranted="ROLE_ADMIN">
-                    <li <c:if test="${PAGE_KEY == 'ADMIN'}">class="active"</c:if>><a
+                    <li <c:if test="${PAGE_KEY == 'ADMIN'}">class="cur"</c:if>><a
                         href="${pageContext.request.contextPath}/security/adminappmanage.html">后台管理</a></li>
                 </security:authorize>
                 <li>

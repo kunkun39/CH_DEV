@@ -91,7 +91,7 @@
                         </tbody>
                     </table>
                     <ul class="pagination">
-                        <ch:numberpaging urlMapping="${pageContext.request.contextPath}/security/adminappmanage.html" paging="${paging}"/>
+                        <ch:numberpaging urlMapping="${pageContext.request.contextPath}/security/adminappoverview.html" paging="${paging}"/>
                     </ul>
                 </div>
             </div>

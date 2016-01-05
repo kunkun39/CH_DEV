@@ -20,7 +20,7 @@ import java.util.Map;
  * Date: 15-12-25
  * Time: 下午1:36
  */
-public class AdminAppManageController extends AbstractController{
+public class AdminAppOverviewController extends AbstractController{
 
     private SystemService systemService;
 
