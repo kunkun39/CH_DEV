@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@ taglib prefix="ch" uri="http://www.chanhong.com" %>
+<%--<%@ taglib prefix="ch" uri="/WEB-INF/tld/tag.tld" %>--%>
+
 <!DOCTYPE html>
 <!--[if IE 8 ]>
 <html class="ie8"> <![endif]-->
@@ -19,7 +22,6 @@
 </head>
 
 <body>
-
 <%--开头菜单部分***********************************************************--%>
 
 <jsp:include page="/WEB-INF/decorators/header.jsp"/>
@@ -27,6 +29,7 @@
 <%--内容部分***********************************************************--%>
 
 <!--banner开始-->
+
 <!--banner结束-->
 
 <div class="content">
@@ -34,76 +37,30 @@
         <div class="index-header">
         </div>
     </main>
+
     <main class="container">
-        <ul class="row apply-ul text-center">
-            <li class="col-md-3 col-sm-5">
-                <a href="javascript:void(0)" title="龙门编剧" class="apply-ul-a">
-                    <img src="${pageContext.request.contextPath}/images/longmen.png" alt="龙门编剧" width="70" height="70" />
-                    <h4>龙门编剧</h4>
-                    <p>完全自主开发新型日发送量可达一万条</p>
+        <ul class="row rank_list_content text-center">
+            <c:forEach items="${apps}" var="app">
+               <li class="col-md-3 col-sm-5">
+                <a href="javascript:void(0)" title="" class="apply-ul-a">
+                    <img src="${fileRequestHost}${app.appKey}/${app.iconActualFileName}" alt="" width="70" height="70" />
+                    <h4>${app.appName}</h4>
+                    <p><ch:substring value="${app.appDescription}" length="20"/></p>
                 </a>
-            </li>
-            <li class="col-md-3 col-sm-5">
-                <a href="javascript:void(0)" title="龙门编剧" class="apply-ul-a">
-                    <img src="${pageContext.request.contextPath}/images/longmen.png" alt="龙门编剧" width="70" height="70" />
-                    <h5>龙门编剧</h5>
-                    <p>完全自主开发新型日发送量可达一万条</p>
-                </a>
-            </li>
-            <li class="col-md-3 col-sm-5">
-                <a href="javascript:void(0)" title="龙门编剧" class="apply-ul-a">
-                    <img src="${pageContext.request.contextPath}/images/longmen.png" alt="龙门编剧" width="70" height="70" />
-                    <h5>龙门编剧</h5>
-                    <p>完全自主开发新型日发送量可达一万条</p>
-                </a>
-            </li>
-            <li class="col-md-3 col-sm-5">
-                <a href="javascript:void(0)" title="龙门编剧" class="apply-ul-a">
-                    <img src="${pageContext.request.contextPath}/images/longmen.png" alt="龙门编剧" width="70" height="70" />
-                    <h5>龙门编剧</h5>
-                    <p>完全自主开发新型日发送量可达一万条</p>
-                </a>
-            </li>
-            <li class="col-md-3 col-sm-6">
-                <a href="javascript:void(0)" title="龙门编剧" class="apply-ul-a">
-                    <img src="${pageContext.request.contextPath}/images/longmen.png" alt="龙门编剧" width="70" height="70" />
-                    <h5>龙门编剧</h5>
-                    <p>完全自主开发新型日发送量可达一万条</p>
-                </a>
-            </li>
-            <li class="col-md-3 col-sm-6">
-                <a href="javascript:void(0)" title="龙门编剧" class="apply-ul-a">
-                    <img src="${pageContext.request.contextPath}/images/longmen.png" alt="龙门编剧" width="70" height="70" />
-                    <h3>龙门编剧</h3>
-                    <p>完全自主开发新型日发送量可达一万条</p>
-                </a>
-            </li>
-            <li class="col-md-3 col-sm-6">
-                <a href="javascript:void(0)" title="龙门编剧" class="apply-ul-a">
-                    <img src="${pageContext.request.contextPath}/images/longmen.png" alt="龙门编剧" width="70" height="70" />
-                    <h3>龙门编剧</h3>
-                    <p>完全自主开发新型日发送量可达一万条</p>
-                </a>
-            </li>
-            <li class="col-md-3 col-sm-6">
-                <a href="javascript:void(0)" title="龙门编剧" class="apply-ul-a">
-                    <img src="${pageContext.request.contextPath}/images/longmen.png" alt="龙门编剧" width="70" height="70" />
-                    <h3>龙门编剧</h3>
-                    <p>完全自主开发新型日发送量可达一万条</p>
-                </a>
-            </li>
+                </li>
+            </c:forEach>
         </ul>
     </main>
     <div class="container">
         <h5 class="moreApply text-center">
-            <a href="applylist.html" charset="moreApply-a">查看更多应用
+            <a href="marketapplistoverview.html" charset="moreApply-a">查看更多应用
             <span class="moreico"></span>
             </a>
         </h5>
     </div>
 </div>
 
-<%--开头菜单部分***********************************************************--%>
+<%--结尾菜单部分***********************************************************--%>
 
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
 

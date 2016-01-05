@@ -31,6 +31,7 @@
         <property name="mappings">
             <props>
                 <prop key="/chapp/index.html">indexController</prop>
+                <prop key="/chapp/marketapplistoverview.html">marketAppListOverViewController</prop>
                 <prop key="/chapp/aboutus.html">aboutUsController</prop>
                 <prop key="/chapp/contactus.html">contactusController</prop>
 
@@ -64,8 +65,17 @@
     </bean>
 
     <bean id="indexController" class="com.changhong.app.web.controller.IndexController">
+        <property name="systemService" ref="systemService"/>
+        <property name="fileRequestHost" value="${application.file.request.path}"/>
         <property name="projectVersion" value="${application.version}"/>
     </bean>
+
+    <bean id="marketAppListOverViewController" class="com.changhong.app.web.controller.MarketAppListOverViewController">
+        <property name="systemService" ref="systemService"/>
+        <property name="fileRequestHost" value="${application.file.request.path}"/>
+        <property name="projectVersion" value="${application.version}"/>
+    </bean>
+
 
     <bean id="aboutUsController" class="com.changhong.app.web.controller.AboutUsController"/>
 
