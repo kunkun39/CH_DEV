@@ -33,13 +33,16 @@
                 <li <c:if test="${PAGE_KEY == 'CONTACTUS'}">class="cur"</c:if>><a
                         href="${pageContext.request.contextPath}/chapp/contactus.html">联系我们</a></li>
 
-                <li <c:if test="${PAGE_KEY == 'CLIENT'}">class="cur"</c:if>><a
-                        href="${pageContext.request.contextPath}/security/clientappoverview.html">我的服务</a></li>
+                <security:authorize ifNotGranted="ROLE_ADMIN">
+                    <li <c:if test="${PAGE_KEY == 'CLIENT'}">class="cur"</c:if>><a
+                            href="${pageContext.request.contextPath}/security/clientappoverview.html">我的服务</a></li>
+                </security:authorize>
 
                 <security:authorize ifAnyGranted="ROLE_ADMIN">
                     <li <c:if test="${PAGE_KEY == 'ADMIN'}">class="cur"</c:if>><a
                         href="${pageContext.request.contextPath}/security/adminappoverview.html">后台管理</a></li>
                 </security:authorize>
+
                 <li class="no-border">
                     <ch:user context="${pageContext.request.contextPath}"/>
                 </li>
