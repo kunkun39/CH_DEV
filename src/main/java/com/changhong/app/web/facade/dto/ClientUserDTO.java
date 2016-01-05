@@ -19,6 +19,12 @@ public class ClientUserDTO implements Serializable {
 
     private String password;
 
+    private String passwordAgain;//密码确认
+
+    private boolean agreeCondition;
+
+    private String registerCode;
+
     private boolean enabled;
 
     private boolean active;
@@ -77,5 +83,29 @@ public class ClientUserDTO implements Serializable {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public String getPasswordAgain() {
+        return passwordAgain;
+    }
+
+    public void setPasswordAgain(String passwordAgain) {
+        this.passwordAgain = passwordAgain;
+    }
+
+    public boolean isAgreeCondition() {
+        return agreeCondition;
+    }
+
+    public void setAgreeCondition(boolean agreeCondition) {
+        this.agreeCondition = agreeCondition;
+    }
+
+    public String getRegisterCode() {
+        return registerCode;
+    }
+
+    public void setRegisterCode(String registerCode) {
+        this.registerCode = registerCode;
     }
 }
