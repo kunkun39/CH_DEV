@@ -25,6 +25,6 @@ public class ApplicationExceptionHandler implements HandlerExceptionResolver {
             return new ModelAndView("security");
         }
 
-        return new ModelAndView("error.html");
+        return new ModelAndView("error");
 	}
 }

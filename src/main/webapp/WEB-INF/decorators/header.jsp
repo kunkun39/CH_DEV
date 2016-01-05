@@ -40,7 +40,7 @@
                     <li <c:if test="${PAGE_KEY == 'ADMIN'}">class="cur"</c:if>><a
                         href="${pageContext.request.contextPath}/security/adminappmanage.html">后台管理</a></li>
                 </security:authorize>
-                <li>
+                <li class="no-border">
                     <ch:user context="${pageContext.request.contextPath}"/>
                 </li>
 
