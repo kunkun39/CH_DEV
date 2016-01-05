@@ -24,7 +24,7 @@
 
         <%--引用appsteptitle***********************************************************--%>
         <jsp:include page="/WEB-INF/jsp/common/appsteptitle.jsp"/>
-        <form id="appForm" class="form-horizontal" action="${pageContext.request.contextPath}/security/adminappmanage.html" method="get">
+        <form id="appForm" class="form-horizontal" action="${pageContext.request.contextPath}/security/adminappoverview.html" method="get">
             <div class="form-body">
                 <input id="appStatus" name="current" type="hidden" value="${paging.appStatus}"/>
                 <input id="appStatus" name="appStatus" type="hidden" value="${paging.appStatus}"/>
@@ -34,7 +34,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">&nbsp;</label>
                     <div class="col-sm-9">
-                        <a href="${pageContext.request.contextPath}/security/adminappmanage.html">
+                        <a href="${pageContext.request.contextPath}/security/adminappoverview.html">
                             <input type="button" class="btn-blue color1" value="返  回" />
                         </a>
                         <c:choose>

@@ -38,7 +38,7 @@
 
                 <security:authorize ifAnyGranted="ROLE_ADMIN">
                     <li <c:if test="${PAGE_KEY == 'ADMIN'}">class="cur"</c:if>><a
-                        href="${pageContext.request.contextPath}/security/adminappmanage.html">后台管理</a></li>
+                        href="${pageContext.request.contextPath}/security/adminappoverview.html">后台管理</a></li>
                 </security:authorize>
                 <li class="no-border">
                     <ch:user context="${pageContext.request.contextPath}"/>
