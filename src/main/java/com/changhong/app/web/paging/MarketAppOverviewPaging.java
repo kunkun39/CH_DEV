@@ -28,11 +28,10 @@ public class MarketAppOverviewPaging extends AbstractPaging<MarketAppDTO> {
     }
 
     @Override
-
     public int getPageSize() {
-
         return 20;
     }
+
     //获得总条数
     public long getTotalItemSize() {
         if (totalItemSize < 0) {

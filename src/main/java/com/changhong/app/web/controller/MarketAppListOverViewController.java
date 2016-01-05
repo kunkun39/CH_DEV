@@ -17,7 +17,6 @@ import java.util.Map;
  * User: dangwei pan
  * Date: 15-12-31
  * Time: 下午4:52
- * To change this template use File | Settings | File Templates.
  */
 public class MarketAppListOverViewController extends AbstractController {
      private SystemService systemService;
