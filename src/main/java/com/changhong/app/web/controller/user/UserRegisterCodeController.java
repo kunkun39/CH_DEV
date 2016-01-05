@@ -17,6 +17,7 @@ import java.util.Map;
  * Time:22:48
  */
 public class UserRegisterCodeController extends AbstractController {
+
     @Override
     protected ModelAndView handleRequestInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
         RegisterCodeUtils.create(httpServletRequest, httpServletResponse);

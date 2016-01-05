@@ -2,9 +2,12 @@ package com.changhong.app.web.dwr;
 
 import com.changhong.app.service.ClientService;
 import com.changhong.app.service.SystemService;
+import com.changhong.app.web.controller.user.UserRegisterCodeController;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Service("systemDWRHandler")
 public class SystemDWRHandler {
@@ -29,5 +32,9 @@ public class SystemDWRHandler {
 
     public void updateDeveloperStatus(int developerId, boolean enabled) {
         systemService.updateDeloperStatus(developerId, enabled);
+    }
+
+    public boolean checkValidateCodeRight(String code, HttpServletRequest request) {
+        return UserRegisterCodeController.validate(request, code);
     }
 }

@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginController extends AbstractController {
 
     @Override
-    protected ModelAndView handleRequestInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
+    protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        request.getSession().removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");
 
         return new ModelAndView("chapp/login");//返回chapp目录下的login.jsp页面
     }

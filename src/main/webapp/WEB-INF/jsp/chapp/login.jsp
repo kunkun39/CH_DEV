@@ -33,26 +33,39 @@
                     <label for="inputName" class="col-sm-2 control-label">邮箱</label>
 
                     <div class="col-sm-10">
-                        <input type="text"  name="j_username" class="form-control" required="required" id="inputName" placeholder="请输入邮箱">
+                        <input type="text"  id="j_username" name="j_username" class="form-control" required="required" id="inputName" placeholder="请输入邮箱">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputPassword" class="col-sm-2 control-label">密码</label>
 
                     <div class="col-sm-10">
-                        <input type="password" name="j_password" class="form-control" required="required" id="inputPassword" placeholder="请输入密码">
+                        <input type="password" id="j_password" name="j_password" class="form-control" required="required" id="inputPassword" placeholder="请输入密码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword" class="col-sm-2 control-label">验证码</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" name="registerCode" class="form-control" required="required" id="registerCode" placeholder="请输入密码" maxlength="4">
+                        <br/>
+                        <img id="imageCode" src="${pageContext.request.contextPath}/chapp/userregistercode.html"/></span>
+                        &nbsp;<a href="javascript:void(0);" onclick="imageChange()">看不清，换一张</a>
+
+                        <p class="help-block text-danger"></p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">&nbsp;</label>
 
                     <div class="col-sm-10">
-                        <input type="button" class="btn-yellow color1"  value="注册"  onclick="registerClient();"/>
-                        <input type="submit" class="btn-blue color1" value="登录"/>
+                        <input type="button" class="btn-yellow color1"  value="注册" onclick="registerClient();"/>
+                        <input type="button" class="btn-blue color1" value="登录" onclick="loginClient(this.form);"/>
                         <br/>
                         <c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
                             <label style="color: red; padding-left: 10px;">对不起, 用户名或者密码不正确!</label>
                         </c:if>
+                        <label id="error_info" style="color: red; padding-top: 5px; display:none; "></label>
                     </div>
                 </div>
                 <div class="form-group">
@@ -73,10 +86,40 @@
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
 
 <%--Javascript部分***********************************************************--%>
+<script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/dwr/engine.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/dwr/util.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/dwr/interface/SystemDWRHandler.js" type="text/javascript"></script>
 
 <script type="text/javascript">
     function registerClient() {
         window.location.href = "${pageContext.request.contextPath}/chapp/register.html";
+    }
+
+    function loginClient(form) {
+        var j_username = jQuery("#j_username").val();
+        var j_password = jQuery("#j_password").val();
+        var register_code = jQuery("#registerCode").val();
+        if(j_username == null || j_username == '' || j_password == null || j_password == '' || register_code == null || register_code == '') {
+            jQuery("#error_info").html("对不起，登录信息不完整!");
+            jQuery("#error_info").css("display", "block");
+        } else {
+            SystemDWRHandler.checkValidateCodeRight(register_code, function(result) {
+                if (!result) {
+                    jQuery("#error_info").html("对不起，验证码不正确!");
+                    jQuery("#error_info").css("display", "block");
+                } else {
+                    jQuery("#error_info").css("display", "none");
+                    form.submit();
+                }
+            });
+        }
+
+    }
+
+    function imageChange() {
+        var img = document.getElementById("imageCode");
+        img.src = "${pageContext.request.contextPath}/chapp/userregistercode.html?" + Math.random();
     }
 </script>
 </body>

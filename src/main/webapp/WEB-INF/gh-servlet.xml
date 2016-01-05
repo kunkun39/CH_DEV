@@ -122,6 +122,7 @@
 
     <bean id="userRegisterCodeController" class="com.changhong.app.web.controller.user.UserRegisterCodeController">
     </bean>
+
     <bean id="userAgreeConditionController" class="com.changhong.app.web.controller.user.UserAgreeConditionController">
     </bean>
 
