@@ -61,8 +61,8 @@
                     <table class="table table-condensed table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th style="padding-left: 20px;width: 25%">应用图标/名称</th>
-                                <th style="width: 40%">类别/介绍</th>
+                                <th style="padding-left: 20px;width: 30%">应用图标/名称</th>
+                                <th style="width: 35%">类别/介绍</th>
                                 <th style="width: 15%">状态</th>
                                 <th style="width: 20%">操作</th>
                             </tr>
@@ -71,7 +71,7 @@
                             <c:forEach items="${apps}" var="app">
                             <tr>
                                 <td style="padding: 20px;">
-                                    <img width="70" height="70" alt="" class="fl" src="${fileRequestHost}/${app.appKey}/${app.iconActualFileName}"/>
+                                    <img width="70" height="70" alt="" class="fl" src="${fileRequestHost}upload/${app.appKey}/${app.iconActualFileName}"/>
                                     <div class="fl" style="margin-left: 13px;margin-top: 3px;">
                                         <h5>${app.appName}</h5>
                                         <p class="font12 color9">版本${app.appVersion}</p>

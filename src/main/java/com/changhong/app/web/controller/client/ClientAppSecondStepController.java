@@ -42,6 +42,7 @@ public class ClientAppSecondStepController extends AbstractController {
         if (app.getOwnerId() != SecurityUtils.currectAuthenticationId()) {
             throw new CHSecurityException("app first step with edit app is not your app");
         }
+        model.put("fileRequestHost", fileRequestHost);
         model.put("marketApp", app);
         model.put("STEP_KEY", app.decideWhichStepNow());
 

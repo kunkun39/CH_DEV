@@ -1,7 +1,9 @@
 package com.changhong.app.web.controller.admin;
 
 import com.changhong.app.domain.AppStatus;
+import com.changhong.app.exception.CHSecurityException;
 import com.changhong.app.service.SystemService;
+import com.changhong.app.utils.SecurityUtils;
 import com.changhong.app.web.facade.dto.MarketAppDTO;
 import com.changhong.app.web.paging.AdminMarketAppOverviewPaging;
 import org.springframework.util.StringUtils;
@@ -28,6 +30,10 @@ public class AdminAppOverviewController extends AbstractController{
 
     @Override
     protected ModelAndView handleRequestInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
+        if (!SecurityUtils.isAdminRole()) {
+            throw new CHSecurityException("you do not have administrator privileges");
+        }
+
         Map<String, Object> model = new HashMap<String, Object>();
 
         int currentPage = ServletRequestUtils.getIntParameter(httpServletRequest, "current", 1);

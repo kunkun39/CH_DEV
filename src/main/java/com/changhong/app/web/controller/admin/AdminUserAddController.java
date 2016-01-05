@@ -1,6 +1,8 @@
 package com.changhong.app.web.controller.admin;
 
+import com.changhong.app.exception.CHSecurityException;
 import com.changhong.app.service.SystemService;
+import com.changhong.app.utils.SecurityUtils;
 import com.changhong.app.web.facade.dto.AdminUserDTO;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindException;
@@ -41,6 +43,10 @@ public class AdminUserAddController extends SimpleFormController {
 
     @Override
     protected ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object command, BindException errors) throws Exception {
+        if (!SecurityUtils.isAdminRole()) {
+            throw new CHSecurityException("you do not have administrator privileges");
+        }
+
         AdminUserDTO dto = (AdminUserDTO) command;
         if (StringUtils.hasText(dto.getUsername()) && StringUtils.hasText(dto.getPassword())) {
             systemService.insertAdminUser(dto);

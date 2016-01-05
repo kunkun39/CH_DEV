@@ -54,8 +54,8 @@
                     <table class="table table-condensed table-bordered table-hover table-view-1">
                         <thead>
                             <tr>
-                                <th style="padding-left: 20px;width: 25%">应用图标/名称</th>
-                                <th style="width: 40%">类别/介绍</th>
+                                <th style="padding-left: 20px;width: 30%">应用图标/名称</th>
+                                <th style="width: 35%">类别/介绍</th>
                                 <th style="width: 15%">状态</th>
                                 <th style="width: 20%">操作</th>
                             </tr>
@@ -66,13 +66,15 @@
                                     <td style="padding: 20px;">
                                         <img src="${fileRequestHost}upload/${app.appKey}/${app.iconActualFileName}" width="70" height="70" class="fl" />
                                         <div class="fl" style="margin-left: 13px;margin-top: 3px;">
-                                            <h4>${app.appName}</h4>
+                                            <h5>${app.appName}</h5>
                                             <p class="font12 color9">版本${app.appVersion}</p>
                                         </div>
                                     </td>
                                     <td>
-                                        <h5>${app.appName}</h5>
-                                        <p class="font12">${app.appDescription}</p>
+                                        <h5>${app.fullCategoryName}</h5>
+                                        <p class="font12 color9">
+                                            <ch:substring value="${app.appDescription}" length="60"/>
+                                        </p>
                                     </td>
                                     <td>
                                         <c:if test="${app.appStatus == 'CREATED'}">新创建</c:if>

@@ -1,6 +1,8 @@
 package com.changhong.app.web.controller.admin;
 
+import com.changhong.app.exception.CHSecurityException;
 import com.changhong.app.service.SystemService;
+import com.changhong.app.utils.SecurityUtils;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
@@ -23,6 +25,10 @@ public class AdminAppStatusChangeController extends AbstractController{
 
     @Override
     protected ModelAndView handleRequestInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
+        if (!SecurityUtils.isAdminRole()) {
+            throw new CHSecurityException("you do not have administrator privileges");
+        }
+
         int appId = ServletRequestUtils.getIntParameter(httpServletRequest, "appId", -1);
         String appStatus = ServletRequestUtils.getStringParameter(httpServletRequest, "appStatus", "");
         if (appId != -1) {
