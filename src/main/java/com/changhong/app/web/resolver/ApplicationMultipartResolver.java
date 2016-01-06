@@ -15,6 +15,9 @@ public class ApplicationMultipartResolver  extends CommonsMultipartResolver {
 
     private HttpServletRequest request;
 
+    private ApplicationProgressListener progressListener;
+
+    //判断request是否有文件上传,即多部分请求...
     @Override
     public boolean isMultipart(HttpServletRequest request) {
         this.request = request;
@@ -25,7 +28,13 @@ public class ApplicationMultipartResolver  extends CommonsMultipartResolver {
     protected FileUpload newFileUpload(FileItemFactory fileItemFactory) {
         FileUpload fileUpload = super.newFileUpload(fileItemFactory);
 
-        fileUpload.setProgressListener(new ApplicationProgressListener(request));
+        if (progressListener == null) {
+            progressListener = new ApplicationProgressListener(request);
+        } else {
+            progressListener.setRequest(request);
+        }
+
+        fileUpload.setProgressListener(progressListener);
 
         return fileUpload;
     }
