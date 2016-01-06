@@ -29,11 +29,11 @@
     <div class="back-con-r fl">
         <div class="leftTab-content active" id="bs-tabcon1">
             <h4 class="font16">系统用户</h4>
-            <a href="${pageContext.request.contextPath}/security/adminuseradd.html">
-                <input type="button" class="btn-blue-sm color1" value="添加系统用户" />
-            </a>
             <form id="searchAdminUserForm" action="${pageContext.request.contextPath}/security/adminusers.html" method="post">
                 <div class="input-group">
+                    <a href="${pageContext.request.contextPath}/security/adminuseradd.html">
+                        <input type="button" class="btn-blue color1 fl" value="添加系统用户" />
+                    </a>
                     <input type="text" name="keywords" placeholder="联系人/邮箱" class="input-sm form-control" value="${paging.keyWords}">
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-sm" onclick="searchAdminUser();">
