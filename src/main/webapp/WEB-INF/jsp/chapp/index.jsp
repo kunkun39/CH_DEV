@@ -82,7 +82,6 @@
 <script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
 <script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
 <![endif]-->
-<script src="${pageContext.request.contextPath}/javascript/vendor/nav.js"></script>
 <script src="${pageContext.request.contextPath}/javascript/vendor/round.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/javascript/round/jquery.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/javascript/round/jquery.roundabout.js"></script>

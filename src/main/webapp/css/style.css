@@ -1,7 +1,7 @@
 /* 覆盖 bootstrap 的 css grid layout */
 .container { overflow: hidden; padding-right: 0; padding-left: 0; }
 label { font-weight: normal; }
- @media (min-width: 1200px) {
+ @media (min-width: 992px) {
    .container { width: 860px; }
 }
  @media (max-width: 992px) {

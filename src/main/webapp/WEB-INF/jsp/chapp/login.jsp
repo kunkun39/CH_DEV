@@ -6,7 +6,6 @@
     <title>开发者应用接入平台登录</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <!--<link type="image/x-icon" rel="shortcut icon" href="images/favicon.ico">-->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
@@ -63,10 +62,14 @@
                         <input type="button" class="btn-blue color1" value="登录" onclick="loginClient(this.form);"/>
                         <br/>
                         <c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
-                            <label style="color: red; padding-left: 10px;">对不起, 用户名或者密码不正确!</label>
+                            <div class="login-help" style="">
+                                <p class="login-tips"><i class="ico-error"></i>对不起, 用户名或者密码不正确!</p>
+                            </div>
                         </c:if>
-                        <label id="error_info" style="color: red; padding-top: 5px; display:none; "></label>
+                        <div class="login-help" id="error_info" style="display: none;">
+					    </div>
                     </div>
+
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">&nbsp;</label>
@@ -101,12 +104,12 @@
         var j_password = jQuery("#j_password").val();
         var register_code = jQuery("#registerCode").val();
         if(j_username == null || j_username == '' || j_password == null || j_password == '' || register_code == null || register_code == '') {
-            jQuery("#error_info").html("对不起，登录信息不完整!");
+            jQuery("#error_info").html("<p class=\"login-tips\"><i class=\"ico-error\"></i>对不起，登录信息不完整!</p>");
             jQuery("#error_info").css("display", "block");
         } else {
             SystemDWRHandler.checkValidateCodeRight(register_code, function(result) {
                 if (!result) {
-                    jQuery("#error_info").html("对不起，验证码不正确!");
+                    jQuery("#error_info").html("<p class=\"login-tips\"><i class=\"ico-error\"></i>对不起，验证码不正确!</p>");
                     jQuery("#error_info").css("display", "block");
                 } else {
                     jQuery("#error_info").css("display", "none");
