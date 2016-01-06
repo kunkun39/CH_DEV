@@ -31,7 +31,7 @@ public interface SystemService {
 
     MarketAppDTO obtainMarketApp(int appId);
 
-    void updateMarketAppStatus(int appId, String appStatus);
+    void updateMarketAppStatus(int appId, String appStatus, String rejectReason);
 
     void updateDeloperStatus(int developerId, boolean enabled);
 }

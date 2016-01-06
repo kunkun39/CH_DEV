@@ -1,9 +1,11 @@
 package com.changhong.app.web.controller.admin;
 
+import com.changhong.app.domain.AppStatus;
 import com.changhong.app.exception.CHSecurityException;
 import com.changhong.app.service.SystemService;
 import com.changhong.app.utils.SecurityUtils;
 import com.changhong.app.web.facade.dto.MarketAppDTO;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
@@ -33,6 +35,9 @@ public class AdminAppOperateController extends AbstractController{
         Map<String, Object> model = new HashMap<String, Object>();
 
         int appId = ServletRequestUtils.getIntParameter(httpServletRequest, "appId", -1);
+        int currentPage = ServletRequestUtils.getIntParameter(httpServletRequest, "current", 1);
+        String appName = StringUtils.trimWhitespace(ServletRequestUtils.getStringParameter(httpServletRequest, "appName", ""));
+        String appStatus = ServletRequestUtils.getStringParameter(httpServletRequest, "appStatus", AppStatus.WAITING.name());
 
         MarketAppDTO dto = systemService.obtainMarketApp(appId);
 
@@ -40,6 +45,9 @@ public class AdminAppOperateController extends AbstractController{
         model.put("marketApp", dto);
         model.put("fileRequestHost", fileRequestHost);
         model.put("STEP_KEY", dto.decideWhichStepNow());
+        model.put("current", currentPage);
+        model.put("appName", appName);
+        model.put("appStatus", appStatus);
 
         return new ModelAndView("admin/adminappoperate", model);
     }

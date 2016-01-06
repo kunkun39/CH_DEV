@@ -81,12 +81,12 @@ public class SystemServiceImpl implements SystemService {
         return MarketAppWebAssember.toMarketAppDetailsDTO(marketApp);
     }
 
-    public void updateMarketAppStatus(int appId, String appStatus) {
+    public void updateMarketAppStatus(int appId, String appStatus, String rejectReason) {
         if (AppStatus.isAppStatus(appStatus)) {
             MarketApp marketApp = (MarketApp) systemDao.findById(appId, MarketApp.class);
 
             if (marketApp != null) {
-                AppStatusChangeAction action = new AppStatusChangeAction(true, appId, marketApp.getAppStatus(), AppStatus.valueOf(appStatus), "");
+                AppStatusChangeAction action = new AppStatusChangeAction(true, appId, marketApp.getAppStatus(), AppStatus.valueOf(appStatus), rejectReason);
                 systemDao.saveOrUpdate(AppHistory.generateAppStatusChangeHistory(action));
                 marketApp.setAppStatus(AppStatus.valueOf(appStatus));
             }

@@ -85,11 +85,23 @@
                                         <c:if test="${app.appStatus == 'OFFSHELVES'}">已下架</c:if>
                                     </td>
                                     <td>
-                                        <a class="btn-blue color1" href="${pageContext.request.contextPath}/security/adminappoperate.html?appId=${app.id}">查看</a>
-                                        <a class="btn-blue color1" href="${pageContext.request.contextPath}/security/apphistory.html?appId=${app.id}">历史</a>
+                                        <a class="btn-blue color1" onclick="appDetails(${app.id});">查看</a>
+                                        <a class="btn-blue color1" onclick="appHistory(${app.id});">历史</a>
                                     </td>
                                 </tr>
                             </c:forEach>
+                            <form id="appDetailsForm" action="${pageContext.request.contextPath}/security/adminappoperate.html" method="post">
+                                <input id="detail_current" name="current" type="hidden" value="${paging.currentPageNumber}"/>
+                                <input id="detail_AppStatus" name="appStatus" type="hidden" value="${paging.appStatus}"/>
+                                <input id="detail_appName" name="appName" type="hidden" value="${paging.appName}"/>
+                                <input id="detail_appId" name="appId" type="hidden" value=""/>
+                            </form>
+                            <form id="appHistoryForm" action="${pageContext.request.contextPath}/security/apphistory.html" method="post">
+                                <input id="history_current" name="current" type="hidden" value="${paging.currentPageNumber}"/>
+                                <input id="history_detailAppStatus" name="appStatus" type="hidden" value="${paging.appStatus}"/>
+                                <input id="history_appName" name="appName" type="hidden" value="${paging.appName}"/>
+                                <input id="history_appId" name="appId" type="hidden" value=""/>
+                            </form>
                         </tbody>
                     </table>
                     <ul class="pagination">
@@ -113,6 +125,16 @@
 
     function searchApps() {
         jQuery("#searchAppsForm").submit();
+    }
+
+    function appDetails(appId) {
+        jQuery("#detail_appId").val(appId);
+        jQuery("#appDetailsForm").submit();
+    }
+
+    function appHistory(appId) {
+        jQuery("#history_appId").val(appId);
+        jQuery("#appHistoryForm").submit();
     }
 </script>
 </body>

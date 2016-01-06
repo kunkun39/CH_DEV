@@ -72,7 +72,12 @@
     <div style="text-align: center;">
         <c:choose>
             <c:when test="${PAGE_KEY == 'ADMIN'}">
-                <a href="${pageContext.request.contextPath}/security/adminappoverview.html"><input type="button" class="btn-blue color1" value="返  回" /></a>
+                <form id="adminBackForm" action="${pageContext.request.contextPath}/security/adminappoverview.html" method="post">
+                    <input id="current" name="current" type="hidden" value="${current}"/>
+                    <input id="appStatus" name="appStatus" type="hidden" value="${appStatus}"/>
+                    <input id="appName" name="appName" type="hidden" value="${appName}"/>
+                    <input type="button" class="btn-blue color1" value="返  回" onclick="adminBackSubmit();"/>
+                </form>
             </c:when>
             <c:otherwise>
                 <a href="${pageContext.request.contextPath}/security/clientappoverview.html?current=${current}&appName=${appName}&appStatus=${appStatus}"><input type="button" class="btn-blue color1" value="返  回" /></a>
@@ -143,6 +148,9 @@
         jQuery("#add_more_info").css("display", "none");
     }
 
+    function adminBackSubmit() {
+        jQuery("#adminBackForm").submit();
+    }
 </script>
 
 </body>
