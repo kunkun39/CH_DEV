@@ -50,7 +50,7 @@
                                 <input type="button" class="btn-blue color1 fl" value="添加应用"/>
                             </a>
                             <input id="appStatus" name="appStatus" type="hidden" value="${paging.appStatus}"/>
-                            <input id="appName" name="appName" type="text" placeholder="应用名称" class="input-sm form-control"/>
+                            <input id="appName" name="appName" type="text" placeholder="应用名称" value="${paging.appName}" class="input-sm form-control"/>
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-sm" onclick="searchClientApp();">
                                     <i class="search-icon"></i>
@@ -86,12 +86,12 @@
                                 <td>${app.appStatusName}</td>
                                 <td>
                                     <c:if test="${app.appStatus == 'REJECTED'}">
-                                        <a class="btn-blue color4" href="${pageContext.request.contextPath}/security/appfirststep.html?appId=${app.id}">查看</a>
+                                        <a class="btn-blue color4" href="${pageContext.request.contextPath}/security/appfirststep.html?appId=${app.id}&current=${paging.currentPageNumber}&appName=${paging.appName}&appStatus=${paging.appStatus}">查看</a>
                                     </c:if>
                                     <c:if test="${app.appStatus != 'REJECTED'}">
-                                        <a class="btn-blue color4" href="${pageContext.request.contextPath}/security/appsecondstep.html?appId=${app.id}">查看</a>
+                                        <a class="btn-blue color4" href="${pageContext.request.contextPath}/security/appsecondstep.html?appId=${app.id}&current=${paging.currentPageNumber}&appName=${paging.appName}&appStatus=${paging.appStatus}">查看</a>
                                     </c:if>
-                                    <a class="btn-blue color10" href="${pageContext.request.contextPath}/security/apphistory.html?appId=${app.id}">历史</a>
+                                    <a class="btn-blue color10" href="${pageContext.request.contextPath}/security/apphistory.html?appId=${app.id}&current=${paging.currentPageNumber}&appName=${paging.appName}&appStatus=${paging.appStatus}">历史</a>
                                 </td>
                             </tr>
                             </c:forEach>

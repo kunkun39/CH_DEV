@@ -27,8 +27,6 @@ public class ClientAppSecondStepController extends AbstractController {
 
     private ClientService clientService;
 
-    private SystemService systemService;
-
     @Override
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Map<String, Object> model = new HashMap<String, Object>();
@@ -46,11 +44,13 @@ public class ClientAppSecondStepController extends AbstractController {
         model.put("marketApp", app);
         model.put("STEP_KEY", app.decideWhichStepNow());
 
+        int current = ServletRequestUtils.getIntParameter(request, "current", 1);
+        String appName = ServletRequestUtils.getStringParameter(request, "appName", "");
+        String appStatus = ServletRequestUtils.getStringParameter(request, "appStatus", "ALL");
+        model.put("current", current);
+        model.put("appName", appName);
+        model.put("appStatus", appStatus);
         return new ModelAndView("client/appsecondstep", model);
-    }
-
-    public void setSystemService(SystemService systemService) {
-        this.systemService = systemService;
     }
 
     public void setClientService(ClientService clientService) {

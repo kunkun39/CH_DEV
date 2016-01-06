@@ -19,7 +19,7 @@
                 <span class="icon-bar"></span> <span class="icon-bar"></span>
             </button>
             <h1>
-                <a class="navbar-brand" id="nav-logo" target="_blank" href="/">开发者应用接入平台</a>
+                <a class="navbar-brand" id="nav-logo" href="javascript:void(0);">开发者应用接入平台</a>
             </h1>
         </div>
 

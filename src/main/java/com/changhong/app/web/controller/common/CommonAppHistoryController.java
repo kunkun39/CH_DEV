@@ -43,7 +43,14 @@ public class CommonAppHistoryController extends AbstractController {
             model.put("PAGE_KEY", "CLIENT");
         }
 
+        int current = ServletRequestUtils.getIntParameter(request, "current", 1);
+        String appName = ServletRequestUtils.getStringParameter(request, "appName", "");
+        String appStatus = ServletRequestUtils.getStringParameter(request, "appStatus", "ALL");
+
         model.put("appId", appId);
+        model.put("current", current);
+        model.put("appName", appName);
+        model.put("appStatus", appStatus);
         return new ModelAndView("common/apphistory", model);
     }
 

@@ -75,7 +75,7 @@
                 <a href="${pageContext.request.contextPath}/security/adminappoverview.html"><input type="button" class="btn-blue color1" value="返  回" /></a>
             </c:when>
             <c:otherwise>
-                <a href="${pageContext.request.contextPath}/security/clientappoverview.html"><input type="button" class="btn-blue color1" value="返  回" /></a>
+                <a href="${pageContext.request.contextPath}/security/clientappoverview.html?current=${current}&appName=${appName}&appStatus=${appStatus}"><input type="button" class="btn-blue color1" value="返  回" /></a>
             </c:otherwise>
         </c:choose>
     </div>
