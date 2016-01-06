@@ -13,6 +13,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * User:wangxiufeng
@@ -81,7 +83,10 @@ public class UserRegisterController extends SimpleFormController {
         ClientUserDTO clientUserDTO = (ClientUserDTO) command;
         userService.changeClientUserDetails(clientUserDTO);
 
-        ModelAndView modelAndView = new ModelAndView(new RedirectView("/" + serverContext + "/security/clientregisterinfo.html"));
+        Map<String, Object> model = new HashMap<String, Object>();
+        model.put("username", clientUserDTO.getUsername());
+        ModelAndView modelAndView = new ModelAndView(new RedirectView("/" + serverContext + "/chapp/userregistermailsended.html"),model);
+
         return modelAndView;
     }
 

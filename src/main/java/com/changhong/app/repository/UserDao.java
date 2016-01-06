@@ -2,6 +2,8 @@ package com.changhong.app.repository;
 
 import com.changhong.app.domain.AdminUser;
 import com.changhong.app.domain.ClientUser;
+import com.changhong.app.domain.RegisterConfirm;
+import com.changhong.app.web.facade.dto.ClientUserDTO;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
@@ -29,4 +31,16 @@ public interface UserDao extends EntityObjectDao {
 
     List<AdminUser> loadAdminUserByName(String userName);
 
+    /**
+     * 用户是否存在
+     */
+    public boolean loadClientUserExist(String username);
+    /**
+     * 通过用户名获取用户信息
+     * @param username
+     * @return
+     */
+    ClientUser loadClientUser(String username);
+
+    RegisterConfirm loadClientUserRegisterConfirm(String validateNumber);
 }

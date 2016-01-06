@@ -11,11 +11,11 @@ public class ClientUserDTO implements Serializable {
 
     private int id;
 
-    private String name;
+    private String name;//别名
 
     private String contactWay;
 
-    private String username;
+    private String username;//邮箱
 
     private String password;
 

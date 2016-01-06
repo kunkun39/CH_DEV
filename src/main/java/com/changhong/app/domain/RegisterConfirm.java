@@ -12,7 +12,7 @@ public class RegisterConfirm extends EntityBase {
     private String  validateNumber;
 
     private boolean validateConfirm;
-
+    //用户邮箱
     private String username;
 
     public RegisterConfirm() {
@@ -46,5 +46,14 @@ public class RegisterConfirm extends EntityBase {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Override
+    public String toString() {
+        return "RegisterConfirm{" +
+                "username='" + username + '\'' +
+                ", validateNumber='" + validateNumber + '\'' +
+                ", validateConfirm=" + validateConfirm +
+                '}';
     }
 }

@@ -20,4 +20,8 @@ public interface UserService extends UserDetailsService {
     ClientUserDTO obtainClientUserById(int clientId);
 
     void changeClientUserDetails(ClientUserDTO userDTO);
+
+    int obtainClientUserRegisterActive(String username, String validateNumber);
+
+    public void handleClientResendMail(String username);
 }

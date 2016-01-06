@@ -7,15 +7,14 @@ import com.changhong.app.domain.RegisterConfirm;
 import com.changhong.app.repository.ClientDao;
 import com.changhong.app.repository.UserDao;
 import com.changhong.app.thread.ApplicationThreadPool;
+import com.changhong.app.thread.RegisterMailSendThread;
 import com.changhong.app.utils.SecurityUtils;
+import com.changhong.app.web.facade.assember.ClientUserWebAssember;
 import com.changhong.app.web.facade.dto.ClientUserDTO;
+import org.apache.commons.logging.LogFactory;
+import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.security.authentication.ProviderManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -30,74 +29,99 @@ import java.util.Date;
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
+    private static final Log log = LogFactory.getLog(UserServiceImpl.class);
+
     @Autowired
     private UserDao userDao;
 
-    @Autowired
-    private ClientDao clientDao;
+    /**
+     * 24hour
+     */
+    private final long TWO_FOUR_HOUR = 24 * 60 * 60 * 1000;
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {
         return userDao.findUserByName(username);
     }
 
-    @Override
-    public boolean obtainClientUserExist(String username) {
-        return false;
-    }
-
-    @Override
-    public ClientUserDTO obtainClientUserById(int clientId) {
-        return null;
-    }
-
-    @Override
-    public void changeClientUserDetails(ClientUserDTO userDTO) {
-
-    }
-
     /*User Register and Login Part Part***************************************************************/
 
-//    public boolean obtainClientUserExist(String username) {
-//        return clientDao.loadClientUserExist(username);
-//    }
-//
-//    public ClientUserDTO obtainClientUserById(int clientId) {
-//        ClientUser clientUser = (ClientUser) clientDao.findById(clientId, ClientUser.class);
-//        return ClientUserAssember.toClientUserDTO(clientUser);
-//    }
-//
-//    public void changeClientUserDetails(ClientUserDTO userDTO) {
-//        //save user
-//        ClientUser user = ClientUserAssember.toClientUserRegisterDomain(userDTO);
-//        clientDao.saveOrUpdate(user);
-//
-//        //save validation
-//        RegisterConfirm confirm = new RegisterConfirm(user.getUsername());
-//        clientDao.saveOrUpdate(confirm);
-//
-//        //send email out or send message out
-//        ClientRegisterSendThread send = new ClientRegisterSendThread(user.getUsername(), confirm);
-//        ApplicationThreadPool.executeThread(send);
-//    }
-//
-//    public int obtainClientUserRegisterActive(String username, String validateNumber) {
-//        RegisterConfirm confirm = clientDao.loadClientUserRegisterConfirm(validateNumber);
-//        if (confirm != null) {
-//            long nowTime = new Date().getTime();
-//            long registerTime = confirm.getTimestamp().getTime();
-//            confirm.setValidateConfirm(true);
-//
-//            if((registerTime + TWO_FOUR_HOUR) >= nowTime) {
-//                ClientUser user = clientDao.loadClientUser(username);
-//                if (user != null) {
-//                    user.setActive(true);
-//                }
-//                return 1;
-//            } else {
-//                return 2;
-//            }
-//        }
-//        return 3;
-//    }
+    public boolean obtainClientUserExist(String username) {
+        return userDao.loadClientUserExist(username);
+    }
+
+    public ClientUserDTO obtainClientUserById(int clientId) {
+        ClientUser clientUser = (ClientUser) userDao.findById(clientId, ClientUser.class);
+        return ClientUserWebAssember.DomainToDto(clientUser);
+    }
+
+    /**
+     * 执行注册：保存用户信息，保存验证信息，发送邮件
+     *
+     * @param userDTO
+     */
+    public void changeClientUserDetails(ClientUserDTO userDTO) {
+        //save user
+        ClientUser user = ClientUserWebAssember.DtoToDomain(userDTO);
+        userDao.saveOrUpdate(user);
+
+        //验证信息
+        RegisterConfirm confirm = new RegisterConfirm(user.getUsername());
+        userDao.saveOrUpdate(confirm);
+
+        //发送邮件
+        RegisterMailSendThread send = new RegisterMailSendThread(user.getUsername(), confirm);
+        ApplicationThreadPool.executeThread(send);
+    }
+
+    /**
+     * 检测用户注册状态
+     *
+     * @param username       用户注册邮箱
+     * @param validateNumber 随机验证码
+     * @return 返回注册状态 1：成功；2：验证超时;3:改用户已经验证成功;4:验证信息有异常
+     */
+    public int obtainClientUserRegisterActive(String username, String validateNumber) {
+        RegisterConfirm confirm = userDao.loadClientUserRegisterConfirm(validateNumber);
+        log.debug("obtainClientUserRegisterActive " + confirm);
+
+        if (confirm == null) {
+            return 4;//验证信息为空
+        }
+
+        if (confirm.isValidateConfirm()) {
+            return 3;//已经认证过
+        }
+
+        long nowTime = new Date().getTime();
+        long registerTime = confirm.getTimestamp().getTime();
+        confirm.setValidateConfirm(true);
+
+        if ((registerTime + TWO_FOUR_HOUR) >= nowTime) {
+            ClientUser user = userDao.loadClientUser(username);
+            if (user != null) {
+                user.setActive(true);
+            }
+            return 1;//注册成功
+        } else {
+            //验证超过24小时
+            return 2;
+        }
+
+    }
+
+    /**
+     * 重新发送邮件
+     *
+     * @param username
+     */
+    public void handleClientResendMail(String username) {
+        //save validation
+        RegisterConfirm confirm = new RegisterConfirm(username);
+        userDao.saveOrUpdate(confirm);
+
+        //send email out or send message out
+        RegisterMailSendThread send = new RegisterMailSendThread(username, confirm);
+        ApplicationThreadPool.executeThread(send);
+    }
 
 }
