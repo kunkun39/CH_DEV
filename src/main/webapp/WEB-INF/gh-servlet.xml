@@ -59,6 +59,7 @@
 
                 <!--应用流程部分-->
                 <prop key="/security/appfirststep.html">clientAppFirstStepController</prop>
+                <prop key="/security/apkuploadprocess.html">apkUploadProcessController</prop>
                 <prop key="/security/appsecondstep.html">clientAppSecondStepController</prop>
 
             </props>
@@ -149,6 +150,8 @@
         <property name="serverContext" value="${application.context}"/>
         <property name="fileRequestHost" value="${application.file.request.path}"/>
     </bean>
+
+    <bean id="apkUploadProcessController" class="com.changhong.app.web.controller.client.ApkUploadProcessController"/>
 
     <bean id="clientAppSecondStepController"
           class="com.changhong.app.web.controller.client.ClientAppSecondStepController">
