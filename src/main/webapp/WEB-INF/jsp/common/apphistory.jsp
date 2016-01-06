@@ -128,8 +128,8 @@
 
             for(var i=0; i<statisticData.length; i++) {
                 var historyValues = statisticData[i];
-                var newContent = "<tr><td style=\"padding-left: 20px;\" colspan=\"2\">[" + historyValues.time + "]" + historyValues.title + "</td></tr>" +
-                        "<tr><td style=\"padding-left: 20px; font-size:11px;\" colspan=\"2\">" + historyValues.desc + "</td></tr>";
+                var newContent = "<tr><td style=\"padding-left: 20px;\" colspan=\"2\"> " + (i+1) + "、 [" + historyValues.time + "]" + historyValues.title + "</td></tr>" +
+                        "<tr><td style=\"background-color: #EBEFF0; padding-left: 20px; font-size:11px;\" colspan=\"2\">" + historyValues.desc + "</td></tr>";
 
                 contentContainer.html(contentContainer.html() + newContent);
             }
