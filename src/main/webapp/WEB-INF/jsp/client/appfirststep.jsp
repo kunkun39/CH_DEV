@@ -108,7 +108,6 @@
                         <c:if test="${marketApp.id > 0}">
                             <img width="70" height="70" alt=""
                                  src="${fileRequestHost}upload/${marketApp.appKey}/${marketApp.iconActualFileName}"/>
-                            <img width="70" height="70" alt="" src="${fileRequestHost}/${marketApp.appKey}/${marketApp.iconActualFileName}"/>
                         </c:if>
                     </div>
                 </div>
@@ -124,7 +123,6 @@
                         <c:if test="${marketApp.id > 0}">
                             <img width="200" height="112" alt=""
                                  src="${fileRequestHost}upload/${marketApp.appKey}/${marketApp.posterActualFileName}"/>
-                            <img width="200" height="112" alt="" src="${fileRequestHost}/${marketApp.appKey}/${marketApp.posterActualFileName}"/>
                         </c:if>
                     </div>
                 </div>
@@ -219,8 +217,8 @@
     var appNameValidate = false;
     var appPackageValidate = false;
     var appDescValidate = false;
-    var iconImageValidate = true;
-    var posterImageValidate = true;
+    var iconImageValidate = false;
+    var posterImageValidate = false;
     var apkFileValidate = false;
 
     var appId = '${marketApp.id}';
@@ -358,13 +356,7 @@
 
     function submitAppInfo() {
         var canSubmit = true;
-<<<<<<< .mine
         if (!appNameValidate) {
-=======
-        iconImageValidate = true;
-        posterImageValidate = true;
-        if(!appNameValidate) {
->>>>>>> .r97
             jQuery("#name_error_show").html("应用名称未通过验证");
             jQuery("#name_error_show").css("display", "block");
             canSubmit = false;
