@@ -15,6 +15,7 @@
     <meta content="广电开发者应用接入平台" name="keywords">
     <meta content="广电开发者应用接入平台" name="description">
     <title><decorator:title default="广电开发者应用接入平台"/></title>
+    <link type="image/x-icon" rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <decorator:head/>
 </head>
