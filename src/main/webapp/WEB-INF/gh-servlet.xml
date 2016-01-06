@@ -52,7 +52,10 @@
                 <prop key="/chapp/login.html">loginController</prop>
                 <prop key="/chapp/userregister.html">userRegisterController</prop>
                 <prop key="/chapp/userregistercode.html">userRegisterCodeController</prop>
+                <prop key="/chapp/userregistermailsended.html">userRegisterMailSendedController</prop>
                 <prop key="/chapp/agreecondition.html">userAgreeConditionController</prop>
+                <prop key="/chapp/finishregister.html">userRegisterActiveController</prop>
+                <prop key="/chapp/resendmail.html">userResendMailController</prop>
 
                 <!--公用部分-->
                 <prop key="/security/apphistory.html">commonAppHistoryController</prop>
@@ -125,6 +128,18 @@
     </bean>
 
     <bean id="userAgreeConditionController" class="com.changhong.app.web.controller.user.UserAgreeConditionController">
+    </bean>
+
+    <bean id="userRegisterActiveController" class="com.changhong.app.web.controller.user.UserRegisterActiveController">
+        <property name="userService" ref="userService"/>
+    </bean>
+
+    <bean id="userRegisterMailSendedController" class="com.changhong.app.web.controller.user.UserRegisterMailSendedController">
+    </bean>
+
+    <bean id="userResendMailController" class="com.changhong.app.web.controller.user.UserResendMailController">
+        <property name="userService" ref="userService"/>
+        <property name="serverContext" value="${application.context}"/>
     </bean>
 
 
