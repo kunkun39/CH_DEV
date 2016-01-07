@@ -85,6 +85,7 @@ public class UserRegisterController extends SimpleFormController {
 
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("username", clientUserDTO.getUsername());
+
         ModelAndView modelAndView = new ModelAndView(new RedirectView("/" + serverContext + "/chapp/userregistermailsended.html"),model);
 
         return modelAndView;
