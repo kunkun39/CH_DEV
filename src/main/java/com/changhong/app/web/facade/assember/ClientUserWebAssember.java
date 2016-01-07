@@ -31,6 +31,8 @@ public class ClientUserWebAssember {
                     clientUser.setContactWay(dto.getContactWay());
                     clientUser.setActive(dto.isActive());
                     clientUser.setEnabled(dto.isEnabled());
+
+                    newClassFlg = false;
                 }
             }
 
