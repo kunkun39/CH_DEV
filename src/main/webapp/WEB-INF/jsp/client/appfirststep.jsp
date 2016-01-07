@@ -81,8 +81,8 @@
                     <div class="col-sm-9">
                         <spring-form:input id="appName" path="appName" class="form-control" required="required"
                                            maxlength="20" onblur="validateAppName()"/>
-                        <span class="help-block color6">请编辑应用名称，20字以内</span>
                         <span id="name_error_show" class="help-block color5" style="display: none;"></span>
+                        <span class="help-block color6"><i class="ico-prompt"></i>请编辑应用名称，20字以内</span>
                     </div>
                 </div>
 
@@ -92,8 +92,9 @@
                     <div class="col-sm-9">
                         <spring-form:input path="appPackage" class="form-control" required="required" maxlength="80"
                                            onblur="validateAppPackage()"/>
-                        <span class="help-block color6">请编辑应用包名</span>
                         <span id="package_error_show" class="help-block color5" style="display: none;"></span>
+                        <span class="help-block color6"><i class="ico-prompt"></i>请编辑应用包名</span>
+
                     </div>
                 </div>
 
@@ -103,8 +104,8 @@
                     <div class="col-sm-9">
                         <input type="file" id="appIconUploadFile" name="appIconUploadFile" required="required"
                                style="width: 320px" onchange="validateIconImage(this)"/>
-                        <span class="help-block color6">请编辑应用图标: 像素:150*150，大小<30K</span>
                         <span id="icon_error_show" class="help-block color5" style="display: none;"></span>
+                        <span class="help-block color6"><i class="ico-prompt"></i>请编辑应用图标: 像素:150*150，大小<30K</span>
                         <c:if test="${marketApp.id > 0}">
                             <img width="70" height="70" alt=""
                                  src="${fileRequestHost}upload/${marketApp.appKey}/${marketApp.iconActualFileName}"/>
@@ -118,8 +119,8 @@
                     <div class="col-sm-9">
                         <input type="file" id="appPosterUploadFile" name="appPosterUploadFile" required="required"
                                style="width: 320px" onchange="validatePosterImage(this)"/>
-                        <span class="help-block color6">请编辑应用图标: 像素:800*450，大小<200K</span>
                         <span id="poster_error_show" class="help-block color5" style="display: none;"></span>
+                        <span class="help-block color6"><i class="ico-prompt"></i>请编辑应用图标: 像素:800*450，大小<200K</span>
                         <c:if test="${marketApp.id > 0}">
                             <img width="200" height="112" alt=""
                                  src="${fileRequestHost}upload/${marketApp.appKey}/${marketApp.posterActualFileName}"/>
@@ -132,8 +133,8 @@
                     <div class="col-sm-9">
                         <input type="file" id="appApkUploadFile" name="appApkUploadFile" required="required"
                                style="width: 320px" onchange="validateApkFile(this)"/>
-                        <span class="help-block color6">请编辑应用APK文件</span>
                         <span id="apk_error_show" class="help-block color5" style="display: none;"></span>
+                        <span class="help-block color6"><i class="ico-prompt"></i>请编辑应用APK文件</span>
                         <c:if test="${marketApp.id > 0}">
                             <span class="help-block color10">已上传应用APK文件:${marketApp.apkUploadFileName}</span>
                         </c:if>
@@ -154,8 +155,8 @@
                     <div class="col-sm-9">
                         <spring-form:textarea id="appDescription" path="appDescription" required="required" rows="8"
                                               cols="80" onblur="validateAppDesc()"/>
-                        <span class="help-block color6">最多填写500个字</span>
                         <span id="desc_error_show" class="help-block color5" style="display: none;"></span>
+                        <span class="help-block color6" style="color: red;"><i class="ico-error"></i>最多填写200个字</span>
                     </div>
                 </div>
 
@@ -235,7 +236,7 @@
         //验证应用名称
         var appName = jQuery("#appName").val();
         if (appName == null || appName == '') {
-            jQuery("#name_error_show").html("应用名称不能为空");
+            jQuery("#name_error_show").html("<i class=\"ico-error\"></i>应用名称不能为空");
             jQuery("#name_error_show").css("display", "block");
             appNameValidate = false;
         } else {
@@ -247,13 +248,13 @@
     function validateAppPackage() {
         var appPackage = jQuery("#appPackage").val();
         if (appPackage == null || appPackage == '') {
-            jQuery("#package_error_show").html("应用包名不能为空");
+            jQuery("#package_error_show").html("<i class=\"ico-error\"></i>应用包名不能为空");
             jQuery("#package_error_show").css("display", "block");
             appPackageValidate = false;
         } else {
             SystemDWRHandler.validatePackageNameDuplicate(-1, appPackage, function(result) {
                 if (result) {
-                    jQuery("#package_error_show").html("应用包名有重复");
+                    jQuery("#package_error_show").html("<i class=\"ico-error\"></i>应用包名有重复");
                     jQuery("#package_error_show").css("display", "block");
                     appPackageValidate = false;
                 } else {
@@ -276,7 +277,7 @@
         var iconFileName = iconFile.val();
 
         if (!/.(jpg|jpeg|png|JPG|JPEG|PNG)$/.test(iconFileName)) {
-            jQuery("#icon_error_show").html("图片格式必须为jpg,jepg,png，请重新选择图片");
+            jQuery("#icon_error_show").html("<i class=\"ico-error\"></i>图片格式必须为jpg,jepg,png，请重新选择图片");
             jQuery("#icon_error_show").css("display", "block");
             iconImageValidate = false;
         } else {
@@ -285,7 +286,7 @@
                 height = this.height;
                 size = obj.files[0].size;
                 if (width != 150 || height != 150 || size > 20 * 1024) {
-                    jQuery("#icon_error_show").html("应用图标大小必须为150*150, 大小小于20K");
+                    jQuery("#icon_error_show").html("<i class=\"ico-error\"></i>应用图标大小必须为150*150, 大小小于20K");
                     jQuery("#icon_error_show").css("display", "block");
                     iconImageValidate = false;
                 } else {
@@ -308,7 +309,7 @@
         var posterFileName = posterFile.val();
 
         if (!/.(jpg|jpeg|png|JPG|JPEG|PNG)$/.test(posterFileName)) {
-            jQuery("#poster_error_show").html("图片格式必须为jpg,jepg,png，请重新选择图片");
+            jQuery("#poster_error_show").html("<i class=\"ico-error\"></i>图片格式必须为jpg,jepg,png，请重新选择图片");
             jQuery("#poster_error_show").css("display", "block");
             posterImageValidate = false;
         } else {
@@ -317,7 +318,7 @@
                 height = this.height;
                 size = obj.files[0].size;
                 if (width != 800 || height != 450 || size > 200 * 1024) {
-                    jQuery("#poster_error_show").html("应用图标大小必须为150*150, 大小小于20K");
+                    jQuery("#poster_error_show").html("<i class=\"ico-error\"></i>应用图标大小必须为150*150, 大小小于20K");
                     jQuery("#poster_error_show").css("display", "block");
                     posterImageValidate = false;
                 } else {
@@ -332,7 +333,7 @@
         //验证APK文件
         var appApkUploadFile = jQuery("#appApkUploadFile").val();
         if (!/.(apk|APK)$/.test(appApkUploadFile)) {
-            jQuery("#apk_error_show").html("文件格式必须为apk");
+            jQuery("#apk_error_show").html("<i class=\"ico-error\"></i>文件格式必须为apk");
             jQuery("#apk_error_show").css("display", "block");
             apkFileValidate = false;
         } else {
@@ -345,7 +346,7 @@
         //验证描述
         var appDescription = jQuery("#appDescription").val();
         if (appDescription == null || appDescription == '') {
-            jQuery("#desc_error_show").html("描述不能为空");
+            jQuery("#desc_error_show").html("<i class=\"ico-error\"></i>描述不能为空");
             jQuery("#desc_error_show").css("display", "block");
             appDescValidate = false;
         } else {
@@ -357,7 +358,7 @@
     function submitAppInfo() {
         var canSubmit = true;
         if (!appNameValidate) {
-            jQuery("#name_error_show").html("应用名称未通过验证");
+            jQuery("#name_error_show").html("<i class=\"ico-error\"></i>应用名称未通过验证");
             jQuery("#name_error_show").css("display", "block");
             canSubmit = false;
         } else {
@@ -365,7 +366,7 @@
         }
 
         if (!appPackageValidate) {
-            jQuery("#package_error_show").html("应用包名未通过验证");
+            jQuery("#package_error_show").html("<i class=\"ico-error\"></i>应用包名未通过验证");
             jQuery("#package_error_show").css("display", "block");
             canSubmit = false;
         } else {
@@ -373,7 +374,7 @@
         }
 
         if (!iconImageValidate) {
-            jQuery("#icon_error_show").html("应用图标未通过验证");
+            jQuery("#icon_error_show").html("<i class=\"ico-error\"></i>应用图标未通过验证");
             jQuery("#icon_error_show").css("display", "block");
             canSubmit = false;
         } else {
@@ -381,7 +382,7 @@
         }
 
         if (!posterImageValidate) {
-            jQuery("#poster_error_show").html("应用海报未通过验证");
+            jQuery("#poster_error_show").html("<i class=\"ico-error\"></i>应用海报未通过验证");
             jQuery("#poster_error_show").css("display", "block");
             canSubmit = false;
         } else {
@@ -389,7 +390,7 @@
         }
 
         if (!apkFileValidate) {
-            jQuery("#apk_error_show").html("应用海报未通过验证");
+            jQuery("#apk_error_show").html("<i class=\"ico-error\"></i>应用海报未通过验证");
             jQuery("#apk_error_show").css("display", "block");
             canSubmit = false;
         } else {
@@ -397,7 +398,7 @@
         }
 
         if (!appDescValidate) {
-            jQuery("#desc_error_show").html("应用描述未通过验证");
+            jQuery("#desc_error_show").html("<i class=\"ico-error\"></i>应用描述未通过验证");
             jQuery("#desc_error_show").css("display", "block");
             canSubmit = false;
         } else {
@@ -426,7 +427,6 @@
                 jQuery("#proBar").css("width", data.percentage + '%');
                 <%--显示进度文本值--%>
                 jQuery("#proVal").html(data.percentage + '%');
-
                 if (data.percentage == 100) {
                     //stop requirement
                     window.clearInterval(intId);
