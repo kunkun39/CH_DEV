@@ -1,6 +1,6 @@
 /* 首页banner */
-.homepage-banner { background-image: url("../images/index-banner.jpg"); background-position: center 0; /*background-size:cover;*/
-background-repeat: no-repeat; height: 400px; position: relative; overflow: hidden; }
+.homepage-banner {background-image: url("../images/index-banner.jpg"); background-position: center 0; /*background-size:cover;*/
+background-repeat: repeat-x; height: 400px; position: relative; overflow: hidden;}
 /*应用列表*/
 .index-header, .moreico, .list-header { background-image: url("../images/headerImage.png"); background-repeat: no-repeat; }
 .index-header, .list-header { height: 71px; margin: 37px auto; }
