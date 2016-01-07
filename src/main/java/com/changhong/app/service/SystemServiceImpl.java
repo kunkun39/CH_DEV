@@ -12,6 +12,7 @@ import com.changhong.app.web.facade.dto.ClientUserDTO;
 import com.changhong.app.web.facade.dto.MarketAppDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -98,6 +99,32 @@ public class SystemServiceImpl implements SystemService {
 
         if(clientUser != null) {
             clientUser.setEnabled(enabled);
+        }
+    }
+
+    public AdminUserDTO obtainAdminUserById(int userId) {
+        AdminUser adminUser = (AdminUser) userDao.findById(userId, AdminUser.class);
+
+        return AdminUserWebAssember.toAdminUserDTO(adminUser);
+    }
+
+    public boolean validateAdminUserPassword(int userId, String password) {
+        AdminUser adminUser = (AdminUser) userDao.findById(userId, AdminUser.class);
+        if (adminUser != null && adminUser.getPassword().equals(password)) {
+            return true;
+        }
+        return false;
+    }
+
+    public void updateAdminUserInfo(int userId, String contextway, String password) {
+        AdminUser adminUser = (AdminUser) userDao.findById(userId, AdminUser.class);
+
+        if (adminUser != null) {
+            if (StringUtils.hasText(contextway)) {
+                adminUser.setContactWay(contextway);
+            } else if (StringUtils.hasText(password)) {
+                adminUser.setPassword(password);
+            }
         }
     }
 }

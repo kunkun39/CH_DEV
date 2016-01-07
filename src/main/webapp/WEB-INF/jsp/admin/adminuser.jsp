@@ -45,19 +45,17 @@
             <table class="table table-condensed table-bordered table-hover table-view-1">
                 <thead>
                     <tr>
-                        <th style="text-align: center;width:20%">用户</th>
-                        <th style="text-align: center;width:20%">用户名</th>
-                        <th style="text-align: center;width:40%">联系方式</th>
-                        <th style="text-align: center;">状态</th>
+                        <th style="padding-left: 20px;width:30%;">用户名</th>
+						<th style="width:55%;">联系方式</th>
+						<th>状态</th>
                     </tr>
                 </thead>
                 <tbody>
                     <c:forEach items="${adminusers}" var="adminuser">
                         <tr>
-                            <td style="text-align: center;width:20%">${adminuser.name}</td>
-                            <td style="text-align: center;width:20%">${adminuser.username}</td>
-                            <td style="text-align: center;width:40%">${adminuser.contactWay}</td>
-                            <td style="text-align: center;">
+                            <td style="padding-left: 20px;width:30%;">${adminuser.username}</td>
+                            <td>${adminuser.contactWay}</td>
+                            <td>
                                 <c:if test="${adminuser.enabled}">
                                     <span class="color10">在用</span>
                                 </c:if>

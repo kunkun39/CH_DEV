@@ -42,6 +42,10 @@
                 <prop key="/security/adminuseradd.html">adminUserAddController</prop>
                 <prop key="/security/adminappoperate.html">adminAppOperateController</prop>
                 <prop key="/security/adminappstatuschange.html">adminAppStatusChangeController</prop>
+                <prop key="/security/adminuserinfo.html">adminUserInfoController</prop>
+                <prop key="/security/adminuserpwdchange.html">adminUserPwdChangeController</prop>
+                <prop key="/security/adminuserinfochange.html">adminUserInfoChangeController</prop>
+                <prop key="/security/adminuserinfosubmit.html">adminUserInfoSubmitController</prop>
 
                 <!--客户部分-->
                 <prop key="/security/clientappoverview.html">clientAppOverviewController</prop>
@@ -112,8 +116,24 @@
         <property name="fileRequestHost" value="${application.file.request.path}"/>
     </bean>
 
-    <bean id="adminAppStatusChangeController"
-          class="com.changhong.app.web.controller.admin.AdminAppStatusChangeController">
+    <bean id="adminAppStatusChangeController" class="com.changhong.app.web.controller.admin.AdminAppStatusChangeController">
+        <property name="systemService" ref="systemService"/>
+        <property name="serverContext" value="${application.context}"/>
+    </bean>
+
+    <bean id="adminUserInfoController" class="com.changhong.app.web.controller.admin.AdminUserInfoController">
+        <property name="systemService" ref="systemService"/>
+    </bean>
+
+    <bean id="adminUserPwdChangeController" class="com.changhong.app.web.controller.admin.AdminUserPwdChangeController">
+        <property name="systemService" ref="systemService"/>
+    </bean>
+
+    <bean id="adminUserInfoChangeController" class="com.changhong.app.web.controller.admin.AdminUserInfoChangeController">
+        <property name="systemService" ref="systemService"/>
+    </bean>
+
+    <bean id="adminUserInfoSubmitController" class="com.changhong.app.web.controller.admin.AdminUserInfoSubmitController">
         <property name="systemService" ref="systemService"/>
         <property name="serverContext" value="${application.context}"/>
     </bean>

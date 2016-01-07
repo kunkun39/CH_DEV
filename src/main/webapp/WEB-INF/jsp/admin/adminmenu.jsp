@@ -14,5 +14,9 @@
         <a href="${pageContext.request.contextPath}/security/adminusers.html">
             <li <c:if test="${MANAGE_KEY == 'USERS'}">class="cur"</c:if>>系统用户管理</li>
         </a>
+
+        <a href="${pageContext.request.contextPath}/security/adminuserinfo.html">
+            <li <c:if test="${MANAGE_KEY == 'USERINFO'}">class="cur"</c:if>>个人信息管理</li>
+        </a>
     </ul>
 </div>

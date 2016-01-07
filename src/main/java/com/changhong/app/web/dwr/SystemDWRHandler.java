@@ -37,4 +37,8 @@ public class SystemDWRHandler {
     public boolean checkValidateCodeRight(String code, HttpServletRequest request) {
         return UserRegisterCodeController.validate(request, code);
     }
+
+    public boolean validatePassword(int userId, String password) {
+        return systemService.validateAdminUserPassword(userId, password);
+    }
 }

@@ -54,16 +54,8 @@ public class AdminUserAddController extends SimpleFormController {
         return new ModelAndView(new RedirectView("/" + serverContext + "/security/adminusers.html"));
     }
 
-    public SystemService getSystemService() {
-        return systemService;
-    }
-
     public void setSystemService(SystemService systemService) {
         this.systemService = systemService;
-    }
-
-    public String getServerContext() {
-        return serverContext;
     }
 
     public void setServerContext(String serverContext) {

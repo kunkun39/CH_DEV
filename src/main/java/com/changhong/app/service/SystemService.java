@@ -34,4 +34,10 @@ public interface SystemService {
     void updateMarketAppStatus(int appId, String appStatus, String rejectReason);
 
     void updateDeloperStatus(int developerId, boolean enabled);
+
+    AdminUserDTO obtainAdminUserById(int userId);
+
+    boolean validateAdminUserPassword(int userId, String password);
+
+    void updateAdminUserInfo(int userId, String contextway, String password);
 }
