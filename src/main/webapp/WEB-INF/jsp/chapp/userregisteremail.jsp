@@ -32,8 +32,7 @@
                 <p class="font16" style="margin: 10px 0 0;">感谢注册，确认邮件已发送至你的注册邮箱 :${username}</p>
 
                 <p style="margin:0 0 28px;color: #999;">请进入邮箱查看邮件，并激活微信开放平台帐号。</p>
-                <input type="button" class="btn-blue color1" value="登录邮箱"/>
-
+                <input type="button" class="btn-blue color1" value="登录邮箱" onclick="toMailLoginPage()"/>
                 <p style="margin-top: 10px;margin-bottom: 20px;"><p class="color3" >没有收到邮件？</p></p>
                 <ul>
                     <li>1. 请检查邮箱地址是否正确</li>
@@ -50,6 +49,11 @@
 
 <%--Javascript部分***********************************************************--%>
 <script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
+<script type="text/javascript">
+    function toMailLoginPage(){
+        window.open("${tomailpageurl}")
+    }
+</script>
 </body>
 
 </html>

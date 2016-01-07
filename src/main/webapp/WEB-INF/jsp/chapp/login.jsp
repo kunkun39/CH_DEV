@@ -63,7 +63,7 @@
                         <br/>
                         <c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
                             <div class="login-help" style="">
-                                <p class="login-tips"><i class="ico-error"></i>对不起, 用户名或者密码不正确!</p>
+                                <span class="help-block color5"><i class="ico-error"></i>对不起, 用户名或者密码不正确!</span>
                             </div>
                         </c:if>
                         <div class="login-help" id="error_info" style="display: none;">
@@ -104,12 +104,12 @@
         var j_password = jQuery("#j_password").val();
         var register_code = jQuery("#registerCode").val();
         if(j_username == null || j_username == '' || j_password == null || j_password == '' || register_code == null || register_code == '') {
-            jQuery("#error_info").html("<p class=\"login-tips\"><i class=\"ico-error\"></i>对不起，登录信息不完整!</p>");
+            jQuery("#error_info").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>对不起，登录信息不完整!</span>");
             jQuery("#error_info").css("display", "block");
         } else {
             SystemDWRHandler.checkValidateCodeRight(register_code, function(result) {
                 if (!result) {
-                    jQuery("#error_info").html("<p class=\"login-tips\"><i class=\"ico-error\"></i>对不起，验证码不正确!</p>");
+                    jQuery("#error_info").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>对不起，验证码不正确!</span>");
                     jQuery("#error_info").css("display", "block");
                 } else {
                     jQuery("#error_info").css("display", "none");
