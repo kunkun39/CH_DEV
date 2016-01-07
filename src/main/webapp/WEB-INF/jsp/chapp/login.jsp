@@ -96,7 +96,7 @@
 
 <script type="text/javascript">
     function registerClient() {
-        window.location.href = "${pageContext.request.contextPath}/chapp/register.html";
+        window.location.href = "${pageContext.request.contextPath}/chapp/userregister.html";
     }
 
     function loginClient(form) {
