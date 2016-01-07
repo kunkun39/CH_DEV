@@ -29,24 +29,24 @@
         <form class="form-horizontal" id="contactForm" action="${pageContext.request.contextPath}/j_spring_security_check" method="post">
             <div class="form-body">
                 <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">邮箱</label>
+                    <label for="j_username" class="col-sm-2 control-label">邮箱</label>
 
                     <div class="col-sm-10">
-                        <input type="text"  id="j_username" name="j_username" class="form-control" required="required" id="inputName" placeholder="请输入邮箱">
+                        <input type="text" id="j_username" name="j_username" class="form-control" required="required" placeholder="请输入邮箱">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword" class="col-sm-2 control-label">密码</label>
+                    <label for="j_password" class="col-sm-2 control-label">密码</label>
 
                     <div class="col-sm-10">
-                        <input type="password" id="j_password" name="j_password" class="form-control" required="required" id="inputPassword" placeholder="请输入密码">
+                        <input type="password" id="j_password" name="j_password" class="form-control" required="required" placeholder="请输入密码">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword" class="col-sm-2 control-label">验证码</label>
+                    <label for="registerCode" class="col-sm-2 control-label">验证码</label>
 
                     <div class="col-sm-10">
-                        <input type="text" name="registerCode" class="form-control" required="required" id="registerCode" placeholder="请输入密码" maxlength="4">
+                        <input type="text" name="registerCode" class="form-control" required="required" id="registerCode" placeholder="请输入验证码" maxlength="4">
                         <br/>
                         <img id="imageCode" src="${pageContext.request.contextPath}/chapp/userregistercode.html"/></span>
                         &nbsp;<a href="javascript:void(0);" onclick="imageChange()">看不清，换一张</a>
@@ -58,16 +58,16 @@
                     <label class="col-sm-2 control-label">&nbsp;</label>
 
                     <div class="col-sm-10">
-                        <input type="button" class="btn-yellow color1"  value="注册" onclick="registerClient();"/>
+                        <input type="button" class="btn-yellow color1" value="注册" onclick="registerClient();"/>
                         <input type="button" class="btn-blue color1" value="登录" onclick="loginClient(this.form);"/>
                         <br/>
-                        <c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
+                        <c:if test="${SPRING_SECURITY_LAST_EXCEPTION == null}">
                             <div class="login-help" style="">
                                 <span class="help-block color5"><i class="ico-error"></i>对不起, 用户名或者密码不正确!</span>
                             </div>
                         </c:if>
                         <div class="login-help" id="error_info" style="display: none;">
-					    </div>
+                        </div>
                     </div>
 
                 </div>
@@ -103,11 +103,11 @@
         var j_username = jQuery("#j_username").val();
         var j_password = jQuery("#j_password").val();
         var register_code = jQuery("#registerCode").val();
-        if(j_username == null || j_username == '' || j_password == null || j_password == '' || register_code == null || register_code == '') {
+        if (j_username == null || j_username == '' || j_password == null || j_password == '' || register_code == null || register_code == '') {
             jQuery("#error_info").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>对不起，登录信息不完整!</span>");
             jQuery("#error_info").css("display", "block");
         } else {
-            SystemDWRHandler.checkValidateCodeRight(register_code, function(result) {
+            SystemDWRHandler.checkValidateCodeRight(register_code, function (result) {
                 if (!result) {
                     jQuery("#error_info").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>对不起，验证码不正确!</span>");
                     jQuery("#error_info").css("display", "block");
