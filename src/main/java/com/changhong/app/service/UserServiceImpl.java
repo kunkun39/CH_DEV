@@ -12,7 +12,7 @@ import com.changhong.app.utils.SecurityUtils;
 import com.changhong.app.web.facade.assember.AdminUserWebAssember;
 import com.changhong.app.web.facade.assember.ClientUserWebAssember;
 import com.changhong.app.web.facade.dto.ClientUserDTO;
-import com.changhong.app.web.facade.dto.UserPasswordDTO;
+//import com.changhong.app.web.facade.dto.UserPasswordDTO;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -126,18 +126,28 @@ public class UserServiceImpl implements UserService {
         ApplicationThreadPool.executeThread(send);
     }
 
-    public UserPasswordDTO obtainPasswordByUserId(int userId) {
-        ClientUser client = (ClientUser) userDao.findById(userId, ClientUser.class);
-        return AdminUserWebAssember.toPasswordDTO(client);
-    }
+//    public UserPasswordDTO obtainPasswordByUserId(int userId) {
+//        ClientUser client = (ClientUser) userDao.findById(userId, ClientUser.class);
+//        return AdminUserWebAssember.toPasswordDTO(client);
+//    }
 
     public boolean obtainOldPasswordRight(int userId, String oldPassword) {
-        ClientUser client = (ClientUser)userDao.findById(userId,ClientUser.class);
+        ClientUser client = (ClientUser) userDao.findById(userId, ClientUser.class);
         return client.getPassword().equals(oldPassword) ? true : false;
     }
 
     public void changeClientUserPassword(int userId, String newPassword) {
-        ClientUser client = (ClientUser)userDao.findById(userId,ClientUser.class);
+        ClientUser client = (ClientUser) userDao.findById(userId, ClientUser.class);
         client.setPassword(newPassword);
+    }
+
+    /**
+     * 修改账户资料
+     * <p/>
+     * ClientUserDTO userDTO
+     */
+    public void changeClientInformation(ClientUserDTO userDTO) {
+        ClientUser user = ClientUserWebAssember.DtoToDomain(userDTO);
+        userDao.persist(user);
     }
 }

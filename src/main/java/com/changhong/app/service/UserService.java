@@ -1,7 +1,7 @@
 package com.changhong.app.service;
 
 import com.changhong.app.web.facade.dto.ClientUserDTO;
-import com.changhong.app.web.facade.dto.UserPasswordDTO;
+//import com.changhong.app.web.facade.dto.UserPasswordDTO;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface UserService extends UserDetailsService {
 
-  /*User Register and Login Part Part***************************************************************/
+    /*User Register and Login Part Part***************************************************************/
 
     boolean obtainClientUserExist(String username);
 
@@ -26,9 +26,12 @@ public interface UserService extends UserDetailsService {
 
     public void handleClientResendMail(String username);
 
-    UserPasswordDTO obtainPasswordByUserId(int userId);
+//    UserPasswordDTO obtainPasswordByUserId(int userId);
 
     boolean obtainOldPasswordRight(int userId, String oldPassword);
 
     void changeClientUserPassword(int userId, String newPassword);
+
+    //change contact information
+    public void changeClientInformation(ClientUserDTO userDTO);
 }
