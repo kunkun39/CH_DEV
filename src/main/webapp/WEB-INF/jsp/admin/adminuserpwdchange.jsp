@@ -111,7 +111,7 @@
         if (newPassword == null || newPassword == '') {
             jQuery("#new_password_error_show").html("<i class=\"ico-error\"></i>请输入新密码!");
             jQuery("#new_password_error_show").css("display", "block");
-        } else if (newPassword != oldPassword) {
+        } else if (newPassword == oldPassword) {
             jQuery("#new_password_error_show").html("<i class=\"ico-error\"></i>新密码不能和原密码相同!");
             jQuery("#new_password_error_show").css("display", "block");
         } else {
