@@ -1,7 +1,9 @@
 package com.changhong.app.web.controller.client;
 
+import com.changhong.app.exception.CHSecurityException;
 import com.changhong.app.service.UserService;
 import com.changhong.app.utils.SecurityUtils;
+import com.changhong.app.web.facade.dto.AdminUserDTO;
 import com.changhong.app.web.facade.dto.ClientUserDTO;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindException;
@@ -13,6 +15,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * User: Jack Wang
@@ -33,12 +37,10 @@ public class ClientSelfInfoController extends SimpleFormController {
     @Override
     protected Object formBackingObject(HttpServletRequest request) throws Exception {
         int userId = SecurityUtils.currectAuthenticationId();
+        int message = ServletRequestUtils.getIntParameter(request, "message", -1);
 
-        if (userId > 0) {
-            return userService.obtainClientUserById(userId);
-        }
-
-        return new ClientUserDTO();
+        request.setAttribute("message", message);
+        return userService.obtainClientUserById(userId);
     }
 
     @Override
@@ -48,10 +50,12 @@ public class ClientSelfInfoController extends SimpleFormController {
     @Override
     protected ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object command, BindException errors) throws Exception {
         ClientUserDTO clientUserDTO = (ClientUserDTO) command;
-        userService.changeClientUserDetails(clientUserDTO);
+        userService.changeClientInformation(clientUserDTO);
 
-        return new ModelAndView(new RedirectView("/" + serverContext + "/security/clientconfirmchange.html"));
+        Map<String, Object> model = new HashMap<String, Object>();
+        model.put("message", 1);
 
+        return new ModelAndView(new RedirectView("/" + serverContext + "/security/clientselfinfo.html"), model);
     }
 
     public void setUserService(UserService userService) {
