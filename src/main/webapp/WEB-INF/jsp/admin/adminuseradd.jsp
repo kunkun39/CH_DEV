@@ -1,7 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring-form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
+<!--[if IE 8 ]>
+<html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>
+<html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
 <html class="activity-no">
+<!--<![endif]-->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -77,6 +83,10 @@
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
 
 <script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
+<!--[if lt IE 9]>
+<script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
+<script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
+<![endif]-->
 <script src="${pageContext.request.contextPath}/dwr/engine.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/dwr/util.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/dwr/interface/SystemDWRHandler.js" type="text/javascript"></script>

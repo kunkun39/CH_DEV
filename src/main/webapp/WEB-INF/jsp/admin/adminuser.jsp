@@ -1,15 +1,14 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 15-12-24
-  Time: 上午10:40
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="ch" uri="http://www.chanhong.com" %>
 <!DOCTYPE html>
+<!--[if IE 8 ]>
+<html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>
+<html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
 <html class="activity-no">
+<!--<![endif]-->
 <head>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
@@ -77,6 +76,10 @@
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
 
 <script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
+<!--[if lt IE 9]>
+<script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
+<script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
+<![endif]-->
 <script type="text/javascript">
     function searchAdminUser() {
         jQuery("#searchAdminUserForm").submit();
