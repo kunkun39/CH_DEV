@@ -1,8 +1,10 @@
 package com.changhong.app.web.facade.assember;
 
 import com.changhong.app.domain.AdminUser;
+import com.changhong.app.domain.Auth;
 import com.changhong.app.repository.EntityLoadHolder;
 import com.changhong.app.web.facade.dto.AdminUserDTO;
+import com.changhong.app.web.facade.dto.UserPasswordDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,5 +66,12 @@ public class AdminUserWebAssember {
         }
 
         return dtoList;
+    }
+
+
+    public static UserPasswordDTO toPasswordDTO(Auth auth) {
+        int id = auth.getId();
+        String username = auth.getUsername();
+        return new UserPasswordDTO(id,username);
     }
 }

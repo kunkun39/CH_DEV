@@ -177,8 +177,9 @@
         <property name="serverContext" value="${application.context}"/>
     </bean>
 
-    <bean id="clientChangePassController" class="com.changhong.app.web.controller.client.ClientChangePassController"/>
-
+    <bean id="clientChangePassController" class="com.changhong.app.web.controller.client.ClientChangePassController">
+      <property name="userService" ref="userService"/>
+    </bean>
     <!--客户部分-->
     <bean id="commonAppHistoryController" class="com.changhong.app.web.controller.common.CommonAppHistoryController">
         <property name="clientService" ref="clientService"/>
