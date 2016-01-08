@@ -29,7 +29,20 @@
 <%--内容部分***********************************************************--%>
 
 <!--banner开始-->
-
+<div class="homepage-banner">
+    <div style="width:728px;height:200px;margin-top:0px;">
+    </div>
+    <div style="width:728px;height:200px;margin:0px auto;">
+        <ul class="round">
+            <li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header1.jpg" alt="" /></li>
+            <li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header2.jpg" alt="" /></li>
+            <li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header3.jpg" alt="" /></li>
+            <li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header4.jpg" alt="" /></li>
+            <li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header5.jpg" alt="" /></li>
+            <li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header6.jpg" alt="" /></li>
+        </ul>
+    </div>
+</div>
 <!--banner结束-->
 
 <div class="content">
@@ -43,16 +56,19 @@
             <c:forEach items="${apps}" var="app">
                <li class="col-md-3 col-sm-5">
                 <a href="javascript:void(0)" title="" class="apply-ul-a">
-                    <img src="${fileRequestHost}${app.appKey}/${app.iconActualFileName}" alt="${app.appName}" width="70" height="70" />
+                    <img src="${fileRequestHost}/${app.appKey}/${app.iconActualFileName}" alt="${app.appName}" width="70" height="70" />
                     <h4>${app.appName}</h4>
                     <p><ch:substring value="${app.appDescription}" length="20"/></p>
                 </a>
                 </li>
             </c:forEach>
         </ul>
-        <ul class="pagination">
-            <ch:numberpaging urlMapping="${pageContext.request.contextPath}/chapp/marketapplistoverview.html" paging="${paging}" maxPageNumber="10"/>
-        </ul>
+
+        <div class="pagcontrol" style="text-align:center;">
+            <ul class="pagination">
+                <ch:numberpaging urlMapping="${pageContext.request.contextPath}/chapp/marketapplistoverview.html" paging="${paging}" maxPageNumber="10"/>
+            </ul>
+        </div>
     </main>
 </div>
 
@@ -60,5 +76,65 @@
 
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
 
+<!--[if lt IE 9]>
+<script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
+<script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
+<![endif]-->
+<script src="${pageContext.request.contextPath}/javascript/vendor/round.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/round/jquery.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/round/jquery.roundabout.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+		$('.round').roundabout();
+	});
+    $(document).ready(function() {
+        $('#img-slider li').bind({
+            reposition: function() {
+                var degrees = $(this).data('roundabout').degrees,
+                    roundaboutBearing = $(this).parent().data('roundabout').bearing,
+                    rotateY = Math.sin((roundaboutBearing - degrees) * (Math.PI / 180)) * 9;
+                $(this).css({
+                });
+            }
+        });
+        $('.jQ_sliderPrev').on('click', function() {
+            $('#img-slider').roundabout('animateToNextChild');
+            return false;
+        });
+        $('.jQ_sliderNext').on('click', function() {
+            $('#img-slider').roundabout('animateToPreviousChild');
+            return false;
+        });
+        $('body').on('keyup', function(e) {
+            var keyCode = e.which || e.keyCode;
+            if (keyCode == 37) {
+                $('#img-slider').roundabout('animateToPreviousChild');
+                e.preventDefault();
+                return false;
+            } else if (keyCode == 39) {
+                $('#img-slider').roundabout('animateToNextChild');
+                e.preventDefault();
+                return false;
+            }
+        });
+        $('.jQ_sliderSwitch li').on('click', function() {
+            var $elem = $(this);
+            var index = $elem.index();
+            $('#img-slider').roundabout('animateToChild', index);
+            return false;
+        });
+        $('#img-slider').roundabout({
+            minScale: 0.4,
+            maxScale: 0.9,
+            duration: 750
+        }).bind({
+            animationEnd: function(e) {
+                var index = $('#img-slider').roundabout('getChildInFocus');
+                $('.jQ_sliderSwitch li').removeClass('active');
+                $('.jQ_sliderSwitch li').eq(index).addClass('active');
+            }
+        });
+    });
+</script>
 </body>
 </html>
