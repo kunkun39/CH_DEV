@@ -27,7 +27,7 @@
     <jsp:include page="/WEB-INF/jsp/admin/adminmenu.jsp"/>
     <div class="back-con-r fl">
         <div class="leftTab-content active" id="bs-tabcon1">
-            <h4 class="font16">发布者</h4>
+            <h4 class="font16">开发者管理</h4>
             <form id="searchDeveloperForm" action="${pageContext.request.contextPath}/security/admindeveloper.html" method="post">
                 <div class="input-group">
                     <input id="name" type="text" name="name" placeholder="用户名" class="input-sm form-control" value="${paging.name}">

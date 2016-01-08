@@ -26,13 +26,13 @@
         <div class="leftTab-content active" id="bs-tabcon1">
             <c:choose>
                 <c:when test="${message == 0}">
-                    <h4 class="font16">个人信息<span style="font-size: 80%;color:red;">&nbsp;&nbsp;(修改失败!)</span></h4>
+                    <h4 class="font16">个人信息管理<span style="font-size: 80%;color:red;">&nbsp;&nbsp;(修改失败!)</span></h4>
                 </c:when>
                 <c:when test="${message == 1}">
-                    <h4 class="font16">个人信息<span style="font-size: 80%;color:red;">&nbsp;&nbsp;(修改成功!)</span></h4>
+                    <h4 class="font16">个人信息管理<span style="font-size: 80%;color:red;">&nbsp;&nbsp;(修改成功!)</span></h4>
                 </c:when>
                 <c:otherwise>
-                    <h4 class="font16">个人信息</h4>
+                    <h4 class="font16">个人信息管理</h4>
                 </c:otherwise>
             </c:choose>
         </div>

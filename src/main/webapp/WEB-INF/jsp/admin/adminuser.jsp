@@ -27,7 +27,7 @@
     <jsp:include page="/WEB-INF/jsp/admin/adminmenu.jsp"/>
     <div class="back-con-r fl">
         <div class="leftTab-content active" id="bs-tabcon1">
-            <h4 class="font16">系统用户</h4>
+            <h4 class="font16">系统用户管理</h4>
             <form id="searchAdminUserForm" action="${pageContext.request.contextPath}/security/adminusers.html" method="post">
                 <div class="input-group">
                     <input type="button" class="btn-blue color1 fl" value="添加系统用户" onclick="window.location.href = '${pageContext.request.contextPath}/security/adminuseradd.html'" />

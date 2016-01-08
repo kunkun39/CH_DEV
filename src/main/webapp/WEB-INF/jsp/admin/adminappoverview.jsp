@@ -27,7 +27,7 @@
     <jsp:include page="/WEB-INF/jsp/admin/adminmenu.jsp"/>
     <div class="back-con-r fl">
         <div class="leftTab-content active" id="bs-tabcon1">
-            <h4 class="font16">我的应用</h4>
+            <h4 class="font16">开发者应用</h4>
             <ul class="nav nav-tabs">
                 <li <c:if test="${paging.appStatus == ''}">class="active"</c:if>><a href="javascript:void(0);" onclick="searchAppsByStatus('');">全部</a></li>
                 <li <c:if test="${paging.appStatus == 'CREATED'}">class="active"</c:if>><a href="javascript:void(0);" onclick="searchAppsByStatus('CREATED');">新创建</a></li>
