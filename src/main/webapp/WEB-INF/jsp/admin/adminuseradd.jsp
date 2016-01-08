@@ -63,10 +63,8 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">&nbsp;</label>
                     <div class="col-sm-10">
-                        <a href="${pageContext.request.contextPath}/security/adminusers.html">
-                            <input type="button" class="btn-blue color1" value="返  回"/>
-                        </a>
-                        <input type="button" class="btn-blue color1" value="确认添加" onclick="submitUserInfo(this.form);" />
+                        <input type="button" class="btn-blue color1" value="返  回" onclick="window.location.href = '${pageContext.request.contextPath}/security/adminusers.html'" />
+                        <input type="button" class="btn-blue color1" value="确认添加" onclick="userInfoSubmit(this.form);" />
                     </div>
                 </div>
             </div>
@@ -150,7 +148,7 @@
         }
     }
 
-    function submitUserInfo(form) {
+    function userInfoSubmit(form) {
         if (!userNameValidate) {
             jQuery("#name_error_show").html("<i class=\"ico-error\"></i>请输入用户名！");
             jQuery("#name_error_show").css("display", "block");

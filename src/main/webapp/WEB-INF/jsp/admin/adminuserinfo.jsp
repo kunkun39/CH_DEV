@@ -53,12 +53,8 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">&nbsp;</label>
                     <div class="col-sm-9">
-                        <a href="${pageContext.request.contextPath}/security/adminuserinfochange.html">
-                            <input type="button" class="btn-blue color1" value="修改个人信息" />
-                        </a>
-                        <a href="${pageContext.request.contextPath}/security/adminuserpwdchange.html">
-                            <input type="button" class="btn-blue color1" value="修改个人密码" />
-                        </a>
+                        <input type="button" class="btn-blue color1" value="修改个人信息" onclick="window.location.href = '${pageContext.request.contextPath}/security/adminuserinfochange.html'"/>
+                        <input type="button" class="btn-blue color1" value="修改个人密码" onclick="window.location.href = '${pageContext.request.contextPath}/security/adminuserpwdchange.html'"/>
                     </div>
                 </div>
             </div>

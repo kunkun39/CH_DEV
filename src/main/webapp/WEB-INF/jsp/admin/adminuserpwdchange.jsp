@@ -61,9 +61,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">&nbsp;</label>
                     <div class="col-sm-10">
-                        <a href="${pageContext.request.contextPath}/security/adminuserinfo.html">
-                            <input type="button" class="btn-blue color1" value="返  回"/>
-                        </a>
+                        <input type="button" class="btn-blue color1" value="返  回" onclick="window.location.href = '${pageContext.request.contextPath}/security/adminuserinfo.html'"/>
                         <input type="button" class="btn-blue color1" value="确认修改" onclick="changePassword(${user.id}, this.form);" />
                     </div>
                 </div>
