@@ -37,7 +37,7 @@
                 <div class="form-group">
                     <label for="inputPassword" class="col-sm-2 control-label">原密码</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="inputOldPassword" name="oldpwd" placeholder="请输入原密码" onblur="validateOldPassword(${user.id});" />
+                        <input type="password" class="form-control" id="inputOldPassword" name="oldpwd" placeholder="请输入原密码" onblur="validateOldPassword();" />
                         <span id="old_password_error_show" class="help-block color5" style="display: none;"></span>
                         <span class="help-block"></span>
                     </div>
@@ -64,7 +64,7 @@
                         <a href="${pageContext.request.contextPath}/security/adminuserinfo.html">
                             <input type="button" class="btn-blue color1" value="返  回"/>
                         </a>
-                        <input type="button" class="btn-blue color1" value="确认修改" onclick="changePassword(this.form);" />
+                        <input type="button" class="btn-blue color1" value="确认修改" onclick="changePassword(${user.id}, this.form);" />
                     </div>
                 </div>
             </div>
@@ -86,23 +86,29 @@
     var newPasswordValidate = false;
     var confirmPasswordValidate = false;
 
-    function validateOldPassword(userId) {
+    function validateOldPassword() {
         var password = jQuery("#inputOldPassword").val();
         if (password == null || password == '') {
             jQuery("#old_password_error_show").html("<i class=\"ico-error\"></i>请输入原密码!");
             jQuery("#old_password_error_show").css("display", "block");
         } else {
+            jQuery("#new_password_error_show").css("display", "none");
             oldPasswordJSValidate = true;
-            SystemDWRHandler.validatePassword(userId, password, function(result) {
-                if (result) {
-                    jQuery("#old_password_error_show").css("display", "none");
-                    oldPasswordDBValidate = true;
-                } else {
-                    jQuery("#old_password_error_show").html("<i class=\"ico-error\"></i>你输入的原密码不正确,请重新输入!");
-                    jQuery("#old_password_error_show").css("display", "block");
-                }
-            });
+
         }
+    }
+
+    function validateOldPasswordFromDb(userId) {
+        var password = jQuery("#inputOldPassword").val();
+        SystemDWRHandler.validatePassword(userId, password, function(result) {
+            if (result) {
+                jQuery("#old_password_error_show").css("display", "none");
+                oldPasswordDBValidate = true;
+            } else {
+                jQuery("#old_password_error_show").html("<i class=\"ico-error\"></i>你输入的原密码不正确,请重新输入!");
+                jQuery("#old_password_error_show").css("display", "block");
+            }
+        });
     }
 
     function validateNewPassword() {
@@ -137,19 +143,11 @@
         }
     }
 
-    function changePassword(form) {
-        if (!oldPasswordJSValidate) {
-            jQuery("#old_password_error_show").html("<i class=\"ico-error\"></i>请输入原密码!");
-            jQuery("#old_password_error_show").css("display", "block");
+    function changePassword(userId,form) {
+        validateOldPassword();
+        if (oldPasswordJSValidate) {
+            validateOldPasswordFromDb(userId);
         }
-        else if (!oldPasswordDBValidate) {
-            jQuery("#old_password_error_show").html("<i class=\"ico-error\"></i>你输入的原密码不正确,请重新输入!");
-            jQuery("#old_password_error_show").css("display", "block");
-        }
-        else {
-            jQuery("#old_password_error_show").css("display", "none");
-        }
-
         validateNewPassword();
         validateConfrimPassword();
 
