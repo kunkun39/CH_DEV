@@ -12,11 +12,26 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/backstage.css">
+
+    <!--[if lt IE 9]>
+    <script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
+    <script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
+    <![endif]-->
+
     <style type="text/css">
         .passwordhelp-block {
             display: block;
             margin-top: 18px;
-            margin-bottom: 0px;
+            margin-bottom: 50px;
+        }
+
+        .float-left {
+            float: left;
+        }
+
+        .float-left-space {
+            float: left;
+            margin-left: 15px;
         }
     </style>
 </head>
@@ -36,9 +51,13 @@
                 <label class="col-sm-2 control-label">邮箱</label>
 
                 <div class="col-sm-10">
-                    <spring-form:input type="text" id="username" path="username" class="form-control" required="required"
+                    <spring-form:input type="text" id="username" path="username" class="form-control float-left" required="required"
                                        placeholder="请输入邮箱" onBlur="checkUserName()"/>
-                    <span id="error_info_username" class="help-block color5" style="display: none;"></span>
+                    <span id="error_info_username" class="help-block color5 float-left-space" style="display: none;"></span>
+                </div>
+                <label class="col-sm-2 control-label"></label>
+
+                <div class="col-sm-10">
                     <span class="help-block color6"><i class="ico-prompt"></i>作为登录帐号，填写未被平台注册的邮箱</span>
                 </div>
             </div>
@@ -55,28 +74,30 @@
                 <label for="password" class="col-sm-2 control-label">密码</label>
 
                 <div class="col-sm-10">
-                    <spring-form:input id="password" type="password" path="password" class="form-control"
+                    <spring-form:input id="password" type="password" path="password" class="form-control float-left"
                                        required="required" placeholder="请输入密码" onKeyUp="pwStrength(this.value)"
                                        onBlur="checkPassword()"/>
-                    <span class="help-block"></span>
-                    <span id="error_info_password" class="passwordhelp-block color5" style="display: none;"></span>
+                    <span id="error_info_password" class="help-block color5 float-left-space" style="display: none;"></span>
+
+                    <p class="passwordhelp-block text-danger"></p>
                 </div>
                 <div class="pw-tips">
                     <span class="color3 fl">安全程度：</span>
 
-                    <div class="fl pw-safe pw-weak" style="margin-bottom: 10px;">
+                    <div class="fl pw-safe pw-weak" style="margin-bottom: 30px;">
                         <div class="pw-bar"></div>
                         <div class="pw-letter"><span id="strength_L">弱</span><span id="strength_M">中</span><span id="strength_H">强</span></div>
                     </div>
+
                 </div>
             </div>
             <div class="form-group">
                 <label for="passwordagain" class="col-sm-2 control-label">确认密码</label>
 
                 <div class="col-sm-10">
-                    <spring-form:input id="passwordagain" type="password" path="passwordAgain" class="form-control"
+                    <spring-form:input id="passwordagain" type="password" path="passwordAgain" class="form-control float-left"
                                        required="required" placeholder="请输入密码" onBlur="checkPasswordAgain()"/>
-                    <span id="error_info_passwordagain" class="help-block color5" style="display: none;"></span>
+                    <span id="error_info_passwordagain" class="help-block color5 float-left-space" style="display: none;"></span>
 
                     <p class="help-block text-danger"></p>
                 </div>
@@ -86,11 +107,15 @@
                 <label class="col-sm-2 control-label">验证码</label>
 
                 <div class="col-sm-10">
-                    <spring-form:input type="text" id="registercode" path="registerCode" class="form-control" cssStyle="width: 100px;"
+                    <spring-form:input type="text" id="registercode" path="registerCode" class="form-control float-left"
                                        required="required" maxlength="4" onBlur="checkRegisterCodeRight()"/>
-                    <img id="imageCode" src="${pageContext.request.contextPath}/chapp/userregistercode.html"/></span>
-                    &nbsp;<a href="javascript:;" onclick="imageChange()">看不清，换一张</a>
-                    <span id="error_info_registercode" class="help-block color5" style="display: none;"></span>
+                    <span id="error_info_registercode" class="help-block color5 float-left-space" style="display: none;"></span>
+                </div>
+
+                <label class="col-sm-2 control-label"></label>
+
+                <div class="col-sm-10">
+                    <img id="imageCode" src="${pageContext.request.contextPath}/chapp/userregistercode.html"/></span>&nbsp;<a href="javascript:;" onclick="imageChange()">看不清，换一张</a>
 
                     <p class="help-block text-danger"></p>
                 </div>
@@ -99,10 +124,10 @@
                 <label class="col-sm-2 control-label">&nbsp;</label>
 
                 <label class="col-sm-10">
-                    <spring-form:checkbox id="agreecondition" path="agreeCondition"  cssStyle="width: 30px;" required="required" onblur="checkAgreeCondition()"/>
-                    我已阅读并接受 <a target="_blank" href="${pageContext.request.contextPath}/chapp/agreecondition.html"
-                               class="color4"><label>《广电用户协议》</label></a>
-                    <span id="error_info_agreecondition" class="help-block color5" style="display: none;"></span>
+                    <spring-form:checkbox id="agreecondition" path="agreeCondition" cssStyle="width: 30px; float: left" required="required" onblur="checkAgreeCondition()"/>
+                    <label class=" float-left">我已阅读并接受</label> <a target="_blank" href="${pageContext.request.contextPath}/chapp/agreecondition.html"
+                               class="color4 float-left"><label >《广电用户协议》</label></a>
+                    <span id="error_info_agreecondition" class="help-block color5 float-left-space" style="display: none;"></span>
                 </label>
 
 
