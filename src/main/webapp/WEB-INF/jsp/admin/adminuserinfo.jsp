@@ -33,15 +33,21 @@
         <form class="form-horizontal">
             <div class="form-body">
                 <div class="form-group">
+                    <label for=" " class="col-sm-3 control-label">权限</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" value="系统管理员" readonly="true"/>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="" class="col-sm-3 control-label">用户名</label>
                     <div class="col-sm-9">
-                        <input value="${user.username}" id="" class="form-control" readonly="true"/>
+                        <input value="${user.username}" class="form-control" readonly="true"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="" class="col-sm-3 control-label">联系方式</label>
                     <div class="col-sm-9">
-                        <input value="${user.contactWay}" id="" class="form-control" readonly="true"/>
+                        <input value="${user.contactWay}" class="form-control" readonly="true"/>
                     </div>
                 </div>
                 <div class="form-group">

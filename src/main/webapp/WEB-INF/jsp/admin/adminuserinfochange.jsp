@@ -28,6 +28,7 @@
         </div>
         <form id="changepersionalinfoForm" class="form-horizontal" action="${pageContext.request.contextPath}/security/adminuserinfosubmit.html" method="post">
             <div class="form-body">
+                <input id="oldContactway" name="oldContactway" type="hidden" value="${user.contactWay}"/>
                 <div class="form-group">
                     <label for=" " class="col-sm-2 control-label">用户名</label>
                     <div class="col-sm-10">
@@ -45,7 +46,9 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">&nbsp;</label>
                     <div class="col-sm-10">
-                        <input type="button" class="btn-blue btn-disabled" value="返回" />
+                        <a href="${pageContext.request.contextPath}/security/adminuserinfo.html">
+                            <input type="button" class="btn-blue color1" value="返  回"/>
+                        </a>
                         <input type="button" class="btn-blue color1" value="确认修改" onclick="changeUserInfo(this.form);" />
                     </div>
                 </div>
@@ -61,12 +64,15 @@
 <script type="text/javascript">
     var contactWayValidate = false;
     function validateContactWay() {
+        var oldContactway = jQuery("#oldContactway").val();
         var contactWay = jQuery("#inputContactWay").val();
         if (contactWay == null || contactWay == '') {
-            jQuery("#contactWay_error_show").html("请输入联系方式！");
+            jQuery("#contactWay_error_show").html("<i class=\"ico-error\"></i>请输入联系方式！");
             jQuery("#contactWay_error_show").css("display", "block");
-        }
-        else {
+        } else if(oldContactway == contactWay) {
+            jQuery("#contactWay_error_show").html("<i class=\"ico-error\"></i>请输入不同的联系方式！");
+            jQuery("#contactWay_error_show").css("display", "block");
+        } else {
             jQuery("#contactWay_error_show").css("display", "none");
             contactWayValidate = true;
         }

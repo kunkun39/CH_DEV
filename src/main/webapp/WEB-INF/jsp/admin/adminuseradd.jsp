@@ -32,7 +32,7 @@
                     <label for=" " class="col-sm-2 control-label">联系方式</label>
                     <div class="col-sm-10">
                         <spring-form:input type="text" class="form-control" id=" " path="contactWay" placeholder="请输入邮箱等其他联系方式"/>
-                        <span class="help-block color3">作为登录帐号，填写未被平台注册的邮箱,非必填</span>
+                        <span class="help-block color3"><i class="ico-prompt"></i>作为登录帐号，填写未被平台注册的邮箱,非必填</span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -63,7 +63,9 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">&nbsp;</label>
                     <div class="col-sm-10">
-                        <input type="button" class="btn-blue btn-disabled" value="返回" />
+                        <a href="${pageContext.request.contextPath}/security/adminusers.html">
+                            <input type="button" class="btn-blue color1" value="返  回"/>
+                        </a>
                         <input type="button" class="btn-blue color1" value="确认添加" onclick="submitUserInfo(this.form);" />
                     </div>
                 </div>
@@ -89,14 +91,14 @@
     function validateUserName() {
         var userName = jQuery("#inputName").val();
         if (userName == null || userName == '') {
-            jQuery("#name_error_show").html("请输入用户名！");
+            jQuery("#name_error_show").html("<i class=\"ico-error\"></i>请输入用户名！");
             jQuery("#name_error_show").css("display", "block");
         }
         else {
             userNameValidate = true;
             SystemDWRHandler.validateUserNameDuplicate(userName, function(result) {
                 if (result) {
-                    jQuery("#name_error_show").html("该用户名已存在,请重新输入！");
+                    jQuery("#name_error_show").html("<i class=\"ico-error\"></i>该用户名已存在,请重新输入！");
                     jQuery("#name_error_show").css("display", "block");
                 }
                 else {
@@ -110,7 +112,7 @@
     function validatePassword() {
         var password = jQuery("#inputPassword").val();
         if (password == null || password == '') {
-            jQuery("#password_error_show").html("请输入密码！");
+            jQuery("#password_error_show").html("<i class=\"ico-error\"></i>请输入密码！");
             jQuery("#password_error_show").css("display", "block");
         }
         else {
@@ -123,11 +125,11 @@
         var confirmPassword = jQuery("#inputConfirmPassword").val();
         var password = jQuery("#inputPassword").val();
         if (confirmPassword == null || confirmPassword == '') {
-            jQuery("#confirm_password_error_show").html("请输入密码！");
+            jQuery("#confirm_password_error_show").html("<i class=\"ico-error\"></i>请输入密码！");
             jQuery("#confirm_password_error_show").css("display", "block");
         }
         else if (password != confirmPassword) {
-            jQuery("#confirm_password_error_show").html("两次密码不一致！");
+            jQuery("#confirm_password_error_show").html("<i class=\"ico-error\"></i>两次密码不一致！");
             jQuery("#confirm_password_error_show").css("display", "block");
         }
         else {
@@ -139,7 +141,7 @@
     function validateAuthCode() {
         var authCode = jQuery("#inputAuthCode").val();
         if (authCode == null || authCode == '') {
-            jQuery("#auth_code_error_show").html("请输入验证码！");
+            jQuery("#auth_code_error_show").html("<i class=\"ico-error\"></i>请输入验证码！");
             jQuery("#confirm_password_error_show").css("display", "block");
         }
         else {
@@ -150,11 +152,11 @@
 
     function submitUserInfo(form) {
         if (!userNameValidate) {
-            jQuery("#name_error_show").html("请输入用户名！");
+            jQuery("#name_error_show").html("<i class=\"ico-error\"></i>请输入用户名！");
             jQuery("#name_error_show").css("display", "block");
         }
         else if (!userNameDuplicate) {
-            jQuery("#name_error_show").html("该用户名已存在,请重新输入！");
+            jQuery("#name_error_show").html("<i class=\"ico-error\"></i>该用户名已存在,请重新输入！");
             jQuery("#name_error_show").css("display", "block");
         }
         else {

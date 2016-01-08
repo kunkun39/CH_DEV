@@ -101,8 +101,8 @@
             comfirmMessage =
                     "<h5>请输入拒绝理由:</h5>" +
                     "<textarea id=\"rejectReason\" name=\"rejectReason\"required=\"required\" rows=\"3\" cols=\"78\" maxlength=\"200\" onblur=\"validateRejectReason()\"></textarea>" +
-                    "<span class=\"help-block color6\">最多填写200个字</span>" +
-                    "<span id=\"reason_error_show\" class=\"help-block color5\" style=\"display: none;\"></span>";
+                    "<span id=\"reason_error_show\" class=\"help-block color5\" style=\"display: none;\"></span>" +
+                    "<span class=\"help-block color6\"><i class=\"ico-prompt\"></i>最多填写200个字</span>";
             checkRejectReason = true;
         } else if (appStatus == 'PASSED') {
             comfirmMessage = "确认审核通过应用\"" + appName + "\"?";
@@ -122,7 +122,7 @@
     function validateRejectReason() {
         var rejectReason = jQuery("#rejectReason").val();
         if (rejectReason == null || rejectReason == '') {
-            jQuery("#reason_error_show").html("拒绝理由不能为空!");
+            jQuery("#reason_error_show").html("<i class=\"ico-error\"></i>拒绝理由不能为空!");
             jQuery("#reason_error_show").css("display", "block");
         } else {
             jQuery("#reason_error_show").css("display", "none");

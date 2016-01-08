@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword" class="col-sm-2 control-label">旧密码</label>
+                    <label for="inputPassword" class="col-sm-2 control-label">原密码</label>
                     <div class="col-sm-10">
                         <input type="password" class="form-control" id="inputOldPassword" name="oldpwd" placeholder="请输入原密码" onblur="validateOldPassword(${user.id});" />
                         <span id="old_password_error_show" class="help-block color5" style="display: none;"></span>
@@ -61,7 +61,9 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">&nbsp;</label>
                     <div class="col-sm-10">
-                        <input type="button" class="btn-blue btn-disabled" value="返回" />
+                        <a href="${pageContext.request.contextPath}/security/adminuserinfo.html">
+                            <input type="button" class="btn-blue color1" value="返  回"/>
+                        </a>
                         <input type="button" class="btn-blue color1" value="确认修改" onclick="changePassword(this.form);" />
                     </div>
                 </div>
@@ -87,7 +89,7 @@
     function validateOldPassword(userId) {
         var password = jQuery("#inputOldPassword").val();
         if (password == null || password == '') {
-            jQuery("#old_password_error_show").html("请输入原密码!");
+            jQuery("#old_password_error_show").html("<i class=\"ico-error\"></i>请输入原密码!");
             jQuery("#old_password_error_show").css("display", "block");
         } else {
             oldPasswordJSValidate = true;
@@ -96,7 +98,7 @@
                     jQuery("#old_password_error_show").css("display", "none");
                     oldPasswordDBValidate = true;
                 } else {
-                    jQuery("#old_password_error_show").html("你输入的旧密码不正确,请重新输入!");
+                    jQuery("#old_password_error_show").html("<i class=\"ico-error\"></i>你输入的原密码不正确,请重新输入!");
                     jQuery("#old_password_error_show").css("display", "block");
                 }
             });
@@ -107,10 +109,10 @@
         var oldPassword = jQuery("#inputOldPassword").val();
         var newPassword = jQuery("#inputNewPassword").val();
         if (newPassword == null || newPassword == '') {
-            jQuery("#new_password_error_show").html("请输入新密码!");
+            jQuery("#new_password_error_show").html("<i class=\"ico-error\"></i>请输入新密码!");
             jQuery("#new_password_error_show").css("display", "block");
         } else if (newPassword != oldPassword) {
-            jQuery("#new_password_error_show").html("新密码不能和原密码相同!");
+            jQuery("#new_password_error_show").html("<i class=\"ico-error\"></i>新密码不能和原密码相同!");
             jQuery("#new_password_error_show").css("display", "block");
         } else {
             jQuery("#new_password_error_show").css("display", "none");
@@ -122,11 +124,11 @@
         var confirmPassword = jQuery("#inputConfirmPassword").val();
         var newPassword = jQuery("#inputNewPassword").val();
         if (confirmPassword == null || confirmPassword == '') {
-            jQuery("#confirm_password_error_show").html("请输入新密码!");
+            jQuery("#confirm_password_error_show").html("<i class=\"ico-error\"></i>请输入新密码!");
             jQuery("#confirm_password_error_show").css("display", "block");
         }
         else if (newPassword != confirmPassword) {
-            jQuery("#confirm_password_error_show").html("两次密码不一致!");
+            jQuery("#confirm_password_error_show").html("<i class=\"ico-error\"></i>两次密码不一致!");
             jQuery("#confirm_password_error_show").css("display", "block");
         }
         else {
@@ -137,11 +139,11 @@
 
     function changePassword(form) {
         if (!oldPasswordJSValidate) {
-            jQuery("#old_password_error_show").html("请输入旧密码!");
+            jQuery("#old_password_error_show").html("<i class=\"ico-error\"></i>请输入原密码!");
             jQuery("#old_password_error_show").css("display", "block");
         }
         else if (!oldPasswordDBValidate) {
-            jQuery("#old_password_error_show").html("你输入的旧密码不正确,请重新输入!");
+            jQuery("#old_password_error_show").html("<i class=\"ico-error\"></i>你输入的原密码不正确,请重新输入!");
             jQuery("#old_password_error_show").css("display", "block");
         }
         else {

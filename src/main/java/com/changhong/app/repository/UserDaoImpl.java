@@ -97,7 +97,7 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
         if (StringUtils.hasText(name)) {
             builder.append(" where u.name like '%" + name + "%' or u.username like '%" + name + "%'");
         }
-        builder.append(" order by u.id desc");
+        builder.append(" order by u.active desc , u.id asc");
 
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
         Query query = session.createQuery(builder.toString());
