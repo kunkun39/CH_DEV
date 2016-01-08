@@ -33,6 +33,23 @@
             float: left;
             margin-left: 15px;
         }
+
+        .form-control-agreecondition {
+            width: 320px;
+            display: block;
+            height: 34px;
+            padding: 6px 0px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            float: left;
+            color: #555;
+            background-color: #fff;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
+        }
     </style>
 </head>
 
@@ -84,6 +101,7 @@
                 <br/>
                 <br/>
                 <br/>
+
                 <div class="pw-tips">
                     <span class="color3 fl">安全程度：</span>
 
@@ -126,12 +144,13 @@
                 <label class="col-sm-2 control-label">&nbsp;</label>
 
                 <label class="col-sm-10">
-                    <spring-form:checkbox id="agreecondition" path="agreeCondition" cssStyle="width: 30px; float: left" required="required" onblur="checkAgreeCondition()"/>
-
-                    <label class="float-left">我已阅读并接受</label>
-                    <a target="_blank" href="${pageContext.request.contextPath}/chapp/agreecondition.html" class="color4 float-left">
-                        <label>《广电用户协议》</label>
-                    </a>
+                    <div class="form-control-agreecondition float-left">
+                        <spring-form:checkbox id="agreecondition" path="agreeCondition" cssStyle="width: 30px; float: left" required="required" onblur="checkAgreeCondition()"/>
+                        <label>我已阅读并接受</label>
+                        <a target="_blank" href="${pageContext.request.contextPath}/chapp/agreecondition.html" class="color4 ">
+                            <label>《广电用户协议》</label>
+                        </a>
+                    </div>
                     <span id="error_info_agreecondition" class="help-block color5 float-left-space" style="display: none;"></span>
                 </label>
 
