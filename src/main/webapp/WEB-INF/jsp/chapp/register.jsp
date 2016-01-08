@@ -127,8 +127,11 @@
 
                 <label class="col-sm-10">
                     <spring-form:checkbox id="agreecondition" path="agreeCondition" cssStyle="width: 30px; float: left" required="required" onblur="checkAgreeCondition()"/>
-                    <label class=" float-left">我已阅读并接受</label> <a target="_blank" href="${pageContext.request.contextPath}/chapp/agreecondition.html"
-                               class="color4 float-left"><label >《广电用户协议》</label></a>
+
+                    <label class="float-left">我已阅读并接受</label>
+                    <a target="_blank" href="${pageContext.request.contextPath}/chapp/agreecondition.html" class="color4 float-left">
+                        <label>《广电用户协议》</label>
+                    </a>
                     <span id="error_info_agreecondition" class="help-block color5 float-left-space" style="display: none;"></span>
                 </label>
 
@@ -180,49 +183,49 @@
         var cansubmit = true;
         //用户邮箱检查
         if (usernameState == 0) {
-            $("#error_info_username").css("display", "none");
+            jQuery("#error_info_username").css("display", "none");
         } else {
             cansubmit = false;
-            $("#error_info_username").css("display", "block");
+            jQuery("#error_info_username").css("display", "block");
             if (usernameState == 1) {
-                $("#error_info_username").html("<i class=\"ico-error\"></i>用户账号不能为空!");
+                jQuery("#error_info_username").html("<i class=\"ico-error\"></i>用户账号不能为空!");
             } else if (usernameState == 2) {
-                $("#error_info_username").html("<i class=\"ico-error\"></i>用户账号格式不正确!");
+                jQuery("#error_info_username").html("<i class=\"ico-error\"></i>用户账号格式不正确!");
             } else if (usernameState == 3) {
-                $("#error_info_username").html("<i class=\"ico-error\"></i>用户已存在!");
+                jQuery("#error_info_username").html("<i class=\"ico-error\"></i>用户已存在!");
             }
         }
         //密码检查
         if (passwordChecked) {
-            $("#error_info_password").css("display", "none");
+            jQuery("#error_info_password").css("display", "none");
         } else {
             cansubmit = false;
-            $("#error_info_password").html("<i class=\"ico-error\"></i>请输入6到18位密码!");
-            $("#error_info_password").css("display", "block");
+            jQuery("#error_info_password").html("<i class=\"ico-error\"></i>请输入6到18位密码!");
+            jQuery("#error_info_password").css("display", "block");
         }
         //确认密码
         if (passwordagainChecked) {
-            $("#error_info_passwordagain").css("display", "none");
+            jQuery("#error_info_passwordagain").css("display", "none");
         } else {
             cansubmit = false;
-            $("#error_info_passwordagain").html("<i class=\"ico-error\"></i>确认密码填写有误!");
-            $("#error_info_passwordagain").css("display", "block");
+            jQuery("#error_info_passwordagain").html("<i class=\"ico-error\"></i>确认密码填写有误!");
+            jQuery("#error_info_passwordagain").css("display", "block");
         }
         //验证码
         if (registercodeChecked) {
-            $("#error_info_registercode").css("display", "none");
+            jQuery("#error_info_registercode").css("display", "none");
         } else {
             cansubmit = false;
-            $("#error_info_registercode").html("<i class=\"ico-error\"></i>验证码填写有误!");
-            $("#error_info_registercode").css("display", "block");
+            jQuery("#error_info_registercode").html("<i class=\"ico-error\"></i>验证码填写有误!");
+            jQuery("#error_info_registercode").css("display", "block");
         }
         //协议
         if (agreeconditionChecked) {
-            $("#error_info_agreecondition").css("display", "none");//协议没同意
+            jQuery("#error_info_agreecondition").css("display", "none");//协议没同意
         } else {
             cansubmit = false;
-            $("#error_info_agreecondition").html("<span class=\"error-block color5\" ><i class=\"ico-error\"></i>请先阅读并同意协议!");
-            $("#error_info_agreecondition").css("display", "block");
+            jQuery("#error_info_agreecondition").html("<span class=\"error-block color5\" ><i class=\"ico-error\"></i>请先阅读并同意协议!");
+            jQuery("#error_info_agreecondition").css("display", "block");
         }
         if (cansubmit) {
             form.submit();
@@ -234,9 +237,9 @@
      * @returns {boolean} true:校验通过，false；有问题，不通过
      */
     function checkUserName() {
-        var username = $("#username").val();//邮箱
+        var username = jQuery("#username").val();//邮箱
         if (username == null || username == "") {
-            $("#error_info_username").css("display", "block");
+            jQuery("#error_info_username").css("display", "block");
             jQuery("#error_info_username").html("<i class=\"ico-error\"></i>用户账号不能为空!");
             usernameState = 1;
             return;
@@ -245,13 +248,13 @@
         SystemDWRHandler.checkUserNameRight(username, function (result) {
             usernameState = result;
             if (result == 2) {//返回1格式不对
-                $("#error_info_username").html("<i class=\"ico-error\"></i>账号格式不正确!");
-                $("#error_info_username").css("display", "block");
+                jQuery("#error_info_username").html("<i class=\"ico-error\"></i>账号格式不正确!");
+                jQuery("#error_info_username").css("display", "block");
             } else if (result == 3) {//返回2用户名已存在
-                $("#error_info_username").html("<i class=\"ico-error\"></i>账号已存在!");
-                $("#error_info_username").css("display", "block");
+                jQuery("#error_info_username").html("<i class=\"ico-error\"></i>账号已存在!");
+                jQuery("#error_info_username").css("display", "block");
             } else {//返回0 正常通过
-                $("#error_info_username").css("display", "none");
+                jQuery("#error_info_username").css("display", "none");
             }
         });
     }
@@ -260,13 +263,13 @@
      * @returns {boolean} true:校验通过
      */
     function checkPassword() {
-        var password = $("#password").val();//密码
+        var password = jQuery("#password").val();//密码
         if (password == null || password == "" || password.length < 6 || password.length > 18) {
-            $("#error_info_password").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>请输入6到18位密码!");
-            $("#error_info_password").css("display", "block");
+            jQuery("#error_info_password").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>请输入6到18位密码!");
+            jQuery("#error_info_password").css("display", "block");
             passwordChecked = false;
         } else {
-            $("#error_info_password").css("display", "none");
+            jQuery("#error_info_password").css("display", "none");
             passwordChecked = true;
         }
     }
@@ -275,20 +278,20 @@
      * @returns {boolean} true：校验通过
      */
     function checkPasswordAgain() {
-        var password = $("#password").val();//密码
-        var passwordagain = $("#passwordagain").val();//确认密码
+        var password = jQuery("#password").val();//密码
+        var passwordagain = jQuery("#passwordagain").val();//确认密码
         if (passwordagain == null || passwordagain == "" || passwordagain.length < 6 || passwordagain.length > 18) {
-            $("#error_info_passwordagain").html("<i class=\"ico-error\"></i>请输入6到18位密码!");
-            $("#error_info_passwordagain").css("display", "block");
+            jQuery("#error_info_passwordagain").html("<i class=\"ico-error\"></i>请输入6到18位密码!");
+            jQuery("#error_info_passwordagain").css("display", "block");
             passwordagainChecked = false;
             return;
         }
         if (password != passwordagain) {
-            $("#error_info_passwordagain").html("<i class=\"ico-error\"></i>确认密码和密码不一致!");
-            $("#error_info_passwordagain").css("display", "block");
+            jQuery("#error_info_passwordagain").html("<i class=\"ico-error\"></i>确认密码和密码不一致!");
+            jQuery("#error_info_passwordagain").css("display", "block");
             passwordagainChecked = false;
         } else {
-            $("#error_info_passwordagain").css("display", "none");
+            jQuery("#error_info_passwordagain").css("display", "none");
             passwordagainChecked = true;
         }
     }
@@ -296,14 +299,14 @@
      *检查验证码是否正常
      */
     function checkRegisterCodeRight() {
-        var registercode = $("#registercode").val();//验证码
+        var registercode = jQuery("#registercode").val();//验证码
         SystemDWRHandler.checkRegisterCodeRight(registercode, function (result) {
             if (result) {
-                $("#error_info_registercode").css("display", "none");
+                jQuery("#error_info_registercode").css("display", "none");
                 registercodeChecked = true;
             } else {
-                $("#error_info_registercode").html("<i class=\"ico-error\"></i>验证码不正确!");
-                $("#error_info_registercode").css("display", "block");
+                jQuery("#error_info_registercode").html("<i class=\"ico-error\"></i>验证码不正确!");
+                jQuery("#error_info_registercode").css("display", "block");
                 registercodeChecked = false;
             }
         });
@@ -314,11 +317,11 @@
     function checkAgreeCondition() {
         var checkbox = document.getElementById("agreecondition");
         if (checkbox.checked == true) {
-            $("#error_info_agreecondition").css("display", "none");
+            jQuery("#error_info_agreecondition").css("display", "none");
             agreeconditionChecked = true;
         } else {
-            $("#error_info_agreecondition").html("<i class=\"ico-error\"></i>请先阅读并同意协议!");
-            $("#error_info_agreecondition").css("display", "block");
+            jQuery("#error_info_agreecondition").html("<i class=\"ico-error\"></i>请先阅读并同意协议!");
+            jQuery("#error_info_agreecondition").css("display", "block");
             agreeconditionChecked = false;
         }
     }
