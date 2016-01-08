@@ -61,7 +61,7 @@
                         <input type="button" class="btn-yellow color1" value="注册" onclick="registerClient();"/>
                         <input type="button" class="btn-blue color1" value="登录" onclick="loginClient(this.form);"/>
                         <br/>
-                        <c:if test="${SPRING_SECURITY_LAST_EXCEPTION == null}">
+                        <c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
                             <div class="login-help" style="">
                                 <span class="help-block color5"><i class="ico-error"></i>对不起, 用户名或者密码不正确!</span>
                             </div>

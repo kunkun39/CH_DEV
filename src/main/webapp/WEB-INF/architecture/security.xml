@@ -7,7 +7,7 @@
              http://www.springframework.org/schema/security
              http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 
-    <security:http auto-config="true" access-denied-page="/chapp/index.html">
+    <security:http auto-config="true" access-denied-page="/chapp/login.html">
         <!-- 页面标签的使用与权限配置相对应-->
         <security:intercept-url pattern="/chapp/**" access="ROLE_ANONYMOUS,ROLE_USRE,ROLE_ADMIN"/>
 
@@ -17,7 +17,7 @@
         <security:form-login login-page="/chapp/login.html" authentication-success-handler-ref="appMarketAuthenticationSuccessHandler"/>
 
         <!-- logout 页面，logout后清除session -->
-        <security:logout logout-success-url="/chapp/index.html" invalidate-session="true"/>
+        <security:logout logout-success-url="/chapp/login.html" invalidate-session="true"/>
 
 
         <!-- session 失效后跳转的页面，最大登陆次数 -->
