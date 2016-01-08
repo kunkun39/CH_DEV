@@ -46,8 +46,8 @@
                 <div id="tab1">
                     <form id="client_app_search" action="${pageContext.request.contextPath}/security/clientappoverview.html" method="post">
                         <div class="input-group">
-                            <a href="${pageContext.request.contextPath}/security/appfirststep.html">
-                                <input type="button" class="btn-blue color1 fl" value="添加应用"/>
+                            <a href="javascript:void(0);">
+                                <input type="button" class="btn-blue color1 fl" value="添加应用" onclick="addNewApp();"/>
                             </a>
                             <input id="appStatus" name="appStatus" type="hidden" value="${paging.appStatus}"/>
                             <input id="appName" name="appName" type="text" placeholder="应用名称" value="${paging.appName}" class="input-sm form-control"/>
@@ -120,6 +120,11 @@
 <script src="${pageContext.request.contextPath}/javascript/vendor/tab.js"></script>
 
 <script type="text/javascript">
+
+    function addNewApp() {
+        window.location.href = "${pageContext.request.contextPath}/security/appfirststep.html";
+    }
+
     function resetStatus(appStatus) {
         jQuery("#appStatus").val(appStatus);
         searchClientApp()

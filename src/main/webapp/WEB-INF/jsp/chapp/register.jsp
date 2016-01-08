@@ -81,6 +81,9 @@
 
                     <p class="passwordhelp-block text-danger"></p>
                 </div>
+                <br/>
+                <br/>
+                <br/>
                 <div class="pw-tips">
                     <span class="color3 fl">安全程度：</span>
 
@@ -88,7 +91,6 @@
                         <div class="pw-bar"></div>
                         <div class="pw-letter"><span id="strength_L">弱</span><span id="strength_M">中</span><span id="strength_H">强</span></div>
                     </div>
-
                 </div>
             </div>
             <div class="form-group">
