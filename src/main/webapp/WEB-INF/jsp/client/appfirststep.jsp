@@ -154,7 +154,7 @@
 
                     <div class="col-sm-9">
                         <spring-form:textarea id="appDescription" path="appDescription" required="required" rows="8"
-                                              cols="80" onblur="validateAppDesc()"/>
+                                              cols="80" onblur="validateAppDesc()" maxlength="200" placeholder="请输入应用描述..."/>
                         <span id="desc_error_show" class="help-block color5" style="display: none;"></span>
                         <span class="help-block color6" style="color: red;"><i class="ico-error"></i>最多填写200个字</span>
                     </div>
@@ -427,6 +427,7 @@
                 jQuery("#proBar").css("width", data.percentage + '%');
                 <%--显示进度文本值--%>
                 jQuery("#proVal").html(data.percentage + '%');
+
                 if (data.percentage == 100) {
                     //stop requirement
                     window.clearInterval(intId);
