@@ -84,7 +84,7 @@ a.color4:hover { color: #3292ff; }
 .nav-tabs>li>a { border: none; margin-right: 20px; }
 .nav>li>a:focus, .nav>li>a:hover { background-color: #fff; }
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover { color: #10bdcc; cursor: default; background-color: #fff; border: none; border-bottom: 3px solid #10bdcc; }
-.input-group .input-sm { width: 220px; height: 32px; border: 1px solid #e7e7eb; border-radius: 0; }
+.input-group .input-sm { width: 220px; height: 34px; border: 1px solid #e7e7eb; border-radius: 0; }
 .input-group-btn { width: 32px; height: 32px; border: 1px solid #e7e7eb; }
 .input-group-btn .btn{ background-color: #fff; }
 .ie8 .btn{margin-left: -2px;}

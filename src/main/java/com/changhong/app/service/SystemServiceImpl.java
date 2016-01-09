@@ -30,6 +30,8 @@ public class SystemServiceImpl implements SystemService {
     @Autowired
     private SystemDao systemDao;
 
+    /* admin user */
+
     public List<AdminUserDTO> obtainAdminUsers(String keyWords, int startPosition, int pageSize) {
         List<AdminUser> adminUserList = userDao.loadAdminUsersByNameOrContactway(keyWords, startPosition, pageSize);
 
@@ -38,24 +40,6 @@ public class SystemServiceImpl implements SystemService {
 
     public int obtainAdminUserSize(String keyWords) {
         return userDao.loadAdminUserSizeByNameOrContactway(keyWords);
-    }
-
-    public List<ClientUserDTO> obtainClientUsers(String name, int startPosition, int pageSize) {
-        List<ClientUser> clientUserList = userDao.loadAdminDevelopers(name, startPosition, pageSize);
-        return ClientUserWebAssember.DomainToDto(clientUserList);
-    }
-
-    public int ObtainClientUserSize(String name) {
-        return userDao.loadAdminDeveloperSize(name);
-    }
-
-    public List<MarketAppDTO> obtainMarketApps(String appName, String appStatus, int startPosition, int pageSize) {
-        List<MarketApp> marketAppList = systemDao.loadMarketApps(appName, appStatus, startPosition, pageSize);
-        return MarketAppWebAssember.toMarketAppDTOList(marketAppList);
-    }
-
-    public int obtainMarketAppSize(String appName, String appStatus) {
-        return systemDao.loadMarketAppSize(appName, appStatus);
     }
 
     public int insertAdminUser(AdminUserDTO dto) {
@@ -75,31 +59,6 @@ public class SystemServiceImpl implements SystemService {
             return false;
         }
         return true;
-    }
-
-    public MarketAppDTO obtainMarketApp(int appId) {
-        MarketApp marketApp = (MarketApp) systemDao.findById(appId, MarketApp.class);
-        return MarketAppWebAssember.toMarketAppDetailsDTO(marketApp);
-    }
-
-    public void updateMarketAppStatus(int appId, String appStatus, String rejectReason) {
-        if (AppStatus.isAppStatus(appStatus)) {
-            MarketApp marketApp = (MarketApp) systemDao.findById(appId, MarketApp.class);
-
-            if (marketApp != null) {
-                AppStatusChangeAction action = new AppStatusChangeAction(true, appId, marketApp.getAppStatus(), AppStatus.valueOf(appStatus), rejectReason);
-                systemDao.saveOrUpdate(AppHistory.generateAppStatusChangeHistory(action));
-                marketApp.setAppStatus(AppStatus.valueOf(appStatus));
-            }
-        }
-    }
-
-    public void updateDeloperStatus(int developerId, boolean enabled) {
-        ClientUser clientUser = (ClientUser) userDao.findById(developerId, ClientUser.class);
-
-        if(clientUser != null) {
-            clientUser.setEnabled(enabled);
-        }
     }
 
     public AdminUserDTO obtainAdminUserById(int userId) {
@@ -124,6 +83,53 @@ public class SystemServiceImpl implements SystemService {
                 adminUser.setContactWay(contextway);
             } else if (StringUtils.hasText(password)) {
                 adminUser.setPassword(password);
+            }
+        }
+    }
+
+    /* client user */
+
+    public List<ClientUserDTO> obtainClientUsers(String name, int startPosition, int pageSize) {
+        List<ClientUser> clientUserList = userDao.loadAdminDevelopers(name, startPosition, pageSize);
+        return ClientUserWebAssember.DomainToDto(clientUserList);
+    }
+
+    public int ObtainClientUserSize(String name) {
+        return userDao.loadAdminDeveloperSize(name);
+    }
+
+    public void updateDeloperStatus(int developerId, boolean enabled) {
+        ClientUser clientUser = (ClientUser) userDao.findById(developerId, ClientUser.class);
+
+        if(clientUser != null) {
+            clientUser.setEnabled(enabled);
+        }
+    }
+
+    /* market app */
+
+    public List<MarketAppDTO> obtainMarketApps(String appName, String appStatus, int startPosition, int pageSize) {
+        List<MarketApp> marketAppList = systemDao.loadMarketApps(appName, appStatus, startPosition, pageSize);
+        return MarketAppWebAssember.toMarketAppDTOList(marketAppList);
+    }
+
+    public int obtainMarketAppSize(String appName, String appStatus) {
+        return systemDao.loadMarketAppSize(appName, appStatus);
+    }
+
+    public MarketAppDTO obtainMarketApp(int appId) {
+        MarketApp marketApp = (MarketApp) systemDao.findById(appId, MarketApp.class);
+        return MarketAppWebAssember.toMarketAppDetailsDTO(marketApp);
+    }
+
+    public void updateMarketAppStatus(int appId, String appStatus, String rejectReason) {
+        if (AppStatus.isAppStatus(appStatus)) {
+            MarketApp marketApp = (MarketApp) systemDao.findById(appId, MarketApp.class);
+
+            if (marketApp != null) {
+                AppStatusChangeAction action = new AppStatusChangeAction(true, appId, marketApp.getAppStatus(), AppStatus.valueOf(appStatus), rejectReason);
+                systemDao.saveOrUpdate(AppHistory.generateAppStatusChangeHistory(action));
+                marketApp.setAppStatus(AppStatus.valueOf(appStatus));
             }
         }
     }
