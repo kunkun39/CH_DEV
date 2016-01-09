@@ -44,22 +44,31 @@
 
 <div class="col-md-12 text-center " style="margin-top: -320px">
     <div class="item-log">
-        <img class="img-logo" src="${pageContext.request.contextPath}/images/aboutus-logo.jpg">
+        <img class="img-logo" src="${pageContext.request.contextPath}/images/aboutus-logo.png">
     </div>
 
-    <h2 class="color3 font-h1" style="font-size: 45px">联系我们</h2>
+    <%--<h1 class="color3 font-h1" style="font-size: 45px">联系我们</h2>--%>
+    <div style="margin-top:35px ">
+        <h1 style="font-size:45px" class="color3 font-h1">联系我们</h1>
+    </div>
 
-    <div style="margin-top: 41px">
+    <div style="margin-top: 44px">
         <h3>
-            <p class="color3 h4">四川省成都市高新区天府大道111号</p>
-
-            <p class="color3 h4">sjdfsdfjk@kjcrrf.com</p>
-
-            <p class="color3 h4">1800-1231-234</p>
-
-            <p class="color3 h4" style="margin-top: -1px">1322-1238-795</p>
+            <p style="font-size: 14px;" class=" color3 h4">四川省成都市高新区天府大道111号
+                &nbsp;
+                &nbsp;
+                sjdfsdfjk@kjcrrf.com
+                &nbsp;
+                &nbsp;
+                1800-1231-234
+                &nbsp;
+                &nbsp;
+                1322-1238-795 </p>
         </h3>
     </div>
+</div>
+
+
 </div>
 
 
