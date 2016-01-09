@@ -30,9 +30,9 @@
 
 <!--banner开始-->
 <div class="homepage-banner">
-<div style="width:728px;height:200px;margin-top:0px;">
+<div style="width:728px;height:180px;margin-top:0px;">
 </div>
-<div style="width:728px;height:200px;margin:0px auto;">
+<div style="width:728px;height:180px;margin:0px auto;">
 		<ul class="round">
 			<li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header1.jpg" alt="" /></li>
 			<li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header2.jpg" alt="" /></li>
