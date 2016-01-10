@@ -54,13 +54,15 @@
                 <!--<prop key="/security/clientchangepass.html">clientChangePassController</prop>-->
 
                 <!--用户部分-->
-                <prop key="/chapp/login.html">loginController</prop>
+                <prop key="/chapp/login.html">userLoginController</prop>
                 <prop key="/chapp/userregister.html">userRegisterController</prop>
                 <prop key="/chapp/userregistercode.html">userRegisterCodeController</prop>
-                <prop key="/chapp/userregistermailsended.html">userRegisterMailSendedController</prop>
                 <prop key="/chapp/agreecondition.html">userAgreeConditionController</prop>
                 <prop key="/chapp/finishregister.html">userRegisterActiveController</prop>
-                <prop key="/chapp/resendmail.html">userResendMailController</prop>
+                <prop key="/chapp/userMailSend.html">userMailSendController</prop>
+                <prop key="/chapp/usertopwdlookback.html">userToPwdLookBackController</prop>
+                <prop key="/chapp/finishpwdlookbackmail.html">finishPwdLookbackMailController</prop>
+                <prop key="/chapp/userpwdlookback.html">userPwdLookBackController</prop>
 
                 <!--公用部分-->
                 <prop key="/security/apphistory.html">commonAppHistoryController</prop>
@@ -142,28 +144,34 @@
     </bean>
 
     <!--用户部分 -->
-    <bean id="loginController" class="com.changhong.app.web.controller.user.LoginController"/>
+    <bean id="userLoginController" class="com.changhong.app.web.controller.user.UserLoginController"/>
 
     <bean id="userRegisterController" class="com.changhong.app.web.controller.user.UserRegisterController">
         <property name="userService" ref="userService"/>
         <property name="serverContext" value="${application.context}"/>
     </bean>
 
-    <bean id="userRegisterCodeController" class="com.changhong.app.web.controller.user.UserRegisterCodeController">
-    </bean>
+    <bean id="userRegisterCodeController" class="com.changhong.app.web.controller.user.UserRegisterCodeController"/>
 
-    <bean id="userAgreeConditionController" class="com.changhong.app.web.controller.user.UserAgreeConditionController">
-    </bean>
+    <bean id="userAgreeConditionController" class="com.changhong.app.web.controller.user.UserAgreeConditionController"/>
 
     <bean id="userRegisterActiveController" class="com.changhong.app.web.controller.user.UserRegisterActiveController">
         <property name="userService" ref="userService"/>
     </bean>
 
-    <bean id="userRegisterMailSendedController"
-          class="com.changhong.app.web.controller.user.UserRegisterMailSendedController">
+    <bean id="userToPwdLookBackController"  class="com.changhong.app.web.controller.user.UserToPwdLookBackController"/>
+
+    <bean id="finishPwdLookbackMailController" class="com.changhong.app.web.controller.user.UserPwdBackMailBackController">
+        <property name="userService" ref="userService"/>
+        <property name="serverContext" value="${application.context}"/>
     </bean>
 
-    <bean id="userResendMailController" class="com.changhong.app.web.controller.user.UserResendMailController">
+    <bean id="userPwdLookBackController" class="com.changhong.app.web.controller.user.UserPwdLookBackController">
+        <property name="userService" ref="userService"/>
+        <property name="serverContext" value="${application.context}"/>
+    </bean>
+
+    <bean id="userMailSendController" class="com.changhong.app.web.controller.user.UserMailSendController">
         <property name="userService" ref="userService"/>
         <property name="serverContext" value="${application.context}"/>
     </bean>
