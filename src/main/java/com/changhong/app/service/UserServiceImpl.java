@@ -7,6 +7,7 @@ import com.changhong.app.domain.RegisterConfirm;
 import com.changhong.app.repository.ClientDao;
 import com.changhong.app.repository.UserDao;
 import com.changhong.app.thread.ApplicationThreadPool;
+import com.changhong.app.thread.PwdLookBackMailSendThread;
 import com.changhong.app.thread.RegisterMailSendThread;
 import com.changhong.app.utils.SecurityUtils;
 import com.changhong.app.web.facade.assember.AdminUserWebAssember;
@@ -84,7 +85,6 @@ public class UserServiceImpl implements UserService {
      */
     public int obtainClientUserRegisterActive(String username, String validateNumber) {
         RegisterConfirm confirm = userDao.loadClientUserRegisterConfirm(validateNumber);
-        log.debug("obtainClientUserRegisterActive " + confirm);
 
         if (confirm == null) {
             return 4;//验证信息为空
@@ -110,8 +110,37 @@ public class UserServiceImpl implements UserService {
         }
 
     }
-
     /**
+     * 检测用户修改密码认证邮件状态
+     *
+     * @param username       用户注册邮箱
+     * @param validateNumber 随机验证码
+     * @return 返回注册状态 1：成功；2：验证超时;3:改用户已经验证成功;4:验证信息有异常
+     */
+    public int obtainPwdLookbackActive(String username, String validateNumber) {
+        RegisterConfirm confirm = userDao.loadClientUserRegisterConfirm(validateNumber);
+
+        if (confirm == null) {
+            return 4;//验证信息为空
+        }
+
+        if (confirm.isValidateConfirm()) {
+            return 3;//已经认证过
+        }
+
+        long nowTime = new Date().getTime();
+        long registerTime = confirm.getTimestamp().getTime();
+        confirm.setValidateConfirm(true);
+
+        if ((registerTime + TWO_FOUR_HOUR) >= nowTime) {
+            return 1;//注册成功
+        } else {
+            //验证超过24小时
+            return 2;
+        }
+
+    }
+ /**
      * 重新发送邮件
      *
      * @param username
@@ -124,6 +153,29 @@ public class UserServiceImpl implements UserService {
         //send email out or send message out
         RegisterMailSendThread send = new RegisterMailSendThread(username, confirm);
         ApplicationThreadPool.executeThread(send);
+    }
+
+    /**
+     * 密码找回邮件发送
+     * @param username
+     */
+    public void handlePwdLookBackSendMail(String username) {
+        //save validation
+        RegisterConfirm confirm = new RegisterConfirm(username);
+        userDao.saveOrUpdate(confirm);
+
+        //send email out or send message out
+        PwdLookBackMailSendThread send = new PwdLookBackMailSendThread(username, confirm);
+        ApplicationThreadPool.executeThread(send);
+    }
+
+    /**
+     * 更改密码
+     * @param username
+     * @param newPassword
+     */
+    public void updateUserPassword(String username,String newPassword){
+        userDao.updateUserPassword(username, newPassword);
     }
 
 //    public UserPasswordDTO obtainPasswordByUserId(int userId) {

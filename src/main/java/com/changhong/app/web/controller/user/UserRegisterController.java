@@ -30,7 +30,7 @@ public class UserRegisterController extends SimpleFormController {
     public UserRegisterController() {
         setCommandClass(ClientUserDTO.class);
         setCommandName("user");
-        setFormView("/chapp/register");
+        setFormView("/chapp/userregister");
     }
 
     /**
@@ -84,9 +84,11 @@ public class UserRegisterController extends SimpleFormController {
         userService.changeClientUserDetails(clientUserDTO);
 
         Map<String, Object> model = new HashMap<String, Object>();
-        model.put("username", clientUserDTO.getUsername());
+        model.put("usernamenormal", clientUserDTO.getUsername());//未加密用户名
+        model.put("mailtype", 0);//邮件类型 0表示注册
+        model.put("isresend", false);//邮件是否是重新发送
 
-        ModelAndView modelAndView = new ModelAndView(new RedirectView("/" + serverContext + "/chapp/userregistermailsended.html"),model);
+        ModelAndView modelAndView = new ModelAndView(new RedirectView("/" + serverContext + "/chapp/userMailSend.html"),model);
 
         return modelAndView;
     }

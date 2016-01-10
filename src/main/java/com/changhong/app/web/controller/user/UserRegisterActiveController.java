@@ -42,7 +42,6 @@ public class UserRegisterActiveController extends AbstractController {
                 //验证注册信息
                 int registerActive = userService.obtainClientUserRegisterActive(username, validateNumber);
 
-                model.put("PAGE_KEY", "SERVICEUS");
                 model.put("username", username);
 
                 if (1 == registerActive) {
@@ -51,18 +50,18 @@ public class UserRegisterActiveController extends AbstractController {
                 } else if (2 == registerActive) {
                     //验证失效，超过24小时
                     model.put("username", tokens[0]);
-                    model.put("INFO_KEY", "NOT_OK");
+                    model.put("INFO_KEY", "OUTTIME_REGISTER");
                 } else if (3 == registerActive) {
                     //已经验证过
-                    model.put("INFO_KEY", "ALREADY");
+                    model.put("INFO_KEY", "USED_REGISTER");
                 } else {
                     //验证信息有异常
-                    model.put("INFO_KEY", "EXCEPTION");
+                    model.put("INFO_KEY", "EXCEPTION_REGISTER");
                 }
 
             } catch (Exception e) {
                 logger.error(e);
-                model.put("INFO_KEY", "EXCEPTION");
+                model.put("INFO_KEY", "EXCEPTION_REGISTER");
             }
             return new ModelAndView("chapp/userregisterinfo", model);
         }

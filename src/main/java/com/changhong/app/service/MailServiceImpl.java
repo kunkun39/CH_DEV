@@ -57,7 +57,36 @@ public class MailServiceImpl implements MailService, InitializingBean {
                 "\n" +
                 "                                                                                                                             广电应用市场平台组\n" +
                 "\n" +
-                "（本邮件为系统自动发出请不要回复）";
+                "若链接无法直接点开，请复制链接到浏览器中打开！（本邮件为系统自动发出请不要回复）";
+
+        sendEmail(sendMail, title, content);
+    }
+
+    /**
+     * 找回密码邮件发送
+     * @param sendMail
+     * @param validateNumber
+     * @throws Exception
+     */
+    @Override
+    public void sendUserPWDLookBackMail(String sendMail, String validateNumber) throws Exception {
+        String encUserId = DesUtils.getEncString(sendMail);
+        String encValidationNumber = DesUtils.getEncString(validateNumber);
+        String code = encUserId + "||" + encValidationNumber;
+
+        String title = "广电应用市场用户密码找回";
+        String content = "尊敬的开发者：\n" +
+                "\n" +
+                "您好!\n" +
+                "\n" +
+                "欢迎使用广电应用市场开放平台！\n" +
+                "\n" +
+                "点击下面的链接设置新密码:" + applicationHost + "chapp/finishpwdlookbackmail.html?a=" + code + "\n" +
+                "\n" +
+                "\n" +
+                "                                                                                                                             广电应用市场平台组\n" +
+                "\n" +
+                "若链接无法直接点开，请复制链接到浏览器中打开！（本邮件为系统自动发出请不要回复）";
 
         sendEmail(sendMail, title, content);
     }

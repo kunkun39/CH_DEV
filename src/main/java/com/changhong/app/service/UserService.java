@@ -24,7 +24,13 @@ public interface UserService extends UserDetailsService {
 
     int obtainClientUserRegisterActive(String username, String validateNumber);
 
-    public void handleClientResendMail(String username);
+    int obtainPwdLookbackActive(String username, String validateNumber);
+
+    void handleClientResendMail(String username);
+
+    void handlePwdLookBackSendMail(String username);
+
+    void updateUserPassword(String username, String newPassword);
 
 //    UserPasswordDTO obtainPasswordByUserId(int userId);
 

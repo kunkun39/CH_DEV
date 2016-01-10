@@ -2,6 +2,8 @@ package com.changhong.app.repository;
 
 import com.changhong.app.domain.*;
 import com.changhong.app.web.facade.dto.ClientUserDTO;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,6 +19,7 @@ import java.util.List;
  */
 @Repository("userDao")
 public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
+    private static  final Log log= LogFactory.getLog(UserDaoImpl.class);
 
     public UserDetails findUserByName(String username) {
         List<Auth> auths = getHibernateTemplate().find("from AdminUser u where u.username = ? and u.enabled = true", username);
@@ -147,7 +150,7 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
      */
     @Override
     public ClientUser loadClientUser(String username) {
-        List<ClientUser> userList = getHibernateTemplate().find("from ClientUser u where u.username = ?", new Object[]{username});
+        List<ClientUser> userList = getHibernateTemplate().find("from ClientUser u where u.username = ? ", new Object[]{username});
         return userList.isEmpty() ? null : userList.get(0);
     }
 
@@ -159,6 +162,18 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
             return null;
         }
         return confirms.get(0);
+    }
+
+    /**
+     * 更新密码
+     * @param username
+     * @param newPassword
+     */
+    public void updateUserPassword(String username, String newPassword) {
+        log.info("update 1="+username+" 2="+newPassword+" 3="+loadClientUserExist(username));
+        ClientUser clientUser=loadClientUser(username);
+        clientUser.setPassword(newPassword);
+        getHibernateTemplate().update(clientUser);
     }
 
 }

@@ -43,4 +43,6 @@ public interface UserDao extends EntityObjectDao {
     ClientUser loadClientUser(String username);
 
     RegisterConfirm loadClientUserRegisterConfirm(String validateNumber);
+
+    void updateUserPassword(String username, String newPassword);
 }

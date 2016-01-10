@@ -14,4 +14,12 @@ public interface MailService {
      * @throws Exception
      */
     void sendUserRegisterMail(String sendMail, String validateNumber) throws Exception;
+
+    /**
+     * 发送密码找回邮件
+     * @param sendMail
+     * @param validateNumber
+     * @throws Exception
+     */
+    void sendUserPWDLookBackMail(String sendMail, String validateNumber) throws Exception;
 }
