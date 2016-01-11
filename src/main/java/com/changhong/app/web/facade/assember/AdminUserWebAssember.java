@@ -69,9 +69,5 @@ public class AdminUserWebAssember {
     }
 
 
-    public static UserPasswordDTO toPasswordDTO(Auth auth) {
-        int id = auth.getId();
-        String username = auth.getUsername();
-        return new UserPasswordDTO(id,username);
-    }
+
 }

@@ -51,7 +51,7 @@
                 <prop key="/security/clientappoverview.html">clientAppOverviewController</prop>
                 <prop key="/security/clientselfinfo.html">clientSelfInfoController</prop>
                 <prop key="/security/clientconfirmchange.html">clientConfirmChangeController</prop>
-                <!--<prop key="/security/clientchangepass.html">clientChangePassController</prop>-->
+                <prop key="/security/clientchangepass.html">clientChangePassController</prop>
 
                 <!--用户部分-->
                 <prop key="/chapp/login.html">userLoginController</prop>
@@ -186,6 +186,10 @@
     <bean id="clientSelfInfoController" class="com.changhong.app.web.controller.client.ClientSelfInfoController">
         <property name="userService" ref="userService"/>
         <property name="serverContext" value="${application.context}"/>
+    </bean>
+
+    <bean id="clientChangePassController" class="com.changhong.app.web.controller.client.ClientChangePassController">
+        <property name="userService" ref="userService"/>
     </bean>
 
 

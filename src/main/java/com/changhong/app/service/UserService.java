@@ -1,7 +1,7 @@
 package com.changhong.app.service;
 
 import com.changhong.app.web.facade.dto.ClientUserDTO;
-//import com.changhong.app.web.facade.dto.UserPasswordDTO;
+import com.changhong.app.web.facade.dto.UserPasswordDTO;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +32,7 @@ public interface UserService extends UserDetailsService {
 
     void updateUserPassword(String username, String newPassword);
 
-//    UserPasswordDTO obtainPasswordByUserId(int userId);
+    UserPasswordDTO obtainPasswordByUserId(int userId);
 
     boolean obtainOldPasswordRight(int userId, String oldPassword);
 
