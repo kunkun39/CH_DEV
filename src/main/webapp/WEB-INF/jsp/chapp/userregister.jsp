@@ -63,6 +63,7 @@
             注册
         </div>
         <spring-form:form id="registerForm" commandName="user" method="post" class="form-horizontal" role="form">
+
         <div class="form-body">
             <div class="form-group">
                 <label class="col-sm-2 control-label">邮箱</label>
@@ -82,7 +83,7 @@
                 <label class="col-sm-2 control-label">联系人</label>
 
                 <div class="col-sm-10">
-                    <spring-form:input type="text" path="name" id="name" class="form-control" placeholder="请输入联系人姓名"/>
+                    <spring-form:input type="text" path="name" id="name" class="form-control" placeholder="请输入联系人姓名（选填）"/>
 
                     <p class="help-block text-danger"></p>
                 </div>

@@ -75,7 +75,7 @@
                     <label class="col-sm-2 control-label">&nbsp;</label>
 
                     <div class="col-sm-10">
-                        <a href="#" class="color4">忘记密码？</a>
+                        <a href="${pageContext.request.contextPath}/chapp/usertopwdlookback.html" class="color4">忘记密码？</a>
                     </div>
                 </div>
 
