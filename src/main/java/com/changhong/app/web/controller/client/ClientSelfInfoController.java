@@ -40,6 +40,7 @@ public class ClientSelfInfoController extends SimpleFormController {
         int message = ServletRequestUtils.getIntParameter(request, "message", -1);
 
         request.setAttribute("message", message);
+        request.setAttribute("MENU_KEY", "INFO");
         return userService.obtainClientUserById(userId);
     }
 
