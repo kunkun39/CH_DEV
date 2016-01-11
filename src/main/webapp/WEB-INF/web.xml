@@ -78,6 +78,15 @@
         <url-pattern>*.html</url-pattern>
     </filter-mapping>
 
+     <filter>
+         <filter-name>JAMonFilter</filter-name>
+         <filter-class>com.changhong.app.jamon.PageMonFilter</filter-class>
+     </filter>
+    <filter-mapping>
+        <filter-name>JAMonFilter</filter-name>
+        <url-pattern>*.html</url-pattern>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>dwr-invoker</servlet-name>
         <servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>

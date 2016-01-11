@@ -24,7 +24,9 @@
 <%--正文部分**************************************************************--%>
 
 <div class="back-con">
+
     <jsp:include page="/WEB-INF/jsp/admin/adminmenu.jsp"/>
+
     <div class="back-con-r fl">
         <div class="leftTab-content active" id="bs-tabcon1">
             <h4 class="font16">开发者应用</h4>

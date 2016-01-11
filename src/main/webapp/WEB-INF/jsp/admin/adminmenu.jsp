@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
-<div class="back-con-l">
+
+<div class="back-con-l fl">
     <h5 class="color7"><i class="server-icon"></i>后台管理</h5>
     <ul class="back-con-l-ul">
         <a href="${pageContext.request.contextPath}/security/adminappoverview.html">
