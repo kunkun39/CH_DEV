@@ -42,7 +42,8 @@ public class AdminUserInfoSubmitController extends AbstractController {
             systemService.updateAdminUserInfo(userId, contactway, "");
             model.put("message", 1);
         } else {
-            if (systemService.validateAdminUserPassword(userId, oldPassword) && newPassword.equals(confirmPassword) && StringUtils.hasText(newPassword)) {
+            if (systemService.validateAdminUserPassword(userId, oldPassword) && !oldPassword.equals(newPassword)
+                    && newPassword.equals(confirmPassword) && StringUtils.hasText(newPassword)) {
                 systemService.updateAdminUserInfo(userId, "", newPassword);
                 model.put("message", 1);
             } else {

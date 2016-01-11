@@ -27,7 +27,7 @@
 
 <%--正文部分**************************************************************--%>
 
-<div class="container reg-content">
+<div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
             修改密码

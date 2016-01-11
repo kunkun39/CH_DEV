@@ -67,6 +67,9 @@
         </form>
     </div>
 </div>
-</div>
+
+<%--结尾菜单部分***********************************************************--%>
+
+<jsp:include page="/WEB-INF/decorators/footer.jsp"/>
 </body>
 </html>
