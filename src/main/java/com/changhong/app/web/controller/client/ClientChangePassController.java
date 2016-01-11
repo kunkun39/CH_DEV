@@ -33,6 +33,7 @@ public class ClientChangePassController extends SimpleFormController{
     protected Object formBackingObject(HttpServletRequest request) throws Exception {
         int change = ServletRequestUtils.getIntParameter(request,"change",0);
         request.setAttribute("change",change);
+        request.setAttribute("MENU_KEY", "PASS");
         int curUserId = SecurityUtils.currectAuthenticationId();
         return userService.obtainPasswordByUserId(curUserId);
     }
