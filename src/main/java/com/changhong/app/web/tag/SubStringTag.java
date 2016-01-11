@@ -15,12 +15,16 @@ public class SubStringTag extends TagSupport {
     private String value;
     private int length = 10;
     private String suffix = "...";
+    private boolean showTitle = true;
 
     @Override
     public int doStartTag() throws JspException {
-        String subString = generateSubString();
+        StringBuilder builder = new StringBuilder();
+        builder.append(showTitle && needSuffix() ? createTitleHead() : "");
+        builder.append(generateSubString());
+        builder.append(showTitle && needSuffix() ? createTitleTail() : "");
         try {
-            writeMessage(subString);
+            writeMessage(builder.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -49,6 +53,14 @@ public class SubStringTag extends TagSupport {
         pageContext.getOut().write(urlInfo);
     }
 
+    protected String createTitleHead() {
+        return "<a title=\"" + value + "\">";
+    }
+
+    protected String createTitleTail() {
+        return "</a>";
+    }
+
     //************ GETTERS / SETTERS *************//
 
     public void setLength(int length) {
@@ -61,6 +73,10 @@ public class SubStringTag extends TagSupport {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public void setShowTitle(boolean showTitle) {
+        this.showTitle = showTitle;
     }
 }
 

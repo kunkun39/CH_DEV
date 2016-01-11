@@ -63,10 +63,10 @@
                             </td>
                             <td id="user_option_${user.id}" style="text-align: center;width:20%">
                                 <c:if test="${user.enabled && user.active}">
-                                    <input type="button" class="btn-blue-sm color1" value="停止使用" onclick="changeDeveloperStatus(${user.id}, false);"/>
+                                    <input type="button" class="btn-blue-sm color1" value="停止使用" onclick="confirmSubmit(${user.id}, '${user.username}', false);"/>
                                 </c:if>
                                 <c:if test="${!user.enabled && user.active}">
-                                    <input type="button" class="btn-blue-sm color1" value="重新使用" onclick="changeDeveloperStatus(${user.id}, true);"/>
+                                    <input type="button" class="btn-blue-sm color1" value="重新使用" onclick="confirmSubmit(${user.id}, '${user.username}', true);"/>
                                 </c:if>
                                 <c:if test="${!user.active}">
                                     <input type="button" class="btn-disabled-sm" value="等待激活" />
@@ -86,7 +86,27 @@
 
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
 
+<%--弹出框部分***********************************************************--%>
+<div class="modal fade" id="infoPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">开发者应用接入平台</h4>
+            </div>
+            <div id="message" class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" onclick="changeDeveloperStatus();">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/javascript/vendor/bootstrap.js"></script>
 <!--[if lt IE 9]>
 <script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
 <script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
@@ -95,21 +115,39 @@
 <script src="${pageContext.request.contextPath}/dwr/util.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/dwr/interface/SystemDWRHandler.js" type="text/javascript"></script>
 <script type="text/javascript">
+    var g_developerId;
+    var g_developerName;
+    var g_currentStatus;
     function searchDevelpoerUser() {
         jQuery("#searchDeveloperForm").submit();
     }
 
-    function changeDeveloperStatus(developerId,currentStatus) {
-        SystemDWRHandler.updateDeveloperStatus(developerId, currentStatus, function() {
-            var userStatusAction = jQuery("#user_status_" + developerId);
-            var userOptionAction = jQuery("#user_option_" + developerId);
-            if (currentStatus) {
+    function confirmSubmit(developerId, developerName, currentStatus) {
+        g_developerId = developerId;
+        g_developerName = developerName;
+        g_currentStatus = currentStatus;
+        var comfirmMessage;
+        if (currentStatus) {
+            comfirmMessage = "确认停止使用用户\"" + developerName + " \"";
+        } else {
+            comfirmMessage = "确认重新使用用户\"" + developerName + " \"";
+        }
+        jQuery("#message").html(comfirmMessage);
+        jQuery("#infoPopup").modal();
+    }
+
+    function changeDeveloperStatus() {
+        jQuery("#infoPopup").modal('hide');
+        SystemDWRHandler.updateDeveloperStatus(g_developerId, g_currentStatus, function() {
+            var userStatusAction = jQuery("#user_status_" + g_developerId);
+            var userOptionAction = jQuery("#user_option_" + g_developerId);
+            if (g_currentStatus) {
                 userStatusAction.html("<span class=\"color10\">在用</span>");
-                userOptionAction.html("<input type=\"button\" class=\"btn-blue-sm color1\" value=\"停止使用\" onclick=\"changeDeveloperStatus(" + developerId + ", false);\"/>");
+                userOptionAction.html("<input type=\"button\" class=\"btn-blue-sm color1\" value=\"停止使用\" onclick=\"confirmSubmit(" + g_developerId + ",'" + g_developerName + "', false);\"/>");
             }
             else {
                 userStatusAction.html("<span class=\"color7\">停止使用</span>");
-                userOptionAction.html("<input type=\"button\" class=\"btn-blue-sm color1\" value=\"重新使用\" onclick=\"changeDeveloperStatus(" + developerId + ", true);\"/>");
+                userOptionAction.html("<input type=\"button\" class=\"btn-blue-sm color1\" value=\"重新使用\" onclick=\"confirmSubmit(" + g_developerId + ",'" + g_developerName + "', true);\"/>");
             }
         });
     }

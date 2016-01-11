@@ -51,7 +51,7 @@ public class AppHistory extends EntityBase {
 
         String description = "";
         if (newStatus.equals(AppStatus.WAITING)) {
-            description = "用户提交应用信息，等待管理员审核";
+            description = "用户更新应用信息，等待管理员审核";
         } else if (newStatus.equals(AppStatus.PASSED)) {
             description = "应用信息管理员审核通过应用，等待管理员执行上架操作";
         } else if (newStatus.equals(AppStatus.SHELVES)) {

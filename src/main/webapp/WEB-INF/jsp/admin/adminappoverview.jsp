@@ -68,13 +68,17 @@
                                         <img src="${fileRequestHost}/${app.appKey}/${app.iconActualFileName}" width="70" height="70" class="fl" />
                                         <div class="fl" style="margin-left: 13px;margin-top: 3px;">
                                             <h5>${app.appName}</h5>
-                                            <p class="font12 color9">版本${app.appVersion}</p>
+                                            <p class="font12 color9">
+                                                <ch:substring value="版本${app.appVersion}" length="12"/>
+                                            </p>
                                         </div>
                                     </td>
                                     <td>
                                         <h5>${app.fullCategoryName}</h5>
                                         <p class="font12 color9">
-                                            <ch:substring value="${app.appDescription}" length="60"/>
+                                            <a title="${app.appDescription}">
+                                                <ch:substring value="${app.appDescription}" length="60"/>
+                                            </a>
                                         </p>
                                     </td>
                                     <td>
