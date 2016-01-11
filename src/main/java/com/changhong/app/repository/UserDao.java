@@ -35,10 +35,10 @@ public interface UserDao extends EntityObjectDao {
      * 用户是否存在
      */
     public boolean loadClientUserExist(String username);
+
+    boolean loadClientUserEnable(String username);
     /**
      * 通过用户名获取用户信息
-     * @param username
-     * @return
      */
     ClientUser loadClientUser(String username);
 

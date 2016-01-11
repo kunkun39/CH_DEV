@@ -18,6 +18,8 @@ public interface UserService extends UserDetailsService {
 
     boolean obtainClientUserExist(String username);
 
+    boolean obtainUserEnable(String username);
+
     ClientUserDTO obtainClientUserById(int clientId);
 
     void changeClientUserDetails(ClientUserDTO userDTO);

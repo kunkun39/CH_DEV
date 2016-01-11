@@ -107,15 +107,24 @@
             jQuery("#error_info").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>对不起，登录信息不完整!</span>");
             jQuery("#error_info").css("display", "block");
         } else {
-            SystemDWRHandler.checkValidateCodeRight(register_code, function (result) {
+            SystemDWRHandler.checkUserEnable(j_username, function (result) {
                 if (!result) {
-                    jQuery("#error_info").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>对不起，验证码不正确!</span>");
+                    jQuery("#error_info").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>对不起，该用户已停用，请联系管理员!</span>");
                     jQuery("#error_info").css("display", "block");
                 } else {
-                    jQuery("#error_info").css("display", "none");
-                    form.submit();
+                    SystemDWRHandler.checkValidateCodeRight(register_code, function (result) {
+                        if (!result) {
+                            jQuery("#error_info").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>对不起，验证码不正确!</span>");
+                            jQuery("#error_info").css("display", "block");
+                        } else {
+                            jQuery("#error_info").css("display", "none");
+                            form.submit();
+                        }
+                    });
                 }
             });
+
+
         }
 
     }

@@ -72,6 +72,16 @@ public class SystemDWRHandler {
      * @param username
      * @return true已经存在
      */
+    public boolean checkUserEnable(String username) {
+        return userService.obtainUserEnable(username);
+    }
+
+    /**
+     * 用户是否ENABLE
+     *
+     * @param username
+     * @return true已经存在
+     */
     public boolean checkUserNameExist(String username) {
         return userService.obtainClientUserExist(username);
     }

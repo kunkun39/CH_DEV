@@ -144,14 +144,16 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
 
     /**
      * 通过用户名获取用户信息
-     *
-     * @param username
-     * @return
      */
     @Override
     public ClientUser loadClientUser(String username) {
         List<ClientUser> userList = getHibernateTemplate().find("from ClientUser u where u.username = ? ", new Object[]{username});
         return userList.isEmpty() ? null : userList.get(0);
+    }
+
+    public boolean loadClientUserEnable(String username) {
+        List userList = getHibernateTemplate().find("select  count(u.id) from ClientUser u where u.username = ? and u.enabled = true", new Object[]{username});
+        return ((Long) userList.get(0)).intValue() > 0 ? true : false;
     }
 
     @Override

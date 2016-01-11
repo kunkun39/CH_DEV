@@ -51,6 +51,10 @@ public class UserServiceImpl implements UserService {
         return userDao.loadClientUserExist(username);
     }
 
+    public boolean obtainUserEnable(String username) {
+        return userDao.loadClientUserEnable(username);
+    }
+
     public ClientUserDTO obtainClientUserById(int clientId) {
         ClientUser clientUser = (ClientUser) userDao.findById(clientId, ClientUser.class);
         return ClientUserWebAssember.DomainToDto(clientUser);
