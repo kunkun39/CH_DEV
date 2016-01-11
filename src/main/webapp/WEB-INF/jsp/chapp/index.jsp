@@ -58,7 +58,7 @@
                 <a href="javascript:void(0)" title="" class="apply-ul-a">
                     <img src="${fileRequestHost}/${app.appKey}/${app.iconActualFileName}" alt="" width="70" height="70" />
                     <h4>${app.appName}</h4>
-                    <p><ch:substring value="${app.appDescription}" length="40"/></p>
+                    <p><ch:substring value="${app.appDescription}" length="45"/></p>
                 </a>
                 </li>
             </c:forEach>
