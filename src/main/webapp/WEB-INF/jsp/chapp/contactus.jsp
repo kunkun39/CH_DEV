@@ -78,22 +78,20 @@
         </div>-->
         <img src="${pageContext.request.contextPath}/images/aboutus-logo.png"/>
 
-        <h1 class="color3 font-h1">联系我们</h1>
+        <p>&nbsp;</p>
+
+        <h1 style="margin-top: 15px" class="color3 font-h1">联系我们</h1>
 
         <p>&nbsp;</p>
 
         <p class="color3" style="font-size: 14px;text-indent: 2em;text-align: left;">
             四川省成都市高新区天府大道111号
             &nbsp;
-            &nbsp;
             sjdfsdfjk@kjcrrf.com
-            &nbsp;
             &nbsp;
             1800-1231-234
             &nbsp;
-            &nbsp;
             1322-1238-795
-            <%--&lt;%&ndash;1322-1238-795 </p>&ndash;%&gt;   --%>
         </p>
     </div>
 </div>
