@@ -170,7 +170,6 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
      * @param newPassword
      */
     public void updateUserPassword(String username, String newPassword) {
-        log.info("update 1="+username+" 2="+newPassword+" 3="+loadClientUserExist(username));
         ClientUser clientUser=loadClientUser(username);
         clientUser.setPassword(newPassword);
         getHibernateTemplate().update(clientUser);
