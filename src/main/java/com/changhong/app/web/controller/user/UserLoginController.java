@@ -15,6 +15,6 @@ public class UserLoginController extends AbstractController {
 
     @Override
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        return new ModelAndView("chapp/userlogin");//返回chapp目录下的login.jsp页面
+        return new ModelAndView("chapp/userlogin");//返回chapp目录下的userlogin.jsp页面
     }
 }
