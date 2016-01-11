@@ -50,7 +50,6 @@
                 <!--客户部分-->
                 <prop key="/security/clientappoverview.html">clientAppOverviewController</prop>
                 <prop key="/security/clientselfinfo.html">clientSelfInfoController</prop>
-                <prop key="/security/clientconfirmchange.html">clientConfirmChangeController</prop>
                 <prop key="/security/clientchangepass.html">clientChangePassController</prop>
 
                 <!--用户部分-->
@@ -159,9 +158,10 @@
         <property name="userService" ref="userService"/>
     </bean>
 
-    <bean id="userToPwdLookBackController"  class="com.changhong.app.web.controller.user.UserToPwdLookBackController"/>
+    <bean id="userToPwdLookBackController" class="com.changhong.app.web.controller.user.UserToPwdLookBackController"/>
 
-    <bean id="finishPwdLookbackMailController" class="com.changhong.app.web.controller.user.UserPwdBackMailBackController">
+    <bean id="finishPwdLookbackMailController"
+          class="com.changhong.app.web.controller.user.UserPwdBackMailBackController">
         <property name="userService" ref="userService"/>
         <property name="serverContext" value="${application.context}"/>
     </bean>
@@ -212,10 +212,6 @@
           class="com.changhong.app.web.controller.client.ClientAppSecondStepController">
         <property name="clientService" ref="clientService"/>
         <property name="fileRequestHost" value="${application.file.request.path}"/>
-    </bean>
-
-    <bean id="clientConfirmChangeController"
-          class="com.changhong.app.web.controller.client.ClientConfirmChangeController">
     </bean>
 
 </beans>
