@@ -5,6 +5,8 @@ import org.springframework.web.servlet.mvc.AbstractController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * User:wangxiufeng
@@ -13,8 +15,18 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class UserLoginController extends AbstractController {
 
+    private final static String LAST_LOGIN_FAILED = "LAST_LOGIN_FAILED";
+
     @Override
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        return new ModelAndView("chapp/userlogin");//返回chapp目录下的userlogin.jsp页面
+        Map<String, Object> model = new HashMap<String, Object>();
+
+        Object lastException = request.getSession().getAttribute("SPRING_SECURITY_LAST_EXCEPTION");
+        if (lastException != null) {
+            model.put(LAST_LOGIN_FAILED, LAST_LOGIN_FAILED);
+            request.getSession().removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");
+        }
+
+        return new ModelAndView("chapp/userlogin", model);
     }
 }
