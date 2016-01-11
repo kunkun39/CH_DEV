@@ -87,7 +87,7 @@
                                     <label class="col-sm-2 control-label">&nbsp;</label>
 
                                     <div class="ol-sm-9">
-                                        <input type="button" class="btn-blue color1" value="返  回" onclick="window.location.href='${pageContext.request.contextPath}/client/clientmenu.jsp'"/>
+                                        <input type="button" class="btn-blue color1" value="返  回" onclick="window.location.href='${pageContext.request.contextPath}/security/clientchangepass.html'"/>
                                         <input type="submit" class="btn-blue color1" value="保  存" />
                                     </div>
                                 </div>
