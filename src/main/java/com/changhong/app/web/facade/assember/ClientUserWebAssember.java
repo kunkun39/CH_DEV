@@ -77,6 +77,7 @@ public class ClientUserWebAssember {
      public static UserPasswordDTO toPasswordDTO(ClientUser clientUser) {
         int id = clientUser.getId();
         String username = clientUser.getUsername();
-        return new UserPasswordDTO(id,username);
+        String password = clientUser.getPassword();
+        return new UserPasswordDTO(id,username,password);
     }
 }

@@ -39,41 +39,6 @@ public class ClientChangePassController extends SimpleFormController{
     }
 
     @Override
-    protected void onBindAndValidate(HttpServletRequest request, Object command, BindException errors) throws Exception {
-        int userId = ServletRequestUtils.getIntParameter(request,"userId",-1);
-        String oldPassword = ServletRequestUtils.getStringParameter(request,"oldPassword","");
-        if (!StringUtils.hasText(oldPassword)) {
-            //errors.rejectValue("newPasswordAgain","clientuser.oldpassword.empty");
-        } else {
-            boolean PasswordIsRight = userService.obtainOldPasswordRight(userId,oldPassword);
-            if (!PasswordIsRight){
-                errors.rejectValue("newPasswordAgain","clientuser.oldpassword.notright");
-            }
-        }
-        if (errors.getFieldError("newPassword") == null){
-            String newPassword = ServletRequestUtils.getStringParameter(request,"newPassword","");
-            if (!StringUtils.hasText(newPassword)){
-               errors.rejectValue("newPasswordAgain","clientuser.password.empty");
-            } else {
-               if (oldPassword.equals(newPassword)){
-                   //errors.rejectValue("newPasswordAgain","clientuser.newoldpassword.same");
-               }
-            }
-        }
-        if (errors.getFieldError("newPasswordAgain") == null){
-            String newPassword = ServletRequestUtils.getStringParameter(request,"newPassword","");
-            String newPasswordAgain = ServletRequestUtils.getStringParameter(request,"newPasswordAgain","");
-            if (!StringUtils.hasText(newPassword) || !StringUtils.hasText(newPasswordAgain)){
-                errors.rejectValue("newPasswordAgain","clientuser.password.empty");
-            } else {
-                if (!newPassword.equals(newPasswordAgain)){
-                    errors.rejectValue("newPasswordAgain","clientuser.password.notsame");
-                }
-            }
-        }
-    }
-
-    @Override
     protected ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object command, BindException errors) throws Exception {
         UserPasswordDTO userPasswordDTO = (UserPasswordDTO)command;
         userService.changeClientUserPassword(userPasswordDTO.getUserId(),userPasswordDTO.getNewPassword());

@@ -19,10 +19,12 @@ public class UserPasswordDTO implements Serializable{
     public UserPasswordDTO() {
     }
 
-    public UserPasswordDTO(int userId, String username) {
-        this.userId = userId;
+    public UserPasswordDTO(int id, String username, String password) {
+        this.userId = id;
         this.username = username;
+        this.oldPassword = password;
     }
+
 
     public int getUserId() {
         return userId;

@@ -27,6 +27,10 @@ public class SystemDWRHandler {
         return clientService.obtainAppPackageNameDuplicate(appId, appPackage);
     }
 
+    public boolean validateClientPassword(int userId, String password) {
+        return userService.obtainOldPasswordRight(userId,password);
+    }
+
     public boolean validateUserNameDuplicate(String userName) {
         return systemService.hasSameAdminUser(userName);
     }

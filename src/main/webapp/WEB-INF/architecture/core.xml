@@ -89,6 +89,8 @@
         </property>
     </bean>
 
+    <bean id="jamonInterceptor" class="org.springframework.aop.interceptor.JamonPerformanceMonitorInterceptor"></bean>
+
     <tx:advice id="serviceTxAdvice" transaction-manager="transactionManager">
         <tx:attributes>
             <tx:method name="obtain*" propagation="REQUIRED"/>
