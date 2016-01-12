@@ -156,7 +156,7 @@
                         <spring-form:textarea id="appDescription" path="appDescription" required="required" rows="8"
                                               cols="80" onblur="validateAppDesc()" maxlength="200" placeholder="请输入应用描述..."/>
                         <span id="desc_error_show" class="help-block color5" style="display: none;"></span>
-                        <span class="help-block color6" style="color: red;"><i class="ico-error"></i>最多填写200个字</span>
+                        <span class="help-block color6" style="color: #009933;"><i class="ico-prompt"></i>最多填写200个字</span>
                     </div>
                 </div>
 
@@ -192,7 +192,7 @@
                 <h4 class="modal-title" id="myModalLabel">开发者应用接入平台</h4>
             </div>
             <div class="modal-body">
-                请确认是否要提交该应用信息到系统审核？
+                请确认是否要提交该应用信息到管理员审核？
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" onclick="confirmSubmitForm();">确定</button>
