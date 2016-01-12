@@ -131,7 +131,7 @@
         var phoneNumberCanSubmit = false
         var personNameCanSubmit = false
 
-        if ((phoneNumber == null) || (phoneNumber == '') || (phoneNumber.length != 11) || isNaN(phoneNumber)) {
+        if ((phoneNumber == null) || (phoneNumber == '') || (phoneNumber.length != 11) || isNaN(phoneNumber) || (!(checkPhoneNumberBlankSpace(phoneNumber)))) {
             jQuery("#contactway_error_show").html("<i class=\"ico-error\"></i>请输入正确号码");
             jQuery("#contactway_error_show").css("display", "block");
             phoneNumberCanSubmit = false;
@@ -154,9 +154,19 @@
         }
     }
 
+    function checkPhoneNumberBlankSpace(str) {
+        var arr = str.split(" ");
+        if (arr.length != 1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     function validatePhoneNumber() {
         var phoneNumber = jQuery("#contactWay").val();
-        if ((phoneNumber == null) || (phoneNumber.length != 11) || isNaN(phoneNumber)) {
+        checkBlankSpace(phoneNumber);
+        if ((phoneNumber == null) || (phoneNumber.length != 11) || isNaN(phoneNumber) || (!(checkPhoneNumberBlankSpace(phoneNumber)))) {
             jQuery("#contactway_error_show").html("<i class=\"ico-error\"></i>请输入正确号码");
             jQuery("#contactway_error_show").css("display", "block");
         } else {
