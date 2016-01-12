@@ -108,7 +108,7 @@
                         <span class="help-block color6"><i class="ico-prompt"></i>请编辑应用图标: 像素:150*150，大小<30K</span>
                         <c:if test="${marketApp.id > 0}">
                             <img width="70" height="70" alt=""
-                                 src="${fileRequestHost}upload/${marketApp.appKey}/${marketApp.iconActualFileName}"/>
+                                 src="${fileRequestHost}/${marketApp.appKey}/${marketApp.iconActualFileName}"/>
                         </c:if>
                     </div>
                 </div>
@@ -123,10 +123,9 @@
                         <span class="help-block color6"><i class="ico-prompt"></i>请编辑应用图标: 像素:800*450，大小<200K</span>
                         <c:if test="${marketApp.id > 0}">
                             <img width="200" height="112" alt=""
-                                 src="${fileRequestHost}upload/${marketApp.appKey}/${marketApp.posterActualFileName}"/>
+                                 src="${fileRequestHost}/${marketApp.appKey}/${marketApp.posterActualFileName}"/>
                         </c:if>
                     </div>
-                </div>
 
                 <div class="form-group">
                     <label for="" class="col-sm-3 control-label">上传应用程序文件</label>
