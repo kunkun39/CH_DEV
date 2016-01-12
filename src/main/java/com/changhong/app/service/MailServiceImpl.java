@@ -35,7 +35,7 @@ public class MailServiceImpl implements MailService, InitializingBean {
     @Value("${mail.password}")
     private String mailPassword = "xxx";
 
-    @Value("${application.file.request.path}")
+    @Value("${application.local.request.path}")
     private String applicationHost = "";
 
 

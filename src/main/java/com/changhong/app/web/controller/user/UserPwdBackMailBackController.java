@@ -42,7 +42,7 @@ public class UserPwdBackMailBackController extends AbstractController {
 
                 if (1 == registerActive) {
                     //验证成功
-                    ModelAndView modelAndView = new ModelAndView(new RedirectView("/" + serverContext + "/chapp/userpwdlookback.html"),model);
+                    ModelAndView modelAndView = new ModelAndView(new RedirectView("/" + serverContext + "/chapp/userpwdlookback.html"), model);
                     return modelAndView;
                 } else if (2 == registerActive) {
                     //验证失效，超过24小时
