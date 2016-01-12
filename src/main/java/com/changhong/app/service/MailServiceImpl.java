@@ -39,7 +39,6 @@ public class MailServiceImpl implements MailService, InitializingBean {
     private String applicationHost = "";
 
 
-    @Override
     public void sendUserRegisterMail(String sendMail, String validateNumber) throws Exception {
         String encUserId = DesUtils.getEncString(sendMail);
         String encValidationNumber = DesUtils.getEncString(validateNumber);
@@ -68,7 +67,6 @@ public class MailServiceImpl implements MailService, InitializingBean {
      * @param validateNumber
      * @throws Exception
      */
-    @Override
     public void sendUserPWDLookBackMail(String sendMail, String validateNumber) throws Exception {
         String encUserId = DesUtils.getEncString(sendMail);
         String encValidationNumber = DesUtils.getEncString(validateNumber);
@@ -91,7 +89,6 @@ public class MailServiceImpl implements MailService, InitializingBean {
         sendEmail(sendMail, title, content);
     }
 
-    @Override
     public void afterPropertiesSet() throws Exception {
         Assert.hasText(applicationHost, "the basic appcation path not configure");
 
