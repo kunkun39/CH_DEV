@@ -40,6 +40,5 @@ public interface UserService extends UserDetailsService {
 
     void changeClientUserPassword(int userId, String newPassword);
 
-    //change contact information
     public void changeClientInformation(ClientUserDTO userDTO);
 }

@@ -42,7 +42,13 @@
                         <h4 class="font16">账户资料<span style="font-size: 80%;color:red;">&nbsp;&nbsp;(修改失败!)</span></h4>
                     </c:when>
                     <c:when test="${message == 1}">
-                        <h4 class="font16">账户资料<span style="font-size: 80%;color:red;">&nbsp;&nbsp;(修改成功!)</span></h4>
+                        <h4 class="font16">账户资料<span style="font-size: 80%;color:red;">
+                            &nbsp;&nbsp;(修改成功!)
+                            <%--<div class="panel-con text-center">--%>
+                                <%--<div class="reg-icon success-icon"></div>--%>
+                                <%--<h3>密码修改成功!</h3>--%>
+                            <%--</div>--%>
+                        </span></h4>
                     </c:when>
                     <c:otherwise>
                         <h4 class="font16">账户资料</h4>
@@ -116,60 +122,57 @@
 <![endif]-->
 <script src="${pageContext.request.contextPath}/javascript/vendor/tab.js"></script>
 
-<script type="text/javascript">
-    var phoneNameValidate = true;
-    var personNameValidate = true;
-    var canSubmit = false
-            ;
-    function submitClientInfo(form) {
-        if (!personNameValidate) {
-            jQuery("#name_error_show").html("<i class=\"ico-error\"></i>请输入姓名");
-            jQuery("#name_error_show").css("display", "block");
-            canSubmit = false;
-        } else {
-            jQuery("#name_error_show").css("display", "none");
-            canSubmit = true;
-        }
 
-        if (!phoneNameValidate) {
+<script type="text/javascript">
+
+    function submitClientInfo(form) {
+        var phoneNumber = jQuery("#contactWay").val();
+        var personName = jQuery("#name").val();
+        var phoneNumberCanSubmit = false
+        var personNameCanSubmit = false
+
+        if ((phoneNumber == null) || (phoneNumber == '') || (phoneNumber.length != 11) || isNaN(phoneNumber)) {
             jQuery("#contactway_error_show").html("<i class=\"ico-error\"></i>请输入正确号码");
             jQuery("#contactway_error_show").css("display", "block");
-            canSubmit = false;
+            phoneNumberCanSubmit = false;
         } else {
             jQuery("#contactway_error_show").css("display", "none");
-            canSubmit = true;
+            phoneNumberCanSubmit = true;
         }
 
-        if (canSubmit) {
+        if ((personName == null) || (personName == '')) {
+            jQuery("#name_error_show").html("<i class=\"ico-error\"></i>请输入姓名");
+            jQuery("#name_error_show").css("display", "block");
+            personNameCanSubmit = false;
+        } else {
+            jQuery("#name_error_show").css("display", "none");
+            personNameCanSubmit = true;
+        }
+
+        if (personNameCanSubmit && phoneNumberCanSubmit) {
             form.submit();
         }
     }
 
     function validatePhoneNumber() {
         var phoneNumber = jQuery("#contactWay").val();
-        if ((phoneNumber == null) || (phoneNumber == '') || (phoneNumber.length != 11) || isNaN(phoneNumber)) {
+        if ((phoneNumber == null) || (phoneNumber.length != 11) || isNaN(phoneNumber)) {
             jQuery("#contactway_error_show").html("<i class=\"ico-error\"></i>请输入正确号码");
             jQuery("#contactway_error_show").css("display", "block");
-            phoneNameValidate = false;
         } else {
             jQuery("#contactway_error_show").css("display", "none");
-            phoneNameValidate = true;
         }
     }
 
     function validatePersonName() {
-        //验证姓名
         var personName = jQuery("#name").val();
         if ((personName == null) || (personName == '')) {
             jQuery("#name_error_show").html("<i class=\"ico-error\"></i>请输入姓名");
             jQuery("#name_error_show").css("display", "block");
-            personNameValidate = false;
         } else {
             jQuery("#name_error_show").css("display", "none");
-            personNameValidate = true;
         }
     }
-
 
 </script>
 

@@ -113,6 +113,7 @@ public class UserServiceImpl implements UserService {
         }
 
     }
+
     /**
      * 检测用户修改密码认证邮件状态
      *
@@ -143,7 +144,8 @@ public class UserServiceImpl implements UserService {
         }
 
     }
- /**
+
+    /**
      * 重新发送邮件
      *
      * @param username
@@ -160,6 +162,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 密码找回邮件发送
+     *
      * @param username
      */
     public void handlePwdLookBackSendMail(String username) {
@@ -174,10 +177,11 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 更改密码
+     *
      * @param username
      * @param newPassword
      */
-    public void updateUserPassword(String username,String newPassword){
+    public void updateUserPassword(String username, String newPassword) {
         userDao.updateUserPassword(username, newPassword);
     }
 
@@ -196,11 +200,6 @@ public class UserServiceImpl implements UserService {
         client.setPassword(newPassword);
     }
 
-    /**
-     * 修改账户资料
-     * <p/>
-     * ClientUserDTO userDTO
-     */
     public void changeClientInformation(ClientUserDTO userDTO) {
         ClientUser user = ClientUserWebAssember.DtoToDomain(userDTO);
         userDao.persist(user);
