@@ -35,7 +35,7 @@
         <c:choose>
             <c:when test="${INFO_KEY == 'EXCEPTION_REGISTER'}">
                 <div class="panel-con text-center">
-                    <div class="panel-registerinfo text-center"></div>
+                    <div class=" panel-registerinfo text-center"></div>
                     <h3> 感谢你注册广电应用接入平台， 用户激活失败，请重新注册！</h3>
                     <button class="btn-blue color1 text-center" onclick="toRegisterPage()">去注册</button>
                 </div>
@@ -83,7 +83,7 @@
             <c:when test="${INFO_KEY == 'OK_PWD_BACK'}">
                 <div class="panel-con text-center">
                     <div class="reg-icon success-icon"></div>
-                    <h3>密码找回成功!</h3>
+                    <h3>密码修改成功!</h3>
                     <button class="btn-blue color1 text-center" onclick="toLoginPage()">去登录</button>
                 </div>
             </c:when>
