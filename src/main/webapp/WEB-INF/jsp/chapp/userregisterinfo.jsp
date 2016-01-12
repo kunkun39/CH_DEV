@@ -30,13 +30,20 @@
 <div class="container reg-content">
     <div class="panel panel-default">
         <div class="panel-heading">
-           邮箱验证
+            邮箱验证
         </div>
         <c:choose>
             <c:when test="${INFO_KEY == 'EXCEPTION_REGISTER'}">
-                <div class="panel-registerinfo text-center">
-                    <h3>邮件激活已失效，请重新操作！</h3>
-                    <button class="btn-blue color1 text-center" onclick="toLoginPage()">去登录</button>
+                <div class="panel-con-email row">
+                    <div class="col-sm-4 text-right">
+                        <span class="reg-icon wrong-icon"></span>
+                    </div>
+                    <div class="col-sm-8">
+                        <p class="font16" style="margin: 10px 0 0;">该邮件激活已失效！</p>
+
+                        <p style="margin:0 0 28px;color: #999;">请重新操作！</p>
+                        <button class="btn-blue color1 text-center" onclick="toResendRegisterMail()">重新发送</button>
+                    </div>
                 </div>
             </c:when>
             <c:when test="${INFO_KEY == 'OK'}">
@@ -47,33 +54,68 @@
                 </div>
             </c:when>
             <c:when test="${INFO_KEY == 'OUTTIME_REGISTER'}">
-                <div class="panel-registerinfo text-center">
-                    <h3>邮件激活已超时失效，请重新操作！</h3>
-                    <button class="btn-blue color1 text-center" onclick="toResendRegisterMail()">重新发送</button>
+                <div class="panel-con-email row">
+                    <div class="col-sm-4 text-right">
+                        <span class="reg-icon wrong-icon"></span>
+                    </div>
+                    <div class="col-sm-8">
+                        <p class="font16" style="margin: 10px 0 0;">该邮件激活已超时失效！</p>
+
+                        <p style="margin:0 0 28px;color: #999;">请重新操作！</p>
+                        <button class="btn-blue color1 text-center" onclick="toResendRegisterMail()">重新发送</button>
+                    </div>
                 </div>
             </c:when>
             <c:when test="${INFO_KEY == 'USED_REGISTER'}">
-                <div class="panel-registerinfo text-center">
-                    <h3>邮件激活已使用，请检查是否已注册成功或尝试重新注册！</h3>
-                    <button class="btn-blue color1 text-center" onclick="toLoginPage()">去登录</button>
+                <div class="panel-con-email row">
+                    <div class="col-sm-4 text-right">
+                        <span class="reg-icon wrong-icon"></span>
+                    </div>
+                    <div class="col-sm-8">
+                        <p class="font16" style="margin: 10px 0 0;">该邮件激活已被使用！</p>
+
+                        <p style="margin:0 0 28px;color: #999;">请检查是否已注册成功或尝试重新注册！</p>
+                        <button class="btn-blue color1 text-center" onclick="toLoginPage()">去登录</button>
+                    </div>
                 </div>
             </c:when>
             <c:when test="${INFO_KEY == 'EXCEPTION_PWD_BACK'}">
-                <div class="panel-registerinfo text-center">
-                    <h3>邮件激活已失效，请重新操作！</h3>
-                    <button class="btn-blue color1 text-center" onclick="toLoginPage()">去登录</button>
+                <div class="panel-con-email row">
+                    <div class="col-sm-4 text-right">
+                        <span class="reg-icon wrong-icon"></span>
+                    </div>
+                    <div class="col-sm-8">
+                        <p class="font16" style="margin: 10px 0 0;">该邮件激活已失效！</p>
+
+                        <p style="margin:0 0 28px;color: #999;">请重新操作！</p>
+                        <button class="btn-blue color1 text-center" onclick="toLoginPage()">去登录</button>
+                    </div>
                 </div>
             </c:when>
             <c:when test="${INFO_KEY == 'OUTTIME_PWD_BACK'}">
-                <div class="panel-registerinfo text-center">
-                    <h3>邮件激活已超时失效，请重新操作！</h3>
-                    <button class="btn-blue color1 text-center" onclick="toResendPwdBackMail()">重新发送</button>
+                <div class="panel-con-email row">
+                    <div class="col-sm-4 text-right">
+                        <span class="reg-icon wrong-icon"></span>
+                    </div>
+                    <div class="col-sm-8">
+                        <p class="font16" style="margin: 10px 0 0;">该邮件激活已超时失效！</p>
+
+                        <p style="margin:0 0 28px;color: #999;">请重新操作！</p>
+                        <button class="btn-blue color1 text-center" onclick="toResendPwdBackMail()">重新发送</button>
+                    </div>
                 </div>
             </c:when>
             <c:when test="${INFO_KEY == 'USED_PWD_BACK'}">
-                <div class="panel-registerinfo text-center">
-                    <h3>邮件激活已使用，请检查是否已找回密码成功或尝试重新找回密码！</h3>
-                    <button class="btn-blue color1 text-center" onclick="toLoginPage()">去登录</button>
+                <div class="panel-con-email row">
+                    <div class="col-sm-4 text-right">
+                        <span class="reg-icon wrong-icon"></span>
+                    </div>
+                    <div class="col-sm-8">
+                        <p class="font16" style="margin: 10px 0 0;">该邮件激活已被使用！</p>
+
+                        <p style="margin:0 0 28px;color: #999;">请检查是否已成功找回密码或尝试重新找回！</p>
+                        <button class="btn-blue color1 text-center" onclick="toLoginPage()">去登录</button>
+                    </div>
                 </div>
             </c:when>
 

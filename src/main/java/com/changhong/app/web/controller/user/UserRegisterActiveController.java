@@ -42,14 +42,13 @@ public class UserRegisterActiveController extends AbstractController {
                 //验证注册信息
                 int registerActive = userService.obtainClientUserRegisterActive(username, validateNumber);
 
-                model.put("username", username);
+                model.put("username", tokens[0]);
 
                 if (1 == registerActive) {
                     //注册成功
                     model.put("INFO_KEY", "OK");
                 } else if (2 == registerActive) {
                     //验证失效，超过24小时
-                    model.put("username", tokens[0]);
                     model.put("INFO_KEY", "OUTTIME_REGISTER");
                 } else if (3 == registerActive) {
                     //已经验证过
