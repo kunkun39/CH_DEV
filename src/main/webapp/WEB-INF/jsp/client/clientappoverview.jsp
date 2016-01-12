@@ -98,9 +98,11 @@
                         </tbody>
                     </table>
 
-                    <ul class="pagination">
-                        <ch:paging urlMapping="${pageContext.request.contextPath}/security/clientappoverview.html" paging="${paging}"/>
-                    </ul>
+                    <div class="pagcontrol" style="text-align:center;">
+                        <ul class="pagination">
+                            <ch:numberpaging urlMapping="${pageContext.request.contextPath}/security/clientappoverview.html" paging="${paging}" maxPageNumber="10"/>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
