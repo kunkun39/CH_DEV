@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/home.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/backstage.css">
 </head>
 
 <body>
@@ -35,6 +36,16 @@
     </main>
 
     <main class="container">
+        <form id="client_app_search" action="${pageContext.request.contextPath}/chapp/marketapplistoverview.html" method="post" >
+            <div class="input-group" style="margin: 0px auto;" >
+                <input id="appName" name="appName" type="text" placeholder="应用名称" value="${paging.appName}" class="input-sm form-control" style="border:1px solid #778899"/>
+                <span class="input-group-btn" style="border:1px dotted #778899">
+                    <button type="button" class="btn btn-sm" onclick="searchClientApp();">
+                        <i class="search-icon"></i>
+                    </button>
+                </span>
+            </div>
+        </form>
         <ul class="row rank_list_content text-center">
             <c:forEach items="${apps}" var="app">
                <li class="col-md-3 col-sm-5">
@@ -59,5 +70,20 @@
 
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
 
+<%--Javascript部分***********************************************************--%>
+<script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
+<!--[if lt IE 9]>
+<script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
+<script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
+<![endif]-->
+<script src="${pageContext.request.contextPath}/javascript/vendor/tab.js"></script>
+
+<script type="text/javascript">
+
+    function searchClientApp() {
+        jQuery("#client_app_search").submit();
+    }
+
+</script>
 </body>
 </html>
