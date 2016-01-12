@@ -33,6 +33,9 @@ public interface UserDao extends EntityObjectDao {
 
     /**
      * 用户是否存在
+     *
+     * @param username 用户名
+     * @return
      */
     public boolean loadClientUserExist(String username);
 
@@ -44,5 +47,13 @@ public interface UserDao extends EntityObjectDao {
 
     RegisterConfirm loadClientUserRegisterConfirm(String validateNumber);
 
+    RegisterConfirm loadRegisterConfirmByUsername(String username);
+    /**
+     * 更新密码
+     * @param username
+     * @param newPassword
+     */
     void updateUserPassword(String username, String newPassword);
+
+
 }

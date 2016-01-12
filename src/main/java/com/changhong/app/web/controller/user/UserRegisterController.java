@@ -56,25 +56,7 @@ public class UserRegisterController extends SimpleFormController {
     @Override
     protected void onBindAndValidate(HttpServletRequest request, Object command, BindException errors) throws Exception {
         super.onBindAndValidate(request, command, errors);
-        String username = ServletRequestUtils.getStringParameter(request, "username", "");
 
-        if (!ValidatorUtils.isValidEmail(username)) {
-            errors.rejectValue("username", "client.username.formatnot");
-        } else if (userService.obtainClientUserExist(username)) {
-            errors.rejectValue("username", "client.username.duplicate");
-        }
-
-        String password = ServletRequestUtils.getStringParameter(request, "password", "-1");
-        String passwordAgain = ServletRequestUtils.getStringParameter(request, "passwordAgain", "-2");
-        if (!password.equals(passwordAgain)) {
-            errors.rejectValue("passwordAgain", "client.password.notsame");
-        }
-
-        //验证码是否正确
-        String registerCode = ServletRequestUtils.getStringParameter(request, "registerCode", "");
-        if (!UserRegisterCodeController.validate(request, registerCode)) {
-            errors.rejectValue("registerCode", "client.code.notright");
-        }
     }
 
     @Override

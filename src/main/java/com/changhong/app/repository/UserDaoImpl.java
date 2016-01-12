@@ -131,20 +131,13 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
         return users;
     }
 
-    /**
-     * 用户是否存在
-     *
-     * @param username 用户名
-     * @return
-     */
+
     public boolean loadClientUserExist(String username) {
         List userList = getHibernateTemplate().find("select  count(u.id) from ClientUser u where u.username = ?", new Object[]{username});
         return ((Long) userList.get(0)).intValue() > 0 ? true : false;
     }
 
-    /**
-     * 通过用户名获取用户信息
-     */
+
     @Override
     public ClientUser loadClientUser(String username) {
         List<ClientUser> userList = getHibernateTemplate().find("from ClientUser u where u.username = ? ", new Object[]{username});
@@ -169,11 +162,16 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
         return confirms.get(0);
     }
 
-    /**
-     * 更新密码
-     * @param username
-     * @param newPassword
-     */
+    @Override
+    public RegisterConfirm loadRegisterConfirmByUsername(String username) {
+        List<RegisterConfirm> confirms = getHibernateTemplate().find("from RegisterConfirm r where r.username = ?  order by r.timestamp desc", new Object[]{username});
+        if (confirms.isEmpty()) {
+            return null;
+        }
+        return confirms.get(0);
+    }
+
+
     public void updateUserPassword(String username, String newPassword) {
         ClientUser clientUser=loadClientUser(username);
         clientUser.setPassword(newPassword);

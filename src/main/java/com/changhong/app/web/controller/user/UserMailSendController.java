@@ -30,22 +30,27 @@ public class UserMailSendController extends AbstractController {
 
     @Override
     protected ModelAndView handleRequestInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
-        String username = ServletRequestUtils.getStringParameter(httpServletRequest, "usernamenormal", "");
+        String usernamenormal = ServletRequestUtils.getStringParameter(httpServletRequest, "usernamenormal", "");
+
+        String usernameEnc = ServletRequestUtils.getStringParameter(httpServletRequest, "username", "");
+        if (usernamenormal.equals("") && !usernameEnc.equals("")) {
+            usernamenormal = DesUtils.getDesString(usernameEnc);
+        }
         //邮件发送类型 0为注册邮件；1为密码找回邮件
         int mailtype = ServletRequestUtils.getIntParameter(httpServletRequest, "mailtype", 0);
         //是否是重新发送
         boolean isresend = ServletRequestUtils.getBooleanParameter(httpServletRequest, "isresend", false);
 
         if (mailtype == 1) {
-            userService.handlePwdLookBackSendMail(username);//发送密码找回邮件
+            userService.handlePwdLookBackSendMail(usernamenormal);//发送密码找回邮件
         } else {
-            userService.handleClientResendMail(username);//重新发送注册邮件
+            userService.handleClientResendMail(usernamenormal);//重新发送注册邮件
         }
         Map<String, Object> model = new HashMap<String, Object>();
-        model.put("usernamenormal", username);//解密username
+        model.put("usernamenormal", usernamenormal);//解密username
         model.put("mailtype", mailtype);//邮件类型
         model.put("isresend", isresend);//邮件是否是重新发送
-        model.put("tomailpageurl", MailLoginUrlUtil.getMailLoginUrl(username));//邮箱登陆地址，如果没有检索到对应地址会默认用163邮箱登陆地址
+        model.put("tomailpageurl", MailLoginUrlUtil.getMailLoginUrl(usernamenormal));//邮箱登陆地址，如果没有检索到对应地址会默认用163邮箱登陆地址
 
         return new ModelAndView("chapp/userregisteremail", model);
     }

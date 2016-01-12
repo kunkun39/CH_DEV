@@ -34,10 +34,9 @@
         </div>
         <c:choose>
             <c:when test="${INFO_KEY == 'EXCEPTION_REGISTER'}">
-                <div class="panel-con text-center">
-                    <div class=" panel-registerinfo text-center"></div>
-                    <h3> 感谢你注册广电应用接入平台， 用户激活失败，请重新注册！</h3>
-                    <button class="btn-blue color1 text-center" onclick="toRegisterPage()">去注册</button>
+                <div class="panel-registerinfo text-center">
+                    <h3>邮件激活已失效，请重新操作！</h3>
+                    <button class="btn-blue color1 text-center" onclick="toLoginPage()">去登录</button>
                 </div>
             </c:when>
             <c:when test="${INFO_KEY == 'OK'}">
@@ -49,33 +48,31 @@
             </c:when>
             <c:when test="${INFO_KEY == 'OUTTIME_REGISTER'}">
                 <div class="panel-registerinfo text-center">
-                    <h3> 感谢你注册广电应用接入平台， 用户激活已超时失效，请重新发送激活邮件！</h3>
+                    <h3>邮件激活已超时失效，请重新操作！</h3>
                     <button class="btn-blue color1 text-center" onclick="toResendRegisterMail()">重新发送</button>
                 </div>
             </c:when>
             <c:when test="${INFO_KEY == 'USED_REGISTER'}">
                 <div class="panel-registerinfo text-center">
-                    <h3>该用户激活已使用，请检查是否已注册成功或尝试重新注册！</h3>
+                    <h3>邮件激活已使用，请检查是否已注册成功或尝试重新注册！</h3>
                     <button class="btn-blue color1 text-center" onclick="toLoginPage()">去登录</button>
                 </div>
             </c:when>
-
             <c:when test="${INFO_KEY == 'EXCEPTION_PWD_BACK'}">
-                <div class="panel-con text-center">
-                    <div class="panel-registerinfo text-center"></div>
-                    <h3> 感谢你使用广电应用接入平台找回密码， 邮件激活失败，请重新操作！</h3>
-                    <button class="btn-blue color1 text-center" onclick="toPwdLookBack()">去找回密码</button>
+                <div class="panel-registerinfo text-center">
+                    <h3>邮件激活已失效，请重新操作！</h3>
+                    <button class="btn-blue color1 text-center" onclick="toLoginPage()">去登录</button>
                 </div>
             </c:when>
             <c:when test="${INFO_KEY == 'OUTTIME_PWD_BACK'}">
                 <div class="panel-registerinfo text-center">
-                    <h3> 感谢你使用广电应用接入平台找回密码， 用户激活已超时失效，请重新发送激活邮件！</h3>
+                    <h3>邮件激活已超时失效，请重新操作！</h3>
                     <button class="btn-blue color1 text-center" onclick="toResendPwdBackMail()">重新发送</button>
                 </div>
             </c:when>
             <c:when test="${INFO_KEY == 'USED_PWD_BACK'}">
                 <div class="panel-registerinfo text-center">
-                    <h3>该用户激活已使用，请检查是否已找回密码成功或尝试重新找回密码！</h3>
+                    <h3>邮件激活已使用，请检查是否已找回密码成功或尝试重新找回密码！</h3>
                     <button class="btn-blue color1 text-center" onclick="toLoginPage()">去登录</button>
                 </div>
             </c:when>
@@ -106,10 +103,10 @@
         window.location.href = "${pageContext.request.contextPath}/chapp/userregister.html";
     }
     function toResendRegisterMail() {
-        window.location.href = "${pageContext.request.contextPath}/chapp/resendmail.html?username=${username}&mailtype=0&isresend=true";
+        window.location.href = "${pageContext.request.contextPath}/chapp/userMailSend.html?username=${username}&mailtype=0&isresend=true";
     }
     function toResendPwdBackMail() {
-        window.location.href = "${pageContext.request.contextPath}/chapp/resendmail.html?username=${username}&mailtype=1&isresend=true";
+        window.location.href = "${pageContext.request.contextPath}/chapp/userMailSend.html?username=${username}&mailtype=1&isresend=true";
     }
     function toPwdLookBack() {
         window.location.href = "${pageContext.request.contextPath}/chapp/usertopwdlookback.html";

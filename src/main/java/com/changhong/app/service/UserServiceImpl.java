@@ -153,7 +153,18 @@ public class UserServiceImpl implements UserService {
     public void handleClientResendMail(String username) {
         //save validation
         RegisterConfirm confirm = new RegisterConfirm(username);
-        userDao.saveOrUpdate(confirm);
+        //本地对象
+        RegisterConfirm nativeConfirm=userDao.loadRegisterConfirmByUsername(username);
+
+        if (nativeConfirm==null){
+            nativeConfirm=confirm;
+        }else {
+            nativeConfirm.setValidateNumber(confirm.getValidateNumber());
+            nativeConfirm.setValidateConfirm(false);
+            nativeConfirm.setUsername(username);
+            nativeConfirm.setTimestamp(confirm.getTimestamp());
+        }
+        userDao.saveOrUpdate(nativeConfirm);
 
         //send email out or send message out
         RegisterMailSendThread send = new RegisterMailSendThread(username, confirm);
@@ -168,7 +179,19 @@ public class UserServiceImpl implements UserService {
     public void handlePwdLookBackSendMail(String username) {
         //save validation
         RegisterConfirm confirm = new RegisterConfirm(username);
-        userDao.saveOrUpdate(confirm);
+        //本地对象
+        RegisterConfirm nativeConfirm=userDao.loadRegisterConfirmByUsername(username);
+
+        if (nativeConfirm==null){
+            nativeConfirm=confirm;
+        }else {
+            nativeConfirm.setValidateNumber(confirm.getValidateNumber());
+            nativeConfirm.setValidateConfirm(false);
+            nativeConfirm.setUsername(username);
+            nativeConfirm.setTimestamp(confirm.getTimestamp());
+        }
+
+        userDao.saveOrUpdate(nativeConfirm);
 
         //send email out or send message out
         PwdLookBackMailSendThread send = new PwdLookBackMailSendThread(username, confirm);
