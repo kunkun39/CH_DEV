@@ -125,34 +125,8 @@
 
 <script type="text/javascript">
 
-    function submitClientInfo(form) {
-        var phoneNumber = jQuery("#contactWay").val();
-        var personName = jQuery("#name").val();
-        var phoneNumberCanSubmit = false
-        var personNameCanSubmit = false
-
-        if ((phoneNumber == null) || (phoneNumber == '') || (phoneNumber.length != 11) || isNaN(phoneNumber) || (!(checkPhoneNumberBlankSpace(phoneNumber)))) {
-            jQuery("#contactway_error_show").html("<i class=\"ico-error\"></i>请输入正确号码");
-            jQuery("#contactway_error_show").css("display", "block");
-            phoneNumberCanSubmit = false;
-        } else {
-            jQuery("#contactway_error_show").css("display", "none");
-            phoneNumberCanSubmit = true;
-        }
-
-        if ((personName == null) || (personName == '')) {
-            jQuery("#name_error_show").html("<i class=\"ico-error\"></i>请输入姓名");
-            jQuery("#name_error_show").css("display", "block");
-            personNameCanSubmit = false;
-        } else {
-            jQuery("#name_error_show").css("display", "none");
-            personNameCanSubmit = true;
-        }
-
-        if (personNameCanSubmit && phoneNumberCanSubmit) {
-            form.submit();
-        }
-    }
+    var phoneNumberIsOk = true;
+    var personNameIsOk = true;
 
     function checkPhoneNumberBlankSpace(str) {
         var arr = str.split(" ");
@@ -163,24 +137,34 @@
         }
     }
 
-    function validatePhoneNumber() {
-        var phoneNumber = jQuery("#contactWay").val();
-        checkBlankSpace(phoneNumber);
-        if ((phoneNumber == null) || (phoneNumber.length != 11) || isNaN(phoneNumber) || (!(checkPhoneNumberBlankSpace(phoneNumber)))) {
-            jQuery("#contactway_error_show").html("<i class=\"ico-error\"></i>请输入正确号码");
-            jQuery("#contactway_error_show").css("display", "block");
-        } else {
-            jQuery("#contactway_error_show").css("display", "none");
-        }
-    }
 
     function validatePersonName() {
         var personName = jQuery("#name").val();
         if ((personName == null) || (personName == '')) {
             jQuery("#name_error_show").html("<i class=\"ico-error\"></i>请输入姓名");
             jQuery("#name_error_show").css("display", "block");
+            personNameIsOk = false;
         } else {
             jQuery("#name_error_show").css("display", "none");
+            personNameIsOk = true;
+        }
+    }
+
+    function validatePhoneNumber() {
+        var phoneNumber = jQuery("#contactWay").val();
+        if ((phoneNumber == null) || (phoneNumber.length != 11) || isNaN(phoneNumber) || (!(checkPhoneNumberBlankSpace(phoneNumber)))) {
+            jQuery("#contactway_error_show").html("<i class=\"ico-error\"></i>请输入正确号码");
+            jQuery("#contactway_error_show").css("display", "block");
+            phoneNumberIsOk = false;
+        } else {
+            jQuery("#contactway_error_show").css("display", "none");
+            phoneNumberIsOk = true;
+        }
+    }
+
+    function submitClientInfo(form) {
+        if (personNameIsOk && phoneNumberIsOk) {
+            form.submit();
         }
     }
 
