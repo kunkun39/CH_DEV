@@ -32,6 +32,8 @@ public class ClientAppFirstStepController extends SimpleFormController {
 
     private ClientService clientService;
 
+    private MarketAppDTO oldMarketAppDTO = null;
+
     public ClientAppFirstStepController() {
         setCommandClass(MarketAppDTO.class);
         setCommandName("marketApp");
@@ -56,6 +58,9 @@ public class ClientAppFirstStepController extends SimpleFormController {
         }
 
         request.setAttribute("fileRequestHost", fileRequestHost);
+        if (app != null) {
+            oldMarketAppDTO = new MarketAppDTO(app);
+        }
         return app;
     }
 
@@ -75,7 +80,7 @@ public class ClientAppFirstStepController extends SimpleFormController {
         MultipartFile iconFile = multipartRequest.getFile("appIconUploadFile");
         MultipartFile posterFile = multipartRequest.getFile("appPosterUploadFile");
 
-        int appId = clientService.obtainMarketAppInformationFromFile(app, apkFile, iconFile, posterFile);
+        int appId = clientService.obtainMarketAppInformationFromFile(oldMarketAppDTO, app, apkFile, iconFile, posterFile);
 
         return new ModelAndView(new RedirectView("/" + serverContext + "/security/appsecondstep.html?appId=" + appId));
     }

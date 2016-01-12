@@ -40,7 +40,7 @@ public class AppHistory extends EntityBase {
         final boolean admin = action.isAdmin();
         final AppStatus oldStatus = action.getOldStatus();
         final AppStatus newStatus = action.getNewStatus();
-        final String rejectReason = action.getRejectReason();
+        final String details = action.getDetails();
 
         String title = "";
         if (admin) {
@@ -51,15 +51,26 @@ public class AppHistory extends EntityBase {
 
         String description = "";
         if (newStatus.equals(AppStatus.WAITING)) {
-            description = "用户更新应用信息，等待管理员审核";
+            if (AppStatus.SHELVES.equals(oldStatus)) {
+                description = "用户更新应用信息，等待管理员审核。<br/>修改信息如下：" + details + "。";
+            }
+            else if (AppStatus.REJECTED.equals(oldStatus)) {
+                description = "用户重新提交应用信息，等待管理员审核。<br/>修改信息如下：<br/>" + details + "。";
+            }
+            else if (AppStatus.WAITING.equals(oldStatus)) {
+                description = "用户修改应用信息，等待管理员审核。<br/>修改信息如下：<br/>" + details + "。";
+            }
+            else {
+                description = "用户更新应用信息，等待管理员审核。";
+            }
         } else if (newStatus.equals(AppStatus.PASSED)) {
-            description = "应用信息管理员审核通过应用，等待管理员执行上架操作";
+            description = "应用信息管理员审核通过应用，等待管理员执行上架操作。";
         } else if (newStatus.equals(AppStatus.SHELVES)) {
-            description = "应用信息管理员上架该应用";
+            description = "应用信息管理员上架该应用。";
         } else if (newStatus.equals(AppStatus.OFFSHELVES)) {
-            description = "应用信息管理员下架该应用";
+            description = "应用信息管理员下架该应用。";
         } else if (newStatus.equals(AppStatus.REJECTED)) {
-            description = "应用信息管理员未审核通过应用，未通过审核原因:" + rejectReason;
+            description = "应用信息管理员未审核通过应用。<br/>原因:" + details + "。";
         }
 
         MarketApp app = new MarketApp();

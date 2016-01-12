@@ -46,7 +46,30 @@ public class ClientServiceImpl implements ClientService {
         return clientDao.loadAppPackageDuplicate(appId, appPackage);
     }
 
-    public int obtainMarketAppInformationFromFile(MarketAppDTO app, MultipartFile uploadApkFile, MultipartFile uploadIconFile, MultipartFile uploadPosterFile) {
+    protected String getAPPChangeDetails(MarketAppDTO oldMarketAppDTO, MarketAppDTO newMarketAppDTO) {
+        StringBuilder builder = new StringBuilder();
+        if (!newMarketAppDTO.getFullCategoryName().equals(oldMarketAppDTO.getFullCategoryName())) {
+            builder.append("<br/>应用类别：" + oldMarketAppDTO.getFullCategoryName() + "->" + newMarketAppDTO.getFullCategoryName());
+        }
+        if (!newMarketAppDTO.getAppName().equals(oldMarketAppDTO.getAppName())) {
+            builder.append("<br/>应用名称：" + oldMarketAppDTO.getAppName() + "->" + newMarketAppDTO.getAppName());
+        }
+        if (oldMarketAppDTO.getAppVersionInt() != newMarketAppDTO.getAppVersionInt()) {
+            builder.append("<br/>应用版本(数字)：" + oldMarketAppDTO.getAppVersionInt() + "->" + newMarketAppDTO.getAppVersionInt());
+        }
+        if (!newMarketAppDTO.getIconUploadFileName().equals(oldMarketAppDTO.getIconUploadFileName())) {
+            builder.append("<br/>应用图标：" + oldMarketAppDTO.getIconUploadFileName() + "->" + newMarketAppDTO.getIconUploadFileName());
+        }
+        if (!newMarketAppDTO.getPosterUploadFileName().equals(oldMarketAppDTO.getPosterUploadFileName())) {
+            builder.append("<br/>应用海报：" + oldMarketAppDTO.getPosterUploadFileName() + "->" + newMarketAppDTO.getPosterUploadFileName());
+        }
+        if (!newMarketAppDTO.getAppDescription().equals(oldMarketAppDTO.getAppDescription())) {
+            builder.append("<br/>应用描述：发生更改");
+        }
+        return builder.toString();
+    }
+	
+    public int obtainMarketAppInformationFromFile(MarketAppDTO oldMarketAppDTO, MarketAppDTO app, MultipartFile uploadApkFile, MultipartFile uploadIconFile, MultipartFile uploadPosterFile) {
         MarketAppDTO marketAppDTO = documentService.uploadAppApkData(app, uploadApkFile, uploadIconFile, uploadPosterFile);
         MarketApp marketApp = MarketAppWebAssember.toMarketAppDomain(marketAppDTO);
 
@@ -65,7 +88,9 @@ public class ClientServiceImpl implements ClientService {
             AppHistory history = AppHistory.generateAppCreateHistory(action);
             clientDao.saveOrUpdate(history);
         } else {
-            AppStatusChangeAction action = new AppStatusChangeAction(false, marketApp.getId(), AppStatus.WAITING, AppStatus.WAITING, "");
+            String details = getAPPChangeDetails(oldMarketAppDTO, marketAppDTO);
+            AppStatus oldAppStatus = AppStatus.isAppStatus(app.getAppStatus()) ? AppStatus.valueOf(oldMarketAppDTO.getAppStatus()) : null;
+            AppStatusChangeAction action = new AppStatusChangeAction(false, marketApp.getId(), oldAppStatus, AppStatus.WAITING, details);
             AppHistory history = AppHistory.generateAppStatusChangeHistory(action);
             clientDao.saveOrUpdate(history);
         }

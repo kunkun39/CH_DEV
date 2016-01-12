@@ -50,10 +50,6 @@ public class DataSourceMonitor implements DataSource {
         this.realDataSource = realDataSource;
     }
 
-    public Logger getParentLogger() throws SQLFeatureNotSupportedException {
-        return realDataSource.getParentLogger();
-    }
-
     public <T> T unwrap(Class<T> iface) throws SQLException {
         return realDataSource.unwrap(iface);
     }

@@ -15,14 +15,14 @@ public class AppStatusChangeAction extends AbstractAppChangeAction {
 
     private AppStatus newStatus;
 
-    private String rejectReason;
+    private String details;
 
-    public AppStatusChangeAction(boolean admin, int appId, AppStatus oldStatus, AppStatus newStatus, String rejectReason) {
+    public AppStatusChangeAction(boolean admin, int appId, AppStatus oldStatus, AppStatus newStatus, String details) {
         super(appId);
         this.admin = admin;
         this.oldStatus = oldStatus;
         this.newStatus = newStatus;
-        this.rejectReason = rejectReason;
+        this.details = details;
     }
 
     public AppStatus getOldStatus() {
@@ -37,7 +37,7 @@ public class AppStatusChangeAction extends AbstractAppChangeAction {
         return admin;
     }
 
-    public String getRejectReason() {
-        return rejectReason;
+    public String getDetails() {
+        return details;
     }
 }

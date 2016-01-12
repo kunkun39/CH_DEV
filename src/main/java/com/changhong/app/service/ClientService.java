@@ -20,7 +20,7 @@ public interface ClientService {
 
     boolean obtainAppPackageNameDuplicate(int appId, String appPackage);
 
-    int obtainMarketAppInformationFromFile(MarketAppDTO app, MultipartFile uploadApkFile, MultipartFile uploadIconFile, MultipartFile uploadPosterFile);
+    int obtainMarketAppInformationFromFile(MarketAppDTO oldMarketAppDTO, MarketAppDTO app, MultipartFile uploadApkFile, MultipartFile uploadIconFile, MultipartFile uploadPosterFile);
 
     MarketAppDTO obtainMarketApp(int appId);
 

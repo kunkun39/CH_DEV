@@ -64,6 +64,18 @@ public class MarketAppDTO implements Serializable{
         this.appKey = CHStringUtils.getRandomString(8);
     }
 
+    public MarketAppDTO(MarketAppDTO dto) {
+        if (dto != null) {
+            this.appStatus = dto.getAppStatus();
+            this.fullCategoryName = dto.getFullCategoryName();
+            this.appName = dto.getAppName();
+            this.appVersionInt = dto.getAppVersionInt();
+            this.iconUploadFileName = dto.getIconUploadFileName();
+            this.posterUploadFileName = dto.getPosterUploadFileName();
+            this.appDescription = dto.getAppDescription();
+        }
+    }
+
     //this is used for list view
     public MarketAppDTO(int id, String appKey, String appName, String appDescription, String appVersion,
                         String appPackage, String appSizeFormat, String appStatusName, String categoryName, String appStatus,
