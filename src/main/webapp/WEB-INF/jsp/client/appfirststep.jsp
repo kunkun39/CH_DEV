@@ -90,11 +90,16 @@
                     <label for=" " class="col-sm-3 control-label">应用包名</label>
 
                     <div class="col-sm-9">
-                        <spring-form:input path="appPackage" class="form-control" required="required" maxlength="80"
+                        <c:if test="${marketApp.id == 0}">
+                            <spring-form:input path="appPackage" class="form-control" required="required" maxlength="80"
                                            onblur="validateAppPackage()"/>
-                        <span id="package_error_show" class="help-block color5" style="display: none;"></span>
+                            <span id="package_error_show" class="help-block color5" style="display: none;"></span>
+                        </c:if>
+                        <c:if test="${marketApp.id > 0}">
+                            <spring-form:input path="appPackage" class="form-control" required="required" maxlength="80"
+                                        readonly="true"/>
+                        </c:if>
                         <span class="help-block color6"><i class="ico-prompt"></i>请编辑应用包名</span>
-
                     </div>
                 </div>
 
