@@ -44,7 +44,7 @@
                     <form id="searchAppsForm" action="${pageContext.request.contextPath}/security/adminappoverview.html" method="post">
                         <div class="input-group">
                             <input id="appStatus" name="appStatus" type="hidden" value="${paging.appStatus}"/>
-                            <input type="text" name="appName" placeholder="应用名称" class="input-sm form-control">
+                            <input type="text" name="appName" placeholder="应用名称" class="input-sm form-control" value="${paging.appName}">
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-sm" onclick="searchApps();">
                                 <i class="search-icon"></i>

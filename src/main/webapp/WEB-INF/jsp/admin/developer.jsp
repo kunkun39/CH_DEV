@@ -128,9 +128,9 @@
         g_currentStatus = currentStatus;
         var comfirmMessage;
         if (currentStatus) {
-            comfirmMessage = "确认停止使用用户\"" + developerName + " \"";
-        } else {
             comfirmMessage = "确认重新使用用户\"" + developerName + " \"";
+        } else {
+            comfirmMessage = "确认停止使用用户\"" + developerName + " \"";
         }
         jQuery("#message").html(comfirmMessage);
         jQuery("#infoPopup").modal();
