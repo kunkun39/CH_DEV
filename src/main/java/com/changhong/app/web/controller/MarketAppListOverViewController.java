@@ -38,7 +38,6 @@ public class MarketAppListOverViewController extends AbstractController {
 
         MarketAppOverviewPaging paging = new MarketAppOverviewPaging(systemService);
         constractPaging(paging, currentPage, appName);
-//        model.put("paging", paging);
         List<MarketAppDTO> apps = paging.getItems();
 
         model.put("apps",apps);
@@ -54,20 +53,12 @@ public class MarketAppListOverViewController extends AbstractController {
         paging.setAppName(appName);
     }
 
-    public SystemService getSystemService() {
-        return systemService;
-    }
-
     public void setSystemService(SystemService systemService) {
         this.systemService = systemService;
     }
 
     public void setProjectVersion(String projectVersion) {
         this.projectVersion = projectVersion;
-    }
-
-    public String getFileRequestHost() {
-        return fileRequestHost;
     }
 
     public void setFileRequestHost(String fileRequestHost) {
