@@ -137,7 +137,6 @@
         }
     }
 
-
     function validatePersonName() {
         var personName = jQuery("#name").val();
         if ((personName == null) || (personName == '')) {
