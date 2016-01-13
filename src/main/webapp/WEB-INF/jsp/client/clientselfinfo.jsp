@@ -38,25 +38,21 @@
 
             <div style="float:left;width:48%;">
                 <c:choose>
-                    <c:when test="${message == 0}">
-                        <h4 class="font16">账户资料<span style="font-size: 80%;color:red;">&nbsp;&nbsp;(修改失败!)</span></h4>
-                    </c:when>
+                    <%--<c:when test="${message == 0}">--%>
+                    <%--<h4 class="font16">账户资料<span style="font-size: 80%;color:red;">&nbsp;&nbsp;(修改失败!)</span></h4>--%>
+                    <%--</c:when>--%>
+
                     <c:when test="${message == 1}">
-                        <h4 class="font16">账户资料<span style="font-size: 80%;color:red;">
-                            &nbsp;&nbsp;(修改成功!)
-                            <%--<div class="panel-con text-center">--%>
-                                <%--<div class="reg-icon success-icon"></div>--%>
-                                <%--<h3>密码修改成功!</h3>--%>
-                            <%--</div>--%>
-                        </span></h4>
+                        <h4 class="font16">账户资料&nbsp;&nbsp;<i class="ico-success"></i><span
+                                style="font-size: 80%;color:green;">(修改成功!)</span></h4>
                     </c:when>
+
                     <c:otherwise>
                         <h4 class="font16">账户资料</h4>
                     </c:otherwise>
                 </c:choose>
                 <%--<h4 class="font16 ">账户资料</h4>--%>
             </div>
-
 
             <spring-form:form id="clientSelfInfoForm" commandName="clientSelfInfo" class="form-horizontal server-form "
                               role="form ">
@@ -67,9 +63,9 @@
 
                 <div class="form-body">
                     <div class="form-group">
-                        <label style="width:80px; margin-left:2px;" for=" " class="col-sm-3 control-label">联系人</label>
+                        <label style="width:80px; margin-left:2px;" for=" " class="col-sm-2 control-label">联系人</label>
 
-                        <div class="col-sm-9" style="margin-left:15px;">
+                        <div class="col-sm-10" style="margin-left:15px;">
                             <spring-form:input id="name" path="name" class="form-control" required="required"
                                                maxlength="20" onblur="validatePersonName()"/>
                             <span class="help-block color6"><i class="ico-prompt"></i>请输入联系人姓名</span>
@@ -77,12 +73,25 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label style="width:90px; " for=" " class="col-sm-3 control-label">联系电话</label>
-                        <label style="margin-left:-26px;color:#bfbfbf;width:10px;" for=" "
-                               class="col-sm-3 control-label">+86</label>
 
-                        <div class="col-sm-9" style="margin-left:-10px">
+                        <%--<div class="form-group">--%>
+                        <%--<label for=" " class="col-sm-2 control-label">新密码</label>--%>
+
+                        <%--<div class="col-sm-10">--%>
+                        <%--<input type="password" class="form-control" id="newPassword" name="newPassword"--%>
+                        <%--placeholder="必填" onblur="validateNewPassword();"/>--%>
+                        <%--<span id="new_password_error_show" class="help-block color5" style="display: none;"></span>--%>
+                        <%--<span class="help-block"></span>--%>
+                        <%--</div>--%>
+                        <%--</div>--%>
+
+
+                    <div class="form-group" style="margin-top: -100px">
+                        <label style="width:90px; " for=" " class="col-sm-2 control-label">联系电话</label>
+                        <label style="margin-left:-26px;color:#bfbfbf;width:10px;" for=" "
+                               class="col-sm-2 control-label">+86</label>
+
+                        <div class="col-sm-10" style="margin-left:-10px">
                             <spring-form:input id="contactWay" path="contactWay"
                                                class="form-control"
                                                required="required"
@@ -93,7 +102,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group" id="zyt">
+                    <div class="form-group">
                         <label class="fl ">&nbsp;</label>
 
                         <div class="fl ">
