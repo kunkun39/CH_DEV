@@ -30,7 +30,7 @@
 <div class="container reg-content">
     <div class="panel panel-default">
         <div class="panel-heading">
-            邮箱验证
+           提示
         </div>
         <c:choose>
             <c:when test="${INFO_KEY == 'EXCEPTION_REGISTER'}">
@@ -47,10 +47,16 @@
                 </div>
             </c:when>
             <c:when test="${INFO_KEY == 'OK'}">
-                <div class="panel-con text-center">
-                    <div class="reg-icon success-icon"></div>
-                    <h3>账号验证成功!</h3>
-                    <button class="btn-blue color1 text-center" onclick="toLoginPage()">去登录</button>
+                <div class="panel-con-email row">
+                    <div class="col-sm-4 text-right">
+                        <span class="reg-icon success-icon"></span>
+                    </div>
+                    <div class="col-sm-8">
+                        <p class="font16" style="margin: 10px 0 0;">账号验证成功!</p>
+
+                        <p style="margin:0 0 28px;color: #999;">恭喜您的账号已验证成功！</p>
+                        <button class="btn-blue color1 text-center" onclick="toLoginPage()">去登录</button>
+                    </div>
                 </div>
             </c:when>
             <c:when test="${INFO_KEY == 'OUTTIME_REGISTER'}">
@@ -120,10 +126,16 @@
             </c:when>
 
             <c:when test="${INFO_KEY == 'OK_PWD_BACK'}">
-                <div class="panel-con text-center">
-                    <div class="reg-icon success-icon"></div>
-                    <h3>密码修改成功!</h3>
-                    <button class="btn-blue color1 text-center" onclick="toLoginPage()">去登录</button>
+                <div class="panel-con-email row">
+                    <div class="col-sm-4 text-right">
+                        <span class="reg-icon success-icon"></span>
+                    </div>
+                    <div class="col-sm-8">
+                        <p class="font16" style="margin: 10px 0 0;">密码修改成功!</p>
+
+                        <p style="margin:0 0 28px;color: #999;">恭喜您的密码已修改成功！</p>
+                        <button class="btn-blue color1 text-center" onclick="toLoginPage()">去登录</button>
+                    </div>
                 </div>
             </c:when>
         </c:choose>
