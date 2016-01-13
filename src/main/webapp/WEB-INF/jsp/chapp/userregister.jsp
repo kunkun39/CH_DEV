@@ -271,7 +271,7 @@
                 jQuery("#error_info_username").html("<i class=\"ico-error\"></i>账号格式不正确!");
                 jQuery("#error_info_username").css("display", "block");
             } else if (result == 3) {//返回2用户名已存在
-                jQuery("#error_info_username").html("<i class=\"ico-error\"></i>账号已存在!");
+                jQuery("#error_info_username").html("<i class=\"ico-error\"></i>账号已注册!");
                 jQuery("#error_info_username").css("display", "block");
             } else {//返回0 正常通过
                 jQuery("#error_info_username").css("display", "none");

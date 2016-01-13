@@ -51,6 +51,18 @@ public class UserServiceImpl implements UserService {
         return userDao.loadClientUserExist(username);
     }
 
+    @Override
+    public int obtailUserCouldRegister(String username) {
+        ClientUser clientUser = obtainClientUserByUserName(username);
+        if (clientUser == null) {
+            return -1;
+        }
+        if (!clientUser.isActive()) {
+            return 0;
+        }
+        return clientUser.getId();
+    }
+
     public boolean obtainUserEnable(String username) {
         return userDao.loadClientUserEnable(username);
     }
@@ -60,32 +72,25 @@ public class UserServiceImpl implements UserService {
         return ClientUserWebAssember.DomainToDto(clientUser);
     }
 
-    /**
-     * 执行注册：保存用户信息，保存验证信息，发送邮件
-     *
-     * @param userDTO
-     */
+    @Override
+    public ClientUser obtainClientUserByUserName(String username) {
+        return userDao.loadClientUser(username);
+    }
+
     public void changeClientUserDetails(ClientUserDTO userDTO) {
         //save user
         ClientUser user = ClientUserWebAssember.DtoToDomain(userDTO);
-        userDao.saveOrUpdate(user);
+        ClientUser saveUser = saveOrUpdateClientUser(user);
 
         //验证信息
-        RegisterConfirm confirm = new RegisterConfirm(user.getUsername());
-        userDao.saveOrUpdate(confirm);
+        RegisterConfirm confirm = saveOrUpdateRegisterConfirm(saveUser.getUsername());
 
         //发送邮件
-        RegisterMailSendThread send = new RegisterMailSendThread(user.getUsername(), confirm);
+        RegisterMailSendThread send = new RegisterMailSendThread(saveUser.getUsername(), confirm);
         ApplicationThreadPool.executeThread(send);
     }
 
-    /**
-     * 检测用户注册状态
-     *
-     * @param username       用户注册邮箱
-     * @param validateNumber 随机验证码
-     * @return 返回注册状态 1：成功；2：验证超时;3:改用户已经验证成功;4:验证信息有异常
-     */
+
     public int obtainClientUserRegisterActive(String username, String validateNumber) {
         RegisterConfirm confirm = userDao.loadClientUserRegisterConfirm(validateNumber);
 
@@ -114,13 +119,7 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    /**
-     * 检测用户修改密码认证邮件状态
-     *
-     * @param username       用户注册邮箱
-     * @param validateNumber 随机验证码
-     * @return 返回注册状态 1：成功；2：验证超时;3:改用户已经验证成功;4:验证信息有异常
-     */
+
     public int obtainPwdLookbackActive(String username, String validateNumber) {
         RegisterConfirm confirm = userDao.loadClientUserRegisterConfirm(validateNumber);
 
@@ -145,46 +144,35 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    /**
-     * 重新发送邮件
-     *
-     * @param username
-     */
+
     public void handleClientResendMail(String username) {
         //save validation
-        RegisterConfirm confirm = new RegisterConfirm(username);
-        //本地对象
-        RegisterConfirm nativeConfirm=userDao.loadRegisterConfirmByUsername(username);
-
-        if (nativeConfirm==null){
-            nativeConfirm=confirm;
-        }else {
-            nativeConfirm.setValidateNumber(confirm.getValidateNumber());
-            nativeConfirm.setValidateConfirm(false);
-            nativeConfirm.setUsername(username);
-            nativeConfirm.setTimestamp(confirm.getTimestamp());
-        }
-        userDao.saveOrUpdate(nativeConfirm);
+        RegisterConfirm confirm = saveOrUpdateRegisterConfirm(username);
 
         //send email out or send message out
         RegisterMailSendThread send = new RegisterMailSendThread(username, confirm);
         ApplicationThreadPool.executeThread(send);
     }
 
-    /**
-     * 密码找回邮件发送
-     *
-     * @param username
-     */
+
     public void handlePwdLookBackSendMail(String username) {
+        //save validation
+        RegisterConfirm confirm = saveOrUpdateRegisterConfirm(username);
+
+        //send email out or send message out
+        PwdLookBackMailSendThread send = new PwdLookBackMailSendThread(username, confirm);
+        ApplicationThreadPool.executeThread(send);
+    }
+
+    public RegisterConfirm saveOrUpdateRegisterConfirm(String username) {
         //save validation
         RegisterConfirm confirm = new RegisterConfirm(username);
         //本地对象
-        RegisterConfirm nativeConfirm=userDao.loadRegisterConfirmByUsername(username);
+        RegisterConfirm nativeConfirm = userDao.loadRegisterConfirmByUsername(username);
 
-        if (nativeConfirm==null){
-            nativeConfirm=confirm;
-        }else {
+        if (nativeConfirm == null) {
+            nativeConfirm = confirm;
+        } else {
             nativeConfirm.setValidateNumber(confirm.getValidateNumber());
             nativeConfirm.setValidateConfirm(false);
             nativeConfirm.setUsername(username);
@@ -192,18 +180,29 @@ public class UserServiceImpl implements UserService {
         }
 
         userDao.saveOrUpdate(nativeConfirm);
-
-        //send email out or send message out
-        PwdLookBackMailSendThread send = new PwdLookBackMailSendThread(username, confirm);
-        ApplicationThreadPool.executeThread(send);
+        return nativeConfirm;
     }
 
-    /**
-     * 更改密码
-     *
-     * @param username
-     * @param newPassword
-     */
+    public ClientUser saveOrUpdateClientUser(ClientUser user) {
+        //本地对象
+        ClientUser nativeClientUser = userDao.loadClientUser(user.getUsername());
+
+        if (nativeClientUser == null) {
+            nativeClientUser = user;
+        } else {
+            nativeClientUser.setPassword(user.getPassword());
+            nativeClientUser.setTimestamp(user.getTimestamp());
+            nativeClientUser.setUsername(user.getUsername());
+            nativeClientUser.setActive(user.isActive());
+            nativeClientUser.setContactWay(user.getContactWay());
+            nativeClientUser.setEnabled(user.isEnabled());
+            nativeClientUser.setName(user.getName());
+        }
+
+        userDao.saveOrUpdate(nativeClientUser);
+        return nativeClientUser;
+    }
+
     public void updateUserPassword(String username, String newPassword) {
         userDao.updateUserPassword(username, newPassword);
     }

@@ -28,7 +28,7 @@ public class SystemDWRHandler {
     }
 
     public boolean validateClientPassword(int userId, String password) {
-        return userService.obtainOldPasswordRight(userId,password);
+        return userService.obtainOldPasswordRight(userId, password);
     }
 
     public boolean validateUserNameDuplicate(String userName) {
@@ -55,17 +55,18 @@ public class SystemDWRHandler {
      * 校验用户名
      *
      * @param username
-     * @return 0正常通过，1：为空；2：用户名格式不正确，3：用户名已存在
+     * @return 0正常通过，1：为空；2：用户名格式不正确，3：用户名已存在并且已验证，不能再注册；4：已存在的用户未进行邮箱认证
      */
     public int checkUserNameRight(String username) {
         if (username == null || username.equals("")) {
             return 1;//为空，（不会走到这一步，在js中就判断了）
         }
         if (!ValidatorUtils.isValidEmail(username)) {
-            return 2;
+            return 2;//邮箱格式不对
         }
-        if (checkUserNameExist(username)) {
-            return 3;
+        int userState = checkUserCouldRegister(username);
+        if (userState > 0) {
+            return 3;//用户已存在并且已验证，不能再注册
         }
         return 0;
     }
@@ -88,6 +89,16 @@ public class SystemDWRHandler {
      */
     public boolean checkUserNameExist(String username) {
         return userService.obtainClientUserExist(username);
+    }
+
+    /**
+     * 检查用户是否可以注册
+     *
+     * @param username 用户注册邮箱
+     * @return -1 用户不存在；0 用户没有执行邮箱认证；大于0 用户的id
+     */
+    public int checkUserCouldRegister(String username) {
+        return userService.obtailUserCouldRegister(username);
     }
 
     /**

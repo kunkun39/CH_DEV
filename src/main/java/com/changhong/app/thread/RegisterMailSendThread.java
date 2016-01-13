@@ -28,7 +28,6 @@ public class RegisterMailSendThread extends Thread {
 
     @Override
     public void run() {
-        super.run();
         MailService mailService = (MailService) ApplicationEventPublisher.getBean("mailService");
 
         try {
