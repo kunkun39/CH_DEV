@@ -78,7 +78,7 @@
             } else if (usernameState == 2) {
                 jQuery("#error_info_username").html("<i class=\"ico-error\"></i>用户邮箱格式不正确!");
             } else if (usernameState == 0) {
-                jQuery("#error_info_username").html("<i class=\"ico-error\"></i>该邮箱还未注册!");
+                jQuery("#error_info_username").html("<i class=\"ico-error\"></i>该账号未成功注册!");
             }
         }
 
@@ -107,8 +107,8 @@
                 jQuery("#error_info_username").css("display", "block");
             } else if (result == 3) {//返回3用户名已存在
                 jQuery("#error_info_username").css("display", "none");
-            } else {//返回0账号不存在
-                jQuery("#error_info_username").html("<i class=\"ico-error\"></i>该邮箱还未注册!");
+            } else {//返回0账号不存在或未认证
+                jQuery("#error_info_username").html("<i class=\"ico-error\"></i>该账号未成功注册!");
                 jQuery("#error_info_username").css("display", "block");
             }
         });
