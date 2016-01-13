@@ -146,8 +146,13 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
 
     public boolean loadClientUserEnable(String username) {
         if (StringUtils.hasText(username) && username.indexOf("@") > 0) {
-            List userList = getHibernateTemplate().find("select  count(u.id) from ClientUser u where u.username = ? and u.enabled = true", new Object[]{username});
-            return ((Long) userList.get(0)).intValue() > 0 ? true : false;
+            List<ClientUser> clients = getHibernateTemplate().find("from ClientUser u where u.username = ?", new Object[]{username});
+            if (clients.isEmpty()) {
+                return true;
+            } else {
+                ClientUser user = clients.get(0);
+                return user.isEnabled();
+            }
         }
         return true;
     }
