@@ -88,7 +88,7 @@
                         <p class="font16" style="margin: 10px 0 0;">该邮件激活已失效！</p>
 
                         <p style="margin:0 0 28px;color: #999;">请重新操作！</p>
-                        <button class="btn-blue color1 text-center" onclick="toLoginPage()">去登录</button>
+                        <button class="btn-blue color1 text-center" onclick="toResendPwdBackMail()">重新发送</button>
                     </div>
                 </div>
             </c:when>

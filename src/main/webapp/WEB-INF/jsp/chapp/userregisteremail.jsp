@@ -33,15 +33,17 @@
                 <p class="font16" style="margin: 10px 0 0;">确认邮件已发送至你的注册邮箱 :${username}</p>
 
                 <p style="margin:0 0 28px;color: #999;">请进入邮箱查看邮件，并点击链接激活开放平台帐号。</p>
-                <input type="button" class="btn-blue color1" value="登录邮箱" onclick="toMailLoginPage()"/>
-
+                <c:if test="${tomailpageurl!=''}">
+                    <input type="button" id="bt_mailloginurl" class="btn-blue color1" value="登录邮箱" onclick="toMailLoginPage()"/>
+                </c:if>
                 <p style="margin-top: 10px;margin-bottom: 20px;">
 
                 <p class="color3">没有收到邮件？</p></p>
                 <ul>
                     <li>1. 请检查邮箱地址是否正确</li>
                     <li>2. 检查你的邮件垃圾箱</li>
-                    <li>3. 若仍未收到确认，请尝试 <a class="color4" href="${pageContext.request.contextPath}/chapp/userMailSend.html?usernamenormal=${usernamenormal}&mailtype=${mailtype}&isresend=true">重新发送</a></li>
+                    <li>3. 若仍未收到确认，请尝试 <a class="color4" href="${pageContext.request.contextPath}/chapp/userMailSend.html?usernamenormal=${usernamenormal}&mailtype=${mailtype}&isresend=true">重新发送</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -58,11 +60,10 @@
         window.open("${tomailpageurl}")
     }
     function showResendOk() {
-        var isresend=${isresend};
-        if(isresend){
+        var isresend =${isresend};
+        if (isresend) {
             alert("重新发送邮件成功");
         }
-
     }
     window.onload = showResendOk
 </script>

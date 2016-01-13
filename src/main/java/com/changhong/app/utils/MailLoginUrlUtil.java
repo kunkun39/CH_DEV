@@ -8,12 +8,12 @@ package com.changhong.app.utils;
 public class MailLoginUrlUtil {
 
     /**
-     * 获取邮箱登陆地址；如果没有搜索带对应邮箱登陆地址，会默认使用163登陆地址
-     * @param mailAddress
+     * 获取邮箱登陆地址；如果没有搜索到对应邮箱登陆地址，会默认为空
+     * @param mailAddress 邮箱地址
      * @return
      */
     public static String getMailLoginUrl(String mailAddress) {
-        String mailLogin = "http://mail.163.com";
+        String mailLogin = "";
         if (mailAddress == null || mailAddress.equals("")) {
             return mailLogin;
         }
