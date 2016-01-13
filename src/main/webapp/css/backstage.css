@@ -23,7 +23,7 @@ a.color4:hover { color: #3292ff; }
 .login-form .form-group {margin-bottom: 30px;}
 .login-help {position: relative;top:10px;}
 .login-tips {position: relative;padding: 5px;width: 268px;border: 1px solid #ec877b;background-color: #ffe4e0;line-height: 18px;}
-.ico-error,.ico-prompt{width: 14px;height: 14px;margin-right:3px;vertical-align: middle;margin-top: -2px;}
+.ico-error,.ico-prompt,.ico-success{width: 14px;height: 14px;margin-right:3px;vertical-align: middle;margin-top: -2px;}
 .ico-error{background-position:-96px -188px;}
 .ico-prompt{background-position:-96px -210px;}
 .ico-success{background-position:-96px -230px;}
