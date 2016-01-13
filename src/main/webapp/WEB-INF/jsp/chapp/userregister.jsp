@@ -202,7 +202,7 @@
     function checkFormInput(form) {
         var cansubmit = true;
         //用户邮箱检查
-        if (usernameState == 0) {
+        if (usernameState == 3) {
             jQuery("#error_info_username").css("display", "none");
         } else {
             cansubmit = false;
@@ -211,8 +211,8 @@
                 jQuery("#error_info_username").html("<i class=\"ico-error\"></i>用户账号不能为空!");
             } else if (usernameState == 2) {
                 jQuery("#error_info_username").html("<i class=\"ico-error\"></i>用户账号格式不正确!");
-            } else if (usernameState == 3) {
-                jQuery("#error_info_username").html("<i class=\"ico-error\"></i>用户已存在!");
+            } else if (usernameState == 4 || usernameState == 0) {
+                jQuery("#error_info_username").html("<i class=\"ico-error\"></i>账号已注册!");
             }
         }
         //密码检查
@@ -267,13 +267,13 @@
         //校验用户邮箱格式
         SystemDWRHandler.checkUserNameRight(username, function (result) {
             usernameState = result;
-            if (result == 2) {//返回1格式不对
+            if (result == 2) {//返回2格式不对
                 jQuery("#error_info_username").html("<i class=\"ico-error\"></i>账号格式不正确!");
                 jQuery("#error_info_username").css("display", "block");
-            } else if (result == 3) {//返回2用户名已存在
+            } else if (result == 4 || result == 0) {//返回0或4用户名已存在
                 jQuery("#error_info_username").html("<i class=\"ico-error\"></i>账号已注册!");
                 jQuery("#error_info_username").css("display", "block");
-            } else {//返回0 正常通过
+            } else {//返回3 账号可以注册
                 jQuery("#error_info_username").css("display", "none");
             }
         });

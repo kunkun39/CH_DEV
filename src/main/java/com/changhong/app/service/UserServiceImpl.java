@@ -51,18 +51,6 @@ public class UserServiceImpl implements UserService {
         return userDao.loadClientUserExist(username);
     }
 
-    @Override
-    public int obtailUserCouldRegister(String username) {
-        ClientUser clientUser = obtainClientUserByUserName(username);
-        if (clientUser == null) {
-            return -1;
-        }
-        if (!clientUser.isActive()) {
-            return 0;
-        }
-        return clientUser.getId();
-    }
-
     public boolean obtainUserEnable(String username) {
         return userDao.loadClientUserEnable(username);
     }

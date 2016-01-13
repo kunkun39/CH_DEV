@@ -68,17 +68,19 @@
     function doSubmit(form) {
         var cansubmit = true;
         //用户邮箱检查
-        if (usernameState == 3) {
+        if (usernameState == 0) {
             jQuery("#error_info_username").css("display", "none");
         } else {
             cansubmit = false;
             jQuery("#error_info_username").css("display", "block");
             if (usernameState == 1) {
                 jQuery("#error_info_username").html("<i class=\"ico-error\"></i>用户邮箱不能为空!");
-            } else if (usernameState == 2) {
+            } else if (usernameState == 2) {//返回2格式不对
                 jQuery("#error_info_username").html("<i class=\"ico-error\"></i>用户邮箱格式不正确!");
-            } else if (usernameState == 0) {
-                jQuery("#error_info_username").html("<i class=\"ico-error\"></i>该账号未成功注册!");
+            } else if (usernameState == 3) {//返回3账号未成功注册
+                jQuery("#error_info_username").html("<i class=\"ico-error\"></i>该账号未注册成功!");
+            } else if (usernameState == 4) {//返回4该账号已被禁用
+                jQuery("#error_info_username").html("<i class=\"ico-error\"></i>该账号已被禁用!");
             }
         }
 
@@ -105,11 +107,14 @@
             if (result == 2) {//返回2格式不对
                 jQuery("#error_info_username").html("<i class=\"ico-error\"></i>用户邮箱格式不正确!");
                 jQuery("#error_info_username").css("display", "block");
-            } else if (result == 3) {//返回3用户名已存在
-                jQuery("#error_info_username").css("display", "none");
-            } else {//返回0账号不存在或未认证
-                jQuery("#error_info_username").html("<i class=\"ico-error\"></i>该账号未成功注册!");
+            } else if (result == 3) {//返回3账号未成功注册
+                jQuery("#error_info_username").html("<i class=\"ico-error\"></i>该账号未注册成功!");
                 jQuery("#error_info_username").css("display", "block");
+            } else if (result == 4) {//返回4该账号已被禁用
+                jQuery("#error_info_username").html("<i class=\"ico-error\"></i>该账号已被禁用!");
+                jQuery("#error_info_username").css("display", "block");
+            } else if (result == 0) {//返回0用户可以修改密码
+                jQuery("#error_info_username").css("display", "none");
             }
         });
     }

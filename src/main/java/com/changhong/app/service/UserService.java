@@ -24,13 +24,6 @@ public interface UserService extends UserDetailsService {
      */
     boolean obtainClientUserExist(String username);
 
-    /**
-     * 注册时候判断用户状态
-     * @param username 用户注册邮箱
-     * @return -1 用户不存在；0 用户未进行邮箱注册；大于0，用户的id
-     */
-    int obtailUserCouldRegister(String username);
-
     boolean obtainUserEnable(String username);
 
     ClientUserDTO obtainClientUserById(int clientId);

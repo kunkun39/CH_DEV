@@ -1,5 +1,6 @@
 package com.changhong.app.web.dwr;
 
+import com.changhong.app.domain.ClientUser;
 import com.changhong.app.service.ClientService;
 import com.changhong.app.service.SystemService;
 import com.changhong.app.service.UserService;
@@ -55,7 +56,7 @@ public class SystemDWRHandler {
      * 校验用户名
      *
      * @param username
-     * @return 0正常通过，1：为空；2：用户名格式不正确，3：用户名已存在并且已验证，不能再注册；4：已存在的用户未进行邮箱认证
+     * @return 0 正常用户；1：用户名为空；2：用户名格式不正确，3：用户未成功注册；4：用户被禁用
      */
     public int checkUserNameRight(String username) {
         if (username == null || username.equals("")) {
@@ -64,9 +65,13 @@ public class SystemDWRHandler {
         if (!ValidatorUtils.isValidEmail(username)) {
             return 2;//邮箱格式不对
         }
-        int userState = checkUserCouldRegister(username);
-        if (userState > 0) {
-            return 3;//用户已存在并且已验证，不能再注册
+        ClientUser clientUser = userService.obtainClientUserByUserName(username);
+        if (clientUser == null || (clientUser != null && !clientUser.isActive())) {
+            return 3;//用户未成功注册
+        }
+
+        if (clientUser != null && !clientUser.isEnabled()) {
+            return 4;//用户被禁用
         }
         return 0;
     }
@@ -92,23 +97,16 @@ public class SystemDWRHandler {
     }
 
     /**
-     * 检查用户是否可以注册
-     *
-     * @param username 用户注册邮箱
-     * @return -1 用户不存在；0 用户没有执行邮箱认证；大于0 用户的id
-     */
-    public int checkUserCouldRegister(String username) {
-        return userService.obtailUserCouldRegister(username);
-    }
-
-    /**
      * 效验用户输入的验证码
      *
      * @param inputcode 验证码
      * @param request
      * @return true：验证码输入正确
      */
+
     public boolean checkRegisterCodeRight(String inputcode, HttpServletRequest request) {
         return UserRegisterCodeController.validate(request, inputcode);
     }
+
+
 }
