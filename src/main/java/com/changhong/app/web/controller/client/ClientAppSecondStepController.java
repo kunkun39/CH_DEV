@@ -1,5 +1,6 @@
 package com.changhong.app.web.controller.client;
 
+import com.changhong.app.domain.AppStatus;
 import com.changhong.app.exception.CHSecurityException;
 import com.changhong.app.service.ClientService;
 import com.changhong.app.service.SystemService;
@@ -9,6 +10,7 @@ import com.changhong.app.web.facade.dto.MarketAppDTO;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +29,8 @@ public class ClientAppSecondStepController extends AbstractController {
 
     private ClientService clientService;
 
+    private String serverContext;
+
     @Override
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Map<String, Object> model = new HashMap<String, Object>();
@@ -40,9 +44,6 @@ public class ClientAppSecondStepController extends AbstractController {
         if (app.getOwnerId() != SecurityUtils.currectAuthenticationId()) {
             throw new CHSecurityException("app first step with edit app is not your app");
         }
-        model.put("fileRequestHost", fileRequestHost);
-        model.put("marketApp", app);
-        model.put("STEP_KEY", app.decideWhichStepNow());
 
         int current = ServletRequestUtils.getIntParameter(request, "current", 1);
         String appName = ServletRequestUtils.getStringParameter(request, "appName", "");
@@ -50,7 +51,15 @@ public class ClientAppSecondStepController extends AbstractController {
         model.put("current", current);
         model.put("appName", appName);
         model.put("appStatus", appStatus);
-        return new ModelAndView("client/appsecondstep", model);
+        if (app.getAppStatus().equals(AppStatus.REJECTED.name())) {
+            model.put("appId", appId);
+            return new ModelAndView(new RedirectView(("/" + serverContext + "/security/appfirststep.html")), model);
+        } else {
+            model.put("fileRequestHost", fileRequestHost);
+            model.put("marketApp", app);
+            model.put("STEP_KEY", app.decideWhichStepNow());
+            return new ModelAndView("client/appsecondstep", model);
+        }
     }
 
     public void setClientService(ClientService clientService) {
@@ -59,5 +68,9 @@ public class ClientAppSecondStepController extends AbstractController {
 
     public void setFileRequestHost(String fileRequestHost) {
         this.fileRequestHost = fileRequestHost;
+    }
+
+    public void setServerContext(String serverContext) {
+        this.serverContext = serverContext;
     }
 }

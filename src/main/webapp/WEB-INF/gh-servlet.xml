@@ -212,6 +212,7 @@
           class="com.changhong.app.web.controller.client.ClientAppSecondStepController">
         <property name="clientService" ref="clientService"/>
         <property name="fileRequestHost" value="${application.file.request.path}"/>
+        <property name="serverContext" value="${application.context}"/>
     </bean>
 
 </beans>
