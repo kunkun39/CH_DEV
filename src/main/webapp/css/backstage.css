@@ -43,7 +43,7 @@ a.color4:hover { color: #3292ff; }
 /*注册成功*/
 .panel-con { width: 154px; margin: 0 auto; padding: 170px 0; }
 .panel-con-email { padding: 72px 0 110px; }
-.reg-icon, .step-circular, .path-icon, .server-icon, .pas-suc-ico, .search-icon, .error-icon,.ico-error,.ico-prompt{ background-image: url("../images/register.png"); background-repeat: no-repeat; }
+.reg-icon, .step-circular, .path-icon, .server-icon, .pas-suc-ico, .search-icon, .error-icon,.ico-error,.ico-prompt,.ico-success{ background-image: url("../images/register.png"); background-repeat: no-repeat; }
 .success-icon { width: 68px; height: 68px; margin-left: 43px; background-position: -7px -125px; }
 .email-icon { width: 68px; height: 68px; display: inline-block; background-position: -7px -50px; }
 .wrong-icon { width: 68px; height: 68px; display: inline-block; background-position: -7px -200px; }
