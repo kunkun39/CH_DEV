@@ -77,7 +77,7 @@
     <label for="" class="col-sm-3 control-label">APK文件</label>
     <div class="col-sm-9">
         <a href="${fileRequestHost}/${marketApp.appKey}/${marketApp.apkActualFileName}">
-            <p class="apply-detail-p"><i class="path-icon"></i><span class="color8">${marketApp.apkUploadFileName}</span></p>
+            <p class="apply-detail-p"><i class="path-icon"></i><span class="color10">${marketApp.apkUploadFileName}</span></p>
         </a>
     </div>
 </div>

@@ -81,8 +81,8 @@
                     <div class="col-sm-9">
                         <spring-form:input id="appName" path="appName" class="form-control" required="required"
                                            maxlength="20" onblur="validateAppName()"/>
-                        <span id="name_error_show" class="help-block color5" style="display: none;"></span>
                         <span class="help-block color6"><i class="ico-prompt"></i>请编辑应用名称，20字以内</span>
+                        <span id="name_error_show" class="help-block color5" style="display: none;"></span>
                     </div>
                 </div>
 
@@ -93,13 +93,16 @@
                         <c:if test="${marketApp.id == 0}">
                             <spring-form:input path="appPackage" class="form-control" required="required" maxlength="80"
                                            onblur="validateAppPackage()"/>
-                            <span id="package_error_show" class="help-block color5" style="display: none;"></span>
                         </c:if>
+
+                        <span class="help-block color6"><i class="ico-prompt"></i>请编辑应用包名</span>
+                        <span id="package_error_show" class="help-block color5" style="display: none;"></span>
+
                         <c:if test="${marketApp.id > 0}">
                             <spring-form:input path="appPackage" class="form-control" required="required" maxlength="80"
                                         readonly="true"/>
                         </c:if>
-                        <span class="help-block color6"><i class="ico-prompt"></i>请编辑应用包名</span>
+
                     </div>
                 </div>
 
@@ -109,8 +112,8 @@
                     <div class="col-sm-9">
                         <input type="file" id="appIconUploadFile" name="appIconUploadFile" required="required"
                                style="width: 320px" onchange="validateIconImage(this)"/>
+                        <span class="help-block color6"><i class="ico-prompt"></i>请编辑应用图标: 像素:150*150，大小<20K</span>
                         <span id="icon_error_show" class="help-block color5" style="display: none;"></span>
-                        <span class="help-block color6"><i class="ico-prompt"></i>请编辑应用图标: 像素:150*150，大小<30K</span>
                         <c:if test="${marketApp.id > 0}">
                             <img width="70" height="70" alt=""
                                  src="${fileRequestHost}/${marketApp.appKey}/${marketApp.iconActualFileName}"/>
@@ -124,8 +127,8 @@
                     <div class="col-sm-9">
                         <input type="file" id="appPosterUploadFile" name="appPosterUploadFile" required="required"
                                style="width: 320px" onchange="validatePosterImage(this)"/>
-                        <span id="poster_error_show" class="help-block color5" style="display: none;"></span>
                         <span class="help-block color6"><i class="ico-prompt"></i>请编辑应用图标: 像素:800*450，大小<200K</span>
+                        <span id="poster_error_show" class="help-block color5" style="display: none;"></span>
                         <c:if test="${marketApp.id > 0}">
                             <img width="200" height="112" alt=""
                                  src="${fileRequestHost}/${marketApp.appKey}/${marketApp.posterActualFileName}"/>
@@ -137,8 +140,8 @@
                     <div class="col-sm-9">
                         <input type="file" id="appApkUploadFile" name="appApkUploadFile" required="required"
                                style="width: 320px" onchange="validateApkFile(this)"/>
-                        <span id="apk_error_show" class="help-block color5" style="display: none;"></span>
                         <span class="help-block color6"><i class="ico-prompt"></i>请编辑应用APK文件</span>
+                        <span id="apk_error_show" class="help-block color5" style="display: none;"></span>
                         <c:if test="${marketApp.id > 0}">
                             <span class="help-block color10">已上传应用APK文件:${marketApp.apkUploadFileName}</span>
                         </c:if>
@@ -159,8 +162,8 @@
                     <div class="col-sm-9">
                         <spring-form:textarea id="appDescription" path="appDescription" required="required" rows="8"
                                               cols="80" onblur="validateAppDesc()" maxlength="200" placeholder="请输入应用描述..."/>
+                        <span class="help-block"><i class="ico-prompt"></i>最多填写200个字</span>
                         <span id="desc_error_show" class="help-block color5" style="display: none;"></span>
-                        <span class="help-block color10"><i class="ico-prompt"></i>最多填写200个字</span>
                     </div>
                 </div>
 
@@ -322,7 +325,7 @@
                 height = this.height;
                 size = obj.files[0].size;
                 if (width != 800 || height != 450 || size > 200 * 1024) {
-                    jQuery("#poster_error_show").html("<i class=\"ico-error\"></i>应用图标大小必须为150*150, 大小小于20K");
+                    jQuery("#poster_error_show").html("<i class=\"ico-error\"></i>应用海报大小必须为800*450, 大小小于200K");
                     jQuery("#poster_error_show").css("display", "block");
                     posterImageValidate = false;
                 } else {
@@ -396,7 +399,7 @@
         }
 
         if (!apkFileValidate) {
-            jQuery("#apk_error_show").html("<i class=\"ico-error\"></i>应用海报未通过验证");
+            jQuery("#apk_error_show").html("<i class=\"ico-error\"></i>应用文件未通过验证");
             jQuery("#apk_error_show").css("display", "block");
             canSubmit = false;
         } else {
