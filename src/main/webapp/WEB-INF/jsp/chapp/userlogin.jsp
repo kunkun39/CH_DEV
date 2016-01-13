@@ -61,25 +61,19 @@
                         <input type="button" class="btn-yellow color1" value="注册" onclick="registerClient();"/>
                         <input type="button" class="btn-blue color1" value="登录" onclick="loginClient(this.form);"/>
                         <br/>
-                        <c:if test="${LAST_LOGIN_FAILED != null}">
-                            <div class="login-help" style="">
-                                <span class="help-block color5"><i class="ico-error"></i>对不起, 用户名或者密码不正确!</span>
-                            </div>
-                        </c:if>
+
                         <div class="login-help" id="error_info" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">&nbsp;</label>
+
+                        <div class="col-sm-10">
+                            <a href="${pageContext.request.contextPath}/chapp/usertopwdlookback.html" class="color4">忘记密码？</a>
                         </div>
                     </div>
 
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">&nbsp;</label>
-
-                    <div class="col-sm-10">
-                        <a href="${pageContext.request.contextPath}/chapp/usertopwdlookback.html" class="color4">忘记密码？</a>
-                    </div>
-                </div>
-
-            </div>
         </form>
 
     </div>
@@ -133,6 +127,18 @@
         var img = document.getElementById("imageCode");
         img.src = "${pageContext.request.contextPath}/chapp/userregistercode.html?" + Math.random();
     }
+
+    function checkPwdisRight() {
+        var iserror =${LAST_LOGIN_FAILED != null};
+        if (iserror) {
+            jQuery("#error_info").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>对不起, 用户名或者密码不正确!</span>");
+            jQuery("#error_info").css("display", "block");
+        } else {
+            jQuery("#error_info").css("display", "none");
+            form.submit();
+        }
+    }
+    window.onload = checkPwdisRight
 </script>
 </body>
 
