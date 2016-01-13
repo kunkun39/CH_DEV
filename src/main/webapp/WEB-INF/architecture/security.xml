@@ -21,7 +21,7 @@
 
 
         <!-- session 失效后跳转的页面，最大登陆次数 -->
-        <security:session-management>
+        <security:session-management invalid-session-url="/chapp/login.html">
             <security:concurrency-control max-sessions="1" expired-url="/chapp/login.html" session-registry-ref="sessionRegistry"/>
         </security:session-management>
 

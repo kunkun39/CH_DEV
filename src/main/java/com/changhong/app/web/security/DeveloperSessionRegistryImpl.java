@@ -1,5 +1,6 @@
 package com.changhong.app.web.security;
 
+import com.changhong.app.domain.Auth;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.context.ApplicationListener;
@@ -7,6 +8,7 @@ import org.springframework.security.core.session.SessionDestroyedEvent;
 import org.springframework.security.core.session.SessionInformation;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 
@@ -159,5 +161,24 @@ public class DeveloperSessionRegistryImpl implements SessionRegistry, Applicatio
 
     public Set<String> getSessionId(Object key) {
         return principals.get(key);
+    }
+
+    public void kickOffUser(String userName) {
+        if (StringUtils.hasText(userName)) {
+            Set<String> set = null;
+            List<Object> userList = getAllPrincipals();
+            for (Object user : userList) {
+                if (userName.equals(((Auth) user).getUsername())) {
+                    set = getSessionId(user);
+                    break;
+                }
+            }
+            if (set != null) {
+                for (String sessionId : set) {
+                    SessionInformation sessionInformation = sessionIds.get(sessionId);
+                    sessionInformation.expireNow();
+                }
+            }
+        }
     }
 }

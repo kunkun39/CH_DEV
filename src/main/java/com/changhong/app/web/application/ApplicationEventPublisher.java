@@ -1,6 +1,6 @@
 package com.changhong.app.web.application;
 
-import com.changhong.app.utils.SessionUtils;
+import com.changhong.app.web.security.SecuritySessionManager;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
@@ -43,7 +43,7 @@ public class ApplicationEventPublisher implements ApplicationContextAware, Initi
 
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         setCtx(applicationContext);
-        SessionUtils.init();
+        SecuritySessionManager.init();
     }
 
     private void setCtx(ApplicationContext ctx) {

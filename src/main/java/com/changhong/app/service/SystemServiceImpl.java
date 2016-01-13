@@ -3,7 +3,7 @@ package com.changhong.app.service;
 import com.changhong.app.domain.*;
 import com.changhong.app.repository.SystemDao;
 import com.changhong.app.repository.UserDao;
-import com.changhong.app.utils.SessionUtils;
+import com.changhong.app.web.security.SecuritySessionManager;
 import com.changhong.app.web.event.AppStatusChangeAction;
 import com.changhong.app.web.facade.assember.AdminUserWebAssember;
 import com.changhong.app.web.facade.assember.ClientUserWebAssember;
@@ -107,7 +107,7 @@ public class SystemServiceImpl implements SystemService {
         }
 
         if (!enabled) {
-            SessionUtils.removeSessionsByUserName(clientUser.getUsername());
+            SecuritySessionManager.removeSessionsByUserName(clientUser.getUsername());
         }
     }
 
