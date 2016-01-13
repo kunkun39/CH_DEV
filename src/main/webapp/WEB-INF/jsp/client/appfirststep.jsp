@@ -93,9 +93,8 @@
                         <c:if test="${marketApp.id == 0}">
                             <spring-form:input path="appPackage" class="form-control" required="required" maxlength="80"
                                            onblur="validateAppPackage()"/>
+                            <span class="help-block color6"><i class="ico-prompt"></i>请编辑应用包名</span>
                         </c:if>
-
-                        <span class="help-block color6"><i class="ico-prompt"></i>请编辑应用包名</span>
                         <span id="package_error_show" class="help-block color5" style="display: none;"></span>
 
                         <c:if test="${marketApp.id > 0}">
