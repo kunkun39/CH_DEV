@@ -360,8 +360,8 @@
     }
 
     function submitAppInfo() {
-        var iconImageValidate = true;
-        var posterImageValidate = true;
+        //var iconImageValidate = true;
+        //var posterImageValidate = true;
         var canSubmit = true;
         if (!appNameValidate) {
             jQuery("#name_error_show").html("<i class=\"ico-error\"></i>应用名称未通过验证");
