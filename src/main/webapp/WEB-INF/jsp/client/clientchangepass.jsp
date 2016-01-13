@@ -35,15 +35,20 @@
 
         <div class="back-con-r fl">
             <div class="leftTab-content active">
-                <h4 class="font16 ">用户修改密码</h4>
 
-                <c:if test="${change == 1}">
-                    <div class="panel-con text-center">
-                        <div class="reg-icon success-icon"></div>
-                            <h3>密码修改成功!</h3>
-                    </div>
-                </c:if>
+                <div style="float:left;width:48%;">
+                    <c:choose>
 
+                        <c:when test="${change == 1}">
+                            <h4 class="font16">用户修改密码&nbsp;&nbsp;<i class="ico-success"></i>
+                                <span style="font-size: 80%;color:green;">(密码修改成功!)</span></h4>
+                        </c:when>
+
+                        <c:otherwise>
+                            <h4 class="font16">用户修改密码</h4>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
                     <spring-form:form commandName="userPassword" class="form-horizontal" name="basic_validate" id="basic_validate" novalidate="novalidate">
                         <div class="form-body">
 
@@ -160,8 +165,8 @@
     function validateNewPassword() {
         var oldPassword = jQuery("#oldPassword").val();
         var newPassword = jQuery("#newPassword").val();
-        if (newPassword == null || newPassword == '') {
-            jQuery("#new_password_error_show").html("<i class=\"ico-error\"></i>请输入新密码!");
+        if (newPassword == null || newPassword == '' || newPassword.length < 6 || newPassword.length > 18) {
+            jQuery("#new_password_error_show").html("<i class=\"ico-error\"></i>请输入6到18位密码!");
             jQuery("#new_password_error_show").css("display", "block");
             newPasswordValidate = false;
         } else if (newPassword == oldPassword) {
@@ -177,8 +182,8 @@
     function validateNewPasswordAgain() {
         var confirmPassword = jQuery("#newPasswordAgain").val();
         var newPassword = jQuery("#newPassword").val();
-        if (confirmPassword == null || confirmPassword == '') {
-            jQuery("#confirm_password_error_show").html("<i class=\"ico-error\"></i>请输入新密码!");
+        if (confirmPassword == null || confirmPassword == '' || confirmPassword.length < 6 || confirmPassword.length > 18) {
+            jQuery("#confirm_password_error_show").html("<i class=\"ico-error\"></i>请输入6到18位密码!");
             jQuery("#confirm_password_error_show").css("display", "block");
             confirmPasswordValidate = false;
         }
