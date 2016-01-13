@@ -85,9 +85,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/javascript/round/jquery.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/javascript/round/jquery.roundabout.js"></script>
 <script type="text/javascript">
-    $(document).ready(function() {
-		$('.round').roundabout();
-	});
+    window.onload = function() {$('.round').roundabout();};
 </script>
 
 </body>
