@@ -68,6 +68,16 @@ public class ClientServiceImpl implements ClientService {
         }
         return builder.toString();
     }
+
+    protected String getAPPCreateDetails(MarketAppDTO dto) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("<br/>应用名称:" + dto.getAppName());
+        builder.append("<br/>应用包名:" + dto.getAppPackage());
+        builder.append("<br/>应用版本(数字):" + dto.getAppVersionInt());
+        builder.append("<br/>应用图标:" + dto.getIconUploadFileName());
+        builder.append("<br/>应用海报:" + dto.getPosterUploadFileName());
+        return builder.toString();
+    }
 	
     public int obtainMarketAppInformationFromFile(MarketAppDTO oldMarketAppDTO, MarketAppDTO app, MultipartFile uploadApkFile, MultipartFile uploadIconFile, MultipartFile uploadPosterFile) {
         MarketAppDTO marketAppDTO = documentService.uploadAppApkData(app, uploadApkFile, uploadIconFile, uploadPosterFile);
@@ -84,7 +94,8 @@ public class ClientServiceImpl implements ClientService {
 
         //generate app change history
         if (created) {
-            AppCreateAction action = new AppCreateAction(marketApp.getId());
+            String details = getAPPCreateDetails(marketAppDTO);
+            AppCreateAction action = new AppCreateAction(marketApp.getId(), details);
             AppHistory history = AppHistory.generateAppCreateHistory(action);
             clientDao.saveOrUpdate(history);
         } else {

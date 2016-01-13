@@ -28,7 +28,7 @@ public class AppHistory extends EntityBase {
 
     public static AppHistory generateAppCreateHistory(AppCreateAction action) {
         String title = "创建新应用";
-        String description = "创建新应用";
+        String description = "用户创建新应用。" + action.getDetails();
         MarketApp app = new MarketApp();
         app.setId(action.getAppId());
         AppHistory history = new AppHistory(title, description, app);

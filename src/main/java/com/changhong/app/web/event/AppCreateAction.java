@@ -7,7 +7,14 @@ package com.changhong.app.web.event;
  */
 public class AppCreateAction extends AbstractAppChangeAction {
 
-    public AppCreateAction(int appId) {
+    private String details;
+
+    public AppCreateAction(int appId, String details) {
         super(appId);
+        this.details = details;
+    }
+
+    public String getDetails() {
+        return details;
     }
 }
