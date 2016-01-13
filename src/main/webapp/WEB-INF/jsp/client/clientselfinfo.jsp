@@ -38,9 +38,6 @@
 
             <div style="float:left;width:48%;">
                 <c:choose>
-                    <%--<c:when test="${message == 0}">--%>
-                    <%--<h4 class="font16">账户资料<span style="font-size: 80%;color:red;">&nbsp;&nbsp;(修改失败!)</span></h4>--%>
-                    <%--</c:when>--%>
 
                     <c:when test="${message == 1}">
                         <h4 class="font16">账户资料&nbsp;&nbsp;<i class="ico-success"></i><span
@@ -51,15 +48,11 @@
                         <h4 class="font16">账户资料</h4>
                     </c:otherwise>
                 </c:choose>
-                <%--<h4 class="font16 ">账户资料</h4>--%>
             </div>
 
             <spring-form:form id="clientSelfInfoForm" commandName="clientSelfInfo" class="form-horizontal server-form "
                               role="form ">
 
-                <%--<div id="isChangeSuccess" style="float:left;width:48%;margin-left:-295px;dipaly:none">--%>
-                <%--<h4 id="showWhenSuccess" style="color:red; visibility: hidden;" class="font16 ">(test)</h4>--%>
-                <%--</div>--%>
 
                 <div class="form-body">
                     <div class="form-group">
@@ -72,19 +65,6 @@
                             <span id="name_error_show" class="help-block color5" style="display: none;"></span>
                         </div>
                     </div>
-
-
-                        <%--<div class="form-group">--%>
-                        <%--<label for=" " class="col-sm-2 control-label">新密码</label>--%>
-
-                        <%--<div class="col-sm-10">--%>
-                        <%--<input type="password" class="form-control" id="newPassword" name="newPassword"--%>
-                        <%--placeholder="必填" onblur="validateNewPassword();"/>--%>
-                        <%--<span id="new_password_error_show" class="help-block color5" style="display: none;"></span>--%>
-                        <%--<span class="help-block"></span>--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
-
 
                     <div class="form-group" style="margin-top: -100px">
                         <label style="width:90px; " for=" " class="col-sm-2 control-label">联系电话</label>
@@ -130,6 +110,9 @@
 <script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
 <![endif]-->
 <script src="${pageContext.request.contextPath}/javascript/vendor/tab.js"></script>
+<script src="${pageContext.request.contextPath}/dwr/engine.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/dwr/util.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/dwr/interface/SystemDWRHandler.js" type="text/javascript"></script>
 
 
 <script type="text/javascript">
