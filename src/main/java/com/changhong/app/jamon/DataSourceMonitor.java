@@ -46,6 +46,10 @@ public class DataSourceMonitor implements DataSource {
         return realDataSource;
     }
 
+    public Logger getParentLogger() throws SQLFeatureNotSupportedException {
+        return null;
+    }
+
     public void setRealDataSource(DataSource realDataSource) {
         this.realDataSource = realDataSource;
     }
