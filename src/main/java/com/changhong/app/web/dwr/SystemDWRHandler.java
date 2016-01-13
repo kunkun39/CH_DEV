@@ -1,5 +1,6 @@
 package com.changhong.app.web.dwr;
 
+import com.changhong.app.domain.AdminUser;
 import com.changhong.app.domain.ClientUser;
 import com.changhong.app.service.ClientService;
 import com.changhong.app.service.SystemService;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Service("systemDWRHandler")
 public class SystemDWRHandler {
@@ -74,6 +76,53 @@ public class SystemDWRHandler {
             return 4;//用户被禁用
         }
         return 0;
+    }
+
+    /**
+     * 注册检查
+     *
+     * @param username
+     * @param password
+     * @param validateCode
+     * @param request
+     * @return 0：通过；1：验证码不正确；2：用户邮箱未验证通过；3：用户被禁用；4：密码不正确；5：账号不存在
+     */
+    public int checkUserLogin(String username, String password, String validateCode, HttpServletRequest request) {
+        boolean validateCodeRight = checkValidateCodeRight(validateCode, request);
+        if (!validateCodeRight) {
+            return 1;//验证码不正确
+        }
+
+        ClientUser clientUser = userService.obtainClientUserByUserName(username);
+        if (clientUser != null && clientUser.isActive() && clientUser.isEnabled() && password.equals(clientUser.getPassword())) {
+            return 0;//完美通过用户匹配，可以减少一次查询系统管理员
+        }
+        if (clientUser != null) {
+            if (!clientUser.isActive()) {
+                return 2;//用户邮箱未验证通过
+            }
+            if (!clientUser.isEnabled()) {
+                return 3;//用户被禁用
+            }
+            if (!password.equals(clientUser.getPassword())) {
+                return 4;//用户名密码不正确
+            }
+        }
+        //判断管理员账号
+        List<AdminUser> adminUsers = systemService.obtailAdminUserByUserName(username);
+        if ((adminUsers == null || adminUsers.size() == 0) && clientUser == null) {
+            return 5;//账号不存在
+        }
+        if (adminUsers != null && adminUsers.size() > 0) {
+            AdminUser adminUser = adminUsers.get(0);
+            if (adminUser != null && !adminUser.isEnabled()) {
+                return 3;
+            }
+            if (adminUser != null && !password.equals(adminUser.getPassword())) {
+                return 4;
+            }
+        }
+        return 0;//可以执行注册
     }
 
     /**

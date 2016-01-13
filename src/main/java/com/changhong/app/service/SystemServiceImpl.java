@@ -138,4 +138,9 @@ public class SystemServiceImpl implements SystemService {
             }
         }
     }
+
+    @Override
+    public List<AdminUser> obtailAdminUserByUserName(String username) {
+        return userDao.loadAdminUserByName(username);
+    }
 }

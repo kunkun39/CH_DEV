@@ -1,5 +1,6 @@
 package com.changhong.app.service;
 
+import com.changhong.app.domain.AdminUser;
 import com.changhong.app.web.facade.dto.AdminUserDTO;
 import com.changhong.app.web.facade.dto.MarketAppDTO;
 import com.changhong.app.web.facade.dto.ClientUserDTO;
@@ -46,4 +47,6 @@ public interface SystemService {
     MarketAppDTO obtainMarketApp(int appId);
 
     void updateMarketAppStatus(int appId, String appStatus, String rejectReason);
+
+    List<AdminUser> obtailAdminUserByUserName(String username);
 }

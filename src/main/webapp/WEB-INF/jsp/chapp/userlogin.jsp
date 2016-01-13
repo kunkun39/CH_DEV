@@ -102,20 +102,32 @@
             jQuery("#error_info").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>对不起，登录信息不完整!</span>");
             jQuery("#error_info").css("display", "block");
         } else {
-            SystemDWRHandler.checkUserEnable(j_username, function (result) {
-                if (!result) {
-                    jQuery("#error_info").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>对不起，该用户已停用，请联系管理员!</span>");
-                    jQuery("#error_info").css("display", "block");
-                } else {
-                    SystemDWRHandler.checkValidateCodeRight(register_code, function (result) {
-                        if (!result) {
-                            jQuery("#error_info").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>对不起，验证码不正确!</span>");
-                            jQuery("#error_info").css("display", "block");
-                        } else {
-                            jQuery("#error_info").css("display", "none");
-                            form.submit();
-                        }
-                    });
+            SystemDWRHandler.checkUserLogin(j_username, j_password, register_code, function (result) {
+                switch (result){
+                    case 0:
+                        jQuery("#error_info").css("display", "none");
+                        form.submit();
+                        break;
+                    case 1:
+                        jQuery("#error_info").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>对不起，验证码不正确!</span>");
+                        jQuery("#error_info").css("display", "block");
+                        break;
+                    case 2:
+                        jQuery("#error_info").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>对不起，邮箱未验证!</span>");
+                        jQuery("#error_info").css("display", "block");
+                        break;
+                    case 3:
+                        jQuery("#error_info").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>对不起，账号已被禁用!</span>");
+                        jQuery("#error_info").css("display", "block");
+                        break;
+                    case 4:
+                        jQuery("#error_info").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>对不起，用户名或密码不正确!</span>");
+                        jQuery("#error_info").css("display", "block");
+                        break;
+                    case 5:
+                        jQuery("#error_info").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>对不起，账号未注册!</span>");
+                        jQuery("#error_info").css("display", "block");
+                        break;
                 }
             });
 
