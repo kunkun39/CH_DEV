@@ -124,7 +124,7 @@
                     <label for="" class="col-sm-3 control-label">上传应用海报</label>
 
                     <div class="col-sm-9">
-                        <input type="file" id="appPosterUploadFile" name="appPosterUploadFile" required="required"
+                       <input type="file" id="appPosterUploadFile" name="appPosterUploadFile" required="required"
                                style="width: 320px" onchange="validatePosterImage(this)"/>
                         <span class="help-block color6"><i class="ico-prompt"></i>请编辑应用图标: 像素:800*450，大小<200K</span>
                         <span id="poster_error_show" class="help-block color5" style="display: none;"></span>
@@ -138,8 +138,8 @@
                     <label for="" class="col-sm-3 control-label">上传应用程序文件</label>
                     <div class="col-sm-9">
                         <input type="file" id="appApkUploadFile" name="appApkUploadFile" required="required"
-                               style="width: 320px" onchange="validateApkFile(this)"/>
-                        <span class="help-block color6"><i class="ico-prompt"></i>请编辑应用APK文件</span>
+                               style="width: 320px;margin-left: 8px" onchange="validateApkFile(this)"/>
+                        <span class="help-block color6" style="margin-left: 2px">&nbsp;&nbsp;<i class="ico-prompt"></i>请编辑应用APK文件</span>
                         <span id="apk_error_show" class="help-block color5" style="display: none;"></span>
                         <c:if test="${marketApp.id > 0}">
                             <span class="help-block color10">已上传应用APK文件:${marketApp.apkUploadFileName}</span>
