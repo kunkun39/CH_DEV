@@ -33,12 +33,12 @@
 
                     <div class="col-sm-10">
                         <input type="text" id="username" name="username" class="form-control" required="required" placeholder="请输入账户注册邮箱" onblur="checkUserName()">
-                        <span id="error_info_username" class="help-block color5 " style="display: none;"></span>
+                        <span class="help-block color6"><i class="ico-prompt"></i>请输入账户注册邮箱！</span>
                     </div>
                     <label class="col-sm-2 control-label"></label>
 
                     <div class="col-sm-10">
-                        <span class="help-block color6"><i class="ico-prompt"></i>请输入账户注册邮箱！</span>
+                        <span id="error_info_username" class="help-block color5 " style="display: none;"></span>
                     </div>
                 </div>
                 <div class="form-group">
