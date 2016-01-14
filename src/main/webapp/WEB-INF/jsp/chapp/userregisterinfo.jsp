@@ -157,10 +157,10 @@
         window.location.href = "${pageContext.request.contextPath}/chapp/userregister.html";
     }
     function toResendRegisterMail() {
-        window.location.href = "${pageContext.request.contextPath}/chapp/userMailSend.html?username=${username}&mailtype=0&isresend=true";
+        window.location.href = "${pageContext.request.contextPath}/chapp/usermailsend.html?username=${username}&mailtype=0&isresend=true";
     }
     function toResendPwdBackMail() {
-        window.location.href = "${pageContext.request.contextPath}/chapp/userMailSend.html?username=${username}&mailtype=1&isresend=true";
+        window.location.href = "${pageContext.request.contextPath}/chapp/usermailsend.html?username=${username}&mailtype=1&isresend=true";
     }
     function toPwdLookBack() {
         window.location.href = "${pageContext.request.contextPath}/chapp/usertopwdlookback.html";

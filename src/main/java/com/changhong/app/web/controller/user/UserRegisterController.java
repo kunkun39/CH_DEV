@@ -70,7 +70,7 @@ public class UserRegisterController extends SimpleFormController {
         model.put("mailtype", 0);//邮件类型 0表示注册
         model.put("isresend", false);//邮件是否是重新发送
 
-        ModelAndView modelAndView = new ModelAndView(new RedirectView("/" + serverContext + "/chapp/userMailSend.html"),model);
+        ModelAndView modelAndView = new ModelAndView(new RedirectView("/" + serverContext + "/chapp/usermailsend.html"),model);
 
         return modelAndView;
     }

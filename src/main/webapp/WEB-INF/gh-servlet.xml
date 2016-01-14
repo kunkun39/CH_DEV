@@ -58,7 +58,7 @@
                 <prop key="/chapp/userregistercode.html">userRegisterCodeController</prop>
                 <prop key="/chapp/agreecondition.html">userAgreeConditionController</prop>
                 <prop key="/chapp/finishregister.html">userRegisterActiveController</prop>
-                <prop key="/chapp/userMailSend.html">userMailSendController</prop>
+                <prop key="/chapp/usermailsend.html">userMailSendController</prop>
                 <prop key="/chapp/usertopwdlookback.html">userToPwdLookBackController</prop>
                 <prop key="/chapp/finishpwdlookbackmail.html">finishPwdLookbackMailController</prop>
                 <prop key="/chapp/userpwdlookback.html">userPwdLookBackController</prop>

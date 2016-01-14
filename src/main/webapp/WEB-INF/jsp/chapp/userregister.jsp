@@ -85,7 +85,6 @@
                 <div class="col-sm-10">
                     <spring-form:input type="text" path="name" id="name" maxlength="10" class="form-control" placeholder="请输入联系人姓名（选填）"/>
 
-                    <%--<p class="help-block text-danger"></p>--%>
                 </div>
                 <label class="col-sm-2 control-label"></label>
 

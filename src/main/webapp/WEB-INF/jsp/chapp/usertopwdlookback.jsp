@@ -32,8 +32,13 @@
                     <label for="username" class="col-sm-2 control-label">邮箱</label>
 
                     <div class="col-sm-10">
-                        <input type="text" id="username" name="username" class="form-control" required="required" placeholder="请输入邮箱" onblur="checkUserName()">
+                        <input type="text" id="username" name="username" class="form-control" required="required" placeholder="请输入账户注册邮箱" onblur="checkUserName()">
                         <span id="error_info_username" class="help-block color5 " style="display: none;"></span>
+                    </div>
+                    <label class="col-sm-2 control-label"></label>
+
+                    <div class="col-sm-10">
+                        <span class="help-block color6"><i class="ico-prompt"></i>请输入账户注册邮箱！</span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -60,7 +65,7 @@
 <script src="${pageContext.request.contextPath}/dwr/interface/SystemDWRHandler.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-    var usernameState = 1;//1为空；2格式不对；3账号存在；0账号不存在还未注册
+    var usernameState = 1;
 
     /**
      * 检测表单输入信息
@@ -85,7 +90,7 @@
         }
 
         if (cansubmit) {
-            window.location.href = "${pageContext.request.contextPath}/chapp/userMailSend.html?usernamenormal=" + jQuery("#username").val() + "&mailtype=1";
+            window.location.href = "${pageContext.request.contextPath}/chapp/usermailsend.html?usernamenormal=" + jQuery("#username").val() + "&mailtype=1";
         }
     }
     /**

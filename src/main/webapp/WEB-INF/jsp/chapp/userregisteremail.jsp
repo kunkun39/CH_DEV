@@ -42,7 +42,7 @@
                 <ul>
                     <li>1. 请检查邮箱地址是否正确</li>
                     <li>2. 检查你的邮件垃圾箱</li>
-                    <li>3. 若仍未收到确认，请尝试 <a class="color4" href="${pageContext.request.contextPath}/chapp/userMailSend.html?usernamenormal=${usernamenormal}&mailtype=${mailtype}&isresend=true">重新发送</a>
+                    <li>3. 若仍未收到确认，请尝试 <a class="color4" href="${pageContext.request.contextPath}/chapp/usermailsend.html?usernamenormal=${usernamenormal}&mailtype=${mailtype}&isresend=true">重新发送</a>
                     </li>
                 </ul>
             </div>

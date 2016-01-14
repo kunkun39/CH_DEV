@@ -74,8 +74,8 @@ public class UserServiceImpl implements UserService {
         RegisterConfirm confirm = saveOrUpdateRegisterConfirm(saveUser.getUsername());
 
         //发送邮件
-        RegisterMailSendThread send = new RegisterMailSendThread(saveUser.getUsername(), confirm);
-        ApplicationThreadPool.executeThread(send);
+//        RegisterMailSendThread send = new RegisterMailSendThread(saveUser.getUsername(), confirm);
+//        ApplicationThreadPool.executeThread(send);
     }
 
 
