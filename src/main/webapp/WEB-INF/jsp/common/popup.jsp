@@ -13,7 +13,7 @@
                 <td class="ml"></td>
                 <td id="lightboxFrameBody">
                     <button type="button" class="close" id="closeLink">×</button>
-                    <div class="details" style="overflow: hidden;height: auto;width: 505px;">
+                    <div id="details" style="overflow: hidden;height: auto;width: 505px;">
                         <div class="alert-form clearfix">
                             <label for="" class="fl control-label text-right">应用类别:</label>
                             <div id="categoryName" class="fl alert-con">

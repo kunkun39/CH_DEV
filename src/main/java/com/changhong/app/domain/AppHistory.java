@@ -70,7 +70,7 @@ public class AppHistory extends EntityBase {
         } else if (newStatus.equals(AppStatus.OFFSHELVES)) {
             description = "应用信息管理员下架该应用。";
         } else if (newStatus.equals(AppStatus.REJECTED)) {
-            description = "应用信息管理员未审核通过应用。<br/>原因:" + details + "。";
+            description = "应用信息管理员未审核通过应用。<br/>原因:" + details;
         }
 
         MarketApp app = new MarketApp();

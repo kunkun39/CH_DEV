@@ -37,8 +37,8 @@ function showDetails(appInfo, id) {
     eleHeight = $(this).height(),
     tableWidth = $('#outerContainer').width(),
     tableHeight = $('#outerContainer').height(),
-    endWidth = $('.details').width() + 27 * 2,
-    endHeight = $('.details').height() + 27 * 2,
+    endWidth = parseInt(document.getElementById("details").style.width) + 27 * 2,
+    endHeight = parseInt(document.getElementById("details").style.height) + 27 * 2,
     endLeft = $(window).width() / 2 - endWidth / 2,
     endTop = $(window).height() / 2 - endHeight / 2;
     $('#categoryName').html(appInfo.categoryName);
@@ -53,7 +53,7 @@ function showDetails(appInfo, id) {
     imgPoater.src = appInfo.posterPath;
     $('#description').html(appInfo.description);
     $('#lightbox').css({
-        width: $('#lightboxFrameBody').width() + 27 * 2 + "px",
+        width: parseInt(document.getElementById("details").style.height) + 27 * 2 + "px",
         height: 'auto',
         left: endLeft,
         //top: endTop

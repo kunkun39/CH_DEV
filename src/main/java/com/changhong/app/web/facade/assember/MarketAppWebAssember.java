@@ -156,7 +156,7 @@ public class MarketAppWebAssember {
         List<MarketAppDTO> dtoList = new ArrayList<MarketAppDTO>();
 
         for(MarketApp marketApp : marketAppList) {
-            dtoList.add(toMarketAppListDTO(marketApp));
+            dtoList.add(toMarketAppDetailsDTO(marketApp));
         }
 
         return dtoList;
