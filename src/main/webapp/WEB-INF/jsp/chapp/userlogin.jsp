@@ -46,7 +46,7 @@
                     <label for="registerCode" class="col-sm-2 control-label">验证码</label>
 
                     <div class="col-sm-10">
-                        <input type="text" name="registerCode" class="form-control" required="required" id="registerCode" placeholder="请输入验证码" maxlength="4">
+                        <input type="text" name="registerCode" class="form-control" onkeyup="inputOnkeyDown(this.form)" required="required" id="registerCode" placeholder="请输入验证码" maxlength="4">
                         <br/>
                         <img id="imageCode" src="${pageContext.request.contextPath}/chapp/userregistercode.html"/></span>
                         &nbsp;<a href="javascript:void(0);" onclick="imageChange()">看不清，换一张</a>
@@ -93,6 +93,13 @@
     function registerClient() {
         window.location.href = "${pageContext.request.contextPath}/chapp/userregister.html";
     }
+    //验证码输入框按回车键响应登录
+    function inputOnkeyDown(form){
+        var e = window.event || arguments.callee.caller.arguments[0];
+        if (e && e.keyCode == 13 ) {
+            loginClient(form);
+        }
+    }
 
     function loginClient(form) {
         var j_username = jQuery("#j_username").val();
@@ -130,8 +137,6 @@
                         break;
                 }
             });
-
-
         }
 
     }
