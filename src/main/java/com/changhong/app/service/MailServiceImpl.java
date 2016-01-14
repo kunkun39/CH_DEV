@@ -3,15 +3,19 @@ package com.changhong.app.service;
 import com.changhong.app.utils.DesUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.velocity.VelocityEngineUtils;
 import org.springframework.util.Assert;
 
 import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -23,8 +27,14 @@ import java.util.Properties;
 public class MailServiceImpl implements MailService, InitializingBean {
 
     private static final Log logger = LogFactory.getLog(MailServiceImpl.class);
-
     private JavaMailSenderImpl mailSender;
+    private SimpleMailMessage simpleMailMessage;
+    @Autowired
+    private VelocityEngine velocityEngine;
+    private String registerMailVmName = "velocity/registermail.vm";
+    private String pwdLookBackVmName = "velocity/passwdmail.vm";
+    Map model = new HashMap();
+    private String code;
 
     @Value("${mail.host}")
     private String mailHost = "smtp.163.com";
@@ -39,30 +49,28 @@ public class MailServiceImpl implements MailService, InitializingBean {
     private String applicationHost = "";
 
 
+    //below this is added by oscar chang
+    public VelocityEngine getVelocityEngine() {
+        return velocityEngine;
+    }
+
+    public void setVelocityEngine(VelocityEngine velocityEngine) {
+        this.velocityEngine = velocityEngine;
+    }
+
+
     public void sendUserRegisterMail(String sendMail, String validateNumber) throws Exception {
         String encUserId = DesUtils.getEncString(sendMail);
         String encValidationNumber = DesUtils.getEncString(validateNumber);
-        String code = encUserId + "||" + encValidationNumber;
+        code = encUserId + "||" + encValidationNumber;
 
         String title = "广电应用市场用户注册激活";
-        String content = "尊敬的开发者：\n" +
-                "\n" +
-                "您好!\n" +
-                "\n" +
-                "欢迎加入广电应用市场开放平台！\n" +
-                "\n" +
-                "点击下面的链接完成注册:" + applicationHost + "chapp/finishregister.html?a=" + code + "\n" +
-                "\n" +
-                "\n" +
-                "                                                                                                                             广电应用市场平台组\n" +
-                "\n" +
-                "若链接无法直接点开，请复制链接到浏览器中打开！（本邮件为系统自动发出请不要回复）";
-
-        sendEmail(sendMail, title, content);
+        sendEmail(sendMail, title, registerMailVmName);
     }
 
     /**
      * 找回密码邮件发送
+     *
      * @param sendMail
      * @param validateNumber
      * @throws Exception
@@ -70,29 +78,18 @@ public class MailServiceImpl implements MailService, InitializingBean {
     public void sendUserPWDLookBackMail(String sendMail, String validateNumber) throws Exception {
         String encUserId = DesUtils.getEncString(sendMail);
         String encValidationNumber = DesUtils.getEncString(validateNumber);
-        String code = encUserId + "||" + encValidationNumber;
+        code = encUserId + "||" + encValidationNumber;
 
         String title = "广电应用市场用户密码找回";
-        String content = "尊敬的开发者：\n" +
-                "\n" +
-                "您好!\n" +
-                "\n" +
-                "欢迎使用广电应用市场开放平台！\n" +
-                "\n" +
-                "点击下面的链接设置新密码:" + applicationHost + "chapp/finishpwdlookbackmail.html?a=" + code + "\n" +
-                "\n" +
-                "\n" +
-                "                                                                                                                             广电应用市场平台组\n" +
-                "\n" +
-                "若链接无法直接点开，请复制链接到浏览器中打开！（本邮件为系统自动发出请不要回复）";
-
-        sendEmail(sendMail, title, content);
+        sendEmail(sendMail, title, pwdLookBackVmName);
     }
 
     public void afterPropertiesSet() throws Exception {
         Assert.hasText(applicationHost, "the basic appcation path not configure");
 
         mailSender = new JavaMailSenderImpl();
+        simpleMailMessage = new SimpleMailMessage();
+
         // 设置参数
         mailSender.setHost(mailHost);
         mailSender.setUsername(mailUsername);
@@ -101,23 +98,22 @@ public class MailServiceImpl implements MailService, InitializingBean {
         Properties prop = new Properties();
         prop.setProperty("mail.smtp.auth", "true");
         mailSender.setJavaMailProperties(prop);
+
     }
 
-    private void sendEmail(String mail, String title, String content) throws MessagingException {
-        MimeMessage msg = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(msg, true, "UTF-8");
+    private void sendEmail(String mail, String title, String typeVmName) throws MessagingException {
 
-        helper.setFrom(mailSender.getUsername());
-        helper.setTo(mail);
-        helper.setSubject(title);
-        //第二个参数true，表示text的内容为html，然后注意<img/>标签，src='cid:file'，'cid'是 contentId的缩写，'file'是一个标记，需要在后面的代码中调用MimeMessageHelper的addInline方法替代成文件
-        helper.setText(content, true);
+        simpleMailMessage.setTo(mail);                          //接收人
+        simpleMailMessage.setFrom(mailSender.getUsername());  //发送人,从配置文件中取得
+        simpleMailMessage.setSubject(title);
 
-        mailSender.send(msg);
+        model.put("applicationHost", applicationHost);
+        model.put("code", code);
+
+        String result = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, typeVmName, "UTF-8", model);
+
+        simpleMailMessage.setText(result);
+        mailSender.send(simpleMailMessage);
     }
-//测试代码暂时屏蔽
-//    public static void main(String[] args) throws Exception {
-//        MailServiceImpl mailService = new MailServiceImpl();
-//        mailService.sendUserRegisterMail("34445282@qq.com", "111111");
-//    }
+
 }
