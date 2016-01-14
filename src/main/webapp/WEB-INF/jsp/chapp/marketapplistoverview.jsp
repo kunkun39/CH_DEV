@@ -46,14 +46,16 @@
                 </span>
             </div>
         </form>
-        <ul class="row rank_list_content text-center">
+        <ul class="row apply-ul text-center">
             <c:forEach items="${apps}" var="app">
-               <li class="col-md-3 col-sm-5">
-                <a href="javascript:void(0)" title="" class="apply-ul-a">
-                    <img src="${fileRequestHost}/${app.appKey}/${app.iconActualFileName}" alt="${app.appName}" width="70" height="70" />
-                    <h4>${app.appName}</h4>
-                    <p><ch:substring value="${app.appDescription}" length="45"/></p>
-                </a>
+               <li class="col-md-3 col-sm-6">
+                    <a href="javascript:void(0)" title="" class="apply-ul-a">
+                        <img src="${fileRequestHost}/${app.appKey}/${app.iconActualFileName}" alt="" width="96" height="96"/>
+                        <h4>${app.appName}</h4>
+                        <p>
+                            <ch:substring value="${app.appDescription}" length="30" showTitle="false"/>
+                        </p>
+                    </a>
                 </li>
             </c:forEach>
         </ul>
