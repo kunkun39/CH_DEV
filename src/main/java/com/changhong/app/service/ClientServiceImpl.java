@@ -72,11 +72,11 @@ public class ClientServiceImpl implements ClientService {
 
     protected String getAPPCreateDetails(MarketAppDTO dto) {
         StringBuilder builder = new StringBuilder();
-        builder.append("<br/>应用名称:" + dto.getAppName());
-        builder.append("<br/>应用包名:" + dto.getAppPackage());
-        builder.append("<br/>应用版本(数字):" + dto.getAppVersionInt());
-        builder.append("<br/>应用图标:" + dto.getIconUploadFileName());
-        builder.append("<br/>应用海报:" + dto.getPosterUploadFileName());
+        builder.append("<br/>● 应用名称:" + dto.getAppName());
+        builder.append("<br/>● 应用包名:" + dto.getAppPackage());
+        builder.append("<br/>● 应用版本(数字):" + dto.getAppVersionInt());
+        builder.append("<br/>● 应用图标:" + dto.getIconUploadFileName());
+        builder.append("<br/>● 应用海报:" + dto.getPosterUploadFileName());
         return builder.toString();
     }
 	

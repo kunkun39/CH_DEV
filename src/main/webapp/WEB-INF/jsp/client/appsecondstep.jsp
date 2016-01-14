@@ -47,13 +47,13 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label">&nbsp;</label>
                 <div class="col-sm-9">
-                    <a href="${pageContext.request.contextPath}/security/clientappoverview.html?current=${current}&appName=${appName}&appStatus=${appStatus}"><input type="button" class="btn-blue color1" value="返  回" /></a>
+                    <input type="button" class="btn-blue color1" value="返  回" onclick="window.location.href = '${pageContext.request.contextPath}/security/clientappoverview.html?current=${current}&appName=${appName}&appStatus=${appStatus}'" />
                     <c:choose>
                         <c:when test="${marketApp.appStatus == 'WAITING'}">
-                            <a href="${pageContext.request.contextPath}/security/appfirststep.html?appId=${marketApp.id}"><input type="button" class="btn-blue color1" value="修 改" /></a>
+                            <input type="button" class="btn-blue color1" value="修 改" onclick="window.location.href = '${pageContext.request.contextPath}/security/appfirststep.html?appId=${marketApp.id}'" />
                         </c:when>
                         <c:when test="${marketApp.appStatus == 'SHELVES'}">
-                            <a href="${pageContext.request.contextPath}/security/appfirststep.html?appId=${marketApp.id}"><input type="button" class="btn-blue color1" value="更 新" /></a>
+                            <input type="button" class="btn-blue color1" value="更 新" onclick="window.location.href = '${pageContext.request.contextPath}/security/appfirststep.html?appId=${marketApp.id}'" />
                         </c:when>
                     </c:choose>
                 </div>

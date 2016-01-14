@@ -170,8 +170,7 @@
                     <label class="col-sm-3 control-label">&nbsp;</label>
 
                     <div class="col-sm-9">
-                        <a href="${pageContext.request.contextPath}/security/clientappoverview.html"><input
-                                type="button" class="btn-blue color1" value="返  回"/></a>
+                        <input type="button" class="btn-blue color1" value="返  回" onclick="window.location.href = '${pageContext.request.contextPath}/security/clientappoverview.html'" />
                         <input type="button" class="btn-blue color1" value="提  交" onclick="submitAppInfo(this.form)"/>
                     </div>
                 </div>

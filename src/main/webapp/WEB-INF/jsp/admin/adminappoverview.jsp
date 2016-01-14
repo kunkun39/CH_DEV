@@ -32,7 +32,6 @@
             <h4 class="font16">开发者应用</h4>
             <ul class="nav nav-tabs">
                 <li <c:if test="${paging.appStatus == ''}">class="active"</c:if>><a href="javascript:void(0);" onclick="searchAppsByStatus('');">全部</a></li>
-                <li <c:if test="${paging.appStatus == 'CREATED'}">class="active"</c:if>><a href="javascript:void(0);" onclick="searchAppsByStatus('CREATED');">新创建</a></li>
                 <li <c:if test="${paging.appStatus == 'WAITING'}">class="active"</c:if>><a href="javascript:void(0);" onclick="searchAppsByStatus('WAITING');">待审核</a></li>
                 <li <c:if test="${paging.appStatus == 'REJECTED'}">class="active"</c:if>><a href="javascript:void(0);" onclick="searchAppsByStatus('REJECTED');">拒绝通过</a></li>
                 <li <c:if test="${paging.appStatus == 'PASSED'}">class="active"</c:if>><a href="javascript:void(0);" onclick="searchAppsByStatus('PASSED');">待上架</a></li>
