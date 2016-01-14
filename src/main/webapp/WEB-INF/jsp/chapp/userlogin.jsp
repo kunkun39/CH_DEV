@@ -94,9 +94,9 @@
         window.location.href = "${pageContext.request.contextPath}/chapp/userregister.html";
     }
     //验证码输入框按回车键响应登录
-    function inputOnkeyDown(form){
+    function inputOnkeyDown(form) {
         var e = window.event || arguments.callee.caller.arguments[0];
-        if (e && e.keyCode == 13 ) {
+        if (e && e.keyCode == 13) {
             loginClient(form);
         }
     }
@@ -110,32 +110,26 @@
             jQuery("#error_info").css("display", "block");
         } else {
             SystemDWRHandler.checkUserLogin(j_username, j_password, register_code, function (result) {
-                switch (result){
-                    case 0:
-                        jQuery("#error_info").css("display", "none");
-                        form.submit();
-                        break;
-                    case 1:
-                        jQuery("#error_info").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>对不起，验证码不正确!</span>");
-                        jQuery("#error_info").css("display", "block");
-                        break;
-                    case 2:
-                        jQuery("#error_info").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>对不起，邮箱未验证!</span>");
-                        jQuery("#error_info").css("display", "block");
-                        break;
-                    case 3:
-                        jQuery("#error_info").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>对不起，账号已被禁用!</span>");
-                        jQuery("#error_info").css("display", "block");
-                        break;
-                    case 4:
-                        jQuery("#error_info").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>对不起，用户名或密码不正确!</span>");
-                        jQuery("#error_info").css("display", "block");
-                        break;
-                    case 5:
-                        jQuery("#error_info").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>对不起，账号未注册!</span>");
-                        jQuery("#error_info").css("display", "block");
-                        break;
+                if (result == 0) {
+                    jQuery("#error_info").css("display", "none");
+                    form.submit();
+                } else {
+                    var errortext = "dddd";
+                    if (result == 1) {
+                        errortext = "对不起，验证码不正确!"
+                    } else if (result == 2) {
+                        errortext = "对不起，邮箱未验证!";
+                    } else if (result == 3) {
+                        errortext = "对不起，账号已被禁用!";
+                    } else if (result == 4) {
+                        errortext = "对不起，用户名或密码不正确!";
+                    } else if (result == 5) {
+                        errortext = "对不起，账号未注册!";
+                    }
+                    jQuery("#error_info").html("<span class=\"help-block color5\"><i class=\"ico-error\"></i>"+errortext+"</span>");
+                    jQuery("#error_info").css("display", "block");
                 }
+
             });
         }
 
