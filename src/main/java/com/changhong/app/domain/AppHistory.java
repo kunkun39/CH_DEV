@@ -52,13 +52,13 @@ public class AppHistory extends EntityBase {
         String description = "";
         if (newStatus.equals(AppStatus.WAITING)) {
             if (AppStatus.SHELVES.equals(oldStatus)) {
-                description = "用户更新应用信息，等待管理员审核。<br/>修改信息如下：" + details + "。";
+                description = "用户更新应用信息，等待管理员审核。<br/>修改信息如下：" + details;
             }
             else if (AppStatus.REJECTED.equals(oldStatus)) {
-                description = "用户重新提交应用信息，等待管理员审核。<br/>修改信息如下：<br/>" + details + "。";
+                description = "用户重新提交应用信息，等待管理员审核。<br/>修改信息如下：" + details;
             }
             else if (AppStatus.WAITING.equals(oldStatus)) {
-                description = "用户修改应用信息，等待管理员审核。<br/>修改信息如下：<br/>" + details + "。";
+                description = "用户修改应用信息，等待管理员审核。<br/>修改信息如下：" + details;
             }
             else {
                 description = "用户更新应用信息，等待管理员审核。";

@@ -78,9 +78,7 @@
                                     <td>
                                         <h5>${app.fullCategoryName}</h5>
                                         <p class="font12 color9">
-                                            <a title="${app.appDescription}">
-                                                <ch:substring value="${app.appDescription}" length="60"/>
-                                            </a>
+                                            <ch:substring value="${app.appDescription}" length="60"/>
                                         </p>
                                     </td>
                                     <td>

@@ -49,22 +49,22 @@ public class ClientServiceImpl implements ClientService {
     protected String getAPPChangeDetails(MarketAppDTO oldMarketAppDTO, MarketAppDTO newMarketAppDTO) {
         StringBuilder builder = new StringBuilder();
         if (!newMarketAppDTO.getFullCategoryName().equals(oldMarketAppDTO.getFullCategoryName())) {
-            builder.append("<br/>应用类别：" + oldMarketAppDTO.getFullCategoryName() + "->" + newMarketAppDTO.getFullCategoryName());
+            builder.append("<br/>● 应用类别：" + oldMarketAppDTO.getFullCategoryName() + "->" + newMarketAppDTO.getFullCategoryName());
         }
         if (!newMarketAppDTO.getAppName().equals(oldMarketAppDTO.getAppName())) {
-            builder.append("<br/>应用名称：" + oldMarketAppDTO.getAppName() + "->" + newMarketAppDTO.getAppName());
+            builder.append("<br/>● 应用名称：" + oldMarketAppDTO.getAppName() + "->" + newMarketAppDTO.getAppName());
         }
         if (oldMarketAppDTO.getAppVersionInt() != newMarketAppDTO.getAppVersionInt()) {
-            builder.append("<br/>应用版本(数字)：" + oldMarketAppDTO.getAppVersionInt() + "->" + newMarketAppDTO.getAppVersionInt());
+            builder.append("<br/>● 应用版本(数字)：" + oldMarketAppDTO.getAppVersionInt() + "->" + newMarketAppDTO.getAppVersionInt());
         }
         if (!newMarketAppDTO.getIconUploadFileName().equals(oldMarketAppDTO.getIconUploadFileName())) {
-            builder.append("<br/>应用图标：" + oldMarketAppDTO.getIconUploadFileName() + "->" + newMarketAppDTO.getIconUploadFileName());
+            builder.append("<br/>● 应用图标：" + oldMarketAppDTO.getIconUploadFileName() + "->" + newMarketAppDTO.getIconUploadFileName());
         }
         if (!newMarketAppDTO.getPosterUploadFileName().equals(oldMarketAppDTO.getPosterUploadFileName())) {
-            builder.append("<br/>应用海报：" + oldMarketAppDTO.getPosterUploadFileName() + "->" + newMarketAppDTO.getPosterUploadFileName());
+            builder.append("<br/>● 应用海报：" + oldMarketAppDTO.getPosterUploadFileName() + "->" + newMarketAppDTO.getPosterUploadFileName());
         }
         if (!newMarketAppDTO.getAppDescription().equals(oldMarketAppDTO.getAppDescription())) {
-            builder.append("<br/>应用描述：发生更改");
+            builder.append("<br/>● 应用描述：发生更改。");
         }
         return builder.toString();
     }
