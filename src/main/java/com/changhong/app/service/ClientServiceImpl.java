@@ -17,6 +17,7 @@ import com.changhong.app.web.facade.dto.AppCategoryDTO;
 import com.changhong.app.web.facade.dto.MarketAppDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -89,21 +90,24 @@ public class ClientServiceImpl implements ClientService {
             created = true;
         }
 
-        clientDao.saveOrUpdate(marketApp);
         documentService.deleteNotUsedFiles(app);
 
         //generate app change history
         if (created) {
             String details = getAPPCreateDetails(marketAppDTO);
+            clientDao.saveOrUpdate(marketApp);
             AppCreateAction action = new AppCreateAction(marketApp.getId(), details);
             AppHistory history = AppHistory.generateAppCreateHistory(action);
             clientDao.saveOrUpdate(history);
         } else {
             String details = getAPPChangeDetails(oldMarketAppDTO, marketAppDTO);
-            AppStatus oldAppStatus = AppStatus.isAppStatus(app.getAppStatus()) ? AppStatus.valueOf(oldMarketAppDTO.getAppStatus()) : null;
-            AppStatusChangeAction action = new AppStatusChangeAction(false, marketApp.getId(), oldAppStatus, AppStatus.WAITING, details);
-            AppHistory history = AppHistory.generateAppStatusChangeHistory(action);
-            clientDao.saveOrUpdate(history);
+            if (StringUtils.hasText(details)) {
+                clientDao.saveOrUpdate(marketApp);
+                AppStatus oldAppStatus = AppStatus.isAppStatus(app.getAppStatus()) ? AppStatus.valueOf(oldMarketAppDTO.getAppStatus()) : null;
+                AppStatusChangeAction action = new AppStatusChangeAction(false, marketApp.getId(), oldAppStatus, AppStatus.WAITING, details);
+                AppHistory history = AppHistory.generateAppStatusChangeHistory(action);
+                clientDao.saveOrUpdate(history);
+            }
         }
 
         return marketApp.getId();

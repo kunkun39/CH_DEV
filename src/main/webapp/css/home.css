@@ -30,3 +30,19 @@ background: #27318a; text-align: center; }
 width: 14px; height: 14px; margin-right: 19px; background-position: -20px -43px; }
 .roundAbout .bottomNavButtonOFF:hover { background-position: -53px -43px; }
 .roundAbout .bottomNavButtonON, .roundAbout .bottomNavButtonON:hover { background-position: -53px -43px; }
+/*点击弹框放大*/
+#overlay{display:none;position:fixed;top:0;left:0;z-index:1090;width:100%;height:100%;background-color:#131313;opacity: 0.4;filter:alpha(opacity=40)}
+.lightbox{display:none;background:none;position: fixed;z-index: 1100;}
+#lightboxFrameBody{background:#fff;width: 505px; height: auto;}
+#outerContainer td.tl, #outerContainer td.br{height:27px;width:27px;}
+#outerContainer td.tl{background:url(../images/popupback/back-corvers.png) 0 0;}
+#outerContainer td.tc{background:url(../images/popupback/back-tb.png) 50% 0;}
+#outerContainer td.tr{background:url(../images/popupback/back-corvers.png) 100% 0;}
+#outerContainer td.ml{background:url(../images/popupback/back-lr.png) 0 50%;}
+#outerContainer td.mr{background:url(../images/popupback/back-lr.png) 100% 50%;}
+#outerContainer td.bl{background:url(../images/popupback/back-corvers.png) 0 100%;}
+#outerContainer td.bc{background:url(../images/popupback/back-tb.png) 50% 100%;}
+#outerContainer td.br{background:url(../images/popupback/back-corvers.png) 100% 100%;}
+.alert-form {width: 100%; margin-bottom: 10px;}
+.alert-form .control-label{width: 120px; margin-right: 5px;}
+.alert-form .alert-con{width:380px;}
