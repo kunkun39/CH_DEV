@@ -83,9 +83,14 @@
                 <label class="col-sm-2 control-label">联系人</label>
 
                 <div class="col-sm-10">
-                    <spring-form:input type="text" path="name" id="name" class="form-control" placeholder="请输入联系人姓名（选填）"/>
+                    <spring-form:input type="text" path="name" id="name" maxlength="10" class="form-control" placeholder="请输入联系人姓名（选填）"/>
 
-                    <p class="help-block text-danger"></p>
+                    <%--<p class="help-block text-danger"></p>--%>
+                </div>
+                <label class="col-sm-2 control-label"></label>
+
+                <div class="col-sm-10">
+                    <span class="help-block color6"><i class="ico-prompt"></i>作为用户姓名（选填，限制10个字内）</span>
                 </div>
             </div>
             <div class="form-group" style="position:relative;">
@@ -94,7 +99,7 @@
                 <div class="col-sm-10">
                     <spring-form:input id="password" type="password" path="password" class="form-control float-left"
                                        required="required" placeholder="请输入密码" onKeyUp="pwStrength(this.value)"
-                                       onBlur="checkPassword()"/>
+                                       onBlur="checkPassword()" maxlength="18"/>
                     <span id="error_info_password" class="help-block color5 float-left-space" style="display: none;"></span>
 
                     <p class="passwordhelp-block text-danger"></p>
@@ -117,7 +122,7 @@
 
                 <div class="col-sm-10">
                     <spring-form:input id="passwordagain" type="password" path="passwordAgain" class="form-control float-left"
-                                       required="required" placeholder="请输入密码" onBlur="checkPasswordAgain()"/>
+                                       required="required" placeholder="请输入密码" maxlength="18" onBlur="checkPasswordAgain()"/>
                     <span id="error_info_passwordagain" class="help-block color5 float-left-space" style="display: none;"></span>
 
                     <p class="help-block text-danger"></p>

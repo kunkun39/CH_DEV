@@ -3,6 +3,7 @@ package com.changhong.app.web.tag;
 
 import com.changhong.app.domain.Auth;
 import com.changhong.app.utils.SecurityUtils;
+import com.opensymphony.oscache.util.StringUtil;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
@@ -35,7 +36,18 @@ public class UserTag extends TagSupport {
         if (auth == null) {
             buffer.append("<a href=\"" + context + "/chapp/login.html\">登陆</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href=\"" + context + "/chapp/userregister.html\">注册</a>");
         } else {
-            buffer.append("<a href=\"" + context + "/j_spring_security_logout\">退出</a>");
+            if (StringUtil.hasLength(auth.getName())) {
+                String name = auth.getName();
+                String showname = name;
+                if (name.length() > 4) {
+                    showname = name.substring(0, 4) + "";
+                }
+                buffer.append("<a title=\"" + name + "\">" + showname + "</a>" + "&nbsp;&nbsp;|&nbsp;&nbsp;");
+                buffer.append("<a href=\"" + context + "/j_spring_security_logout\">退出</a>");
+            } else {
+                buffer.append("<a title=\"未填写用户姓名\">陌生人</a>" + "&nbsp;&nbsp;|&nbsp;&nbsp;");
+                buffer.append("<a href=\"" + context + "/j_spring_security_logout\">退出</a>");
+            }
         }
 
         return buffer.toString();
