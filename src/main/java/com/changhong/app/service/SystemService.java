@@ -28,7 +28,7 @@ public interface SystemService {
 
     boolean validateAdminUserPassword(int userId, String password);
 
-    void updateAdminUserInfo(int userId, String contextway, String password);
+    void updateAdminUserInfo(int userId, String contextway, String name, String password);
 
     /* client user */
 

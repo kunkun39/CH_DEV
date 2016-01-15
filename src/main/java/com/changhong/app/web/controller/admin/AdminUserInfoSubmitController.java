@@ -32,19 +32,20 @@ public class AdminUserInfoSubmitController extends AbstractController {
             throw new CHSecurityException("you do not have administrator privileges");
         }
 
+        String name = ServletRequestUtils.getStringParameter(httpServletRequest, "name", "");
         String contactway = ServletRequestUtils.getStringParameter(httpServletRequest, "contactway", "");
         String oldPassword = ServletRequestUtils.getStringParameter(httpServletRequest, "oldpwd", "");
         String newPassword = ServletRequestUtils.getStringParameter(httpServletRequest, "newpwd", "");
         String confirmPassword = ServletRequestUtils.getStringParameter(httpServletRequest, "confirmpwd", "");
         int userId = SecurityUtils.currectAuthenticationId();
         Map<String, Object> model = new HashMap<String, Object>();
-        if (StringUtils.hasText(contactway)) {
-            systemService.updateAdminUserInfo(userId, contactway, "");
+        if (StringUtils.hasText(contactway) || StringUtils.hasText(name)) {
+            systemService.updateAdminUserInfo(userId, contactway, name, "");
             model.put("message", 1);
         } else {
             if (systemService.validateAdminUserPassword(userId, oldPassword) && !oldPassword.equals(newPassword)
                     && newPassword.equals(confirmPassword) && StringUtils.hasText(newPassword)) {
-                systemService.updateAdminUserInfo(userId, "", newPassword);
+                systemService.updateAdminUserInfo(userId, "","", newPassword);
                 model.put("message", 1);
             } else {
                 model.put("message", 0);

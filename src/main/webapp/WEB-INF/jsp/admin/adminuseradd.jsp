@@ -35,18 +35,26 @@
         <spring-form:form id="adminUserForm" commandName="adminUser" cssClass="form-horizontal" method="post">
             <div class="form-body">
                 <div class="form-group">
-                    <label for=" " class="col-sm-2 control-label">联系方式</label>
+                    <label for=" " class="col-sm-2 control-label">用户名</label>
                     <div class="col-sm-10">
-                        <spring-form:input type="text" class="form-control" id=" " path="contactWay" placeholder="请输入邮箱等其他联系方式"/>
-                        <span class="help-block color3"><i class="ico-prompt"></i>作为登录帐号，填写未被平台注册的邮箱,非必填</span>
+                        <spring-form:input type="text" class="form-control" id="inputUserName" path="username" placeholder="请输入用户名" onblur="validateUserName();"/>
+                        <spring-form:errors path="username" class="help-block color5"/>
+                        <span id="username_error_show" class="help-block color5" style="display: none;"></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for=" " class="col-sm-2 control-label">用户名</label>
+                    <label for=" " class="col-sm-2 control-label">姓名</label>
                     <div class="col-sm-10">
-                        <spring-form:input type="text" class="form-control" id="inputName" path="username" placeholder="请输入用户名" onblur="validateUserName();"/>
-                        <spring-form:errors path="username" class="help-block color5"/>
+                        <spring-form:input type="text" class="form-control" id="inputName" path="name" placeholder="请输入姓名" onblur="validateName();"/>
+                        <spring-form:errors path="name" class="help-block color5"/>
                         <span id="name_error_show" class="help-block color5" style="display: none;"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for=" " class="col-sm-2 control-label">联系方式</label>
+                    <div class="col-sm-10">
+                        <spring-form:input type="text" class="form-control" id=" " path="contactWay" placeholder="请输入邮箱等其他联系方式"/>
+                        <span class="help-block color3"><i class="ico-prompt"></i>非必填</span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -92,28 +100,41 @@
 <script src="${pageContext.request.contextPath}/dwr/interface/SystemDWRHandler.js" type="text/javascript"></script>
 <script type="text/javascript">
     var userNameValidate = false;
+    var nameValidate = false;
     var passwordValidate = false;
     var confirmPasswordValidate = false;
     var userNameDuplicate = false;
 
     function validateUserName() {
-        var userName = jQuery("#inputName").val();
+        var userName = jQuery("#inputUserName").val();
         if (userName == null || userName == '') {
-            jQuery("#name_error_show").html("<i class=\"ico-error\"></i>请输入用户名！");
-            jQuery("#name_error_show").css("display", "block");
+            jQuery("#username_error_show").html("<i class=\"ico-error\"></i>请输入用户名！");
+            jQuery("#username_error_show").css("display", "block");
         }
         else {
             userNameValidate = true;
             SystemDWRHandler.validateUserNameDuplicate(userName, function(result) {
                 if (result) {
-                    jQuery("#name_error_show").html("<i class=\"ico-error\"></i>该用户名已存在,请重新输入！");
-                    jQuery("#name_error_show").css("display", "block");
+                    jQuery("#username_error_show").html("<i class=\"ico-error\"></i>该用户名已存在,请重新输入！");
+                    jQuery("#username_error_show").css("display", "block");
                 }
                 else {
-                    jQuery("#name_error_show").css("display", "none");
+                    jQuery("#username_error_show").css("display", "none");
                     userNameDuplicate = true;
                 }
             });
+        }
+    }
+
+    function validateName() {
+        var name = jQuery("#inputName").val();
+        if (name == null || name == '') {
+            jQuery("#name_error_show").html("<i class=\"ico-error\"></i>请输入姓名！");
+            jQuery("#name_error_show").css("display", "block");
+        }
+        else {
+            jQuery("#name_error_show").css("display", "none");
+            nameValidate = true;
         }
     }
 
@@ -160,21 +181,21 @@
 
     function userInfoSubmit(form) {
         if (!userNameValidate) {
-            jQuery("#name_error_show").html("<i class=\"ico-error\"></i>请输入用户名！");
-            jQuery("#name_error_show").css("display", "block");
+            jQuery("#username_error_show").html("<i class=\"ico-error\"></i>请输入用户名！");
+            jQuery("#username_error_show").css("display", "block");
         }
         else if (!userNameDuplicate) {
-            jQuery("#name_error_show").html("<i class=\"ico-error\"></i>该用户名已存在,请重新输入！");
-            jQuery("#name_error_show").css("display", "block");
+            jQuery("#username_error_show").html("<i class=\"ico-error\"></i>该用户名已存在,请重新输入！");
+            jQuery("#username_error_show").css("display", "block");
         }
         else {
-            jQuery("#name_error_show").css("display", "none");
+            jQuery("#username_error_show").css("display", "none");
         }
-
+        validateName();
         validatePassword();
         validateConfrimPassword();
 
-        if (userNameValidate && passwordValidate && confirmPasswordValidate && userNameDuplicate) {
+        if (userNameValidate && nameValidate && passwordValidate && confirmPasswordValidate && userNameDuplicate) {
             form.submit();
         }
     }

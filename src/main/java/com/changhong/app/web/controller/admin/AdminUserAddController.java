@@ -48,7 +48,7 @@ public class AdminUserAddController extends SimpleFormController {
         }
 
         AdminUserDTO dto = (AdminUserDTO) command;
-        if (StringUtils.hasText(dto.getUsername()) && StringUtils.hasText(dto.getPassword())) {
+        if (StringUtils.hasText(dto.getUsername()) && StringUtils.hasText(dto.getName()) && StringUtils.hasText(dto.getPassword())) {
             systemService.insertAdminUser(dto);
         }
         return new ModelAndView(new RedirectView("/" + serverContext + "/security/adminusers.html"));

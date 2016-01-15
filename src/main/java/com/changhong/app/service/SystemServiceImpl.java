@@ -76,12 +76,17 @@ public class SystemServiceImpl implements SystemService {
         return false;
     }
 
-    public void updateAdminUserInfo(int userId, String contextway, String password) {
+    public void updateAdminUserInfo(int userId, String contextway, String name, String password) {
         AdminUser adminUser = (AdminUser) userDao.findById(userId, AdminUser.class);
 
         if (adminUser != null) {
-            if (StringUtils.hasText(contextway)) {
-                adminUser.setContactWay(contextway);
+            if (StringUtils.hasText(contextway) || StringUtils.hasText(name)) {
+                if (StringUtils.hasText(contextway)) {
+                    adminUser.setContactWay(contextway);
+                }
+                if (StringUtils.hasText(name)) {
+                    adminUser.setName(name);
+                }
             } else if (StringUtils.hasText(password)) {
                 adminUser.setPassword(password);
             }

@@ -51,6 +51,12 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for=" " class="col-sm-3 control-label">姓名</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" value="${user.name}" readonly="true"/>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="" class="col-sm-3 control-label">联系方式</label>
                     <div class="col-sm-9">
                         <input value="${user.contactWay}" class="form-control" readonly="true"/>

@@ -34,11 +34,20 @@
         </div>
         <form id="changepersionalinfoForm" class="form-horizontal" action="${pageContext.request.contextPath}/security/adminuserinfosubmit.html" method="post">
             <div class="form-body">
+                <input id="oldName" name="oldName" type="hidden" value="${user.name}"/>
                 <input id="oldContactway" name="oldContactway" type="hidden" value="${user.contactWay}"/>
                 <div class="form-group">
                     <label for=" " class="col-sm-2 control-label">用户名</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputName" value="${user.username}" readonly="true"/>
+                        <input type="text" class="form-control" id="inputUserName" value="${user.username}" readonly="true"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword" class="col-sm-2 control-label">联系方式</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="intputName" name="name" value="${user.name}" placeholder="请输入姓名" onblur="validateName();" />
+                        <span id="name_error_show" class="help-block color5" style="display: none;"></span>
+                        <span class="help-block"></span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -71,14 +80,12 @@
 <script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
 <script type="text/javascript">
     var contactWayValidate = false;
+    var nameValidate = false;
     function validateContactWay() {
         var oldContactway = jQuery("#oldContactway").val();
         var contactWay = jQuery("#inputContactWay").val();
         if (contactWay == null || contactWay == '') {
             jQuery("#contactWay_error_show").html("<i class=\"ico-error\"></i>请输入联系方式！");
-            jQuery("#contactWay_error_show").css("display", "block");
-        } else if(oldContactway == contactWay) {
-            jQuery("#contactWay_error_show").html("<i class=\"ico-error\"></i>请输入不同的联系方式！");
             jQuery("#contactWay_error_show").css("display", "block");
         } else {
             jQuery("#contactWay_error_show").css("display", "none");
@@ -86,10 +93,32 @@
         }
     }
 
+    function validateName() {
+        var oldName = jQuery("#oldName").val();
+        var name = jQuery("#intputName").val();
+        if (name == null || name == '') {
+            jQuery("#name_error_show").html("<i class=\"ico-error\"></i>请输入姓名！");
+            jQuery("#name_error_show").css("display", "block");
+        } else {
+            jQuery("#name_error_show").css("display", "none");
+            nameValidate = true;
+        }
+    }
+
     function changeUserInfo(form) {
         validateContactWay();
-        if (contactWayValidate) {
-            form.submit();
+        validateName();
+        if (contactWayValidate && nameValidate) {
+            var oldContactway = jQuery("#oldContactway").val();
+            var contactWay = jQuery("#inputContactWay").val();
+            var oldName = jQuery("#oldName").val();
+            var name = jQuery("#intputName").val();
+            if (oldContactway == contactWay && oldName == name) {
+                jQuery("#contactWay_error_show").html("<i class=\"ico-error\"></i>用户名和密码至少需要修改一个！");
+                jQuery("#contactWay_error_show").css("display", "block");
+            } else {
+                form.submit();
+            }
         }
     }
 </script>
