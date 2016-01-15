@@ -60,6 +60,8 @@ public class MarketAppDTO implements Serializable{
 
     private int ownerId;
 
+    private int errorId;
+
     public MarketAppDTO() {
         this.appKey = CHStringUtils.getRandomString(8);
     }
@@ -305,5 +307,13 @@ public class MarketAppDTO implements Serializable{
 
     public void setOwnerId(int ownerId) {
         this.ownerId = ownerId;
+    }
+
+    public int getErrorId() {
+        return errorId;
+    }
+
+    public void setErrorId(int errorId) {
+        this.errorId = errorId;
     }
 }

@@ -37,12 +37,6 @@
 
     <!--加载结束-->
     <table class="table table-condensed table-bordered table-hover table-view-1" id="appHis-table">
-        <thead>
-            <tr>
-                <th style="padding-left: 20px; width: 20%">时间/标题</th>
-                <th>细节</th>
-            </tr>
-        </thead>
         <tbody id="rank_list_content">
             <%--<tr>--%>
                 <%--<td style="padding-left: 20px;" colspan="2">--%>
@@ -128,8 +122,8 @@
 
             for(var i=0; i<statisticData.length; i++) {
                 var historyValues = statisticData[i];
-                var newContent = "<tr><td style=\"padding-left: 20px;\" colspan=\"2\"> " + (i+1) + "、 [" + historyValues.time + "]" + historyValues.title + "</td></tr>" +
-                        "<tr><td style=\"background-color: #EBEFF0; padding-left: 20px; font-size:11px;\" colspan=\"2\">" + historyValues.desc + "</td></tr>";
+                var newContent = "<tr><td style=\"padding-left: 20px;background-color: #EBEFF0;\" colspan=\"2\"> " + (i+1) + "、 [" + historyValues.time + "]" + historyValues.title + "</td></tr>" +
+                        "<tr><td style=\"padding-left: 20px; font-size:11px;\" colspan=\"2\">" + historyValues.desc + "</td></tr>";
 
                 contentContainer.html(contentContainer.html() + newContent);
             }

@@ -139,8 +139,15 @@ public class SystemServiceImpl implements SystemService {
         }
     }
 
-    @Override
     public List<AdminUser> obtailAdminUserByUserName(String username) {
         return userDao.loadAdminUserByName(username);
+    }
+
+    public String obtainMarketAppStatus(int appId) {
+        MarketApp marketApp = (MarketApp) systemDao.findById(appId, MarketApp.class);
+        if (marketApp != null) {
+            return marketApp.getAppStatus().name();
+        }
+        return null;
     }
 }

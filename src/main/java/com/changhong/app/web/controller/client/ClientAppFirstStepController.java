@@ -1,9 +1,11 @@
 package com.changhong.app.web.controller.client;
 
+import com.changhong.app.domain.AppStatus;
 import com.changhong.app.exception.CHSecurityException;
 import com.changhong.app.service.ClientService;
 import com.changhong.app.utils.CHFileUtils;
 import com.changhong.app.utils.SecurityUtils;
+import com.changhong.app.utils.StatusManageUtils;
 import com.changhong.app.web.facade.dto.AppCategoryDTO;
 import com.changhong.app.web.facade.dto.MarketAppDTO;
 import org.springframework.util.StringUtils;
@@ -66,6 +68,10 @@ public class ClientAppFirstStepController extends SimpleFormController {
 
     @Override
     protected void onBindAndValidate(HttpServletRequest request, Object command, BindException errors) throws Exception {
+        MarketAppDTO app = (MarketAppDTO) command;
+        if (app.getId() > 0 &&!StatusManageUtils.checkStatusValid(app.getId(), AppStatus.WAITING.name(), false)) {
+            errors.rejectValue("errorId", "", "<div class=\"form-group\"><label for=\"\" class=\"col-sm-3 control-label\">&nbsp;</label><div class=\"col-sm-9\"><i class=\"ico-error\"></i>应用状态发生变化,不能提交!请返回!</div></div>");
+        }
     }
 
     @Override

@@ -12,7 +12,8 @@ public enum AppStatus {
     PASSED("审核通过"),
     REJECTED("已拒绝"),
     SHELVES("已上架"),
-    OFFSHELVES("已下架");
+    OFFSHELVES("已下架"),
+    INVALID("无效");
 
     private String description;
 
@@ -36,5 +37,12 @@ public enum AppStatus {
             return true;
         }
         return false;
+    }
+
+    public static int getAppStatusInt(String appStatus) {
+        if (AppStatus.isAppStatus(appStatus)) {
+            return AppStatus.valueOf(appStatus).ordinal();
+        }
+        return AppStatus.INVALID.ordinal();
     }
 }

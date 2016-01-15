@@ -49,4 +49,6 @@ public interface SystemService {
     void updateMarketAppStatus(int appId, String appStatus, String rejectReason);
 
     List<AdminUser> obtailAdminUserByUserName(String username);
+
+    String obtainMarketAppStatus(int appId);
 }

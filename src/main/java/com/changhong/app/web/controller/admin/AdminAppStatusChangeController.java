@@ -4,6 +4,7 @@ import com.changhong.app.domain.AppStatus;
 import com.changhong.app.exception.CHSecurityException;
 import com.changhong.app.service.SystemService;
 import com.changhong.app.utils.SecurityUtils;
+import com.changhong.app.utils.StatusManageUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,7 +40,9 @@ public class AdminAppStatusChangeController extends AbstractController {
         String appName = StringUtils.trimWhitespace(ServletRequestUtils.getStringParameter(httpServletRequest, "appName", ""));
         String appStatus = ServletRequestUtils.getStringParameter(httpServletRequest, "appStatus", "");
         if (appId != -1) {
-            systemService.updateMarketAppStatus(appId, appChangeStatus, rejectReason);
+            if (StatusManageUtils.checkStatusValid(appId, appChangeStatus, true)) {
+                systemService.updateMarketAppStatus(appId, appChangeStatus, rejectReason);
+            }
         }
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("appId", appId);

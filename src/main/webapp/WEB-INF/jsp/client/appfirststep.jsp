@@ -56,7 +56,7 @@
         <spring-form:form id="marketAppForm" commandName="marketApp" cssClass="form-horizontal" method="post"
                           enctype="multipart/form-data">
             <input type="hidden" name="method" value="save"/>
-
+                <spring-form:errors path="errorId" class="help-block color5" htmlEscape="false"></spring-form:errors>
             <div class="form-body">
                 <div class="form-group">
                     <label for="" class="col-sm-3 control-label">应用类别</label>
