@@ -252,7 +252,7 @@
             jQuery("#error_info_agreecondition").css("display", "block");
         }
         if (cansubmit) {
-            form.submit();
+            jQuery("#registerForm").submit();
         }
     }
     /**

@@ -129,7 +129,7 @@
         }
 
         if (cansubmit) {
-            form.submit();
+            jQuery("#registerForm").submit();
         }
     }
 
