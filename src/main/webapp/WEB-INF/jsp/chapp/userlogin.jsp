@@ -147,7 +147,6 @@
             jQuery("#error_info").css("display", "block");
         } else {
             jQuery("#error_info").css("display", "none");
-            jQuery("#contacaatForm").submit();
         }
     }
     window.onload = checkPwdisRight
