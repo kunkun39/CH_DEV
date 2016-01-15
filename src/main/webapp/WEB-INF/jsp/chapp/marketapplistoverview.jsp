@@ -38,7 +38,7 @@
     <main class="container">
         <form id="client_app_search" action="${pageContext.request.contextPath}/chapp/marketapplistoverview.html" method="post" >
             <div class="input-group" style="margin: 0px auto;" >
-                <input id="appName" name="marketappName" type="text" placeholder="应用名称" value="${paging.appName}" class="input-sm form-control" style="border:1px solid #778899"/>
+                <input name="appName" type="text" placeholder="应用名称" value="${paging.appName}" class="input-sm form-control" style="border:1px solid #778899"/>
                 <span class="input-group-btn" style="border:1px dotted #778899">
                     <button type="button" class="btn btn-sm" onclick="searchClientApp();">
                         <i class="search-icon"></i>
