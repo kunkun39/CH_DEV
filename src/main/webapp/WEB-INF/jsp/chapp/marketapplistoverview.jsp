@@ -46,11 +46,12 @@
                 </span>
             </div>
         </form>
+
         <ul class="row apply-ul text-center">
             <c:forEach items="${apps}" var="app">
-               <li class="col-md-3 col-sm-6">
+               <li id="${app.id}" class="col-md-3 col-sm-6" onclick="appInfo.categoryName='${app.fullCategoryName}';appInfo.appName='${app.appName}';appInfo.appPackage='${app.appPackage}';appInfo.versionInt=${app.appVersionInt};appInfo.version='${app.appVersion}';appInfo.sizeFormat='${app.appSizeFormat}';appInfo.iconPath='${fileRequestHost}/${app.appKey}/${app.iconActualFileName}';appInfo.posterPath='${fileRequestHost}/${app.appKey}/${app.posterActualFileName}';appInfo.description='${app.appDescription}';showDetails(appInfo,'${app.id}');">
                     <a href="javascript:void(0)" title="" class="apply-ul-a">
-                        <img src="${fileRequestHost}/${app.appKey}/${app.iconActualFileName}" alt="" width="96" height="96"/>
+                        <img src="${fileRequestHost}/${app.appKey}/${app.iconActualFileName}" alt="" width="96" height="96" />
                         <h4>${app.appName}</h4>
                         <p>
                             <ch:substring value="${app.appDescription}" length="30" showTitle="false"/>
@@ -67,6 +68,8 @@
         </div>
     </main>
 </div>
+<%--点击放大***********************************************************--%>
+<jsp:include page="/WEB-INF/jsp/common/popup.jsp"/>
 
 <%--结尾菜单部分***********************************************************--%>
 
@@ -79,6 +82,7 @@
 <script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
 <![endif]-->
 <script src="${pageContext.request.contextPath}/javascript/vendor/tab.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/popup.js"></script>
 
 <script type="text/javascript">
 
