@@ -19,6 +19,16 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/backstage.css">
+    <style type="text/css">
+        .float-left {
+            float: left;
+        }
+
+        .float-left-space {
+            float: left;
+            margin-left: 15px;
+        }
+    </style>
 </head>
 <body>
 <%--开头菜单部分***********************************************************--%>
@@ -53,8 +63,8 @@
                 <div class="form-group">
                     <label for=" " class="col-sm-2 control-label">联系方式</label>
                     <div class="col-sm-10">
-                        <spring-form:input type="text" class="form-control" id=" " path="contactWay" placeholder="请输入邮箱等其他联系方式"/>
-                        <span class="help-block color3"><i class="ico-prompt"></i>非必填</span>
+                        <spring-form:input type="text" class="form-control float-left" id=" " path="contactWay" placeholder="请输入邮箱等其他联系方式"/>
+                        <span class="help-block color3 float-left-space"><i class="ico-prompt"></i>(选填)</span>
                     </div>
                 </div>
                 <div class="form-group">

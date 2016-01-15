@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword" class="col-sm-2 control-label">联系方式</label>
+                    <label for="inputPassword" class="col-sm-2 control-label">姓名</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="intputName" name="name" value="${user.name}" placeholder="请输入姓名" onblur="validateName();" />
                         <span id="name_error_show" class="help-block color5" style="display: none;"></span>

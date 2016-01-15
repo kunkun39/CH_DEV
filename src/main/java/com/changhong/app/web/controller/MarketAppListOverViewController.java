@@ -3,6 +3,7 @@ package com.changhong.app.web.controller;
 import com.changhong.app.service.SystemService;
 import com.changhong.app.web.facade.dto.MarketAppDTO;
 import com.changhong.app.web.paging.MarketAppOverviewPaging;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
@@ -39,7 +40,11 @@ public class MarketAppListOverViewController extends AbstractController {
         MarketAppOverviewPaging paging = new MarketAppOverviewPaging(systemService);
         constractPaging(paging, currentPage, appName);
         List<MarketAppDTO> apps = paging.getItems();
-
+        for (MarketAppDTO dto : apps) {
+            if (StringUtils.hasText(dto.getAppDescription())) {
+                dto.setAppDescription(dto.getAppDescription().replace("\r\n","<br/>"));
+            }
+        }
         model.put("apps",apps);
         model.put("fileRequestHost", fileRequestHost);
         model.put("paging", paging);
