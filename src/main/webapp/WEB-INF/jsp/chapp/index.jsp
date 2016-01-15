@@ -54,14 +54,14 @@
     <div class="container">
         <ul class="row apply-ul text-center">
             <c:forEach items="${apps}" var="app">
-               <li id="li_${app.id}" class="col-md-3 col-sm-6" onclick="appInfo.categoryName='${app.fullCategoryName}';appInfo.appName='${app.appName}';appInfo.appPackage='${app.appPackage}';appInfo.versionInt=${app.appVersionInt};appInfo.version='${app.appVersion}';appInfo.sizeFormat='${app.appSizeFormat}';appInfo.iconPath='${fileRequestHost}/${app.appKey}/${app.iconActualFileName}';appInfo.posterPath='${fileRequestHost}/${app.appKey}/${app.posterActualFileName}';appInfo.description='${app.appDescription}';showDetails(appInfo,'li_${app.id}');">
-                <a href="javascript:void(0)" title="" class="apply-ul-a">
-                    <img src="${fileRequestHost}/${app.appKey}/${app.iconActualFileName}" alt="" width="96" height="96" />
-                    <h4>${app.appName}</h4>
-                    <p>
-                    	<ch:substring value="${app.appDescription}" length="30" showTitle="false"/>
-                    </p>
-                </a>
+               <li id="${app.id}" class="col-md-3 col-sm-6" onclick="appInfo.categoryName='${app.fullCategoryName}';appInfo.appName='${app.appName}';appInfo.appPackage='${app.appPackage}';appInfo.versionInt=${app.appVersionInt};appInfo.version='${app.appVersion}';appInfo.sizeFormat='${app.appSizeFormat}';appInfo.iconPath='${fileRequestHost}/${app.appKey}/${app.iconActualFileName}';appInfo.posterPath='${fileRequestHost}/${app.appKey}/${app.posterActualFileName}';appInfo.description='${app.appDescription}';showDetails(appInfo,'${app.id}');">
+                    <a href="javascript:void(0)" title="" class="apply-ul-a">
+                        <img src="${fileRequestHost}/${app.appKey}/${app.iconActualFileName}" alt="" width="72" height="72" />
+                        <h5>${app.appName}</h5>
+                        <p>
+                            <ch:substring value="${app.appDescription}" length="30" showTitle="false"/>
+                        </p>
+                    </a>
                 </li>
             </c:forEach>
         </ul>
@@ -81,7 +81,6 @@
 <jsp:include page="/WEB-INF/jsp/common/popup.jsp"/>
 
 <%--结尾菜单部分***********************************************************--%>
-
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
 
 <%--Javascript部分***********************************************************--%>
