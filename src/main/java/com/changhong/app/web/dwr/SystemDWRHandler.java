@@ -86,7 +86,7 @@ public class SystemDWRHandler {
      * @param password
      * @param validateCode
      * @param request
-     * @return 0：通过；1：验证码不正确；2：用户邮箱未验证通过；3：用户被禁用；4：密码不正确；5：账号不存在
+     * @return 参考EnumUserLogin
      */
     public int checkUserLogin(String username, String password, String validateCode, HttpServletRequest request) {
         boolean validateCodeRight = checkValidateCodeRight(validateCode, request);
