@@ -82,7 +82,7 @@
                                 <td>
                                     <h5>${app.fullCategoryName}</h5>
                                     <p class="font12 color9">
-                                        <ch:substring value="${app.appDescription}" length="6"/>
+                                        <ch:substring value="${app.appDescription}" length="60"/>
                                     </p>
                                 </td>
                                 <%--<td>${app.appStatusName}</td>--%>
