@@ -35,10 +35,8 @@ public class MailServiceImpl implements MailService, InitializingBean {
     //    private SimpleMailMessage simpleMailMessage;
     @Autowired
     private VelocityEngine velocityEngine;
-    private String registerMailVmName = "velocity/registermail.vm";
-    private String pwdLookBackVmName = "velocity/passwdmail.vm";
-    Map model = new HashMap();
-    private String code;
+    private static final String registerMailVmName = "velocity/registermail.vm";
+    private static final String pwdLookBackVmName = "velocity/passwdmail.vm";
 
     @Value("${mail.host}")
     private String mailHost = "smtp.163.com";
@@ -52,7 +50,6 @@ public class MailServiceImpl implements MailService, InitializingBean {
     @Value("${application.mail.request.path}")
     private String applicationHost = "";
 
-
     //below this is added by oscar chang
     public VelocityEngine getVelocityEngine() {
         return velocityEngine;
@@ -62,14 +59,14 @@ public class MailServiceImpl implements MailService, InitializingBean {
         this.velocityEngine = velocityEngine;
     }
 
-
     public void sendUserRegisterMail(String sendMail, String validateNumber) throws Exception {
+        String code;
         String encUserId = DesUtils.getEncString(sendMail);
         String encValidationNumber = DesUtils.getEncString(validateNumber);
         code = encUserId + "||" + encValidationNumber;
 
         String title = "广电应用市场用户注册激活";
-        sendEmail(sendMail, title, registerMailVmName);
+        sendEmail(sendMail, title, registerMailVmName, code);
     }
 
     /**
@@ -80,19 +77,19 @@ public class MailServiceImpl implements MailService, InitializingBean {
      * @throws Exception
      */
     public void sendUserPWDLookBackMail(String sendMail, String validateNumber) throws Exception {
+        String code;
         String encUserId = DesUtils.getEncString(sendMail);
         String encValidationNumber = DesUtils.getEncString(validateNumber);
         code = encUserId + "||" + encValidationNumber;
 
         String title = "广电应用市场用户密码找回";
-        sendEmail(sendMail, title, pwdLookBackVmName);
+        sendEmail(sendMail, title, pwdLookBackVmName, code);
     }
 
     public void afterPropertiesSet() throws Exception {
         Assert.hasText(applicationHost, "the basic appcation path not configure");
 
         mailSender = new JavaMailSenderImpl();
-//        simpleMailMessage = new SimpleMailMessage();
 
         // 设置参数
         mailSender.setHost(mailHost);
@@ -102,17 +99,12 @@ public class MailServiceImpl implements MailService, InitializingBean {
         Properties prop = new Properties();
         prop.setProperty("mail.smtp.auth", "true");
         mailSender.setJavaMailProperties(prop);
-
     }
 
-    private void sendEmail(String mail, String title, String typeVmName) throws MessagingException {
+    private void sendEmail(String mail, String title, String typeVmName, String code) throws MessagingException {
+        Map model = new HashMap();
         MimeMessage msg = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(msg, true, "UTF-8");
-
-//        simpleMailMessage.setTo(mail);                          //接收人
-//        simpleMailMessage.setFrom(mailSender.getUsername());  //发送人,从配置文件中取得
-//        simpleMailMessage.setSubject(title);
-
         helper.setFrom(mailSender.getUsername());
         helper.setTo(mail);
         helper.setSubject(title);
@@ -120,13 +112,8 @@ public class MailServiceImpl implements MailService, InitializingBean {
         model.put("applicationHost", applicationHost);
         model.put("code", code);
         String mailText = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, typeVmName, "utf-8", model);
-//        String result = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, typeVmName, "UTF-8", model);
 
         helper.setText(mailText, true);
         mailSender.send(msg);
-
-//        simpleMailMessage.setText(result);
-//        mailSender.send(simpleMailMessage);
     }
-
 }
