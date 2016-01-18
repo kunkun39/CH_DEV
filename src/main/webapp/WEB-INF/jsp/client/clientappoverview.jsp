@@ -82,18 +82,26 @@
                                 <td>
                                     <h5>${app.fullCategoryName}</h5>
                                     <p class="font12 color9">
-                                        <ch:substring value="${app.appDescription}" length="60"/>
+                                        <ch:substring value="${app.appDescription}" length="6"/>
                                     </p>
                                 </td>
-                                <td>${app.appStatusName}</td>
+                                <%--<td>${app.appStatusName}</td>--%>
+                                <td>
+                                        <c:if test="${app.appStatus == 'CREATED'}">新创建</c:if>
+                                        <c:if test="${app.appStatus == 'WAITING'}">待审核</c:if>
+                                        <c:if test="${app.appStatus == 'PASSED'}">审核通过</c:if>
+                                        <c:if test="${app.appStatus == 'REJECTED'}"><span class="color7">拒绝通过</span></c:if>
+                                        <c:if test="${app.appStatus == 'SHELVES'}">已上架</c:if>
+                                        <c:if test="${app.appStatus == 'OFFSHELVES'}">已下架</c:if>
+                                </td>
                                 <td>
                                     <c:if test="${app.appStatus == 'REJECTED'}">
-                                        <a class="btn-blue color4" href="${pageContext.request.contextPath}/security/appfirststep.html?appId=${app.id}&current=${paging.currentPageNumber}&appName=${paging.appName}&appStatus=${paging.appStatus}">查看</a>
+                                        <a class="btn-blue color4" onclick="window.location.href='${pageContext.request.contextPath}/security/appfirststep.html?appId=${app.id}&current=${paging.currentPageNumber}&appName=${paging.appName}&appStatus=${paging.appStatus}'">查看</a>
                                     </c:if>
                                     <c:if test="${app.appStatus != 'REJECTED'}">
-                                        <a class="btn-blue color4" href="${pageContext.request.contextPath}/security/appsecondstep.html?appId=${app.id}&current=${paging.currentPageNumber}&appName=${paging.appName}&appStatus=${paging.appStatus}">查看</a>
+                                        <a class="btn-blue color4" onclick="window.location.href='${pageContext.request.contextPath}/security/appsecondstep.html?appId=${app.id}&current=${paging.currentPageNumber}&appName=${paging.appName}&appStatus=${paging.appStatus}'">查看</a>
                                     </c:if>
-                                    <a class="btn-blue color10" href="${pageContext.request.contextPath}/security/apphistory.html?appId=${app.id}&current=${paging.currentPageNumber}&appName=${paging.appName}&appStatus=${paging.appStatus}">历史</a>
+                                    <a class="btn-blue color10"  onclick="window.location.href='${pageContext.request.contextPath}/security/apphistory.html?appId=${app.id}&current=${paging.currentPageNumber}&appName=${paging.appName}&appStatus=${paging.appStatus}'">历史</a>
                                 </td>
                             </tr>
                             </c:forEach>
