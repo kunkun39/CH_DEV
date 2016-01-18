@@ -14,13 +14,14 @@
             <list>
                 <value>classpath:database.properties</value>
                 <value>classpath:application.properties</value>
+                <value>classpath:mail.properties</value>
             </list>
         </property>
     </bean>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${jdbc.driverClassName}"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/app_market?useUnicode=true"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/developer?useUnicode=true"/>
         <property name="username" value="root"/>
         <property name="password" value="minunsql"/>
     </bean>
@@ -38,12 +39,6 @@
             <props>
                 <prop key="hibernate.dialect">${hibernate.dialect}</prop>
                 <prop key="hibernate.show_sql">false</prop>
-
-                <prop key="hibernate.cache.provider_class">${hibernate.cache.provider_class}</prop>
-                <prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
-                <prop key="hibernate.generate_statistics">${hibernate.generate_statistics}</prop>
-                <prop key="hibernate.cache.use_query_cache">true</prop>
-                <prop key="hibernate.cache.configurationResourceName">ehcache.xml</prop>
             </props>
         </property>
     </bean>

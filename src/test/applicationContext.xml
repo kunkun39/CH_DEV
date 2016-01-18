@@ -43,13 +43,10 @@
         </property>
     </bean>
 
-    <bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl"/>
+    <bean id="sessionRegistry" class="com.changhong.app.web.security.DeveloperSessionRegistryImpl"/>
 
-    <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
-       <property name="configLocation">
-           <value>classpath:sqlmapconfig.xml</value>
-       </property>
-        <property name="dataSource" ref="dataSource"/>
+    <bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+        <property name="resourceLoaderPath" value="/WEB-INF/classes"/>
     </bean>
 
 </beans>
