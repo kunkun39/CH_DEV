@@ -1,5 +1,6 @@
 package com.changhong.app.web.controller.user;
 
+import com.changhong.app.domain.EnumRegisterConfirm;
 import com.changhong.app.service.UserService;
 import com.changhong.app.utils.DesUtils;
 import org.springframework.util.StringUtils;
@@ -40,14 +41,14 @@ public class UserPwdBackMailBackController extends AbstractController {
                 int registerActive = userService.obtainPwdLookbackActive(username, validateNumber);
                 model.put("username", DesUtils.getEncString(username));
 
-                if (1 == registerActive) {
+                if (EnumRegisterConfirm.SUCCESS.getDescribtion() == registerActive) {
                     //验证成功
                     ModelAndView modelAndView = new ModelAndView(new RedirectView("/" + serverContext + "/chapp/userpwdlookback.html"), model);
                     return modelAndView;
-                } else if (2 == registerActive) {
+                } else if (EnumRegisterConfirm.OUTTIME.getDescribtion() == registerActive) {
                     //验证失效，超过24小时
                     model.put("INFO_KEY", "OUTTIME_PWD_BACK");
-                } else if (3 == registerActive) {
+                } else if (EnumRegisterConfirm.USED.getDescribtion() == registerActive) {
                     //已经验证过
                     model.put("INFO_KEY", "USED_PWD_BACK");
                 } else {

@@ -7,17 +7,17 @@ import org.springframework.util.StringUtils;
  * Date:2016/1/14
  * Time:17:13
  */
-public enum  EnumUserLogin {
-    CANLOGIN(0),//ÕËºÅ´æÔÚ£¬ÃÜÂëÕıÈ·
-    VALIDATECODEWRONG(1),//ÑéÖ¤Âë´íÎó
-    NOTACTIVE(2),//Ã»ÓĞ½øĞĞÓÊÏäÑéÖ¤
-    NOTENABLE(3),//±»½ûÓÃ
-    PWDWRONG(4),//ÃÜÂë´íÎó
-    NOTEXISTS(5);//²»´æÔÚ
+public enum EnumUserLogin {
+    CANLOGIN(0),//å¯ä»¥ç™»å½•
+    VALIDATECODEWRONG(1),//éªŒè¯ç é”™è¯¯
+    NOTACTIVE(2),//è´¦å·é‚®ç®±æœªéªŒè¯Ö¤
+    NOTENABLE(3),//è´¦æˆ·è¢«ç¦ç”¨
+    PWDWRONG(4),//å¯†ç é”™è¯¯
+    NOTEXISTS(5);//è´¦å·ä¸å­˜åœ¨
 
     private int description;
 
-     EnumUserLogin(int description) {
+    EnumUserLogin(int description) {
         this.description = description;
     }
 

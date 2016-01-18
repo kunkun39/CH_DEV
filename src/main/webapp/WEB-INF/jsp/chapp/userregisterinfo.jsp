@@ -13,6 +13,11 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/backstage.css">
 
+    <!--[if lt IE 9]>
+    <script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
+    <script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
+    <![endif]-->
+    
     <style type="text/css">
         .panel-registerinfo {
             width: 400px;

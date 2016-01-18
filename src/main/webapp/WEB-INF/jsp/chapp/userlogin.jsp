@@ -114,7 +114,7 @@
                     jQuery("#error_info").css("display", "none");
                     form.submit();
                 } else {
-                    var errortext = "dddd";
+                    var errortext = "";
                     if (result == 1) {
                         errortext = "对不起，验证码不正确!"
                     } else if (result == 2) {

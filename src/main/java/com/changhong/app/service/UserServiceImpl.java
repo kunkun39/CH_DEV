@@ -1,9 +1,6 @@
 package com.changhong.app.service;
 
-import com.changhong.app.domain.AdminUser;
-import com.changhong.app.domain.Auth;
-import com.changhong.app.domain.ClientUser;
-import com.changhong.app.domain.RegisterConfirm;
+import com.changhong.app.domain.*;
 import com.changhong.app.repository.ClientDao;
 import com.changhong.app.repository.UserDao;
 import com.changhong.app.thread.ApplicationThreadPool;
@@ -83,11 +80,11 @@ public class UserServiceImpl implements UserService {
         RegisterConfirm confirm = userDao.loadClientUserRegisterConfirm(validateNumber);
 
         if (confirm == null) {
-            return 4;//验证信息为空
+            return EnumRegisterConfirm.EXCEPTION.getDescribtion();//验证信息为空
         }
 
         if (confirm.isValidateConfirm()) {
-            return 3;//已经认证过
+            return EnumRegisterConfirm.USED.getDescribtion();//已经认证过
         }
 
         long nowTime = new Date().getTime();
@@ -99,10 +96,10 @@ public class UserServiceImpl implements UserService {
             if (user != null) {
                 user.setActive(true);
             }
-            return 1;//注册成功
+            return EnumRegisterConfirm.SUCCESS.getDescribtion();//注册成功
         } else {
             //验证超过24小时
-            return 2;
+            return EnumRegisterConfirm.OUTTIME.getDescribtion();
         }
 
     }
@@ -112,11 +109,11 @@ public class UserServiceImpl implements UserService {
         RegisterConfirm confirm = userDao.loadClientUserRegisterConfirm(validateNumber);
 
         if (confirm == null) {
-            return 4;//验证信息为空
+            return EnumRegisterConfirm.EXCEPTION.getDescribtion();//验证信息为空
         }
 
         if (confirm.isValidateConfirm()) {
-            return 3;//已经认证过
+            return EnumRegisterConfirm.USED.getDescribtion();//已经认证过
         }
 
         long nowTime = new Date().getTime();
@@ -124,10 +121,10 @@ public class UserServiceImpl implements UserService {
         confirm.setValidateConfirm(true);
 
         if ((registerTime + TWO_FOUR_HOUR) >= nowTime) {
-            return 1;//注册成功
+            return EnumRegisterConfirm.SUCCESS.getDescribtion();//注册成功
         } else {
             //验证超过24小时
-            return 2;
+            return EnumRegisterConfirm.OUTTIME.getDescribtion();
         }
 
     }
