@@ -13,6 +13,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 import org.springframework.util.Assert;
 
+import javax.mail.internet.MimeMessage;
+
+import org.springframework.mail.javamail.MimeMessageHelper;
+
 import javax.mail.MessagingException;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +32,7 @@ public class MailServiceImpl implements MailService, InitializingBean {
 
     private static final Log logger = LogFactory.getLog(MailServiceImpl.class);
     private JavaMailSenderImpl mailSender;
-    private SimpleMailMessage simpleMailMessage;
+    //    private SimpleMailMessage simpleMailMessage;
     @Autowired
     private VelocityEngine velocityEngine;
     private String registerMailVmName = "velocity/registermail.vm";
@@ -88,7 +92,7 @@ public class MailServiceImpl implements MailService, InitializingBean {
         Assert.hasText(applicationHost, "the basic appcation path not configure");
 
         mailSender = new JavaMailSenderImpl();
-        simpleMailMessage = new SimpleMailMessage();
+//        simpleMailMessage = new SimpleMailMessage();
 
         // 设置参数
         mailSender.setHost(mailHost);
@@ -102,18 +106,27 @@ public class MailServiceImpl implements MailService, InitializingBean {
     }
 
     private void sendEmail(String mail, String title, String typeVmName) throws MessagingException {
+        MimeMessage msg = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(msg, true, "UTF-8");
 
-        simpleMailMessage.setTo(mail);                          //接收人
-        simpleMailMessage.setFrom(mailSender.getUsername());  //发送人,从配置文件中取得
-        simpleMailMessage.setSubject(title);
+//        simpleMailMessage.setTo(mail);                          //接收人
+//        simpleMailMessage.setFrom(mailSender.getUsername());  //发送人,从配置文件中取得
+//        simpleMailMessage.setSubject(title);
+
+        helper.setFrom(mailSender.getUsername());
+        helper.setTo(mail);
+        helper.setSubject(title);
 
         model.put("applicationHost", applicationHost);
         model.put("code", code);
+        String mailText = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, typeVmName, "utf-8", model);
+//        String result = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, typeVmName, "UTF-8", model);
 
-        String result = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, typeVmName, "UTF-8", model);
+        helper.setText(mailText, true);
+        mailSender.send(msg);
 
-        simpleMailMessage.setText(result);
-        mailSender.send(simpleMailMessage);
+//        simpleMailMessage.setText(result);
+//        mailSender.send(simpleMailMessage);
     }
 
 }
