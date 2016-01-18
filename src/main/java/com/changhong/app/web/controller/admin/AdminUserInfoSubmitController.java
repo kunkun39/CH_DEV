@@ -1,5 +1,6 @@
 package com.changhong.app.web.controller.admin;
 
+import com.changhong.app.domain.Auth;
 import com.changhong.app.exception.CHSecurityException;
 import com.changhong.app.service.SystemService;
 import com.changhong.app.utils.SecurityUtils;
@@ -41,6 +42,10 @@ public class AdminUserInfoSubmitController extends AbstractController {
         Map<String, Object> model = new HashMap<String, Object>();
         if (StringUtils.hasText(contactway) || StringUtils.hasText(name)) {
             systemService.updateAdminUserInfo(userId, contactway, name, "");
+            if (StringUtils.hasText(name)) {
+                Auth auth = SecurityUtils.currentAuthentication();
+                auth.setName(name);
+            }
             model.put("message", 1);
         } else {
             if (systemService.validateAdminUserPassword(userId, oldPassword) && !oldPassword.equals(newPassword)

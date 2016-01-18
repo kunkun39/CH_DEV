@@ -1,5 +1,6 @@
 package com.changhong.app.web.controller.client;
 
+import com.changhong.app.domain.Auth;
 import com.changhong.app.exception.CHSecurityException;
 import com.changhong.app.service.UserService;
 import com.changhong.app.utils.SecurityUtils;
@@ -52,6 +53,9 @@ public class ClientSelfInfoController extends SimpleFormController {
     protected ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object command, BindException errors) throws Exception {
         ClientUserDTO clientUserDTO = (ClientUserDTO) command;
         userService.changeClientInformation(clientUserDTO);
+
+        Auth auth = SecurityUtils.currentAuthentication();
+        auth.setName(clientUserDTO.getName());
 
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("message", 1);

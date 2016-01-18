@@ -114,7 +114,7 @@
             var oldName = jQuery("#oldName").val();
             var name = jQuery("#intputName").val();
             if (oldContactway == contactWay && oldName == name) {
-                jQuery("#contactWay_error_show").html("<i class=\"ico-error\"></i>用户名和密码至少需要修改一个！");
+                jQuery("#contactWay_error_show").html("<i class=\"ico-error\"></i>姓名和联系方式至少需要修改一个！");
                 jQuery("#contactWay_error_show").css("display", "block");
             } else {
                 form.submit();
