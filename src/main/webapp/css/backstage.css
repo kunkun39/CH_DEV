@@ -28,7 +28,7 @@ a.color4:hover { color: #3292ff; }
 .ico-prompt{background-position:-96px -210px;}
 .ico-success{background-position:-96px -230px;}
 /*密码强度*/
-.pw-tips {position: absolute;top: 39px;left: 16.6%;font-size: 14aapx;}
+.pw-tips {position: absolute;top: 39px;left: 16.6%;font-size: 14px;}
 .pw-safe {position: relative;width: 150px;height: 16px;background: #c4c4c4;overflow: hidden;}
 .pw-letter {height: 16px;position: absolute;top: 0;left: 0;width: 150px;}
 .pw-letter span {border-left: 1px solid #fff;float:left;color: #fff;height: 16px;line-height: 16px;overflow: hidden;text-align: center;width: 50px;}
