@@ -108,7 +108,7 @@
                 <br/>
 
                 <div class="pw-tips">
-                    <span class="color3 fl">安全程度：</span>
+                    <span class="color6 fl">安全程度：</span>
 
                     <div class="fl pw-safe pw-weak" style="margin-bottom: 30px;">
                         <div class="pw-bar"></div>
