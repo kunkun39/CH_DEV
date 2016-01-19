@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/home.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/backstage.css">
 </head>
 
 <body>
@@ -30,31 +31,32 @@
 
 <!--banner开始-->
 <div class="homepage-banner">
-<div style="width:728px;height:180px;margin-top:0px;">
-</div>
-<div style="width:728px;height:180px;margin:0px auto;">
-		<ul class="round">
-			<li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header1.jpg" alt="" /></li>
-			<li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header2.jpg" alt="" /></li>
-			<li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header3.jpg" alt="" /></li>
-			<li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header4.jpg" alt="" /></li>
-			<li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header5.jpg" alt="" /></li>
-			<li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header6.jpg" alt="" /></li>
-		</ul>
-</div>
+    <div style="width:728px;height:180px;margin-top:0px;">
+    </div>
+    <div style="width:728px;height:180px;margin:0px auto;">
+        <ul class="round">
+            <li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header1.jpg" alt="" /></li>
+            <li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header2.jpg" alt="" /></li>
+            <li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header3.jpg" alt="" /></li>
+            <li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header4.jpg" alt="" /></li>
+            <li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header5.jpg" alt="" /></li>
+            <li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/header6.jpg" alt="" /></li>
+        </ul>
+    </div>
 </div>
 <!--banner结束-->
 
 <div class="content">
-    <main class="container">
+    <div class="container">
         <div class="index-header">
         </div>
-    </main>
+    </div>
 
     <div class="container">
         <ul class="row apply-ul text-center">
             <c:forEach items="${apps}" var="app">
                <li id="${app.id}" class="col-md-3 col-sm-6" onclick="appInfo.categoryName='${app.fullCategoryName}';appInfo.appName='${app.appName}';appInfo.appPackage='${app.appPackage}';appInfo.versionInt=${app.appVersionInt};appInfo.version='${app.appVersion}';appInfo.sizeFormat='${app.appSizeFormat}';appInfo.iconPath='${fileRequestHost}/${app.appKey}/${app.iconActualFileName}';appInfo.posterPath='${fileRequestHost}/${app.appKey}/${app.posterActualFileName}';appInfo.description='${app.appDescription}';showDetails(appInfo,'${app.id}');">
+               <%--<li id="${app.id}" class="col-md-3 col-sm-6">--%>
                     <a href="javascript:void(0)" title="" class="apply-ul-a">
                         <img src="${fileRequestHost}/${app.appKey}/${app.iconActualFileName}" alt="" width="72" height="72" />
                         <h5>${app.appName}</h5>
@@ -62,7 +64,7 @@
                             <ch:substring value="${app.appDescription}" length="30" showTitle="false"/>
                         </p>
                     </a>
-                </li>
+               </li>
             </c:forEach>
         </ul>
     </div>
