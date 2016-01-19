@@ -111,6 +111,7 @@ public class MailServiceImpl implements MailService, InitializingBean {
 
         model.put("applicationHost", applicationHost);
         model.put("code", code);
+        model.put("mail", mail);
         String mailText = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, typeVmName, "utf-8", model);
 
         helper.setText(mailText, true);
