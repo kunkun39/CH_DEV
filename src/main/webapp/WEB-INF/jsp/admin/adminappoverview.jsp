@@ -10,11 +10,9 @@
 <html class="activity-no">
 <!--<![endif]-->
 <head>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/backstage.css">
+
     <title>开发者应用接入平台后台管理</title>
+    <jsp:include page="/WEB-INF/decorators/cssheader.jsp" />
 </head>
 <body>
 <%--开头菜单部分***********************************************************--%>
@@ -120,11 +118,9 @@
 
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
 
-<script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
-<!--[if lt IE 9]>
-<script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
-<script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
-<![endif]-->
+<%--Javascript部分***********************************************************--%>
+
+<jsp:include page="/WEB-INF/decorators/jsheader.jsp"/>
 <script type="text/javascript">
     function searchAppsByStatus(searchStatus) {
         jQuery("#appStatus").val(searchStatus);

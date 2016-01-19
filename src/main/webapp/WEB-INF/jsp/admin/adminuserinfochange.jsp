@@ -15,10 +15,8 @@
     <meta content="长虹开发者应用接入平台" name="keywords">
     <meta content="长虹开发者应用接入平台" name="description">
     <title>开发者应用接入平台注册</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/backstage.css">
+    <jsp:include page="/WEB-INF/decorators/cssheader.jsp" />
+
 </head>
 <body>
 <%--开头菜单部分***********************************************************--%>
@@ -73,11 +71,9 @@
 <%--结尾菜单部分***********************************************************--%>
 
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
-<!--[if lt IE 9]>
-<script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
-<script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
-<![endif]-->
-<script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
+
+<%--Javascript部分***********************************************************--%>
+<jsp:include page="/WEB-INF/decorators/jsheader.jsp"/>
 <script src="${pageContext.request.contextPath}/javascript/browserdiff.js"></script>
 <script type="text/javascript">
     var contactWayValidate = false;

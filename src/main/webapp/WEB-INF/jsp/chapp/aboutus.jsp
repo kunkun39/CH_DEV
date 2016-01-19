@@ -12,11 +12,7 @@
 	<title>广电应用接入平台</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-    <%--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/home.css">--%>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/introduce.css">
+    <jsp:include page="/WEB-INF/decorators/cssheader.jsp"/>
 </head>
 
 <body>
@@ -38,7 +34,7 @@
         </div>
     </div>
 
-    <%--comtainer层--%>
+    <%--container层--%>
     <div class="container">
         <div class="procedure-header">
         </div>
@@ -48,7 +44,7 @@
         <div class="col-md-4">
             <div class="step-logo step-logo1"></div>
             <h2>1.登录平台</h2>
-            <p style="text-align: left;">如果你希望自己的药用发布到广电专有应用市场内，首先你必须成为我们的用户，如果您还不是，请点击注册。如果你已经成为我们的用户，请点击登录。</p>
+            <p style="text-align: left;">如果你希望自己的应用发布到广电专有应用市场内，首先你必须成为我们的用户，如果您还不是，请点击"我的服务"进行注册。如果你已经成为我们的用户，请点击"我的服务"直接进行登录。</p>
         </div>
         <div class="col-md-4">
             <div class="step-logo step-logo1"></div>

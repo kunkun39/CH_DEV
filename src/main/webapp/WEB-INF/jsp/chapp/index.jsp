@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="ch" uri="http://www.chanhong.com" %>
-<%--<%@ taglib prefix="ch" uri="/WEB-INF/tld/tag.tld" %>--%>
 
 <!DOCTYPE html>
 <!--[if IE 8 ]>
@@ -12,13 +11,10 @@
 <html class="activity-no">
 <!--<![endif]-->
 <head>
-	<title>广电应用接入平台</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/home.css">
+    <title>广电应用接入平台</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <jsp:include page="/WEB-INF/decorators/cssheader.jsp"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/backstage.css">
 </head>
 
@@ -55,11 +51,14 @@
     <div class="container">
         <ul class="row apply-ul text-center">
             <c:forEach items="${apps}" var="app">
-               <li id="${app.id}" class="col-md-3 col-sm-6" onclick="appInfo.categoryName='${app.fullCategoryName}';appInfo.appName='${app.appName}';appInfo.appPackage='${app.appPackage}';appInfo.versionInt=${app.appVersionInt};appInfo.version='${app.appVersion}';appInfo.sizeFormat='${app.appSizeFormat}';appInfo.iconPath='${fileRequestHost}/${app.appKey}/${app.iconActualFileName}';appInfo.posterPath='${fileRequestHost}/${app.appKey}/${app.posterActualFileName}';appInfo.description='${app.appDescription}';showDetails(appInfo,'${app.id}');">
+                <li id="${app.id}" class="col-md-3 col-sm-6"
+                    onclick="appInfo.categoryName='${app.fullCategoryName}';appInfo.appName='${app.appName}';appInfo.appPackage='${app.appPackage}';appInfo.versionInt=${app.appVersionInt};appInfo.version='${app.appVersion}';appInfo.sizeFormat='${app.appSizeFormat}';appInfo.iconPath='${fileRequestHost}/${app.appKey}/${app.iconActualFileName}';appInfo.posterPath='${fileRequestHost}/${app.appKey}/${app.posterActualFileName}';appInfo.description='${app.appDescription}';showDetails(appInfo,'${app.id}');">
                <%--<li id="${app.id}" class="col-md-3 col-sm-6">--%>
                     <a href="javascript:void(0)" title="" class="apply-ul-a">
-                        <img src="${fileRequestHost}/${app.appKey}/${app.iconActualFileName}" alt="" width="72" height="72" />
+                        <img src="${fileRequestHost}/${app.appKey}/${app.iconActualFileName}" alt="" width="72"
+                             height="72"/>
                         <h5>${app.appName}</h5>
+
                         <p>
                             <ch:substring value="${app.appDescription}" length="30" showTitle="false"/>
                         </p>
@@ -69,12 +68,12 @@
         </ul>
     </div>
 
-
     <div class="container">
         <h5 class="moreApply text-center">
             <a href="${pageContext.request.contextPath}/chapp/marketapplistoverview.html" charset="moreApply-a">查看更多应用
-            <span class="moreico"></span>
+                <span class="moreico"></span>
             </a>
+
         </h5>
     </div>
 </div>
@@ -86,15 +85,12 @@
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
 
 <%--Javascript部分***********************************************************--%>
-<!--[if lt IE 9]>
-<script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
-<script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
-<![endif]-->
-<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/round/jquery.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/round/jquery.roundabout.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/popup.js"></script>
+<jsp:include page="/WEB-INF/decorators/jsheader.jsp"/>
+
 <script type="text/javascript">
-    window.onload = function() {$('.round').roundabout();};
+    window.onload = function() {
+        $('.round').roundabout();
+    };
 </script>
 
 </body>

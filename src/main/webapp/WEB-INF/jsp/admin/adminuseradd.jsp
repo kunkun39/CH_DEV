@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring-form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!--[if IE 8 ]>
 <html class="ie8"> <![endif]-->
@@ -15,10 +16,8 @@
     <meta content="长虹开发者应用接入平台" name="keywords">
     <meta content="长虹开发者应用接入平台" name="description">
     <title>开发者应用接入平台注册</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/backstage.css">
+    <jsp:include page="/WEB-INF/decorators/cssheader.jsp" />
+
     <style type="text/css">
         .float-left {
             float: left;
@@ -100,11 +99,8 @@
 
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
 
-<script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
-<!--[if lt IE 9]>
-<script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
-<script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
-<![endif]-->
+<%--Javascript部分***********************************************************--%>
+<jsp:include page="/WEB-INF/decorators/jsheader.jsp"/>
 <script src="${pageContext.request.contextPath}/dwr/engine.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/dwr/util.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/dwr/interface/SystemDWRHandler.js" type="text/javascript"></script>

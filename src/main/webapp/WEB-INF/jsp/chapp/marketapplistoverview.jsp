@@ -15,11 +15,7 @@
 	<title>广电应用接入平台</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/home.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/backstage.css">
+    <jsp:include page="/WEB-INF/decorators/cssheader.jsp"/>
 </head>
 
 <body>
@@ -77,13 +73,7 @@
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
 
 <%--Javascript部分***********************************************************--%>
-<script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
-<!--[if lt IE 9]>
-<script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
-<script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
-<![endif]-->
-<script src="${pageContext.request.contextPath}/javascript/vendor/tab.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/popup.js"></script>
+<jsp:include page="/WEB-INF/decorators/jsheader.jsp"/>
 
 <script type="text/javascript">
 

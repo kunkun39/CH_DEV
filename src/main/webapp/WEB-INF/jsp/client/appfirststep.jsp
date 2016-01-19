@@ -14,6 +14,8 @@
     <title>广电应用接入平台</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <%--添加头文件进度条显示不出来--%>
+    <%--<jsp:include page="/WEB-INF/decorators/cssheader.jsp"/>--%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
@@ -124,7 +126,7 @@
                     <label for="" class="col-sm-3 control-label">上传应用海报</label>
 
                     <div class="col-sm-9">
-                       <input type="file" id="appPosterUploadFile" name="appPosterUploadFile" required="required"
+                        <input type="file" id="appPosterUploadFile" name="appPosterUploadFile" required="required"
                                style="width: 320px" onchange="validatePosterImage(this)"/>
                         <span class="help-block color6"><i class="ico-prompt"></i>请编辑应用图标: 像素:800*450，大小<200K</span>
                         <span id="poster_error_show" class="help-block color5" style="display: none;"></span>
@@ -132,7 +134,7 @@
                             <img width="200" height="112" alt=""
                                  src="${fileRequestHost}/${marketApp.appKey}/${marketApp.posterActualFileName}" style="margin-bottom: 18px"/>
                         </c:if>
-                    </div>
+                </div>
 
                 <div class="form-group">
                     <label for="" class="col-sm-3 control-label">上传应用程序文件</label>
@@ -150,9 +152,10 @@
                     <label id="processBarTextControl" class="col-sm-3 control-label" style="display: none">文件上传进度</label>
                     <div id="processBarValControl" class="col-sm-9" style="display: none" >
                         <div class="progress progress-success progress-striped" style="width:50%">
-                            <div id='proBar' class="bar" style="width:0%"><span id="proVal"></span></div>
+                            <div id='proBar' class="bar" style="width:5%"><span id="proVal"></span></div>
                         </div>
                     </div>
+
                 </div>
 
                 <div class="form-group">
@@ -209,13 +212,8 @@
 </div>
 
 <%--Javascript部分***********************************************************--%>
-<script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
-<script src="${pageContext.request.contextPath}/javascript/vendor/bootstrap.js"></script>
-<!--[if lt IE 9]>
-<script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
-<script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
-<![endif]-->
-<script src="${pageContext.request.contextPath}/javascript/vendor/tab.js"></script>
+
+<jsp:include page="/WEB-INF/decorators/jsheader.jsp"/>
 <script src="${pageContext.request.contextPath}/dwr/engine.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/dwr/util.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/dwr/interface/SystemDWRHandler.js" type="text/javascript"></script>

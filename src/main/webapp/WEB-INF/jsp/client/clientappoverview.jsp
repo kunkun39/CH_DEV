@@ -13,10 +13,8 @@
 	<title>广电应用接入平台</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/backstage.css">
+    <jsp:include page="/WEB-INF/decorators/cssheader.jsp" />
+
 </head>
 
 <body>
@@ -99,9 +97,9 @@
                                         <a class="btn-blue color10" onclick="window.location.href='${pageContext.request.contextPath}/security/appfirststep.html?appId=${app.id}&current=${paging.currentPageNumber}&appName=${paging.appName}&appStatus=${paging.appStatus}'">查看</a>
                                     </c:if>
                                     <c:if test="${app.appStatus != 'REJECTED'}">
-                                        <a class="btn-blue color10" onclick="window.location.href='${pageContext.request.contextPath}/security/appsecondstep.html?appId=${app.id}&current=${paging.currentPageNumber}&appName=${paging.appName}&appStatus=${paging.appStatus}'">查看</a>
+                                        <a class="btn-blue color1" onclick="window.location.href='${pageContext.request.contextPath}/security/appsecondstep.html?appId=${app.id}&current=${paging.currentPageNumber}&appName=${paging.appName}&appStatus=${paging.appStatus}'">查看</a>
                                     </c:if>
-                                    <a class="btn-blue color10"  onclick="window.location.href='${pageContext.request.contextPath}/security/apphistory.html?appId=${app.id}&current=${paging.currentPageNumber}&appName=${paging.appName}&appStatus=${paging.appStatus}'">历史</a>
+                                    <a class="btn-blue color1"  onclick="window.location.href='${pageContext.request.contextPath}/security/apphistory.html?appId=${app.id}&current=${paging.currentPageNumber}&appName=${paging.appName}&appStatus=${paging.appStatus}'">历史</a>
                                 </td>
                             </tr>
                             </c:forEach>
@@ -124,12 +122,8 @@
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
 
 <%--Javascript部分***********************************************************--%>
-<script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
-<!--[if lt IE 9]>
-<script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
-<script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
-<![endif]-->
-<script src="${pageContext.request.contextPath}/javascript/vendor/tab.js"></script>
+
+<jsp:include page="/WEB-INF/decorators/jsheader.jsp"/>
 
 <script type="text/javascript">
 

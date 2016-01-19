@@ -15,10 +15,8 @@
 	<title>广电应用接入平台</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/backstage.css">
+    <jsp:include page="/WEB-INF/decorators/cssheader.jsp" />
+
 </head>
 
 <body>
@@ -102,13 +100,6 @@
             </div>
         </div>
 
-
-
-
-
-
-
-
 </div>
 
 <%--开头菜单部分***********************************************************--%>
@@ -116,18 +107,11 @@
 <jsp:include page="/WEB-INF/decorators/footer.jsp"/>
 
 <%--Javascript部分***********************************************************--%>
-<script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
-<!--[if lt IE 9]>
-<script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
-<script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
-<![endif]-->
-<script src="${pageContext.request.contextPath}/javascript/vendor/tab.js"></script>
+
+<jsp:include page="/WEB-INF/decorators/jsheader.jsp"/>
 <script src="${pageContext.request.contextPath}/dwr/engine.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/dwr/util.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/dwr/interface/SystemDWRHandler.js" type="text/javascript"></script>
-
-
-
 
 <script type="text/javascript">
     var oldPasswordJSValidate = false;

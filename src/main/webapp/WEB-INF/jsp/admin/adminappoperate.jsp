@@ -9,11 +9,8 @@
 <html class="activity-no">
 <!--<![endif]-->
 <head>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/backstage.css">
     <title>开发者应用接入平台后台管理</title>
+    <jsp:include page="/WEB-INF/decorators/cssheader.jsp" />
 </head>
 <body>
 <%--开头菜单部分***********************************************************--%>
@@ -92,12 +89,8 @@
     </div>
 </div>
 
-<script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
-<!--[if lt IE 9]>
-<script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
-<script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
-<![endif]-->
-<script src="${pageContext.request.contextPath}/javascript/vendor/bootstrap.js"></script>
+<%--Javascript部分***********************************************************--%>
+<jsp:include page="/WEB-INF/decorators/jsheader.jsp"/>
 <script src="${pageContext.request.contextPath}/javascript/browserdiff.js"></script>
 <script type="text/javascript">
     var g_appID = 0;
@@ -129,7 +122,9 @@
         jQuery("#message").html(comfirmMessage);
         jQuery("#infoPopup").modal();
     }
-
+    function test(e) {
+        var aaa = e;
+    }
     function onblueValidateRejectReason(e) {
         var triggerId = getEventTriggerId(e);
 
