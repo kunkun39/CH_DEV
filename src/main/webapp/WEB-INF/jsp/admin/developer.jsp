@@ -41,8 +41,8 @@
             <table class="table table-condensed table-bordered table-hover table-view-1">
                 <thead>
                     <tr>
-                        <th style="text-align: center;width:15%">用户名</th>
-                        <th style="text-align: center;width:35%">联系方式</th>
+                        <th style="padding-left: 20px;width:35%">用户名</th>
+                        <th style="width:15%">联系方式</th>
                         <th style="text-align: center;width:15%">状态</th>
                         <th style="text-align: center;width:15%">激活</th>
                         <th style="text-align: center;width:20%">操作</th>
@@ -51,8 +51,8 @@
                 <tbody>
                     <c:forEach items="${users}" var="user">
                         <tr>
-                            <td style="text-align: center;width:15%">${user.username}</td>
-                            <td style="text-align: center;width:35%">${user.contactWay}</td>
+                            <td style="padding-left: 20px;width:35%">${user.username}</td>
+                            <td style="width:15%">${user.contactWay}</td>
                             <td id="user_status_${user.id}" style="text-align: center;width:15%">
                                 <c:if test="${user.enabled}"><span class="color10">在用</span></c:if>
                                 <c:if test="${!user.enabled}"><span class="color7">停止使用</span></c:if>
