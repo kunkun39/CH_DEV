@@ -130,7 +130,7 @@
                         <span id="poster_error_show" class="help-block color5" style="display: none;"></span>
                         <c:if test="${marketApp.id > 0}">
                             <img width="200" height="112" alt=""
-                                 src="${fileRequestHost}/${marketApp.appKey}/${marketApp.posterActualFileName}"/>
+                                 src="${fileRequestHost}/${marketApp.appKey}/${marketApp.posterActualFileName}" style="margin-bottom: 18px"/>
                         </c:if>
                     </div>
 
@@ -170,6 +170,7 @@
                     <label class="col-sm-3 control-label">&nbsp;</label>
 
                     <div class="col-sm-9">
+
                         <input type="button" class="btn-blue color1" value="返  回" onclick="window.location.href = '${pageContext.request.contextPath}/security/clientappoverview.html'" />
                         <input type="button" class="btn-blue color1" value="提  交" onclick="submitAppInfo(this.form)"/>
                     </div>
