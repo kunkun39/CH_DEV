@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="form-group" style="margin-top: -100px">
-                        <label style="width:90px; " for=" " class="col-sm-2 control-label">联系电话</label>
+                        <label style="width:90px; " for=" " class="col-sm-2 control-label">联系方式</label>
                         <label style="margin-left:-26px;color:#bfbfbf;width:10px;" for=" "
                                class="col-sm-2 control-label">+86</label>
 

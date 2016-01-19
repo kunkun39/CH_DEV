@@ -68,9 +68,8 @@ public class NumberPagingTag extends TagSupport {
         String prevLink = "";
         if (paging.hasPreviousPage()) {
             prevLink = "<li><a href=\"" + createHref(paging.getPreviousPageNumber()) + "\"" + createLinkClick(paging.getPreviousPageNumber()) + " >" + previous + "</a></li>";
-        }
-        else {
-            prevLink = "<li><a style=\"background-color:#E8E8E8;\" href=\"javascript:void(0);\">" + previous + "</a></li>";
+        } else {
+            prevLink = "<li><a style=\"background-color:#BDBDBD;\" href=\"javascript:void(0);\">" + previous + "</a></li>";
         }
         return prevLink + delimiter;
     }
@@ -82,15 +81,12 @@ public class NumberPagingTag extends TagSupport {
 
         if (maxPageNumber >= totalPages) {
             numberPageLinks = getNumberPageLinks(1, currentPage, totalPages);
-        }
-        else {
-            if ((currentPage - maxPageNumber / 2 -1) <= 0) {
+        } else {
+            if ((currentPage - maxPageNumber / 2 - 1) <= 0) {
                 numberPageLinks = getNumberPageLinks(1, currentPage, maxPageNumber);
-            }
-            else if ((currentPage + maxPageNumber / 2 -1) >= totalPages) {
+            } else if ((currentPage + maxPageNumber / 2 - 1) >= totalPages) {
                 numberPageLinks = getNumberPageLinks(totalPages - maxPageNumber + 1, currentPage, totalPages);
-            }
-            else {
+            } else {
                 numberPageLinks = getNumberPageLinks(currentPage - (maxPageNumber / 2), currentPage, currentPage + (maxPageNumber / 2) - ((maxPageNumber % 2) == 0 ? 1 : 0));
             }
         }
@@ -102,10 +98,9 @@ public class NumberPagingTag extends TagSupport {
         StringBuilder builder = new StringBuilder();
 
         for (int i = startPage; i <= endPage; i++) {
-            if(i != currentPage) {
+            if (i != currentPage) {
                 builder.append(createNumberPageLink(i, false));
-            }
-            else {
+            } else {
                 builder.append(createNumberPageLink(i, true));
             }
         }
@@ -117,10 +112,9 @@ public class NumberPagingTag extends TagSupport {
         String linkStr = "";
 
         if (currentPage) {
-            linkStr = "<li class=\"cur\"><a href=\"" +createHref(pageNum) + "\"" + createLinkClick(pageNum) + ">" + pageNum + "</a></li>\n";
-        }
-        else {
-            linkStr = "<li><a href=\"" +createHref(pageNum) + "\"" + createLinkClick(pageNum) + ">" + pageNum + "</a></li>\n";
+            linkStr = "<li class=\"cur\"><a href=\"" + createHref(pageNum) + "\"" + createLinkClick(pageNum) + ">" + pageNum + "</a></li>\n";
+        } else {
+            linkStr = "<li><a href=\"" + createHref(pageNum) + "\"" + createLinkClick(pageNum) + ">" + pageNum + "</a></li>\n";
         }
 
         return linkStr;
@@ -130,15 +124,14 @@ public class NumberPagingTag extends TagSupport {
         String nextLink = "";
         if (paging.hasNextPage()) {
             nextLink = "<li><a href=\"" + createHref(paging.getNextPageNumber()) + "\"" + createLinkClick(paging.getNextPageNumber()) + " >" + next + "</a><li>";
-        }
-        else {
-            nextLink = "<li><a style=\"background-color:#E8E8E8;\" href=\"javascript:void(0);\">" + next + "</a></li>";
+        } else {
+            nextLink = "<li><a style=\"background-color:#BDBDBD;\" href=\"javascript:void(0);\">" + next + "</a></li>";
         }
         return nextLink + delimiter;
     }
 
     private String createPageInformation() {
-        return delimiter + "<li><a href=\"javascript:void(0);\">(" + paging.getCurrentPageNumber() + " / " + paging.getTotalPages() + ")</a></i>" + delimiter;
+        return delimiter + "<a href=\"javascript:void(0);\">(" + paging.getCurrentPageNumber() + " / " + paging.getTotalPages() + ")</a>" + delimiter;
     }
 
     private String createGoToSpecificPageLink() {
@@ -181,7 +174,7 @@ public class NumberPagingTag extends TagSupport {
     }
 
     public String getParameterValues() {
-        return  paging.getParameterValues();
+        return paging.getParameterValues();
     }
 
     protected void writeMessage(String urlInfo) throws IOException {
