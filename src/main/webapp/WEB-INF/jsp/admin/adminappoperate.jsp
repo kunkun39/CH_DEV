@@ -84,7 +84,7 @@
                 <div id="message" class="modal-body">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" onclick="confirmSubmit();">确定</button>
+                    <button id="submitButton" type="button" class="btn btn-default" onclick="confirmSubmit();">确定</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 </div>
             </div>
@@ -98,6 +98,7 @@
 <script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
 <![endif]-->
 <script src="${pageContext.request.contextPath}/javascript/vendor/bootstrap.js"></script>
+<script src="${pageContext.request.contextPath}/javascript/browserdiff.js"></script>
 <script type="text/javascript">
     var g_appID = 0;
     var g_appChangeStatus = '';
@@ -110,7 +111,7 @@
         if (appStatus == 'REJECTED') {
             comfirmMessage =
                     "<h5>请输入拒绝理由:</h5>" +
-                    "<textarea id=\"rejectReason\" name=\"rejectReason\"required=\"required\" rows=\"3\" cols=\"78\" maxlength=\"200\" onblur=\"validateRejectReason()\"></textarea>" +
+                    "<textarea id=\"rejectReason\" name=\"rejectReason\"required=\"required\" rows=\"3\" cols=\"78\" maxlength=\"200\" onblur=\"onblueValidateRejectReason(event);\"></textarea>" +
                     "<span id=\"reason_error_show\" class=\"help-block color5\" style=\"display: none;\"></span>" +
                     "<span class=\"help-block color6\"><i class=\"ico-prompt\"></i>最多填写200个字</span>";
             checkRejectReason = true;
@@ -127,6 +128,16 @@
         }
         jQuery("#message").html(comfirmMessage);
         jQuery("#infoPopup").modal();
+    }
+
+    function onblueValidateRejectReason(e) {
+        var triggerId = getEventTriggerId(e);
+
+        if (triggerId == 'submitButton') {
+            confirmSubmit();
+        } else {
+            validateRejectReason();
+        }
     }
 
     function validateRejectReason() {

@@ -96,10 +96,10 @@
                                 </td>
                                 <td>
                                     <c:if test="${app.appStatus == 'REJECTED'}">
-                                        <a class="btn-blue color4" onclick="window.location.href='${pageContext.request.contextPath}/security/appfirststep.html?appId=${app.id}&current=${paging.currentPageNumber}&appName=${paging.appName}&appStatus=${paging.appStatus}'">查看</a>
+                                        <a class="btn-blue color10" onclick="window.location.href='${pageContext.request.contextPath}/security/appfirststep.html?appId=${app.id}&current=${paging.currentPageNumber}&appName=${paging.appName}&appStatus=${paging.appStatus}'">查看</a>
                                     </c:if>
                                     <c:if test="${app.appStatus != 'REJECTED'}">
-                                        <a class="btn-blue color4" onclick="window.location.href='${pageContext.request.contextPath}/security/appsecondstep.html?appId=${app.id}&current=${paging.currentPageNumber}&appName=${paging.appName}&appStatus=${paging.appStatus}'">查看</a>
+                                        <a class="btn-blue color10" onclick="window.location.href='${pageContext.request.contextPath}/security/appsecondstep.html?appId=${app.id}&current=${paging.currentPageNumber}&appName=${paging.appName}&appStatus=${paging.appStatus}'">查看</a>
                                     </c:if>
                                     <a class="btn-blue color10"  onclick="window.location.href='${pageContext.request.contextPath}/security/apphistory.html?appId=${app.id}&current=${paging.currentPageNumber}&appName=${paging.appName}&appStatus=${paging.appStatus}'">历史</a>
                                 </td>

@@ -45,7 +45,7 @@
                 <div class="form-group">
                     <label for="inputPassword" class="col-sm-2 control-label">姓名</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="intputName" name="name" value="${user.name}" placeholder="请输入姓名" onblur="validateName();" />
+                        <input type="text" class="form-control" id="intputName" name="name" value="${user.name}" placeholder="请输入姓名" onblur="onblurValidateName(event,this.form);" />
                         <span id="name_error_show" class="help-block color5" style="display: none;"></span>
                         <span class="help-block"></span>
                     </div>
@@ -53,7 +53,7 @@
                 <div class="form-group">
                     <label for="inputPassword" class="col-sm-2 control-label">联系方式</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputContactWay" name="contactway" value="${user.contactWay}" placeholder="请输入邮箱等其他联系方式" onblur="validateContactWay();" />
+                        <input type="text" class="form-control" id="inputContactWay" name="contactway" value="${user.contactWay}" placeholder="请输入邮箱等其他联系方式" onblur="onblurValidateContactWay(event,this.form);" />
                         <span id="contactWay_error_show" class="help-block color5" style="display: none;"></span>
                         <span class="help-block"></span>
                     </div>
@@ -62,7 +62,7 @@
                     <label class="col-sm-2 control-label">&nbsp;</label>
                     <div class="col-sm-10">
                         <input type="button" class="btn-blue color1" value="返  回" onclick="window.location.href = '${pageContext.request.contextPath}/security/adminuserinfo.html'"/>
-                        <input type="button" class="btn-blue color1" value="确认修改" onclick="changeUserInfo(this.form);" />
+                        <input type="button" id="submitButton" class="btn-blue color1" value="确认修改" onclick="changeUserInfo(this.form);" />
                     </div>
                 </div>
             </div>
@@ -78,9 +78,21 @@
 <script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
 <![endif]-->
 <script src="${pageContext.request.contextPath}/javascript/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/javascript/browserdiff.js"></script>
 <script type="text/javascript">
     var contactWayValidate = false;
     var nameValidate = false;
+
+    function onblurValidateContactWay(e, form) {
+        var triggerId = getEventTriggerId(e);
+
+        if (triggerId == 'submitButton') {
+            changeUserInfo(form);
+        } else {
+            validateContactWay();
+        }
+    }
+
     function validateContactWay() {
         var oldContactway = jQuery("#oldContactway").val();
         var contactWay = jQuery("#inputContactWay").val();
@@ -90,6 +102,16 @@
         } else {
             jQuery("#contactWay_error_show").css("display", "none");
             contactWayValidate = true;
+        }
+    }
+
+    function onblurValidateName(e, form) {
+        var triggerId = getEventTriggerId(e);
+
+        if (triggerId == 'submitButton') {
+            changeUserInfo(form);
+        } else {
+            validateName();
         }
     }
 

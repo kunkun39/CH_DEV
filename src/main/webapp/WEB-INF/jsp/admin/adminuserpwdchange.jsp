@@ -43,7 +43,7 @@
                 <div class="form-group">
                     <label for="inputPassword" class="col-sm-2 control-label">原密码</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="inputOldPassword" name="oldpwd" placeholder="请输入原密码" onblur="validateOldPassword();" />
+                        <input type="password" class="form-control" id="inputOldPassword" name="oldpwd" placeholder="请输入原密码" onblur="onblurValidateOldPassword(event, ${user.id}, this.form);" />
                         <span id="old_password_error_show" class="help-block color5" style="display: none;"></span>
                         <span class="help-block"></span>
                     </div>
@@ -51,7 +51,7 @@
                 <div class="form-group">
                     <label for="inputPassword" class="col-sm-2 control-label">新密码</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="inputNewPassword" name="newpwd" placeholder="请输入新密码" onblur="validateNewPassword();" />
+                        <input type="password" class="form-control" id="inputNewPassword" name="newpwd" placeholder="请输入新密码" onblur="onblurValidateNewPassword(event, ${user.id}, this.form);" />
                         <span id="new_password_error_show" class="help-block color5" style="display: none;"></span>
                         <span class="help-block"></span>
                     </div>
@@ -59,7 +59,7 @@
                 <div class="form-group">
                     <label for="inputPassword" class="col-sm-2 control-label">确认新密码</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="inputConfirmPassword" name="confirmpwd" placeholder="请再次输入新密码" onblur="validateConfrimPassword();">
+                        <input type="password" class="form-control" id="inputConfirmPassword" name="confirmpwd" placeholder="请再次输入新密码" onblur="onblurValidateConfrimPassword(event, ${user.id}, this.form);">
                         <span id="confirm_password_error_show" class="help-block color5" style="display: none;"></span>
                         <span class="help-block"></span>
                     </div>
@@ -68,7 +68,7 @@
                     <label class="col-sm-2 control-label">&nbsp;</label>
                     <div class="col-sm-10">
                         <input type="button" class="btn-blue color1" value="返  回" onclick="window.location.href = '${pageContext.request.contextPath}/security/adminuserinfo.html'"/>
-                        <input type="button" class="btn-blue color1" value="确认修改" onclick="changePassword(${user.id}, this.form);" />
+                        <input type="button" id="submitButton" class="btn-blue color1" value="确认修改" onclick="changePassword(${user.id}, this.form);" />
                     </div>
                 </div>
             </div>
@@ -88,11 +88,22 @@
 <script src="${pageContext.request.contextPath}/dwr/engine.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/dwr/util.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/dwr/interface/SystemDWRHandler.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/javascript/browserdiff.js"></script>
 <script type="text/javascript">
     var oldPasswordJSValidate = false;
     var oldPasswordDBValidate = false;
     var newPasswordValidate = false;
     var confirmPasswordValidate = false;
+
+    function onblurValidateOldPassword(e, userId, form) {
+        var triggerId = getEventTriggerId(e);
+
+        if (triggerId == 'submitButton') {
+            changePassword(userId,form);
+        } else {
+            validateOldPassword();
+        }
+    }
 
     function validateOldPassword() {
         var password = jQuery("#inputOldPassword").val();
@@ -119,6 +130,16 @@
         });
     }
 
+    function onblurValidateNewPassword(e, userId, form) {
+        var triggerId = getEventTriggerId(e);
+
+        if (triggerId == 'submitButton') {
+            changePassword(userId,form);
+        } else {
+            validateNewPassword();
+        }
+    }
+
     function validateNewPassword() {
         var oldPassword = jQuery("#inputOldPassword").val();
         var newPassword = jQuery("#inputNewPassword").val();
@@ -131,6 +152,16 @@
         } else {
             jQuery("#new_password_error_show").css("display", "none");
             newPasswordValidate = true;
+        }
+    }
+
+    function onblurValidateConfrimPassword(e, userId, form) {
+        var triggerId = getEventTriggerId(e);
+
+        if (triggerId == 'submitButton') {
+            changePassword(userId,form);
+        } else {
+            validateConfrimPassword();
         }
     }
 
@@ -153,14 +184,14 @@
 
     function changePassword(userId,form) {
         validateOldPassword();
-        if (oldPasswordJSValidate) {
-            validateOldPasswordFromDb(userId);
-        }
         validateNewPassword();
         validateConfrimPassword();
 
         if (oldPasswordJSValidate && oldPasswordDBValidate && newPasswordValidate && confirmPasswordValidate) {
-            form.submit();
+            validateOldPasswordFromDb(userId);
+            if (oldPasswordDBValidate) {
+                form.submit();
+            }
         }
     }
 </script>

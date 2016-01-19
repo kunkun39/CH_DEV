@@ -47,7 +47,7 @@
                 <div class="form-group">
                     <label for=" " class="col-sm-2 control-label">用户名</label>
                     <div class="col-sm-10">
-                        <spring-form:input type="text" class="form-control" id="inputUserName" path="username" placeholder="请输入用户名" onblur="validateUserName();"/>
+                        <spring-form:input type="text" class="form-control" id="inputUserName" path="username" placeholder="请输入用户名" onblur="onblurValidateUserName(event,this.form);"/>
                         <spring-form:errors path="username" class="help-block color5"/>
                         <span id="username_error_show" class="help-block color5" style="display: none;"></span>
                     </div>
@@ -55,7 +55,7 @@
                 <div class="form-group">
                     <label for=" " class="col-sm-2 control-label">姓名</label>
                     <div class="col-sm-10">
-                        <spring-form:input type="text" class="form-control" id="inputName" path="name" placeholder="请输入姓名" onblur="validateName();"/>
+                        <spring-form:input type="text" class="form-control" id="inputName" path="name" placeholder="请输入姓名" onblur="onblurValidateName(event,this.form);"/>
                         <spring-form:errors path="name" class="help-block color5"/>
                         <span id="name_error_show" class="help-block color5" style="display: none;"></span>
                     </div>
@@ -70,7 +70,7 @@
                 <div class="form-group">
                     <label for="inputPassword" class="col-sm-2 control-label">密码</label>
                     <div class="col-sm-10">
-                        <spring-form:input type="password" class="form-control" id="inputPassword" path="password" placeholder="请输入密码" onblur="validatePassword();" />
+                        <spring-form:input type="password" class="form-control" id="inputPassword" path="password" placeholder="请输入密码" onblur="onblurValidatePassword(event,this.form);" />
                         <spring-form:errors path="password" class="help-block color5"/>
                         <span id="password_error_show" class="help-block color5" style="display: none;"></span>
                         <span class="help-block"></span>
@@ -79,7 +79,7 @@
                 <div class="form-group">
                     <label for="inputPassword" class="col-sm-2 control-label">确认密码</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="inputConfirmPassword" placeholder="请再次输入密码" onblur="validateConfrimPassword();">
+                        <input type="password" class="form-control" id="inputConfirmPassword" placeholder="请再次输入密码" onblur="onblurValidateConfrimPassword(event,this.form);">
                         <span id="confirm_password_error_show" class="help-block color5" style="display: none;"></span>
                         <span class="help-block"></span>
                     </div>
@@ -88,7 +88,7 @@
                     <label class="col-sm-2 control-label">&nbsp;</label>
                     <div class="col-sm-10">
                         <input type="button" class="btn-blue color1" value="返  回" onclick="window.location.href = '${pageContext.request.contextPath}/security/adminusers.html'" />
-                        <input type="button" class="btn-blue color1" value="确认添加" onclick="userInfoSubmit(this.form);" />
+                        <input type="button" id="submitButton" class="btn-blue color1" value="确认添加" onclick="userInfoSubmit(this.form);" />
                     </div>
                 </div>
             </div>
@@ -108,12 +108,23 @@
 <script src="${pageContext.request.contextPath}/dwr/engine.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/dwr/util.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/dwr/interface/SystemDWRHandler.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/javascript/browserdiff.js"></script>
 <script type="text/javascript">
     var userNameValidate = false;
     var nameValidate = false;
     var passwordValidate = false;
     var confirmPasswordValidate = false;
     var userNameDuplicate = false;
+
+    function onblurValidateUserName(e, form) {
+        var triggerId = getEventTriggerId(e);
+
+        if (triggerId == 'submitButton') {
+            userInfoSubmit(form);
+        } else {
+            validateUserName();
+        }
+    }
 
     function validateUserName() {
         var userName = jQuery("#inputUserName").val();
@@ -136,6 +147,16 @@
         }
     }
 
+    function onblurValidateName(e, form) {
+        var triggerId = getEventTriggerId(e);
+
+        if (triggerId == 'submitButton') {
+            userInfoSubmit(form);
+        } else {
+            validateName();
+        }
+    }
+
     function validateName() {
         var name = jQuery("#inputName").val();
         if (name == null || name == '') {
@@ -148,6 +169,16 @@
         }
     }
 
+    function onblurValidatePassword(e, form) {
+        var triggerId = getEventTriggerId(e);
+
+        if (triggerId == 'submitButton') {
+            userInfoSubmit(form);
+        } else {
+            validatePassword();
+        }
+    }
+
     function validatePassword() {
         var password = jQuery("#inputPassword").val();
         if (password == null || password == '') {
@@ -157,6 +188,16 @@
         else {
             jQuery("#password_error_show").css("display", "none");
             passwordValidate = true;
+        }
+    }
+
+    function onblurValidateConfrimPassword(e, form) {
+        var triggerId = getEventTriggerId(e);
+
+        if (triggerId == 'submitButton') {
+            userInfoSubmit(form);
+        } else {
+            validateConfrimPassword();
         }
     }
 
@@ -174,6 +215,16 @@
         else {
             jQuery("#confirm_password_error_show").css("display", "none");
             confirmPasswordValidate = true;
+        }
+    }
+
+    function onblurValidateAuthCode(e, form) {
+        var triggerId = getEventTriggerId(e);
+
+        if (triggerId == 'submitButton') {
+            userInfoSubmit(form);
+        } else {
+            validateAuthCode();
         }
     }
 
