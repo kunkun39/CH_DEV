@@ -101,7 +101,7 @@ public class ClientServiceImpl implements ClientService {
             clientDao.saveOrUpdate(history);
         } else {
             String details = getAPPChangeDetails(oldMarketAppDTO, marketAppDTO);
-            if (StringUtils.hasText(details) || !oldMarketAppDTO.getAppStatus().equals(marketAppDTO.getAppStatus())) {
+            if (StringUtils.hasText(details) || !oldMarketAppDTO.getAppStatus().equals(AppStatus.WAITING.name())) {
                 clientDao.saveOrUpdate(marketApp);
                 AppStatus oldAppStatus = AppStatus.isAppStatus(app.getAppStatus()) ? AppStatus.valueOf(oldMarketAppDTO.getAppStatus()) : null;
                 AppStatusChangeAction action = new AppStatusChangeAction(false, marketApp.getId(), oldAppStatus, AppStatus.WAITING, details);

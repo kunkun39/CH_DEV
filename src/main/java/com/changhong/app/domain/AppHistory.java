@@ -3,6 +3,7 @@ package com.changhong.app.domain;
 import com.changhong.app.web.event.AppCreateAction;
 import com.changhong.app.web.event.AppStatusChangeAction;
 import com.changhong.app.web.event.AppVersionUpdateAction;
+import org.springframework.util.StringUtils;
 
 /**
  * User: Jack Wang
@@ -52,7 +53,11 @@ public class AppHistory extends EntityBase {
         String description = "";
         if (newStatus.equals(AppStatus.WAITING)) {
             if (AppStatus.SHELVES.equals(oldStatus)) {
-                description = "用户更新应用信息，等待管理员审核。<br/>修改信息如下：" + details;
+                if (StringUtils.hasText(details)) {
+                    description = "用户更新应用信息，等待管理员审核。<br/>修改信息如下：" + details;
+                } else {
+                    description = "用户更新应用信息，等待管理员审核。";
+                }
             }
             else if (AppStatus.REJECTED.equals(oldStatus)) {
                 description = "用户重新提交应用信息，等待管理员审核。<br/>修改信息如下：" + details;
@@ -70,7 +75,7 @@ public class AppHistory extends EntityBase {
         } else if (newStatus.equals(AppStatus.OFFSHELVES)) {
             description = "应用信息管理员下架该应用。";
         } else if (newStatus.equals(AppStatus.REJECTED)) {
-            description = "应用信息管理员未审核通过应用。<br/>原因:" + details;
+            description = "应用信息管理员未审核通过应用。<br/>● 原因:" + details;
         }
 
         MarketApp app = new MarketApp();
