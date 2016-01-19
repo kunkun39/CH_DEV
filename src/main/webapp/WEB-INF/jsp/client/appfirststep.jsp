@@ -142,7 +142,7 @@
                         <input type="file" id="appApkUploadFile" name="appApkUploadFile" required="required"
                                style="width: 320px;margin-left: 8px" onchange="validateApkFile(this)"/>
                         <span class="help-block color6" style="margin-left: 2px">&nbsp;&nbsp;<i class="ico-prompt"></i>请编辑应用APK文件</span>
-                        <span id="apk_error_show" class="help-block color5" style="display: none;"></span>
+                        <span id="apk_error_show" class="help-block color5" style="display: none;margin-left: 9px"></span>
                         <c:if test="${marketApp.id > 0}">
                             <span class="help-block color10">已上传应用APK文件:${marketApp.apkUploadFileName}</span>
                         </c:if>
