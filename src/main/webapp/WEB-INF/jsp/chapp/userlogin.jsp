@@ -15,6 +15,15 @@
     <script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
     <script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
     <![endif]-->
+
+    <style type="text/css">
+        .pwd-margintop{
+            margin-top: 20px;
+        }
+        .pwd-marginleft{
+            margin-left: 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -68,8 +77,8 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">&nbsp;</label>
 
-                        <div class="col-sm-10">
-                            <a href="${pageContext.request.contextPath}/chapp/usertopwdlookback.html" class="color4">忘记密码？</a>
+                        <div class="col-sm-10 pwd-margintop" >
+                            <a href="${pageContext.request.contextPath}/chapp/usertopwdlookback.html"  class="color4 pwd-marginleft">忘记密码？</a>
                         </div>
                     </div>
 
