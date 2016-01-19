@@ -15,7 +15,6 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <jsp:include page="/WEB-INF/decorators/cssheader.jsp"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/backstage.css">
 </head>
 
 <body>
