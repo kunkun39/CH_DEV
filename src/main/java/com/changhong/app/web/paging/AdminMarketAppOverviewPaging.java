@@ -21,6 +21,12 @@ public class AdminMarketAppOverviewPaging extends AbstractPaging<MarketAppDTO> {
     public AdminMarketAppOverviewPaging(SystemService systemService) {
         this.systemService = systemService;
     }
+
+    @Override
+    public int getPageSize() {
+        return 5;
+    }
+
     @Override
     public List<MarketAppDTO> getItems() {
         return systemService.obtainMarketApps(appName, appStatus, getStartPosition(), getPageSize());

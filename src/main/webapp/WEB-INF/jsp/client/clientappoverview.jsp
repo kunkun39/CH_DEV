@@ -108,7 +108,7 @@
 
                     <div class="pagcontrol" style="text-align:center;">
                         <ul class="pagination">
-                            <ch:numberpaging urlMapping="${pageContext.request.contextPath}/security/clientappoverview.html" paging="${paging}" maxPageNumber="10"/>
+                            <ch:numberpaging urlMapping="${pageContext.request.contextPath}/security/clientappoverview.html" paging="${paging}" maxPageNumber="7"/>
                         </ul>
                     </div>
                 </div>
