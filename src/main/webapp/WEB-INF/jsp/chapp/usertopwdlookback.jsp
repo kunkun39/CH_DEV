@@ -18,6 +18,7 @@
             height: 1px;
             background-color:transparent;
             opacity:0;
+            filter:alpha(opacity=0);
         }
 
     </style>
