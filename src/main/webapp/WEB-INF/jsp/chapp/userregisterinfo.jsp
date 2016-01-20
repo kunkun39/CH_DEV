@@ -43,7 +43,7 @@
                         <p class="font16" style="margin: 10px 0 0;">该邮件激活已失效！</p>
 
                         <p style="margin:0 0 28px;color: #999;">请重新操作！</p>
-                        <button class="btn-blue color1 text-center" onclick="toResendRegisterMail()">重新发送</button>
+                        <%--<button class="btn-blue color1 text-center" onclick="toResendRegisterMail()">重新发送</button>--%>
                     </div>
                 </div>
             </c:when>
@@ -69,7 +69,7 @@
                         <p class="font16" style="margin: 10px 0 0;">该邮件激活已超时失效！</p>
 
                         <p style="margin:0 0 28px;color: #999;">请重新操作！</p>
-                        <button class="btn-blue color1 text-center" onclick="toResendRegisterMail()">重新发送</button>
+                        <%--<button class="btn-blue color1 text-center" onclick="toResendRegisterMail()">重新发送</button>--%>
                     </div>
                 </div>
             </c:when>
@@ -82,7 +82,7 @@
                         <p class="font16" style="margin: 10px 0 0;">该邮件激活已被使用！</p>
 
                         <p style="margin:0 0 28px;color: #999;">请检查是否已注册成功或尝试重新注册！</p>
-                        <button class="btn-blue color1 text-center" onclick="toLoginPage()">去登录</button>
+                        <%--<button class="btn-blue color1 text-center" onclick="toLoginPage()">去登录</button>--%>
                     </div>
                 </div>
             </c:when>
@@ -95,7 +95,7 @@
                         <p class="font16" style="margin: 10px 0 0;">该邮件激活已失效！</p>
 
                         <p style="margin:0 0 28px;color: #999;">请重新操作！</p>
-                        <button class="btn-blue color1 text-center" onclick="toResendPwdBackMail()">重新发送</button>
+                        <%--<button class="btn-blue color1 text-center" onclick="toResendPwdBackMail()">重新发送</button>--%>
                     </div>
                 </div>
             </c:when>
@@ -108,7 +108,7 @@
                         <p class="font16" style="margin: 10px 0 0;">该邮件激活已超时失效！</p>
 
                         <p style="margin:0 0 28px;color: #999;">请重新操作！</p>
-                        <button class="btn-blue color1 text-center" onclick="toResendPwdBackMail()">重新发送</button>
+                        <%--<button class="btn-blue color1 text-center" onclick="toResendPwdBackMail()">重新发送</button>--%>
                     </div>
                 </div>
             </c:when>
@@ -121,7 +121,7 @@
                         <p class="font16" style="margin: 10px 0 0;">该邮件激活已被使用！</p>
 
                         <p style="margin:0 0 28px;color: #999;">请检查是否已成功找回密码或尝试重新找回！</p>
-                        <button class="btn-blue color1 text-center" onclick="toLoginPage()">去登录</button>
+                        <%--<button class="btn-blue color1 text-center" onclick="toLoginPage()">去登录</button>--%>
                     </div>
                 </div>
             </c:when>
