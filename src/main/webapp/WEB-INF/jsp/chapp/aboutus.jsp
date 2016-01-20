@@ -30,7 +30,7 @@
             <img src="${pageContext.request.contextPath}/images/introduce-logo.png" />
             <h1 class="color3 font-h1">平台介绍</h1>
             <p>&nbsp;</p>
-            <p class="color3" style="font-size: 14px;text-indent: 2em;text-align: left;">广电应用接入平台是一个公众的、开放性的系统平台,它允许开发者经注册后登录到系统平台,根据需要自由上传自己的应用,等待广电运维人员审核通过后,开发者上传的应用会发布到广电专有市场内,
+            <p class="color3" style="font-size: 14px;text-indent: 2em;text-align: left;">广电开发者应用接入平台是一个公众的、开放性的系统平台,它允许开发者经注册后登录到系统平台,根据需要自由上传自己的应用,等待广电运维人员审核通过后,开发者上传的应用会发布到广电专有市场内,
                 终端机顶盒会浏览到应用信息。对于开发者和广电运维人员来讲,上传应用、管理应用及管理个人信息变得更为方便。</p>
         </div>
     </div>
