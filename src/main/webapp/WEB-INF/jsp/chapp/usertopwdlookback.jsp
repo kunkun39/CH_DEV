@@ -11,6 +11,16 @@
     <script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
     <script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
     <![endif]-->
+
+    <style type="text/css">
+        .emptybutton{
+            width: 1px;
+            height: 1px;
+            background-color:white;
+            color:white;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -29,7 +39,7 @@
 
                     <div class="col-sm-10">
                         <input type="text" id="username" name="username" class="form-control" required="required" placeholder="请输入账户注册邮箱"
-                               onblur="onblurUsernameCheck(event)">
+                            ">
                         <span class="help-block color6"><i class="ico-prompt"></i>请输入账户注册邮箱！</span>
                     </div>
                     <label class="col-sm-2 control-label"></label>
@@ -38,6 +48,7 @@
                         <span id="error_info_username" class="help-block color5 " style="display: none;"></span>
                     </div>
                 </div>
+                <%--<input type="button" id="test" class="emptybutton"/>--%>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">&nbsp;</label>
 
@@ -63,6 +74,10 @@
 
 <script type="text/javascript">
 
+//    function checkkey(event){
+//        alert(event.keyCode);
+//    }
+
     function onblurUsernameCheck(event) {
         var triggerid;
         if (navigator.userAgent.indexOf("Chrome") != "-1") {
@@ -74,7 +89,7 @@
         }
 
         if (triggerid == 'sendmail') {
-            checkUserName(false); //bug 是用来解决在chrom上面按tab键会响应到按钮上面去
+            checkUserName(true); //bug 是用来解决在chrom上面按tab键会响应到按钮上面去
         } else {
             checkUserName(false);
         }
