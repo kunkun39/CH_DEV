@@ -5,15 +5,19 @@
 </h1>
 
 <div style="border:1px solid #b2b2b2; margin: 20px auto; padding: 30px; font-size: 14px; width: 800px;">
-    <p><b>尊敬的 ${mail}:</b></p>
+    <p>尊敬的 <b>${mail}:</b></p>
 
     <p style="margin-left: 20px;"> 请点击下面的链接设置新密码:</p>
+
+    <p style="margin-left: 20px; font-size: 15px;">
+        <a href="${applicationHost}chapp/finishpwdlookbackmail.html?a=${code}">修改密码</a>
+    </p>
+
+    <p style="margin-left: 20px;">如果链接无法直接点开，请尝试将链接复制到浏览器地址栏访问，此链接有效时间为24小时，请在有效时间内修改密码！</p>
 
     <p style="margin-left: 20px; font-size: 12px;">
         ${applicationHost}chapp/finishpwdlookbackmail.html?a=${code}
     </p>
-
-    <p style="margin-left: 20px;">如果链接无法直接点开，请尝试将链接复制到浏览器地址栏访问。此链接有效时间为24小时，请在有效时间内回复！</p>
 
     <p style="margin-left: 20px;margin-top: 36px">- 开发者接入平台项目组</p>
 
