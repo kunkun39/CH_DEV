@@ -80,9 +80,10 @@
                 </div>
                 <div id="message" class="modal-body">
                 </div>
+                <input type="button" id="test" class="emptybutton"/>
                 <div class="modal-footer">
                     <button id="submitButton" type="button" class="btn btn-default" onclick="confirmSubmit();">确定</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button id="cancelButton" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 </div>
             </div>
         </form>
@@ -122,14 +123,14 @@
         jQuery("#message").html(comfirmMessage);
         jQuery("#infoPopup").modal();
     }
-    function test(e) {
-        var aaa = e;
-    }
+
     function onblueValidateRejectReason(e) {
         var triggerId = getEventTriggerId(e);
 
         if (triggerId == 'submitButton') {
             confirmSubmit();
+        } else if (triggerId == 'cancelButton') {
+            return;
         } else {
             validateRejectReason();
         }
