@@ -29,7 +29,7 @@
             <form id="searchAdminUserForm" action="${pageContext.request.contextPath}/security/adminusers.html" method="post">
                 <div class="input-group">
                     <input type="button" class="btn-blue color1 fl" value="添加系统用户" onclick="window.location.href = '${pageContext.request.contextPath}/security/adminuseradd.html'" />
-                    <input type="text" name="keywords" placeholder="联系人/邮箱" class="input-sm form-control" value="${paging.keyWords}">
+                    <input style="margin-left: 5px;" type="text" name="keywords" placeholder="联系人/邮箱" class="input-sm form-control" value="${paging.keyWords}">
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-sm" onclick="searchAdminUser();">
                         <i class="search-icon"></i>

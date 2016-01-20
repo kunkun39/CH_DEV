@@ -46,7 +46,7 @@
                         <div class="input-group">
                             <input type="button" onclick="window.location.href='${pageContext.request.contextPath}/security/appfirststep.html'" class="btn-blue color1 fl" value="添加应用"/>
                             <input id="appStatus" name="appStatus" type="hidden" value="${paging.appStatus}"/>
-                            <input id="appName" name="appName" type="text" placeholder="应用名称" value="${paging.appName}" class="input-sm form-control"/>
+                            <input style="margin-left: 5px;" id="appName" name="appName" type="text" placeholder="应用名称" value="${paging.appName}" class="input-sm form-control"/>
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-sm" onclick="searchClientApp();">
                                     <i class="search-icon"></i>
