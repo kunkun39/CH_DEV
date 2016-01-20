@@ -56,10 +56,11 @@
                         <span class="help-block"></span>
                     </div>
                 </div>
+                <input type="button" id="test" class="emptybutton"/>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">&nbsp;</label>
                     <div class="col-sm-10">
-                        <input type="button" class="btn-blue color1" value="返  回" onclick="window.location.href = '${pageContext.request.contextPath}/security/adminuserinfo.html'"/>
+                        <input type="button" id="cancelButton" class="btn-blue color1" value="返  回" onclick="window.location.href = '${pageContext.request.contextPath}/security/adminuserinfo.html'"/>
                         <input type="button" id="submitButton" class="btn-blue color1" value="确认修改" onclick="changeUserInfo(this.form);" />
                     </div>
                 </div>
@@ -81,9 +82,10 @@
 
     function onblurValidateContactWay(e, form) {
         var triggerId = getEventTriggerId(e);
-
         if (triggerId == 'submitButton') {
             changeUserInfo(form);
+        } else if (triggerId == 'cancelButton') {
+            return;
         } else {
             validateContactWay();
         }
@@ -106,6 +108,8 @@
 
         if (triggerId == 'submitButton') {
             changeUserInfo(form);
+        } else if (triggerId == 'cancelButton') {
+            return;
         } else {
             validateName();
         }

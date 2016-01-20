@@ -83,10 +83,11 @@
                         <span class="help-block"></span>
                     </div>
                 </div>
+                <input type="button" id="test" class="emptybutton"/>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">&nbsp;</label>
                     <div class="col-sm-10">
-                        <input type="button" class="btn-blue color1" value="返  回" onclick="window.location.href = '${pageContext.request.contextPath}/security/adminusers.html'" />
+                        <input type="button" id="cancelButton" class="btn-blue color1" value="返  回" onclick="window.location.href = '${pageContext.request.contextPath}/security/adminusers.html'" />
                         <input type="button" id="submitButton" class="btn-blue color1" value="确认添加" onclick="userInfoSubmit(this.form);" />
                     </div>
                 </div>
@@ -117,6 +118,8 @@
 
         if (triggerId == 'submitButton') {
             userInfoSubmit(form);
+        } else if (triggerId == 'cancelButton') {
+            return;
         } else {
             validateUserName();
         }
@@ -148,6 +151,8 @@
 
         if (triggerId == 'submitButton') {
             userInfoSubmit(form);
+        } else if (triggerId == 'cancelButton') {
+            return;
         } else {
             validateName();
         }
@@ -170,6 +175,8 @@
 
         if (triggerId == 'submitButton') {
             userInfoSubmit(form);
+        } else if (triggerId == 'cancelButton') {
+            return;
         } else {
             validatePassword();
         }
@@ -192,6 +199,8 @@
 
         if (triggerId == 'submitButton') {
             userInfoSubmit(form);
+        } else if (triggerId == 'cancelButton') {
+            return;
         } else {
             validateConfrimPassword();
         }
@@ -219,6 +228,8 @@
 
         if (triggerId == 'submitButton') {
             userInfoSubmit(form);
+        } else if (triggerId == 'cancelButton') {
+            return;
         } else {
             validateAuthCode();
         }
