@@ -42,7 +42,7 @@ public class AdminMarketAppOverviewPaging extends AbstractPaging<MarketAppDTO> {
     }
 
     public String getParameterValues() {
-        return "&appName=" + getAppName() + "&appStatus" + getAppStatus();
+        return "&appName=" + getAppName() + "&appStatus=" + getAppStatus();
     }
 
     public String getAppName() {

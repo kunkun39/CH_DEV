@@ -123,7 +123,7 @@ public class NumberPagingTag extends TagSupport {
     private String createNextPageLink() {
         String nextLink = "";
         if (paging.hasNextPage()) {
-            nextLink = "<li><a href=\"" + createHref(paging.getNextPageNumber()) + "\"" + createLinkClick(paging.getNextPageNumber()) + " >" + next + "</a><li>";
+            nextLink = "<li><a href=\"" + createHref(paging.getNextPageNumber()) + "\"" + createLinkClick(paging.getNextPageNumber()) + " >" + next + "</a></li>";
         } else {
             nextLink = "<li><a style=\"background-color:#BDBDBD;\" href=\"javascript:void(0);\">" + next + "</a></li>";
         }
@@ -144,7 +144,7 @@ public class NumberPagingTag extends TagSupport {
             return function + "('" + urlMapping + getCurrentPageNumberParameter() + "'+document.getElementById('specificPageNumber').value)" + "+'" + getParameterValues() + "'";
         } else {
             String defaultAction = "this.href='" + urlMapping + getCurrentPageNumberParameter() + "'+document.getElementById('specificPageNumber').value" + "+'" + getParameterValues() + "'";
-            String errorhandleAction = "this.href='" + urlMapping + getCurrentPageNumberParameter() + 1 + "'";
+            String errorhandleAction = "this.href='" + urlMapping + getCurrentPageNumberParameter() + 1 + getParameterValues() + "'";
             return "if(document.getElementById('specificPageNumber').value.match(/\\D+/) != null || " +
                     " document.getElementById('specificPageNumber').value == '' || " +
                     "document.getElementById('specificPageNumber').value == 0 || " +
