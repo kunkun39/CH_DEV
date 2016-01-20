@@ -74,9 +74,11 @@
                     </c:forEach>
                 </tbody>
             </table>
-            <ul class="pagination">
-                <ch:numberpaging urlMapping="${pageContext.request.contextPath}/security/admindeveloper.html" paging="${paging}"/>
-            </ul>
+            <div style="text-align: center;">
+                <ul class="pagination">
+                    <ch:numberpaging urlMapping="${pageContext.request.contextPath}/security/admindeveloper.html" paging="${paging}"/>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
