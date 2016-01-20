@@ -16,8 +16,8 @@
         .emptybutton{
             width: 1px;
             height: 1px;
-            background-color:white;
-            color:white;
+            background-color:transparent;
+            opacity:0;
         }
 
     </style>
@@ -39,7 +39,7 @@
 
                     <div class="col-sm-10">
                         <input type="text" id="username" name="username" class="form-control" required="required" placeholder="请输入账户注册邮箱"
-                            ">
+                            onblur="onblurUsernameCheck(event)">
                         <span class="help-block color6"><i class="ico-prompt"></i>请输入账户注册邮箱！</span>
                     </div>
                     <label class="col-sm-2 control-label"></label>
@@ -48,7 +48,7 @@
                         <span id="error_info_username" class="help-block color5 " style="display: none;"></span>
                     </div>
                 </div>
-                <%--<input type="button" id="test" class="emptybutton"/>--%>
+                <input type="button" id="test" class="emptybutton"/>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">&nbsp;</label>
 
