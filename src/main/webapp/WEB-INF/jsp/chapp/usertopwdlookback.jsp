@@ -28,7 +28,8 @@
                     <label for="username" class="col-sm-2 control-label">邮箱</label>
 
                     <div class="col-sm-10">
-                        <input type="text" id="username" name="username" class="form-control" required="required" placeholder="请输入账户注册邮箱" onblur="checkUserName()">
+                        <input type="text" id="username" name="username" class="form-control" required="required" placeholder="请输入账户注册邮箱"
+                               onblur="onblurUsernameCheck(event)">
                         <span class="help-block color6"><i class="ico-prompt"></i>请输入账户注册邮箱！</span>
                     </div>
                     <label class="col-sm-2 control-label"></label>
@@ -41,7 +42,7 @@
                     <label class="col-sm-2 control-label">&nbsp;</label>
 
                     <div class="col-sm-10">
-                        <input type="button" class="btn-blue color1" value="发送邮件" onclick="doSubmit(this.from)"/>
+                        <input type="button" id="sendmail" class="btn-blue color1" value="发送邮件" onclick=" checkUserName(true)"/>
                     </div>
 
                 </div>
@@ -61,50 +62,38 @@
 <script src="${pageContext.request.contextPath}/dwr/interface/SystemDWRHandler.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-    var usernameState = 1;
 
-    /**
-     * 检测表单输入信息
-     **/
-    function doSubmit(form) {
-        var cansubmit = true;
-        //用户邮箱检查
-        if (usernameState == 0) {
-            jQuery("#error_info_username").css("display", "none");
+    function onblurUsernameCheck(event) {
+        var triggerid;
+        if (navigator.userAgent.indexOf("Chrome") != "-1") {
+            triggerid = event.relatedTarget.id;
+        } else if (navigator.userAgent.indexOf("Firefox") != "-1") {
+            triggerid = event.explicitOriginalTarget.id;
         } else {
-            cansubmit = false;
-            jQuery("#error_info_username").css("display", "block");
-            if (usernameState == 1) {
-                jQuery("#error_info_username").html("<i class=\"ico-error\"></i>用户邮箱不能为空!");
-            } else if (usernameState == 2) {//返回2格式不对
-                jQuery("#error_info_username").html("<i class=\"ico-error\"></i>用户邮箱格式不正确!");
-            } else if (usernameState == 3) {//返回3账号未成功注册
-                jQuery("#error_info_username").html("<i class=\"ico-error\"></i>该账号未注册成功!");
-            } else if (usernameState == 4) {//返回4该账号已被禁用
-                jQuery("#error_info_username").html("<i class=\"ico-error\"></i>该账号已被禁用!");
-            }
+            triggerid = document.activeElement.id;
         }
 
-        if (cansubmit) {
-            window.location.href = "${pageContext.request.contextPath}/chapp/usermailsend.html?usernamenormal=" + jQuery("#username").val() + "&mailtype=1";
+        if (triggerid == 'sendmail') {
+            checkUserName(false); //bug 是用来解决在chrom上面按tab键会响应到按钮上面去
+        } else {
+            checkUserName(false);
         }
     }
+
     /**
      *校验用户名，
      * @param username
      * @returns {boolean} true:校验通过，false；有问题，不通过
      */
-    function checkUserName() {
+    function checkUserName(isButton) {
         var username = jQuery("#username").val();//邮箱
         if (username == null || username == "") {
             jQuery("#error_info_username").css("display", "block");
             jQuery("#error_info_username").html("<i class=\"ico-error\"></i>用户邮箱不能为空!");
-            usernameState = 1;
             return;
         }
         //校验用户邮箱格式
         SystemDWRHandler.checkUserNameRight(username, function (result) {
-            usernameState = result;
             if (result == 2) {//返回2格式不对
                 jQuery("#error_info_username").html("<i class=\"ico-error\"></i>用户邮箱格式不正确!");
                 jQuery("#error_info_username").css("display", "block");
@@ -116,6 +105,9 @@
                 jQuery("#error_info_username").css("display", "block");
             } else if (result == 0) {//返回0用户可以修改密码
                 jQuery("#error_info_username").css("display", "none");
+                if (isButton) {
+                    window.location.href = "${pageContext.request.contextPath}/chapp/usermailsend.html?usernamenormal=" + jQuery("#username").val() + "&mailtype=1";
+                }
             }
         });
     }
