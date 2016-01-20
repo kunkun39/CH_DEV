@@ -133,6 +133,7 @@
                 <label class="col-sm-2 control-label"></label>
 
                 <div class="col-sm-10">
+                    <div style="margin-top: 20px"></div>
                     <img id="imageCode" src="${pageContext.request.contextPath}/chapp/userregistercode.html"/></span>&nbsp;<a href="javascript:;" onclick="imageChange()">看不清，换一张</a>
 
                     <p class="help-block text-danger"></p>
