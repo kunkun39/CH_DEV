@@ -1,6 +1,7 @@
 package com.changhong.app.repository;
 
 import com.changhong.app.domain.MarketApp;
+import com.changhong.app.utils.SQLEscapesUtils;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
@@ -22,7 +23,7 @@ public class SystemDaoImpl extends HibernateEntityObjectDao implements SystemDao
         StringBuilder builder = new StringBuilder();
         builder.append("from MarketApp m where 1=1");
         if (StringUtils.hasText(appName)) {
-            builder.append(" and m.appName like '%" + appName + "%'");
+            builder.append(" and m.appName like '%" + SQLEscapesUtils.escapesLikeQuery(appName) + "%'");
         }
         if (StringUtils.hasText(appStatus)) {
             builder.append(" and m.appStatus='" + appStatus + "'");
@@ -42,7 +43,7 @@ public class SystemDaoImpl extends HibernateEntityObjectDao implements SystemDao
         StringBuilder builder = new StringBuilder();
         builder.append("select count(m.id) from MarketApp m where 1=1");
         if (StringUtils.hasText(appName)) {
-            builder.append(" and m.appName like '%" + appName + "%'");
+            builder.append(" and m.appName like '%" + SQLEscapesUtils.escapesLikeQuery(appName) + "%'");
         }
         if (StringUtils.hasText(appStatus)) {
             builder.append(" and m.appStatus='" + appStatus + "'");
