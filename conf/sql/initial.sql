@@ -17,10 +17,3 @@ INSERT INTO `app_category` VALUES (12, '2014-04-01 00:00:00', '工具', 11);
 INSERT INTO `app_category` VALUES (13, '2014-04-01 00:00:00', '教育', 11);
 INSERT INTO `app_category` VALUES (14, '2014-04-01 00:00:00', '咨询', 11);
 INSERT INTO `app_category` VALUES (15, '2014-04-01 00:00:00', '新闻', 11);
-
-SET FOREIGN_KEY_CHECKS=0;
-delete from app_icon;
-delete from app_poster;
-delete from app_file;
-delete from market_app;
-SET FOREIGN_KEY_CHECKS=1;

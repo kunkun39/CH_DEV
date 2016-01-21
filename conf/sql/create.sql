@@ -26,7 +26,7 @@ CREATE TABLE `client_user` (
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 ALTER TABLE `client_user` ADD INDEX  client_user_index_name(`username`);
-
+ALTER TABLE `market_app` ADD INDEX market_app_index_status(`app_status`);
 
 DROP TABLE IF EXISTS `register_confirm`;
 CREATE TABLE `register_confirm` (
@@ -120,4 +120,3 @@ CREATE TABLE `app_change_history` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 SET FOREIGN_KEY_CHECKS=1;
-ALTER TABLE `market_app` ADD INDEX market_app_index_status(`app_status`);
