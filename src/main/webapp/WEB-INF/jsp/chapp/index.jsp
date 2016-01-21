@@ -30,12 +30,12 @@
     </div>
     <div style="width:728px;height:180px;margin:0px auto;">
         <ul class="round">
-            <li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/1.jpg" alt="" /></li>
-            <li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/2.jpg" alt="" /></li>
-            <li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/3.jpg" alt="" /></li>
-            <li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/4.jpg" alt="" /></li>
-            <li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/5.jpg" alt="" /></li>
-            <li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/6.jpg" alt="" /></li>
+            <li><img style="width:90%" src="${RESOURCE_PATH}header1.jpg" alt="" /></li>
+            <li><img style="width:90%" src="${RESOURCE_PATH}header2.jpg" alt="" /></li>
+            <li><img style="width:90%" src="${RESOURCE_PATH}header3.jpg" alt="" /></li>
+            <li><img style="width:90%" src="${RESOURCE_PATH}header4.jpg" alt="" /></li>
+            <li><img style="width:90%" src="${RESOURCE_PATH}header5.jpg" alt="" /></li>
+            <li><img style="width:90%" src="${RESOURCE_PATH}header6.jpg" alt="" /></li>
         </ul>
     </div>
 </div>

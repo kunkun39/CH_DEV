@@ -1,5 +1,7 @@
 package com.changhong.app.filter;
 
+import org.springframework.util.StringUtils;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -22,6 +24,8 @@ import javax.servlet.http.HttpSession;
 public class CssFilter implements Filter {
 
     private Boolean applicationLive = null;
+
+    private String resourcePath = null;
 
     public void init(FilterConfig filterConfig) throws ServletException {
     }
@@ -48,7 +52,11 @@ public class CssFilter implements Filter {
         if (applicationLive == null) {
             applicationLive = Boolean.valueOf(getProperties("application.live"));
         }
+        if (!StringUtils.hasText(resourcePath)) {
+            resourcePath = getProperties("application.static.resource.path");
+        }
         httpSession.setAttribute("APPLICATION_LIVE", applicationLive);
+        httpSession.setAttribute("RESOURCE_PATH", resourcePath);
         //将控制器传向下一个filter
         chain.doFilter(hRequest, hResponse);
     }
