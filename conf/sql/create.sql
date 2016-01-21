@@ -107,7 +107,6 @@ CREATE TABLE `market_app` (
   FOREIGN KEY (`owner_id`) REFERENCES client_user (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 ALTER TABLE `market_app` ADD INDEX market_app_index_name(`app_name`);
-ALTER TABLE `market_app` ADD INDEX market_app_index_status(`app_status`);
 
 DROP TABLE IF EXISTS `app_change_history`;
 CREATE TABLE `app_change_history` (
@@ -121,3 +120,4 @@ CREATE TABLE `app_change_history` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 SET FOREIGN_KEY_CHECKS=1;
+ALTER TABLE `market_app` ADD INDEX market_app_index_status(`app_status`);
