@@ -28,7 +28,7 @@
             <h4 class="font16">开发者管理</h4>
             <form id="searchDeveloperForm" action="${pageContext.request.contextPath}/security/admindeveloper.html" method="post">
                 <div class="input-group">
-                    <input id="name" type="text" name="name" placeholder="用户名" class="input-sm form-control" value="${paging.name}">
+                    <input id="name" type="text" name="name" placeholder="账号/联系人" class="input-sm form-control" value="${paging.name}">
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-sm" onclick="searchDevelpoerUser();">
                         <i class="search-icon"></i>
@@ -39,8 +39,8 @@
             <table class="table table-condensed table-bordered table-hover table-view-1">
                 <thead>
                     <tr>
-                        <th style="padding-left: 20px;width:35%">用户名</th>
-                        <th style="width:15%">联系方式</th>
+                        <th style="padding-left: 20px;width:35%">账号</th>
+                        <th style="width:15%">联系人</th>
                         <th style="text-align: center;width:15%">状态</th>
                         <th style="text-align: center;width:15%">激活</th>
                         <th style="text-align: center;width:20%">操作</th>
@@ -50,7 +50,7 @@
                     <c:forEach items="${users}" var="user">
                         <tr>
                             <td style="padding-left: 20px;width:35%">${user.username}</td>
-                            <td style="width:15%">${user.contactWay}</td>
+                            <td style="width:15%">${user.name}</td>
                             <td id="user_status_${user.id}" style="text-align: center;width:15%">
                                 <c:if test="${user.enabled}"><span class="color10">在用</span></c:if>
                                 <c:if test="${!user.enabled}"><span class="color7">停止使用</span></c:if>

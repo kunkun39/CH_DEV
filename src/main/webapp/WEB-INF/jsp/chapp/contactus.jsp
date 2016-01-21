@@ -29,7 +29,7 @@
 
 
 <div class="content banner">
-    <img width="100%" height="350px" src="${RESOURCE_PATH}images/aboutus-banner.jpg"
+    <img width="100%" height="350px" src="${RESOURCE_PATH}/images/aboutus-banner.jpg"
          class="banner-img"/>
 
     <div class="text-center introduce">
