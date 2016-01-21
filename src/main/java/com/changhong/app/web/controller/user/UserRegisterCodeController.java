@@ -1,6 +1,8 @@
 package com.changhong.app.web.controller.user;
 
 import com.changhong.app.utils.RegisterCodeUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
@@ -18,6 +20,8 @@ import java.util.Map;
  */
 public class UserRegisterCodeController extends AbstractController {
 
+    private static final Log logger = LogFactory.getLog(UserRegisterCodeController.class);
+
     @Override
     protected ModelAndView handleRequestInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
         RegisterCodeUtils.create(httpServletRequest, httpServletResponse);
@@ -28,6 +32,13 @@ public class UserRegisterCodeController extends AbstractController {
         HttpSession session = request.getSession();
         String validateCode = (String) session.getAttribute("validateCode");
         if (!StringUtils.hasText(codeValue) || !StringUtils.hasText(validateCode) || !validateCode.equalsIgnoreCase(codeValue)) {
+            if (codeValue == null) {
+                codeValue = "";
+            }
+            if (validateCode == null) {
+                validateCode = "";
+            }
+            logger.error("user input code:" + codeValue + " and system required code:" + validateCode);
             return false;
         }
         return true;
