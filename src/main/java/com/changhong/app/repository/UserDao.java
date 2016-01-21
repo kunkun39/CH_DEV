@@ -17,11 +17,7 @@ public interface UserDao extends EntityObjectDao {
 
     UserDetails findUserByName(String username);
 
-    List<AdminUser> loadAdminUsersByName(String name, int startPosition, int pageSize);
-
     List<AdminUser> loadAdminUsersByNameOrContactway(String keyWords, int startPosition, int pageSize);
-
-    int loadAdminUserSize(String name);
 
     int loadAdminUserSizeByNameOrContactway(String keyWords);
 
