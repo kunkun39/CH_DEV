@@ -35,7 +35,7 @@
     <div class="text-center introduce">
         <!--<div class="contact-logo">
         </div>-->
-        <img src="${RESOURCE_PATH}images/aboutus-logo.png"/>
+        <img src="${RESOURCE_PATH}/images/aboutus-logo.png"/>
 
         <p>&nbsp;</p>
 
