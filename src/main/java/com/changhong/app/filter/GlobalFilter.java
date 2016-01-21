@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  * Date: 16-1-13
  * Time: 下午3:30
  */
-public class CssFilter implements Filter {
+public class GlobalFilter implements Filter {
 
     private Boolean applicationLive = null;
 

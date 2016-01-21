@@ -88,8 +88,8 @@
 <script src="${pageContext.request.contextPath}/dwr/engine.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/dwr/util.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/dwr/interface/SystemDWRHandler.js" type="text/javascript"></script>
-<script type='text/javascript' src='${pageContext.request.contextPath}/javascript/jquery-loadmask/jquery.loadmask.min.js'></script>
-<link rel='stylesheet' type='text/css' href='${pageContext.request.contextPath}/javascript/jquery-loadmask/jquery.loadmask.css'/>
+<script type='text/javascript' src='${RESOURCE_PATH}/javascript/jquery-loadmask/jquery.loadmask.min.js'></script>
+<link rel='stylesheet' type='text/css' href='${RESOURCE_PATH}/javascript/jquery-loadmask/jquery.loadmask.css'/>
 <script type="text/javascript">
     var startNumber = 0;
     var appId = '${appId}';

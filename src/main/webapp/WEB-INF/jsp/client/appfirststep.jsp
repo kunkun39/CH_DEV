@@ -16,10 +16,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <%--添加头文件进度条显示不出来--%>
     <%--<jsp:include page="/WEB-INF/decorators/cssheader.jsp"/>--%>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/backstage.css">
+    <link rel="stylesheet" href="${RESOURCE_PATH}/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${RESOURCE_PATH}/css/nav.css">
+    <link rel="stylesheet" type="text/css" href="${RESOURCE_PATH}/css/style.css">
+    <link rel="stylesheet" type="text/css" href="${RESOURCE_PATH}/css/backstage.css">
 
     <style type="text/css">
 

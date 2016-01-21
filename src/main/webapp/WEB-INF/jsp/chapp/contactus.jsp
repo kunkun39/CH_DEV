@@ -29,13 +29,13 @@
 
 
 <div class="content banner">
-    <img width="100%" height="350px" src="${pageContext.request.contextPath}/images/aboutus-banner.jpg"
+    <img width="100%" height="350px" src="${RESOURCE_PATH}images/aboutus-banner.jpg"
          class="banner-img"/>
 
     <div class="text-center introduce">
         <!--<div class="contact-logo">
         </div>-->
-        <img src="${pageContext.request.contextPath}/images/aboutus-logo.png"/>
+        <img src="${RESOURCE_PATH}images/aboutus-logo.png"/>
 
         <p>&nbsp;</p>
 
@@ -58,7 +58,7 @@
 
 <div class="container text-center introduceStep" style="margin-top: 38px">
     <img class="img-map"
-         src="${pageContext.request.contextPath}/images/map.jpg"/>
+         src="${RESOURCE_PATH}/images/map.jpg"/>
 </div>
 
 <%--开头菜单部分***********************************************************--%>

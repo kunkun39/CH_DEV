@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <jsp:include page="/WEB-INF/decorators/cssheader.jsp"/>
     <!--[if lt IE 9]>
-    <script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
-    <script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
+    <script src="${RESOURCE_PATH}/javascript/vendor/html5.min.js"></script>
+    <script src="${RESOURCE_PATH}/javascript/vendor/respond.min.js"></script>
     <![endif]-->
 
     <style type="text/css">

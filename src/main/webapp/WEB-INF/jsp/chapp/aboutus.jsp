@@ -23,11 +23,11 @@
     <%--主题菜单部分************************************************************--%>
     <%--banner(广告)层--%>
     <div class="content banner">
-        <img width="100%" height="350px" src="${pageContext.request.contextPath}/images/introduce-banner.jpg" class="banner-img" />
+        <img width="100%" height="350px" src="${RESOURCE_PATH}/images/introduce-banner.jpg" class="banner-img" />
         <div class="text-center introduce" >
             <!--<div class="contact-logo">
             </div>-->
-            <img src="${pageContext.request.contextPath}/images/introduce-logo.png" />
+            <img src="${RESOURCE_PATH}/images/introduce-logo.png" />
             <h1 class="color3 font-h1">平台介绍</h1>
             <p>&nbsp;</p>
             <p class="color3" style="font-size: 14px;text-indent: 2em;text-align: left;">广电开发者应用接入平台是一个公众的、开放性的系统平台,它允许开发者经注册后登录到系统平台,根据需要自由上传自己的应用,等待广电运维人员审核通过后,开发者上传的应用会发布到广电专有市场内,

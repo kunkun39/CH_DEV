@@ -105,7 +105,6 @@
 <script src="${pageContext.request.contextPath}/dwr/engine.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/dwr/util.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/dwr/interface/SystemDWRHandler.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/javascript/browserdiff.js"></script>
 <script type="text/javascript">
     var userNameValidate = false;
     var nameValidate = false;

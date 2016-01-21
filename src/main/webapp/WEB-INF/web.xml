@@ -92,7 +92,7 @@
 
     <filter>
          <filter-name>cssFilter</filter-name>
-         <filter-class>com.changhong.app.filter.CssFilter</filter-class>
+         <filter-class>com.changhong.app.filter.GlobalFilter</filter-class>
      </filter>
     <filter-mapping>
         <filter-name>cssFilter</filter-name>

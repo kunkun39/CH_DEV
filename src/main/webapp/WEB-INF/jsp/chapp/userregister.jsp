@@ -8,7 +8,7 @@
     <title>开发者应用接入平台注册</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="${RESOURCE_PATH}/css/bootstrap/bootstrap.min.css">
     <jsp:include page="/WEB-INF/decorators/cssheader.jsp"/>
 
     <style type="text/css">

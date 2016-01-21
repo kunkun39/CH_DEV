@@ -10,8 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
    <jsp:include page="/WEB-INF/decorators/cssheader.jsp"/>
     <!--[if lt IE 9]>
-    <script src="${pageContext.request.contextPath}/javascript/vendor/html5.min.js"></script>
-    <script src="${pageContext.request.contextPath}/javascript/vendor/respond.min.js"></script>
+    <script src="${RESOURCE_PATH}/javascript/vendor/html5.min.js"></script>
+    <script src="${RESOURCE_PATH}/javascript/vendor/respond.min.js"></script>
     <![endif]-->
 
     <style type="text/css">
@@ -93,7 +93,7 @@
 
 <%--Javascript部分***********************************************************--%>
 <jsp:include page="/WEB-INF/decorators/jsheader.jsp"/>
-<script src="${pageContext.request.contextPath}/javascript/passwordstrong.js"></script>
+<script src="${RESOURCE_PATH}/javascript/passwordstrong.js"></script>
 <script src="${pageContext.request.contextPath}/dwr/engine.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/dwr/util.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/dwr/interface/SystemDWRHandler.js" type="text/javascript"></script>

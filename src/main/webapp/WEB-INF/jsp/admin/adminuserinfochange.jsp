@@ -75,7 +75,6 @@
 
 <%--Javascript部分***********************************************************--%>
 <jsp:include page="/WEB-INF/decorators/jsheader.jsp"/>
-<script src="${pageContext.request.contextPath}/javascript/browserdiff.js"></script>
 <script type="text/javascript">
     var contactWayValidate = false;
     var nameValidate = false;
