@@ -1,8 +1,7 @@
 package com.changhong.app.repository;
 
 import com.changhong.app.domain.*;
-import com.changhong.app.utils.SQLEscapesUtils;
-import com.changhong.app.web.facade.dto.ClientUserDTO;
+import com.changhong.app.utils.EscapesUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
@@ -45,7 +44,7 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
         StringBuilder builder = new StringBuilder();
         builder.append("from AdminUser u");
         if (StringUtils.hasText(name)) {
-            String keyWord = SQLEscapesUtils.escapesLikeQuery(name);
+            String keyWord = EscapesUtils.escapesLikeQueryForSQL(name);
             builder.append(" where u.name like '%" + keyWord + "%' or u.username like '%" + keyWord + "%'");
         }
 
@@ -62,7 +61,7 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
         StringBuilder builder = new StringBuilder();
         builder.append("from AdminUser u");
         if (StringUtils.hasText(keyWords)) {
-            String keyWord = SQLEscapesUtils.escapesLikeQuery(keyWords);
+            String keyWord = EscapesUtils.escapesLikeQueryForSQL(keyWords);
             builder.append(" where u.username like '%" + keyWord + "%' or u.contactWay like '%" + keyWord + "%'");
         }
         builder.append(" order by u.id desc");
@@ -81,7 +80,7 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
         StringBuilder builder = new StringBuilder();
         builder.append("select count(u.id) from AdminUser u");
         if (StringUtils.hasText(name)) {
-            String keyWord = SQLEscapesUtils.escapesLikeQuery(name);
+            String keyWord = EscapesUtils.escapesLikeQueryForSQL(name);
             builder.append(" where u.name like '%" + keyWord + "%' or u.username like '%" + keyWord + "%'");
         }
         List list = getHibernateTemplate().find(builder.toString());
@@ -92,7 +91,7 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
         StringBuilder builder = new StringBuilder();
         builder.append("select count(u.id) from AdminUser u");
         if (StringUtils.hasText(keyWords)) {
-            String keyWord = SQLEscapesUtils.escapesLikeQuery(keyWords);
+            String keyWord = EscapesUtils.escapesLikeQueryForSQL(keyWords);
             builder.append(" where u.username like '%" + keyWord + "%' or u.contactWay like '%" + keyWord + "%'");
         }
         List list = getHibernateTemplate().find(builder.toString());
@@ -103,7 +102,7 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
         StringBuilder builder = new StringBuilder();
         builder.append("from ClientUser u");
         if (StringUtils.hasText(name)) {
-            String keyWord = SQLEscapesUtils.escapesLikeQuery(name);
+            String keyWord = EscapesUtils.escapesLikeQueryForSQL(name);
             builder.append(" where u.name like '%" + keyWord + "%' or u.contactWay like '%" + keyWord + "%'");
         }
         builder.append(" order by u.active desc , u.id asc");
@@ -121,7 +120,7 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
         StringBuilder builder = new StringBuilder();
         builder.append("select count(u.id) from ClientUser u");
         if (StringUtils.hasText(name)) {
-            String keyWord = SQLEscapesUtils.escapesLikeQuery(name);
+            String keyWord = EscapesUtils.escapesLikeQueryForSQL(name);
             builder.append(" where u.name like '%" + keyWord + "%' or u.contactWay like '%" + keyWord + "%'");
         }
         List list = getHibernateTemplate().find(builder.toString());
@@ -132,7 +131,7 @@ public class UserDaoImpl extends HibernateEntityObjectDao implements UserDao {
         StringBuilder builder = new StringBuilder();
         builder.append("from AdminUser u");
         if (StringUtils.hasText(userName)) {
-            builder.append(" where u.username='" + SQLEscapesUtils.escapesEqualQuery(userName) + "'");
+            builder.append(" where u.username='" + EscapesUtils.escapesEqualQueryForSQL(userName) + "'");
         }
         List<AdminUser> users = getHibernateTemplate().find(builder.toString());
         return users;

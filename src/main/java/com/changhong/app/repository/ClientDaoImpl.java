@@ -3,7 +3,7 @@ package com.changhong.app.repository;
 import com.changhong.app.domain.AppCategory;
 import com.changhong.app.domain.AppHistory;
 import com.changhong.app.domain.MarketApp;
-import com.changhong.app.utils.SQLEscapesUtils;
+import com.changhong.app.utils.EscapesUtils;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
@@ -32,7 +32,7 @@ public class ClientDaoImpl extends HibernateEntityObjectDao implements ClientDao
         StringBuilder builder = new StringBuilder();
         builder.append("from MarketApp m where m.owner.id = " + clientId);
         if (StringUtils.hasText(appName)) {
-            builder.append(" and m.appName like '" + SQLEscapesUtils.escapesLikeQuery(appName) + "%'");
+            builder.append(" and m.appName like '" + EscapesUtils.escapesLikeQueryForSQL(appName) + "%'");
         }
         if (!"ALL".equals(appStatus)) {
             builder.append(" and m.appStatus = '" + appStatus + "'");
@@ -53,7 +53,7 @@ public class ClientDaoImpl extends HibernateEntityObjectDao implements ClientDao
         StringBuilder builder = new StringBuilder();
         builder.append("select count(m.id) from MarketApp m where m.owner.id = " + clientId);
         if (StringUtils.hasText(appName)) {
-            builder.append(" and m.appName like '" + SQLEscapesUtils.escapesLikeQuery(appName) + "%'");
+            builder.append(" and m.appName like '" + EscapesUtils.escapesLikeQueryForSQL(appName) + "%'");
         }
         if (!"ALL".equals(appStatus)) {
             builder.append(" and m.appStatus = '" + appStatus + "'");
