@@ -14,7 +14,7 @@
     <title>广电应用接入平台</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <jsp:include page="/WEB-INF/decorators/cssheader.jsp" />
+    <jsp:include page="/WEB-INF/decorators/cssheader.jsp"/>
 
 </head>
 
@@ -53,7 +53,8 @@
 
                 <div class="form-body">
                     <div class="form-group">
-                        <label for=" " class="col-sm-2 control-label">联系人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <label for=" "
+                               class="col-sm-2 control-label">姓名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 
                         <div class="col-sm-10">
                             <spring-form:input id="name" path="name" class="form-control" required="required"
@@ -64,7 +65,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for=" " class="col-sm-2 control-label">联系方式&nbsp;&nbsp;<span style="color:#bfbfbf;">+86</span></label>
+                        <label for=" " class="col-sm-2 control-label">联系方式&nbsp;&nbsp;<span
+                                style="color:#bfbfbf;">+86</span></label>
 
                         <div class="col-sm-10">
                             <spring-form:input id="contactWay" path="contactWay"
@@ -77,6 +79,7 @@
                         </div>
                     </div>
                     <input type="button" id="test" class="emptybutton"/>
+
                     <div class="form-group">
                         <label class="col-sm-2 control-label">&nbsp;</label>
 
@@ -165,8 +168,6 @@
     }
 
     function submitClientInfo(form) {
-        validatePersonName();
-        validatePhoneNumber();
         if (personNameIsOk && phoneNumberIsOk) {
             form.submit();
         }
