@@ -40,17 +40,17 @@
                         <input type="button" class="btn-blue color1" value="返  回" onclick="backSubmit();" />
                         <c:choose>
                             <c:when test="${marketApp.appStatus == 'WAITING'}">
-                                <input type="button" class="btn-blue color1" value="拒绝通过" onclick="adminAppStatusChange(${marketApp.id}, 'REJECTED', '${marketApp.appName}');"/>
-                                <input type="button" class="btn-blue color1" value="审核通过" onclick="adminAppStatusChange(${marketApp.id}, 'PASSED', '${marketApp.appName}');"/>
+                                <input type="button" class="btn-blue color1" value="拒绝通过" onclick="adminAppStatusChange(${marketApp.id}, 'REJECTED', '${marketApp.appNameJS}');"/>
+                                <input type="button" class="btn-blue color1" value="审核通过" onclick="adminAppStatusChange(${marketApp.id}, 'PASSED', '${marketApp.appNameJS}');"/>
                             </c:when>
                             <c:when test="${marketApp.appStatus == 'PASSED'}">
-                                <input type="button" class="btn-blue color1" value="上  架" onclick="adminAppStatusChange(${marketApp.id}, 'SHELVES', '${marketApp.appName}');"/>
+                                <input type="button" class="btn-blue color1" value="上  架" onclick="adminAppStatusChange(${marketApp.id}, 'SHELVES', '${marketApp.appNameJS}');"/>
                             </c:when>
                             <c:when test="${marketApp.appStatus == 'SHELVES'}">
-                                <input type="button" class="btn-blue color1" value="下  架" onclick="adminAppStatusChange(${marketApp.id}, 'OFFSHELVES', '${marketApp.appName}');"/>
+                                <input type="button" class="btn-blue color1" value="下  架" onclick="adminAppStatusChange(${marketApp.id}, 'OFFSHELVES', '${marketApp.appNameJS}');"/>
                             </c:when>
                             <c:when test="${marketApp.appStatus == 'OFFSHELVES'}">
-                                <input type="button" class="btn-blue color1" value="重新上架" onclick="adminAppStatusChange(${marketApp.id}, 'SHELVES', '${marketApp.appName}');"/>
+                                <input type="button" class="btn-blue color1" value="重新上架" onclick="adminAppStatusChange(${marketApp.id}, 'SHELVES', '${marketApp.appNameJS}');"/>
                             </c:when>
                         </c:choose>
                     </div>

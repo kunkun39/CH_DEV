@@ -74,11 +74,13 @@ public class MarketAppWebAssember {
 
             dto.setId(marketApp.getId());
             dto.setAppKey(marketApp.getAppKey());
-            dto.setAppName(isEscapes ? EscapesUtils.escapesForJS(marketApp.getAppName()) : marketApp.getAppName());
+            dto.setAppName(marketApp.getAppName());
+            dto.setAppNameJS(EscapesUtils.escapesForJS(marketApp.getAppName()));
             dto.setAppDescription(isEscapes ? EscapesUtils.escapesForJS(marketApp.getAppDescription()) : marketApp.getAppDescription());
             dto.setAppVersionInt(marketApp.getAppVersionInt());
             dto.setAppVersion(isEscapes ? EscapesUtils.escapesForJS(marketApp.getAppVersion()) : marketApp.getAppVersion());
-            dto.setAppPackage(isEscapes ? EscapesUtils.escapesForJS(marketApp.getAppPackage()) : marketApp.getAppPackage());
+            dto.setAppPackage(marketApp.getAppPackage());
+            dto.setAppPackageJS(EscapesUtils.escapesForJS(marketApp.getAppPackage()));
             dto.setAppSize(marketApp.getAppSize());
             dto.setAppStatus(marketApp.getAppStatus().name());
 

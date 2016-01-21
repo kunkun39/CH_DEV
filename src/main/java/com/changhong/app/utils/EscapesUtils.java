@@ -21,4 +21,8 @@ public class EscapesUtils {
     public static String escapesForHTML(String str) {
         return escapesForJS(str);
     }
+
+    public static String unEscapesForHTML(String str) {
+        return str.replace("\\'", "'");
+    }
 }

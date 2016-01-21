@@ -1,5 +1,6 @@
 package com.changhong.app.web.tag;
 
+import com.changhong.app.utils.EscapesUtils;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.jsp.JspException;
@@ -16,6 +17,7 @@ public class SubStringTag extends TagSupport {
     private int length = 10;
     private String suffix = "...";
     private boolean showTitle = true;
+    private boolean needUnEscapes = false;
 
     @Override
     public int doStartTag() throws JspException {
@@ -34,7 +36,8 @@ public class SubStringTag extends TagSupport {
     protected String generateSubString() {
         boolean needSuffixAsBoolean = needSuffix();
         String suffix = needSuffixAsBoolean ? this.suffix : "";
-        String value = needSuffixAsBoolean ? this.value.substring(0, length) : this.value;
+        String unEscapesValue = needUnEscapes ? EscapesUtils.unEscapesForHTML(this.value) : this.value ;
+        String value = needSuffixAsBoolean ? unEscapesValue.substring(0, length) : unEscapesValue;
         return generateSimpleTag(value, suffix);
     }
 
@@ -77,6 +80,10 @@ public class SubStringTag extends TagSupport {
 
     public void setShowTitle(boolean showTitle) {
         this.showTitle = showTitle;
+    }
+
+    public void setNeedUnEscapes(boolean needUnEscapes) {
+        this.needUnEscapes = needUnEscapes;
     }
 }
 

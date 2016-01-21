@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
-
+<%@ taglib prefix="ch" uri="http://www.chanhong.com" %>
 <div class="form-group">
     <label for="" class="col-sm-3 control-label">应用类别</label>
     <div class="col-sm-9">
@@ -69,7 +69,9 @@
 <div class="form-group">
     <label for="" class="col-sm-3 control-label">应用描述</label>
     <div class="col-sm-9">
-        <textarea rows="8" cols="69" readonly="true">${marketApp.appDescription}</textarea>
+        <textarea rows="8" cols="69" readonly="true">
+            <ch:substring value="${app.appName}" length="500" needUnEscapes="true"/>
+        </textarea>
     </div>
 </div>
 

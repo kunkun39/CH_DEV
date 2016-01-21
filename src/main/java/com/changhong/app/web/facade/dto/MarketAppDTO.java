@@ -18,6 +18,8 @@ public class MarketAppDTO implements Serializable{
 
     private String appName;
 
+    private String appNameJS;
+
     private String appDescription;
 
     private int appVersionInt;
@@ -25,6 +27,8 @@ public class MarketAppDTO implements Serializable{
     private String appVersion;
 
     private String appPackage;
+
+    private String appPackageJS;
 
     private String appSize;
 
@@ -315,5 +319,21 @@ public class MarketAppDTO implements Serializable{
 
     public void setErrorId(int errorId) {
         this.errorId = errorId;
+    }
+
+    public String getAppNameJS() {
+        return appNameJS;
+    }
+
+    public void setAppNameJS(String appNameJS) {
+        this.appNameJS = appNameJS;
+    }
+
+    public String getAppPackageJS() {
+        return appPackageJS;
+    }
+
+    public void setAppPackageJS(String appPackageJS) {
+        this.appPackageJS = appPackageJS;
     }
 }
