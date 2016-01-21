@@ -82,7 +82,7 @@
 
                     <div class="col-sm-9">
                         <spring-form:input id="appName" path="appName" class="form-control" required="required"
-                                           maxlength="20" onblur="validateAppName()"/>
+                                           maxlength="20" onblur="onblurValidateAppName(event)"/>
                         <span class="help-block color6"><i class="ico-prompt"></i>请编辑应用名称，20字以内</span>
                         <span id="name_error_show" class="help-block color5" style="display: none;"></span>
                     </div>
@@ -94,7 +94,7 @@
                     <div class="col-sm-9">
                         <c:if test="${marketApp.id == 0}">
                             <spring-form:input path="appPackage" class="form-control" required="required" maxlength="80"
-                                           onblur="validateAppPackage()"/>
+                                           onblur="onblurValidateAppPackage(event)"/>
                             <span class="help-block color6"><i class="ico-prompt"></i>请编辑应用包名</span>
                         </c:if>
                         <span id="package_error_show" class="help-block color5" style="display: none;"></span>
@@ -163,19 +163,19 @@
 
                     <div class="col-sm-9">
                         <spring-form:textarea id="appDescription" path="appDescription" required="required" rows="8"
-                                              cols="80" onblur="validateAppDesc()" maxlength="200" placeholder="请输入应用描述..."/>
+                                              cols="80" onblur="onblurValidateAppDesc(event)" maxlength="200" placeholder="请输入应用描述..."/>
                         <span class="help-block"><i class="ico-prompt"></i>最多填写200个字</span>
                         <span id="desc_error_show" class="help-block color5" style="display: none;"></span>
                     </div>
                 </div>
-
+                <input type="button" id="test" class="emptybutton"/>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">&nbsp;</label>
 
                     <div class="col-sm-9">
 
-                        <input type="button" class="btn-blue color1" value="返  回" onclick="window.location.href = '${pageContext.request.contextPath}/security/clientappoverview.html'" />
-                        <input type="button" class="btn-blue color1" value="提  交" onclick="submitAppInfo(this.form)"/>
+                        <input type="button" id="cancelButton" class="btn-blue color1" value="返  回" onclick="window.location.href = '${pageContext.request.contextPath}/security/clientappoverview.html'" />
+                        <input type="button" id="submitButton" class="btn-blue color1" value="提  交" onclick="submitAppInfo()"/>
                     </div>
                 </div>
 
@@ -236,6 +236,18 @@
         apkFileValidate = true;
     }
 
+    function onblurValidateAppName(e) {
+        var triggerId = getEventTriggerId(e);
+        if (triggerId == 'submitButton') {
+            validateAppName();
+            submitAppInfo();
+        } else if (triggerId == 'cancelButton') {
+            return;
+        } else {
+            validateAppName();
+        }
+    }
+
     function validateAppName() {
         //验证应用名称
         var appName = jQuery("#appName").val();
@@ -249,7 +261,18 @@
         }
     }
 
-    function validateAppPackage() {
+    function onblurValidateAppPackage(e) {
+        var triggerId = getEventTriggerId(e);
+        if (triggerId == 'submitButton') {
+            validateAppPackage(true);
+        } else if (triggerId == 'cancelButton') {
+            return;
+        } else {
+            validateAppPackage(false);
+        }
+    }
+
+    function validateAppPackage(isclick) {
         var appPackage = jQuery("#appPackage").val();
         if (appPackage == null || appPackage == '') {
             jQuery("#package_error_show").html("<i class=\"ico-error\"></i>应用包名不能为空");
@@ -264,6 +287,9 @@
                 } else {
                     jQuery("#package_error_show").css("display", "none");
                     appPackageValidate = true;
+                    if (isclick) {
+                        submitAppInfo();
+                    }
                 }
             });
         }
@@ -343,6 +369,18 @@
         } else {
             jQuery("#apk_error_show").css("display", "none");
             apkFileValidate = true;
+        }
+    }
+
+    function onblurValidateAppDesc(e) {
+        var triggerId = getEventTriggerId(e);
+        if (triggerId == 'submitButton') {
+            validateAppDesc();
+            submitAppInfo();
+        } else if (triggerId == 'cancelButton') {
+            return;
+        } else {
+            validateAppDesc();
         }
     }
 
