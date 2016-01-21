@@ -17,6 +17,7 @@
     <link rel='stylesheet' type='text/css'
           href='${pageContext.request.contextPath}/javascript/jquery-loadmask/jquery.loadmask.css'/>
     <script type="text/javascript" src="${pageContext.request.contextPath}/javascript/popup.js"></script>
+    <script src="${pageContext.request.contextPath}/javascript/browserdiff.js"></script>
 </c:if>
 
 <c:if test="${APPLICATION_LIVE}">

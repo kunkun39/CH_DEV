@@ -49,50 +49,48 @@
                 </div>
                     <spring-form:form commandName="userPassword" class="form-horizontal" name="basic_validate" id="basic_validate" novalidate="novalidate">
                         <div class="form-body">
+                            <input type="hidden" name="userId" value="${userPassword.userId}"/>
 
-                                <div class="form-group">
-                                    <input type="hidden" name="userId" value="${userPassword.userId}"/>
+                            <div class="form-group">
+                                <label for=" " class="col-sm-2 control-label">用户名</label>
+                                <div class="col-sm-10">
+                                    <spring-form:input path="username" class="form-control" type="text" name="required" id="required" value="${userPassword.username}" readonly="true"
+                                               maxlength="20"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for=" " class="col-sm-2 control-label">旧密码</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="必填" onblur="onblueValidateOldPassword(event, ${userPassword.userId});" />
+                                    <span id="old_password_error_show" class="help-block color5" style="display: none;"></span>
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for=" " class="col-sm-2 control-label">新密码</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="必填" onblur="onblueValidateNewPassword(event, ${userPassword.userId});" />
+                                    <span id="new_password_error_show" class="help-block color5" style="display: none;"></span>
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for=" " class="col-sm-2 control-label">确认新密码</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="newPasswordAgain" name="newPasswordAgain" placeholder="必填" onblur="onblueValidateNewPasswordAgain(event, ${userPassword.userId});" />
+                                    <span id="confirm_password_error_show" class="help-block color5" style="display: none;"></span>
+                                    <span class="help-block"></span>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for=" " class="col-sm-2 control-label">用户名</label>
-                                    <div class="col-sm-10">
-                                        <spring-form:input path="username" class="form-control" type="text" name="required" id="required" value="${userPassword.username}" readonly="true"
-                                                   maxlength="20"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for=" " class="col-sm-2 control-label">旧密码</label>
-                                    <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="必填" onblur="validateOldPassword();" />
-                                        <span id="old_password_error_show" class="help-block color5" style="display: none;"></span>
-                                        <span class="help-block"></span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for=" " class="col-sm-2 control-label">新密码</label>
-                                    <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="必填" onblur="validateNewPassword();" />
-                                        <span id="new_password_error_show" class="help-block color5" style="display: none;"></span>
-                                        <span class="help-block"></span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for=" " class="col-sm-2 control-label">确认新密码</label>
-                                    <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="newPasswordAgain" name="newPasswordAgain" placeholder="必填" onblur="validateNewPasswordAgain();" />
-                                        <span id="confirm_password_error_show" class="help-block color5" style="display: none;"></span>
-                                        <span class="help-block"></span>
-                                    </div>
+                            </div>
+                            <input type="button" id="test" class="emptybutton"/>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">&nbsp;</label>
 
+                                <div class="ol-sm-9">
+                                    <input type="button" id="submitButton" class="btn-blue color1" value="确认修改" onclick="changePassword(${userPassword.userId});"/>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">&nbsp;</label>
-
-                                    <div class="ol-sm-9">
-                                        <input type="button" class="btn-blue color1" value="保  存" onclick="changePassword(${userPassword.userId}, this.form);"/>
-                                    </div>
-                                </div>
+                            </div>
                         </div>
 
                     </spring-form:form>
@@ -119,6 +117,16 @@
     var newPasswordValidate = false;
     var confirmPasswordValidate = false;
 
+    function onblueValidateOldPassword(e, userId) {
+        var triggerId = getEventTriggerId(e);
+
+        if (triggerId == 'submitButton') {
+            changePassword(userId);
+        } else {
+            validateOldPassword();
+        }
+    }
+
     function validateOldPassword() {
         var password = jQuery("#oldPassword").val();
         if (password == null || password == '') {
@@ -138,12 +146,23 @@
             if (result) {
                 jQuery("#old_password_error_show").css("display", "none");
                 oldPasswordDBValidate = true;
+                jQuery("#basic_validate").submit();
             } else {
                 jQuery("#old_password_error_show").html("<i class=\"ico-error\"></i>你输入的原密码不正确,请重新输入!");
                 jQuery("#old_password_error_show").css("display", "block");
                 oldPasswordDBValidate = false;
             }
         });
+    }
+
+    function onblueValidateNewPassword(e, userId) {
+        var triggerId = getEventTriggerId(e);
+
+        if (triggerId == 'submitButton') {
+            changePassword(userId);
+        } else {
+            validateNewPassword();
+        }
     }
 
     function validateNewPassword() {
@@ -160,6 +179,16 @@
         } else {
             jQuery("#new_password_error_show").css("display", "none");
             newPasswordValidate = true;
+        }
+    }
+
+    function onblueValidateNewPasswordAgain(e, userId) {
+        var triggerId = getEventTriggerId(e);
+
+        if (triggerId == 'submitButton') {
+            changePassword(userId);
+        } else {
+            validateNewPasswordAgain();
         }
     }
 
@@ -182,16 +211,13 @@
         }
     }
 
-    function changePassword(userId,form) {
+    function changePassword(userId) {
         validateOldPassword();
-        if (oldPasswordJSValidate) {
-            validateOldPasswordFromDb(userId);
-        }
         validateNewPassword();
         validateNewPasswordAgain();
 
-        if (oldPasswordJSValidate && oldPasswordDBValidate && newPasswordValidate && confirmPasswordValidate) {
-            form.submit();
+        if (oldPasswordJSValidate && newPasswordValidate && confirmPasswordValidate) {
+            validateOldPasswordFromDb(userId);
         }
     }
 </script>

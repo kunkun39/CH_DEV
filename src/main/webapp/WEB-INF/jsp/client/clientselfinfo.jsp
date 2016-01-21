@@ -47,43 +47,41 @@
                 </c:choose>
             </div>
 
-            <spring-form:form id="clientSelfInfoForm" commandName="clientSelfInfo" class="form-horizontal server-form "
+            <spring-form:form id="clientSelfInfoForm" commandName="clientSelfInfo" class="form-horizontal"
                               role="form ">
 
 
                 <div class="form-body">
                     <div class="form-group">
-                        <label style="width:80px; margin-left:2px;" for=" " class="col-sm-2 control-label">联系人</label>
+                        <label for=" " class="col-sm-2 control-label">联系人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 
-                        <div class="col-sm-10" style="margin-left:15px;">
+                        <div class="col-sm-10">
                             <spring-form:input id="name" path="name" class="form-control" required="required"
-                                               maxlength="20" onblur="validatePersonName()"/>
+                                               maxlength="20" onblur="onblueValidatePersonName(event, this.form)"/>
                             <span class="help-block color6"><i class="ico-prompt"></i>请输入联系人姓名</span>
                             <span id="name_error_show" class="help-block color5" style="display: none;"></span>
                         </div>
                     </div>
 
-                    <div class="form-group" style="margin-top: -100px">
-                        <label style="width:90px; " for=" " class="col-sm-2 control-label">联系方式</label>
-                        <label style="margin-left:-26px;color:#bfbfbf;width:10px;" for=" "
-                               class="col-sm-2 control-label">+86</label>
+                    <div class="form-group">
+                        <label for=" " class="col-sm-2 control-label">联系方式&nbsp;&nbsp;<span style="color:#bfbfbf;">+86</span></label>
 
-                        <div class="col-sm-10" style="margin-left:-10px">
+                        <div class="col-sm-10">
                             <spring-form:input id="contactWay" path="contactWay"
                                                class="form-control"
                                                required="required"
-                                               maxlength="11" onblur="validatePhoneNumber()"/>
+                                               maxlength="11" onblur="onblueValidatePhoneNumber(event, this.form)"/>
                             <span class="help-block color6"><i class="ico-prompt"></i>请输入11位有效号码</span>
                             <span id="contactway_error_show" class="help-block color5"
                                   style="display: none;"></span>
                         </div>
                     </div>
-
+                    <input type="button" id="test" class="emptybutton"/>
                     <div class="form-group">
-                        <label class="fl ">&nbsp;</label>
+                        <label class="col-sm-2 control-label">&nbsp;</label>
 
-                        <div class="fl ">
-                            <input type="button" class="btn-blue color1 text-center" value="确认修改 "
+                        <div class="ol-sm-9">
+                            <input type="button" id="submitButton" class="btn-blue color1 text-center" value="确认修改 "
                                    onclick="submitClientInfo(this.form)"/>
                         </div>
                     </div>
@@ -122,6 +120,16 @@
         }
     }
 
+    function onblueValidatePersonName(e, form) {
+        var triggerId = getEventTriggerId(e);
+
+        if (triggerId == 'submitButton') {
+            submitClientInfo(form);
+        } else {
+            validatePersonName();
+        }
+    }
+
     function validatePersonName() {
         var personName = jQuery("#name").val();
         if ((personName == null) || (personName == '')) {
@@ -131,6 +139,16 @@
         } else {
             jQuery("#name_error_show").css("display", "none");
             personNameIsOk = true;
+        }
+    }
+
+    function onblueValidatePhoneNumber(e, form) {
+        var triggerId = getEventTriggerId(e);
+
+        if (triggerId == 'submitButton') {
+            submitClientInfo(form);
+        } else {
+            validatePhoneNumber();
         }
     }
 
@@ -147,6 +165,8 @@
     }
 
     function submitClientInfo(form) {
+        validatePersonName();
+        validatePhoneNumber();
         if (personNameIsOk && phoneNumberIsOk) {
             form.submit();
         }
