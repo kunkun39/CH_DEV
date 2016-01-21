@@ -54,7 +54,7 @@
 
         <div class="form-body">
             <div class="form-group">
-                <label class="col-sm-2 control-label">邮箱</label>
+                <label class="col-sm-2 control-label">账号</label>
 
                 <div class="col-sm-10">
                     <spring-form:input type="text" id="username" path="username" class="form-control float-left" required="required"
