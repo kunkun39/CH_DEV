@@ -35,7 +35,7 @@
         <form class="form-horizontal" id="contactForm" action="${pageContext.request.contextPath}/j_spring_security_check" method="post">
             <div class="form-body">
                 <div class="form-group">
-                    <label for="j_username" class="col-sm-2 control-label">邮箱</label>
+                    <label for="j_username" class="col-sm-2 control-label">账号</label>
 
                     <div class="col-sm-10">
                         <input type="text" id="j_username" name="j_username" class="form-control" required="required" placeholder="请输入邮箱">
