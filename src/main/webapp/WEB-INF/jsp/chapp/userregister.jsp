@@ -77,7 +77,7 @@
                 <label class="col-sm-2 control-label"></label>
 
                 <div class="col-sm-10">
-                    <span class="help-block color6"><i class="ico-prompt"></i>作为用户姓名（选填，限制10个字内）</span>
+                    <span class="help-block color6"><i class="ico-prompt"></i>作为联系人姓名（选填，限制10个字内）</span>
                 </div>
             </div>
             <div class="form-group" style="position:relative;">
@@ -121,7 +121,7 @@
 
                 <div class="col-sm-10">
                     <spring-form:input type="text" id="registercode" path="registerCode" class="form-control float-left"
-                                       required="required" maxlength="4" onBlur="checkRegisterCodeRight()"/>
+                                       placeholder="请输入验证码" required="required" maxlength="4" onBlur="checkRegisterCodeRight()"/>
                     <span id="error_info_registercode" class="help-block color5 float-left-space" style="display: none;"></span>
                 </div>
 
@@ -228,7 +228,7 @@
             jQuery("#error_info_registercode").css("display", "none");
         } else {
             cansubmit = false;
-            jQuery("#error_info_registercode").html("<i class=\"ico-error\"></i>验证码填写有误!");
+            jQuery("#error_info_registercode").html("<i class=\"ico-error\"></i>请填写正确的验证码!");
             jQuery("#error_info_registercode").css("display", "block");
         }
         //协议
@@ -312,12 +312,18 @@
      */
     function checkRegisterCodeRight() {
         var registercode = jQuery("#registercode").val();//验证码
+        if (registercode == null || registercode == "") {
+            jQuery("#error_info_registercode").css("display", "block");
+            jQuery("#error_info_registercode").html("<i class=\"ico-error\"></i>验证码不能为空!");
+            registercodeChecked = false;
+            return;
+        }
         SystemDWRHandler.checkRegisterCodeRight(registercode, function (result) {
             if (result) {
                 jQuery("#error_info_registercode").css("display", "none");
                 registercodeChecked = true;
             } else {
-                jQuery("#error_info_registercode").html("<i class=\"ico-error\"></i>验证码不正确!");
+                jQuery("#error_info_registercode").html("<i class=\"ico-error\"></i>请填写正确的验证码!");
                 jQuery("#error_info_registercode").css("display", "block");
                 registercodeChecked = false;
             }
