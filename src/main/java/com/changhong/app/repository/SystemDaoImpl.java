@@ -17,13 +17,13 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Repository("systemDao")
-public class SystemDaoImpl extends HibernateEntityObjectDao implements SystemDao{
+public class SystemDaoImpl extends HibernateEntityObjectDao implements SystemDao {
 
     public List<MarketApp> loadMarketApps(String appName, String appStatus, int startPosition, int pageSize) {
         StringBuilder builder = new StringBuilder();
         builder.append("from MarketApp m where 1=1");
         if (StringUtils.hasText(appName)) {
-            builder.append(" and m.appName like '%" + SQLEscapesUtils.escapesLikeQuery(appName) + "%'");
+            builder.append(" and m.appName like '" + SQLEscapesUtils.escapesLikeQuery(appName) + "%'");
         }
         if (StringUtils.hasText(appStatus)) {
             builder.append(" and m.appStatus='" + appStatus + "'");
@@ -43,12 +43,12 @@ public class SystemDaoImpl extends HibernateEntityObjectDao implements SystemDao
         StringBuilder builder = new StringBuilder();
         builder.append("select count(m.id) from MarketApp m where 1=1");
         if (StringUtils.hasText(appName)) {
-            builder.append(" and m.appName like '%" + SQLEscapesUtils.escapesLikeQuery(appName) + "%'");
+            builder.append(" and m.appName like '" + SQLEscapesUtils.escapesLikeQuery(appName) + "%'");
         }
         if (StringUtils.hasText(appStatus)) {
             builder.append(" and m.appStatus='" + appStatus + "'");
         }
-        List list =  getHibernateTemplate().find(builder.toString());
-        return ((Long)list.get(0)).intValue();
+        List list = getHibernateTemplate().find(builder.toString());
+        return ((Long) list.get(0)).intValue();
     }
 }

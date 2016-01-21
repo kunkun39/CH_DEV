@@ -25,14 +25,14 @@ public class ClientDaoImpl extends HibernateEntityObjectDao implements ClientDao
 
     public boolean loadAppPackageDuplicate(int appId, String appPackage) {
         List list = getHibernateTemplate().find("select count(a.id) from MarketApp a where a.id <> ? and a.appPackage = ?", new Object[]{appId, appPackage});
-        return ((Long)list.get(0)).intValue() > 0 ? true : false;
+        return ((Long) list.get(0)).intValue() > 0 ? true : false;
     }
 
     public List<MarketApp> loadMarketApps(int clientId, String appName, String appStatus, int startPosition, int pageSize) {
         StringBuilder builder = new StringBuilder();
         builder.append("from MarketApp m where m.owner.id = " + clientId);
         if (StringUtils.hasText(appName)) {
-            builder.append(" and m.appName like '%" + SQLEscapesUtils.escapesLikeQuery(appName) + "%'");
+            builder.append(" and m.appName like '" + SQLEscapesUtils.escapesLikeQuery(appName) + "%'");
         }
         if (!"ALL".equals(appStatus)) {
             builder.append(" and m.appStatus = '" + appStatus + "'");
@@ -53,7 +53,7 @@ public class ClientDaoImpl extends HibernateEntityObjectDao implements ClientDao
         StringBuilder builder = new StringBuilder();
         builder.append("select count(m.id) from MarketApp m where m.owner.id = " + clientId);
         if (StringUtils.hasText(appName)) {
-            builder.append(" and m.appName like '%" + SQLEscapesUtils.escapesLikeQuery(appName) + "%'");
+            builder.append(" and m.appName like '" + SQLEscapesUtils.escapesLikeQuery(appName) + "%'");
         }
         if (!"ALL".equals(appStatus)) {
             builder.append(" and m.appStatus = '" + appStatus + "'");
@@ -61,7 +61,7 @@ public class ClientDaoImpl extends HibernateEntityObjectDao implements ClientDao
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
         Query query = session.createQuery(builder.toString());
 
-        return ((Long)query.list().get(0)).intValue();
+        return ((Long) query.list().get(0)).intValue();
     }
 
     public List<AppHistory> loadAppHistoryByPage(int startNumber, int appId) {
