@@ -24,7 +24,7 @@ public class MarketAppOverviewPaging extends AbstractPaging<MarketAppDTO> {
 
     @Override
     public List<MarketAppDTO> getItems() {
-        return systemService.obtainMarketApps(appName, AppStatus.SHELVES.name(), getStartPosition(), getPageSize());
+        return systemService.obtainMarketApps(appName, AppStatus.SHELVES.name(), getStartPosition(), getPageSize(), true);
     }
 
     @Override

@@ -118,18 +118,18 @@ public class SystemServiceImpl implements SystemService {
 
     /* market app */
 
-    public List<MarketAppDTO> obtainMarketApps(String appName, String appStatus, int startPosition, int pageSize) {
+    public List<MarketAppDTO> obtainMarketApps(String appName, String appStatus, int startPosition, int pageSize, boolean isEscapes) {
         List<MarketApp> marketAppList = systemDao.loadMarketApps(appName, appStatus, startPosition, pageSize);
-        return MarketAppWebAssember.toMarketAppDTOList(marketAppList);
+        return MarketAppWebAssember.toMarketAppDTOList(marketAppList, isEscapes);
     }
 
     public int obtainMarketAppSize(String appName, String appStatus) {
         return systemDao.loadMarketAppSize(appName, appStatus);
     }
 
-    public MarketAppDTO obtainMarketApp(int appId) {
+    public MarketAppDTO obtainMarketApp(int appId, boolean isEscapes) {
         MarketApp marketApp = (MarketApp) systemDao.findById(appId, MarketApp.class);
-        return MarketAppWebAssember.toMarketAppDetailsDTO(marketApp);
+        return MarketAppWebAssember.toMarketAppDetailsDTO(marketApp, isEscapes);
     }
 
     public void updateMarketAppStatus(int appId, String appStatus, String rejectReason) {

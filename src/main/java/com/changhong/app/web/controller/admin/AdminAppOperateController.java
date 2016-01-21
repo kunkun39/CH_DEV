@@ -39,7 +39,7 @@ public class AdminAppOperateController extends AbstractController{
         String appName = StringUtils.trimWhitespace(ServletRequestUtils.getStringParameter(httpServletRequest, "appName", ""));
         String appStatus = ServletRequestUtils.getStringParameter(httpServletRequest, "appStatus", AppStatus.WAITING.name());
 
-        MarketAppDTO dto = systemService.obtainMarketApp(appId);
+        MarketAppDTO dto = systemService.obtainMarketApp(appId, true);
 
         model.put("PAGE_KEY", "ADMIN");
         model.put("marketApp", dto);

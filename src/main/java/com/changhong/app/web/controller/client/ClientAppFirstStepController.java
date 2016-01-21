@@ -53,7 +53,7 @@ public class ClientAppFirstStepController extends SimpleFormController {
 
         int appId = ServletRequestUtils.getIntParameter(request, "appId", -1);
         if (appId > 0) {
-            app = clientService.obtainMarketApp(appId);
+            app = clientService.obtainMarketApp(appId, false);
             if (app.getOwnerId() != SecurityUtils.currectAuthenticationId()) {
                 throw new CHSecurityException("app first step with edit app is not your app");
             }

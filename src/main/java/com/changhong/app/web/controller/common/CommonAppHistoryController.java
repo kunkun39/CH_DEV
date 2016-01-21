@@ -35,7 +35,7 @@ public class CommonAppHistoryController extends AbstractController {
         if (SecurityUtils.isAdminRole()) {
             model.put("PAGE_KEY", "ADMIN");
         } else {
-            MarketAppDTO appDTO = clientService.obtainMarketApp(appId);
+            MarketAppDTO appDTO = clientService.obtainMarketApp(appId, false);
             int currentUserId = SecurityUtils.currectAuthenticationId();
             if (currentUserId != appDTO.getOwnerId()) {
                 throw new CHSecurityException("can't access the app history page, don't has coreponse role");

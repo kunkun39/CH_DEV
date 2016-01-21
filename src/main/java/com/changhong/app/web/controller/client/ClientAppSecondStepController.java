@@ -40,7 +40,7 @@ public class ClientAppSecondStepController extends AbstractController {
         request.setAttribute("categories", categories);
 
         int appId = ServletRequestUtils.getIntParameter(request, "appId", -1);
-        MarketAppDTO app = clientService.obtainMarketApp(appId);
+        MarketAppDTO app = clientService.obtainMarketApp(appId, true);
         if (app.getOwnerId() != SecurityUtils.currectAuthenticationId()) {
             throw new CHSecurityException("app first step with edit app is not your app");
         }

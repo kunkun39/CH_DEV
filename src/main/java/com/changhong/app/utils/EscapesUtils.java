@@ -15,7 +15,7 @@ public class EscapesUtils {
     }
 
     public static String escapesForJS(String str) {
-        return str.replace("\\", "\\\\").replace("'", "\\'");
+        return str.replace("&", "&amp").replace("'", "\\'").replace("\"", "&quot");
     }
 
     public static String escapesForHTML(String str) {

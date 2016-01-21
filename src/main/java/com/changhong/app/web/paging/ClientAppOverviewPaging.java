@@ -28,7 +28,7 @@ public class ClientAppOverviewPaging extends AbstractPaging<MarketAppDTO> {
     }
 
     public List<MarketAppDTO> getItems() {
-        return clientService.obtainMarketApps(appName, appStatus, getStartPosition(), getPageSize());
+        return clientService.obtainMarketApps(appName, appStatus, getStartPosition(), getPageSize(), false);
     }
 
     public long getTotalItemSize() {

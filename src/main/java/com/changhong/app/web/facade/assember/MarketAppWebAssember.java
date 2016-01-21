@@ -2,6 +2,7 @@ package com.changhong.app.web.facade.assember;
 
 import com.changhong.app.domain.*;
 import com.changhong.app.repository.EntityLoadHolder;
+import com.changhong.app.utils.EscapesUtils;
 import com.changhong.app.web.facade.dto.MarketAppDTO;
 
 import java.util.ArrayList;
@@ -65,7 +66,7 @@ public class MarketAppWebAssember {
         return app;
     }
 
-    public static MarketAppDTO toMarketAppDetailsDTO(MarketApp marketApp) {
+    public static MarketAppDTO toMarketAppDetailsDTO(MarketApp marketApp, boolean isEscapes) {
         MarketAppDTO dto = null;
 
         if (marketApp != null) {
@@ -73,11 +74,11 @@ public class MarketAppWebAssember {
 
             dto.setId(marketApp.getId());
             dto.setAppKey(marketApp.getAppKey());
-            dto.setAppName(marketApp.getAppName());
-            dto.setAppDescription(marketApp.getAppDescription());
+            dto.setAppName(isEscapes ? EscapesUtils.escapesForJS(marketApp.getAppName()) : marketApp.getAppName());
+            dto.setAppDescription(isEscapes ? EscapesUtils.escapesForJS(marketApp.getAppDescription()) : marketApp.getAppDescription());
             dto.setAppVersionInt(marketApp.getAppVersionInt());
-            dto.setAppVersion(marketApp.getAppVersion());
-            dto.setAppPackage(marketApp.getAppPackage());
+            dto.setAppVersion(isEscapes ? EscapesUtils.escapesForJS(marketApp.getAppVersion()) : marketApp.getAppVersion());
+            dto.setAppPackage(isEscapes ? EscapesUtils.escapesForJS(marketApp.getAppPackage()) : marketApp.getAppPackage());
             dto.setAppSize(marketApp.getAppSize());
             dto.setAppStatus(marketApp.getAppStatus().name());
 
@@ -152,11 +153,11 @@ public class MarketAppWebAssember {
         return dto;
     }
 
-    public static List<MarketAppDTO> toMarketAppDTOList(List<MarketApp> marketAppList) {
+    public static List<MarketAppDTO> toMarketAppDTOList(List<MarketApp> marketAppList, boolean isEscapes) {
         List<MarketAppDTO> dtoList = new ArrayList<MarketAppDTO>();
 
         for(MarketApp marketApp : marketAppList) {
-            dtoList.add(toMarketAppDetailsDTO(marketApp));
+            dtoList.add(toMarketAppDetailsDTO(marketApp, isEscapes));
         }
 
         return dtoList;

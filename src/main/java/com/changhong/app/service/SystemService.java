@@ -40,11 +40,11 @@ public interface SystemService {
 
     /* market app */
 
-    List<MarketAppDTO> obtainMarketApps(String appName, String appStatus, int startPosition, int pageSize);
+    List<MarketAppDTO> obtainMarketApps(String appName, String appStatus, int startPosition, int pageSize, boolean isEscapes);
 
     int obtainMarketAppSize(String appName, String appStatus);
 
-    MarketAppDTO obtainMarketApp(int appId);
+    MarketAppDTO obtainMarketApp(int appId, boolean isEscapes);
 
     void updateMarketAppStatus(int appId, String appStatus, String rejectReason);
 

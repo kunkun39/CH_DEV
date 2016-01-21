@@ -113,17 +113,17 @@ public class ClientServiceImpl implements ClientService {
         return marketApp.getId();
     }
 
-    public MarketAppDTO obtainMarketApp(int appId) {
+    public MarketAppDTO obtainMarketApp(int appId, boolean isEscapes) {
         MarketApp app = (MarketApp) clientDao.findById(appId, MarketApp.class);
-        return MarketAppWebAssember.toMarketAppDetailsDTO(app);
+        return MarketAppWebAssember.toMarketAppDetailsDTO(app, isEscapes);
     }
 
     /*App Overview Part***************************************************************************/
 
-    public List<MarketAppDTO> obtainMarketApps(String appName, String appStatus, int startPosition, int pageSize) {
+    public List<MarketAppDTO> obtainMarketApps(String appName, String appStatus, int startPosition, int pageSize, boolean isEscapes) {
         int currentClientId = SecurityUtils.currectAuthenticationId();
         List<MarketApp> apps = clientDao.loadMarketApps(currentClientId, appName, appStatus, startPosition, pageSize);
-        return MarketAppWebAssember.toMarketAppDTOList(apps);
+        return MarketAppWebAssember.toMarketAppDTOList(apps, isEscapes);
     }
 
     public int obtainMarketAppSize(String appName, String appStatus) {
