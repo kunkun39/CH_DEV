@@ -74,7 +74,6 @@
 
 <%--Javascript部分***********************************************************--%>
 <jsp:include page="/WEB-INF/decorators/jsheader.jsp"/>
-
 <script type="text/javascript">
 
     function searchClientApp() {

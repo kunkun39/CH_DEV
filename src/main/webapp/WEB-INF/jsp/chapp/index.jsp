@@ -52,7 +52,6 @@
             <c:forEach items="${apps}" var="app">
                 <li id="${app.id}" class="col-md-3 col-sm-6"
                     onclick="appInfo.categoryName='${app.fullCategoryName}';appInfo.appName='${app.appName}';appInfo.appPackage='${app.appPackage}';appInfo.versionInt=${app.appVersionInt};appInfo.version='${app.appVersion}';appInfo.sizeFormat='${app.appSizeFormat}';appInfo.iconPath='${fileRequestHost}/${app.appKey}/${app.iconActualFileName}';appInfo.posterPath='${fileRequestHost}/${app.appKey}/${app.posterActualFileName}';appInfo.description='${app.appDescription}';showDetails(appInfo,'${app.id}');">
-               <%--<li id="${app.id}" class="col-md-3 col-sm-6">--%>
                     <a href="javascript:void(0)" title="" class="apply-ul-a">
                         <img src="${fileRequestHost}/${app.appKey}/${app.iconActualFileName}" alt="" width="72"
                              height="72"/>
