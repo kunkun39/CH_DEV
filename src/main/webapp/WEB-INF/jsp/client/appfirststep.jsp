@@ -406,7 +406,7 @@
         //var posterImageValidate = true;
         var canSubmit = true;
         if (!appNameValidate) {
-            onblurValidateAppName();
+            validateAppName();
         } else {
             jQuery("#name_error_show").css("display", "none");
         }
