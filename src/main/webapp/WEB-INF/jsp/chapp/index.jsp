@@ -14,7 +14,11 @@
     <title>广电应用接入平台</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <jsp:include page="/WEB-INF/decorators/cssheader.jsp"/>
+    <%--<jsp:include page="/WEB-INF/decorators/cssheader.jsp"/>--%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/home.css">
 </head>
 
 <body>
@@ -30,12 +34,12 @@
     </div>
     <div style="width:728px;height:180px;margin:0px auto;">
         <ul class="round">
-            <li><img style="width:90%" src="${RESOURCE_PATH}/images/roundabout/1.jpg" alt="" /></li>
-            <li><img style="width:90%" src="${RESOURCE_PATH}/images/roundabout/2.jpg" alt="" /></li>
-            <li><img style="width:90%" src="${RESOURCE_PATH}/images/roundabout/3.jpg" alt="" /></li>
-            <li><img style="width:90%" src="${RESOURCE_PATH}/images/roundabout/4.jpg" alt="" /></li>
-            <li><img style="width:90%" src="${RESOURCE_PATH}/images/roundabout/5.jpg" alt="" /></li>
-            <li><img style="width:90%" src="${RESOURCE_PATH}/images/roundabout/6.jpg" alt="" /></li>
+            <li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/1.jpg" alt="" /></li>
+            <li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/2.jpg" alt="" /></li>
+            <li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/3.jpg" alt="" /></li>
+            <li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/4.jpg" alt="" /></li>
+            <li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/5.jpg" alt="" /></li>
+            <li><img style="width:90%" src="${pageContext.request.contextPath}/images/roundabout/6.jpg" alt="" /></li>
         </ul>
     </div>
 </div>
@@ -47,23 +51,9 @@
         </div>
     </div>
 
-    <div class="container">
-        <ul class="row apply-ul text-center">
-            <c:forEach items="${apps}" var="app">
-                <li id="${app.id}" class="col-md-3 col-sm-6"
-                    onclick="appInfo.categoryName='${app.fullCategoryName}';appInfo.appName='${app.appNameJS}';appInfo.appPackage='${app.appPackageJS}';appInfo.versionInt=${app.appVersionInt};appInfo.version='${app.appVersion}';appInfo.sizeFormat='${app.appSizeFormat}';appInfo.iconPath='${fileRequestHost}/${app.appKey}/${app.iconActualFileName}';appInfo.posterPath='${fileRequestHost}/${app.appKey}/${app.posterActualFileName}';appInfo.description='${app.appDescription}';showDetails(appInfo,'${app.id}');">
-                    <a href="javascript:void(0)" title="" class="apply-ul-a">
-                        <img src="${fileRequestHost}/${app.appKey}/${app.iconActualFileName}" alt="" width="72"
-                             height="72"/>
-                        <h5>${app.appName}</h5>
 
-                        <p>
-                            <ch:substring value="${app.appDescription}" length="30" showTitle="false" needUnEscapes="true"/>
-                        </p>
-                    </a>
-               </li>
-            </c:forEach>
-        </ul>
+    <div class="container">
+        <jsp:include page="/WEB-INF/jsp/common/applist.jsp"/>
     </div>
 
     <div class="container">
@@ -85,10 +75,14 @@
 <%--Javascript部分***********************************************************--%>
 <jsp:include page="/WEB-INF/decorators/jsheader.jsp"/>
 
+<%--Javascript部分***********************************************************--%>
+
 <script type="text/javascript">
     window.onload = function() {
         $('.round').roundabout();
     };
+
+
 </script>
 
 </body>
