@@ -13,56 +13,49 @@
                 <td class="ml"></td>
                 <td id="lightboxFrameBody">
                     <button type="button" class="close" id="closeLink">×</button>
-                    <div id="details" style="overflow: hidden;height: auto;width: 505px;">
+                    <div id="details" style="overflow: hidden;height: auto;width: 505px;margin-left: 40px">
+                        <%--<div class="alert-form clearfix">--%>
+                            <%--<label for="" class="fl control-label text-right"><img id="iconPath" src="" width="96" height="96"/></label>--%>
+                            <%--<div style="margin-left: 140px;font-size: 13px;margin-top: 10px">--%>
+                                <%--<label>应用类别 :</label>--%>
+                                <%--<label id="categoryName"></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--%>
+                                <%--<label>应用名称 :</label>--%>
+                                <%--<label id="appName"></label>--%>
+                            <%--</div>--%>
+                            <%--<div style="margin-left: 140px;font-size: 13px;">--%>
+                                <%--<label>应用大小（M）:</label>--%>
+                                <%--<label id="sizeFormat"></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--%>
+                                <%--<label>应用版本:</label>--%>
+                                <%--<label id="version"></label>--%>
+
+                            <%--</div>--%>
+                        <%--</div>--%>
                         <div class="alert-form clearfix">
-                            <label for="" class="fl control-label text-right">应用类别:</label>
-                            <div id="categoryName" class="fl alert-con">
+                            <label for="" class="fl control-label text-right"><img id="iconPath" src="" width="96" height="96"/></label>
+                            <div style="margin-left: 140px;font-size: 13px;margin-top: 10px">
+                                <label>应用类别 :</label>
+                                <label id="categoryName"></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </div>
+                            <div style="margin-left: 140px;font-size: 13px;">
+                                <label>应用名称 :</label>
+                                <label id="appName"></label>
+                            </div>
+                            <div style="margin-left: 140px;font-size: 13px;">
+                                <label>应用大小（M）:</label>
+                                <label id="sizeFormat"></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <label>应用版本:</label>
+                                <label id="version"></label>
+
                             </div>
                         </div>
-                        <div class="alert-form clearfix">
-                            <label for="" class="fl control-label text-right">应用名称:</label>
-                            <div id="appName" class="fl alert-con">
-                            </div>
-                        </div>
-                        <div class="alert-form clearfix">
-                            <label for="" class="fl control-label text-right">应用包名:</label>
-                            <div id="appPackage" class="fl alert-con">
-                                com_sohu
-                            </div>
-                        </div>
-                        <div class="alert-form clearfix">
-                            <label for="" class="fl control-label text-right">应用版本（数字）:</label>
-                            <div id="versionInt" class="fl alert-con">
-                                205
-                            </div>
-                        </div>
-                        <div class="alert-form clearfix">
-                            <label for="" class="fl control-label text-right">应用版本（字符）:</label>
-                            <div id="version" class="fl alert-con">
-                                4.7.5
-                            </div>
-                        </div>
-                        <div class="alert-form clearfix">
-                            <label for="" class="fl control-label text-right">应用大小（M）:</label>
-                            <div id="sizeFormat" class="fl alert-con">
-                                7.02
-                            </div>
-                        </div>
-                        <div class="alert-form clearfix">
-                            <label for="" class="fl control-label text-right">应用图标:</label>
+
+                        <div class="alert-form clearfix" style="margin-left: 20px;">
                             <div class="fl alert-con">
-                                <img id="iconPath" src="" width="96" height="96"/>
+                                <img id="posterPath" src="" width="420" height="180"/>
                             </div>
                         </div>
-                        <div class="alert-form clearfix">
-                            <label for="" class="fl control-label text-right">应用海报:</label>
-                            <div class="fl alert-con">
-                                <img id="posterPath" src="" width="320" height="180"/>
-                            </div>
-                        </div>
-                        <div class="alert-form clearfix">
-                            <label for="" class="fl control-label text-right">应用描述:</label>
-                            <div id="description" class="fl alert-con">
+                        <div class="alert-form clearfix" style="margin-left: 20px;">
+                            <div id="description" class="fl alert-con" style="width: 420px">
                             </div>
                         </div>
                     </div>
