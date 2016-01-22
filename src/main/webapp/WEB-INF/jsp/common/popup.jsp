@@ -32,7 +32,7 @@
                         <%--</div>--%>
                         <div class="alert-form clearfix">
                             <label for="" class="fl control-label text-right"><img id="iconPath" src="" width="96" height="96"/></label>
-                            <div style="margin-left: 140px;font-size: 13px;margin-top: 10px">
+                            <div style="margin-left: 140px;font-size: 13px;margin-top: 5px">
                                 <label>应用类别 :</label>
                                 <label id="categoryName"></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             </div>
@@ -43,6 +43,9 @@
                             <div style="margin-left: 140px;font-size: 13px;">
                                 <label>应用大小（M）:</label>
                                 <label id="sizeFormat"></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                            </div>
+                            <div style="margin-left: 140px;font-size: 13px;">
                                 <label>应用版本:</label>
                                 <label id="version"></label>
 
