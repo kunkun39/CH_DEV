@@ -109,13 +109,13 @@
                     "<span id=\"reason_error_show\" class=\"help-block color5\" style=\"display: none;\"></span>" ;
             checkRejectReason = true;
         } else if (appStatus == 'PASSED') {
-            comfirmMessage = "确认审核通过应用\"" + appName + "\"?";
+            comfirmMessage = "请确认让\"" + appName + "\"审核通过?";
         } else if (appStatus == 'SHELVES') {
-            comfirmMessage = "确认上架应用\"" + appName + "\"?";
+            comfirmMessage = "请确认让\"" + appName + "\"上架?";
         } else if (appStatus == 'OFFSHELVES') {
-            comfirmMessage = "确认下架应用\"" + appName + "\"?";
+            comfirmMessage = "请确认让\"" + appName + "\"下架?";
         } else if (appStatus == 'SHELVES') {
-            comfirmMessage = "确认重新上架应用\"" + appName + "\"?";
+            comfirmMessage = "请确认让\"" + appName + "\"重新上架?";
         }  else {
 
         }
