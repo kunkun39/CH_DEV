@@ -13,4 +13,6 @@ public interface DocumentService {
     MarketAppDTO uploadAppApkData(MarketAppDTO app, MultipartFile uploadApkFile, MultipartFile uploadIconFile, MultipartFile uploadPosterFile);
 
     void deleteNotUsedFiles(MarketAppDTO app);
+
+    void deleteAll(MarketAppDTO app);
 }

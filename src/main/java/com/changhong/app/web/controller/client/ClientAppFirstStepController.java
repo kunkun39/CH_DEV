@@ -3,6 +3,7 @@ package com.changhong.app.web.controller.client;
 import com.changhong.app.domain.AppStatus;
 import com.changhong.app.exception.CHSecurityException;
 import com.changhong.app.service.ClientService;
+import com.changhong.app.service.DocumentService;
 import com.changhong.app.utils.CHFileUtils;
 import com.changhong.app.utils.SecurityUtils;
 import com.changhong.app.utils.StatusManageUtils;
@@ -33,6 +34,8 @@ public class ClientAppFirstStepController extends SimpleFormController {
     private String serverContext;
 
     private ClientService clientService;
+
+    private DocumentService documentService;
 
     private MarketAppDTO oldMarketAppDTO = null;
 
@@ -72,6 +75,18 @@ public class ClientAppFirstStepController extends SimpleFormController {
         if (app.getId() > 0 &&!StatusManageUtils.checkStatusValid(app.getId(), AppStatus.WAITING.name(), false)) {
             errors.rejectValue("errorId", "", "<div class=\"form-group\"><label for=\"\" class=\"col-sm-3 control-label\">&nbsp;</label><div class=\"col-sm-9\"><i class=\"ico-error\"></i>应用状态发生变化,不能提交!请返回!</div></div>");
         }
+
+        DefaultMultipartHttpServletRequest multipartRequest = (DefaultMultipartHttpServletRequest) request;
+        MultipartFile apkFile = multipartRequest.getFile("appApkUploadFile");
+        String uploadPackage = app.getAppPackage();
+
+        app = documentService.uploadAppApkData(app, apkFile, null, null);
+        String parsePackage = app.getAppPackage();
+        if (!parsePackage.equals(uploadPackage)) {
+            app.setAppPackage(uploadPackage);
+            documentService.deleteAll(app);
+            errors.rejectValue("appPackage", "", "<i class=\"ico-error\"></i>你输入的应用包名和APK的包名不一致! APK包名为:" + parsePackage);
+        }
     }
 
     @Override
@@ -82,11 +97,10 @@ public class ClientAppFirstStepController extends SimpleFormController {
         app.setCategoryId(categoryId);
 
         DefaultMultipartHttpServletRequest multipartRequest = (DefaultMultipartHttpServletRequest) request;
-        MultipartFile apkFile = multipartRequest.getFile("appApkUploadFile");
         MultipartFile iconFile = multipartRequest.getFile("appIconUploadFile");
         MultipartFile posterFile = multipartRequest.getFile("appPosterUploadFile");
 
-        int appId = clientService.obtainMarketAppInformationFromFile(oldMarketAppDTO, app, apkFile, iconFile, posterFile);
+        int appId = clientService.obtainMarketAppInformationFromFile(oldMarketAppDTO, app, null, iconFile, posterFile);
 
         return new ModelAndView(new RedirectView("/" + serverContext + "/security/appsecondstep.html?appId=" + appId));
     }
@@ -101,5 +115,9 @@ public class ClientAppFirstStepController extends SimpleFormController {
 
     public void setClientService(ClientService clientService) {
         this.clientService = clientService;
+    }
+
+    public void setDocumentService(DocumentService documentService) {
+        this.documentService = documentService;
     }
 }

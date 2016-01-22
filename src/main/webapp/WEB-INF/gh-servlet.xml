@@ -204,6 +204,7 @@
         <property name="clientService" ref="clientService"/>
         <property name="serverContext" value="${application.context}"/>
         <property name="fileRequestHost" value="${application.file.request.path}"/>
+        <property name="documentService" ref="documentService"/>
     </bean>
 
     <bean id="apkUploadProcessController" class="com.changhong.app.web.controller.client.ApkUploadProcessController"/>

@@ -104,7 +104,7 @@
         if (appStatus == 'REJECTED') {
             comfirmMessage =
                     "<h5>请输入拒绝理由:</h5>" +
-                    "<textarea id=\"rejectReason\" name=\"rejectReason\"required=\"required\" rows=\"3\" cols=\"78\" maxlength=\"200\" onblur=\"onblueValidateRejectReason(event);\"></textarea>" +
+                    "<textarea id=\"rejectReason\" name=\"rejectReason\"required=\"required\" rows=\"5\" maxlength=\"200\" style=\"width:100%;overflow:auto;word-break:break-all;\" onblur=\"onblueValidateRejectReason(event);\"></textarea>" +
                     "<span class=\"help-block color6\"><i class=\"ico-prompt\"></i>最多填写200个字</span>" +
                     "<span id=\"reason_error_show\" class=\"help-block color5\" style=\"display: none;\"></span>" ;
             checkRejectReason = true;

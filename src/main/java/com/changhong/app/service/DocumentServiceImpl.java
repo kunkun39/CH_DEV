@@ -24,7 +24,7 @@ import java.util.Map;
  * Date: 15-12-28
  * Time: 上午11:18
  */
-@Service("")
+@Service("documentService")
 public class DocumentServiceImpl implements DocumentService {
 
     private static final Log logger = LogFactory.getLog(DocumentServiceImpl.class);
@@ -105,9 +105,7 @@ public class DocumentServiceImpl implements DocumentService {
             //set app info
             app.setAppVersionInt(Integer.valueOf(map.get("versionCode")));
             app.setAppVersion(map.get("versionName"));
-            /** remove this, we get from page
             app.setAppPackage(map.get("packageName"));
-            **/
             app.setAppSize(map.get("fileSize"));
         }
 
@@ -136,5 +134,23 @@ public class DocumentServiceImpl implements DocumentService {
                 }
             }
         }
+    }
+
+    public void deleteAll(MarketAppDTO app) {
+        File directory = new File(baseStorePath + UPLOAD_APK_PATH + File.separator + app.getAppKey());
+        if (directory.exists()) {
+            deleteDir(directory);
+        }
+    }
+    public void deleteDir(File dir) {
+        if (dir.isDirectory()) {
+            String[] children = dir.list();
+            //递归删除目录中的子目录下
+            for (int i=0; i<children.length; i++) {
+                deleteDir(new File(dir, children[i]));
+            }
+        }
+        // 目录此时为空，可以删除
+        dir.delete();
     }
 }

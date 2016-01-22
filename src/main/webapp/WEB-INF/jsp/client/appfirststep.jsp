@@ -97,13 +97,13 @@
                                            onblur="onblurValidateAppPackage(event)"/>
                             <span class="help-block color6"><i class="ico-prompt"></i>请编辑应用包名</span>
                         </c:if>
-                        <span id="package_error_show" class="help-block color5" style="display: none;"></span>
 
                         <c:if test="${marketApp.id > 0}">
                             <spring-form:input path="appPackage" class="form-control" required="required" maxlength="80"
                                         readonly="true"/>
                         </c:if>
-
+                        <span id="package_error_show" class="help-block color5" style="display: none;"></span>
+                        <spring-form:errors id="spring_package_error" path="appPackage" class="help-block color5" htmlEscape="false"></spring-form:errors>
                     </div>
                 </div>
 
@@ -274,6 +274,10 @@
 
     function validateAppPackage(isclick) {
         var appPackage = jQuery("#appPackage").val();
+        var appPackageSpringError = jQuery("#spring_package_error");
+        if (appPackageSpringError) {
+            appPackageSpringError.html("");
+        }
         if (appPackage == null || appPackage == '') {
             jQuery("#package_error_show").html("<i class=\"ico-error\"></i>应用包名不能为空");
             jQuery("#package_error_show").css("display", "block");
@@ -402,17 +406,13 @@
         //var posterImageValidate = true;
         var canSubmit = true;
         if (!appNameValidate) {
-            jQuery("#name_error_show").html("<i class=\"ico-error\"></i>应用名称未通过验证");
-            jQuery("#name_error_show").css("display", "block");
-            canSubmit = false;
+            onblurValidateAppName();
         } else {
             jQuery("#name_error_show").css("display", "none");
         }
 
         if (!appPackageValidate) {
-            jQuery("#package_error_show").html("<i class=\"ico-error\"></i>应用包名未通过验证");
-            jQuery("#package_error_show").css("display", "block");
-            canSubmit = false;
+            validateAppPackage(false);
         } else {
             jQuery("#package_error_show").css("display", "none");
         }
@@ -442,11 +442,13 @@
         }
 
         if (!appDescValidate) {
-            jQuery("#desc_error_show").html("<i class=\"ico-error\"></i>应用描述未通过验证");
-            jQuery("#desc_error_show").css("display", "block");
-            canSubmit = false;
+            validateAppDesc();
         } else {
             jQuery("#desc_error_show").css("display", "none");
+        }
+
+        if (!appNameValidate || !appPackageValidate || !appDescValidate) {
+            canSubmit = false;
         }
 
         if (canSubmit) {
