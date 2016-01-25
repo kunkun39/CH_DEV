@@ -15,10 +15,10 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <jsp:include page="/WEB-INF/decorators/cssheader.jsp"/>
-    <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/bootstrap.min.css">--%>
-    <%--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">--%>
-    <%--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">--%>
-    <%--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/backstage.css">--%>
+    <%--<link rel="stylesheet" href="${RESOURCE_PATH}/css/bootstrap/bootstrap.min.css">--%>
+    <%--<link rel="stylesheet" type="text/css" href="${RESOURCE_PATH}/css/nav.css">--%>
+    <%--<link rel="stylesheet" type="text/css" href="${RESOURCE_PATH}/css/style.css">--%>
+    <%--<link rel="stylesheet" type="text/css" href="${RESOURCE_PATH}/css/backstage.css">--%>
 </head>
 
 <body>
@@ -75,7 +75,7 @@
 
 <%--Javascript部分***********************************************************--%>
 <jsp:include page="/WEB-INF/decorators/jsheader.jsp"/>
-<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/popup.js"></script>
+<script type="text/javascript" src="${RESOURCE_PATH}/javascript/popup.js"></script>
 
 <%--Javascript部分***********************************************************--%>
 
