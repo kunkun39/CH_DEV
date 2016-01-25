@@ -57,7 +57,7 @@ function showDetails(appInfo, id) {
         height: 'auto',
         left: endLeft,
         //top: endTop
-        top: 10 + 'px'
+        top: 30 + 'px'
     }).show(1500);
     $('#overlay').show()
 }
