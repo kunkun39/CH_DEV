@@ -63,8 +63,6 @@ function showDetails(appInfo, id) {
 }
 
 $('#lightbox').click(end);
-
-//$('#closeLink').click(end);
 function end() {
     $("#lightbox").stop(true, false);
     $("#lightbox").hide();
