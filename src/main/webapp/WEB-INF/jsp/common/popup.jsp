@@ -12,7 +12,7 @@
             <tr>
                 <td class="ml"></td>
                 <td id="lightboxFrameBody" style="width:100%; height: auto;">
-                    <div id="details" style="overflow: hidden;height: auto;width: 93%;margin-left: 30px;">
+                    <div id="details" style="overflow: hidden;height: auto;width: 93%;margin: 0px auto;">
                         <div class="alert-form clearfix">
                             <label class="fl control-label text-right"><img id="iconPath" src="" width="96" height="96"/></label>
                             <div style="margin-left: 140px;font-size: 13px;margin-top: 5px">
