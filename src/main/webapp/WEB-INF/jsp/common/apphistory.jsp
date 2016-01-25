@@ -29,7 +29,6 @@
     <h5 class="moreApply text-center" style="margin-bottom: 40px;">
         <a href="javascript:void(0);" charset="moreApply-a">
             查看应用历史
-            <span class="moreico"></span>
         </a>
     </h5>
 
