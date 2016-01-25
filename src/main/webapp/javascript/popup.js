@@ -62,20 +62,9 @@ function showDetails(appInfo, id) {
     $('#overlay').show()
 }
 
-$('#closeLink').click(end);
-
-function end(Event) {
-    if (Event) {
-        var id = $(Event.target).attr("id");
-        if (getID("closeLink") != id && getID("lightbox") != id && getID("overlay") != id) {
-            return;
-        }
-    }
+$('#lightboxFrameBody').click(end);
+function end() {
     $("#lightbox").stop(true, false);
     $("#lightbox").hide();
     $("#overlay").fadeOut(1000);
-}
-
-function getID(id) {
-    return id;
 }

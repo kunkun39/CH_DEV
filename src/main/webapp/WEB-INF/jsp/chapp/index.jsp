@@ -14,11 +14,7 @@
     <title>广电应用接入平台</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <%--<jsp:include page="/WEB-INF/decorators/cssheader.jsp"/>--%>
-    <link rel="stylesheet" href="${RESOURCE_PATH}/css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="${RESOURCE_PATH}/css/nav.css">
-    <link rel="stylesheet" type="text/css" href="${RESOURCE_PATH}/css/style.css">
-    <link rel="stylesheet" type="text/css" href="${RESOURCE_PATH}/css/home.css">
+    <jsp:include page="/WEB-INF/decorators/cssheader.jsp"/>
 </head>
 
 <body>
@@ -40,6 +36,7 @@
             <li><img style="width:90%" src="${RESOURCE_PATH}/images/roundabout/4.jpg" alt="" /></li>
             <li><img style="width:90%" src="${RESOURCE_PATH}/images/roundabout/5.jpg" alt="" /></li>
             <li><img style="width:90%" src="${RESOURCE_PATH}/images/roundabout/6.jpg" alt="" /></li>
+
         </ul>
     </div>
 </div>
@@ -81,14 +78,6 @@
     window.onload = function() {
         $('.round').roundabout();
     };
-
-$('#lightboxFrameBody').click(end);
-function end() {
-    $("#lightbox").stop(true, false);
-    $("#lightbox").hide();
-    $("#overlay").fadeOut(1000);
-}
-
 </script>
 
 </body>

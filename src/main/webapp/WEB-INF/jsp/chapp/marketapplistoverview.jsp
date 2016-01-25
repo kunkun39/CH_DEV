@@ -66,14 +66,6 @@
     function searchClientApp() {
         jQuery("#client_app_search").submit();
     }
-
-$('#lightboxFrameBody').click(end);
-function end() {
-    $("#lightbox").stop(true, false);
-    $("#lightbox").hide();
-    $("#overlay").fadeOut(1000);
-}
-
 </script>
 </body>
 </html>
