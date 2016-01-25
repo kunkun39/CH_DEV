@@ -82,6 +82,12 @@
         $('.round').roundabout();
     };
 
+$('#lightboxFrameBody').click(end);
+function end() {
+    $("#lightbox").stop(true, false);
+    $("#lightbox").hide();
+    $("#overlay").fadeOut(1000);
+}
 
 </script>
 
