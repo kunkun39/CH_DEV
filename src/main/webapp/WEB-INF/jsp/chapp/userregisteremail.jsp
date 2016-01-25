@@ -29,8 +29,13 @@
             </div>
             <div class="col-sm-9">
                 <p class="font16" style="margin: 10px 0 0;">确认邮件已发送至你的注册邮箱 :${username}</p>
+                <c:if test="${mailtype==0}">
+                    <p style="margin:0 0 28px;color: #999;">请进入邮箱查看邮件，并点击链接激活开放平台帐号。</p>
+                </c:if>
+                <c:if test="${mailtype==1}">
+                    <p style="margin:0 0 28px;color: #999;">请进入邮箱查看邮件，并点击链接激活找回密码。</p>
+                </c:if>
 
-                <p style="margin:0 0 28px;color: #999;">请进入邮箱查看邮件，并点击链接激活开放平台帐号。</p>
                 <c:if test="${tomailpageurl!=''}">
                     <input type="button" id="bt_mailloginurl" class="btn-blue color1" value="登录邮箱" onclick="toMailLoginPage()"/>
                 </c:if>

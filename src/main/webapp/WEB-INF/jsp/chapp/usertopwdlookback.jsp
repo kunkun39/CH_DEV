@@ -123,6 +123,7 @@
                 jQuery("#error_info_username").css("display", "none");
                 if (isButton) {
                     window.location.href = "${pageContext.request.contextPath}/chapp/usermailsend.html?usernamenormal=" + jQuery("#username").val() + "&mailtype=1";
+                    jQuery("#sendmail").attr("disabled", true);
                 }
             }
         });
