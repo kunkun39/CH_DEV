@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!--点击放大-->
 <div id="overlay"></div>
-<div class="lightbox" id="lightbox">
+<div class="modal lightbox" id="lightbox">
     <table id="outerContainer" cellspacing="0">
         <tbody>
             <tr>
@@ -11,8 +11,9 @@
             </tr>
             <tr>
                 <td class="ml"></td>
-                <td id="lightboxFrameBody" style="width:100%; height: auto;">
-                    <div id="details" style="overflow: hidden;height: auto;width: 93%;margin: 0px auto;">
+                <td id="lightboxFrameBody">
+                    <button type="button" class="close" id="closeLink">×</button>
+                    <div id="details" style="overflow: hidden;height: auto;width: 505px;margin-left:30px " >
                         <div class="alert-form clearfix">
                             <label class="fl control-label text-right"><img id="iconPath" src="" width="96" height="96"/></label>
                             <div style="margin-left: 140px;font-size: 13px;margin-top: 5px">
