@@ -62,9 +62,12 @@ function showDetails(appInfo, id) {
     $('#overlay').show()
 }
 
-$('#lightboxFrameBody').click(end);
+$('#lightbox').click(end);
+
+//$('#closeLink').click(end);
 function end() {
     $("#lightbox").stop(true, false);
     $("#lightbox").hide();
     $("#overlay").fadeOut(1000);
 }
+
