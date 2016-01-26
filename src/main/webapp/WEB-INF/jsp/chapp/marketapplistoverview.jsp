@@ -61,7 +61,6 @@
 
 <%--Javascript部分***********************************************************--%>
 <jsp:include page="/WEB-INF/decorators/jsheader.jsp"/>
-<script type="text/javascript" src="${RESOURCE_PATH}/javascript/popup.js"></script>
 <script type="text/javascript">
 
     function searchClientApp() {
