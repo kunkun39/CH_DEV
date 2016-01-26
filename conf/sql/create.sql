@@ -26,7 +26,7 @@ CREATE TABLE `client_user` (
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 ALTER TABLE `client_user` ADD INDEX  client_user_index_name(`username`);
-ALTER TABLE `market_app` ADD INDEX market_app_index_status(`app_status`);
+ALTER TABLE `client_user` ADD INDEX  client_user_index_active(`active`);
 
 DROP TABLE IF EXISTS `register_confirm`;
 CREATE TABLE `register_confirm` (
@@ -107,6 +107,7 @@ CREATE TABLE `market_app` (
   FOREIGN KEY (`owner_id`) REFERENCES client_user (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 ALTER TABLE `market_app` ADD INDEX market_app_index_name(`app_name`);
+ALTER TABLE `market_app` ADD INDEX market_app_index_status(`app_status`);
 
 DROP TABLE IF EXISTS `app_change_history`;
 CREATE TABLE `app_change_history` (
