@@ -34,6 +34,7 @@
                 <prop key="/chapp/marketapplistoverview.html">marketAppListOverViewController</prop>
                 <prop key="/chapp/aboutus.html">aboutUsController</prop>
                 <prop key="/chapp/contactus.html">contactusController</prop>
+                <prop key="/common/popup.html">popupController</prop>
 
                 <!--管理员部分-->
                 <prop key="/security/adminusers.html">adminUserManageController</prop>
@@ -80,6 +81,10 @@
         <property name="systemService" ref="systemService"/>
         <property name="fileRequestHost" value="${application.file.request.path}"/>
         <property name="projectVersion" value="${application.version}"/>
+    </bean>
+    <bean id="popupController" class="com.changhong.app.web.controller.PopupController">
+        <property name="systemService" ref="systemService"/>
+        <property name="fileRequestHost" value="${application.file.request.path}"/>
     </bean>
 
     <bean id="marketAppListOverViewController" class="com.changhong.app.web.controller.MarketAppListOverViewController">
