@@ -34,7 +34,7 @@
                 <prop key="/chapp/marketapplistoverview.html">marketAppListOverViewController</prop>
                 <prop key="/chapp/aboutus.html">aboutUsController</prop>
                 <prop key="/chapp/contactus.html">contactusController</prop>
-                <prop key="/common/appForm.html">appFormController</prop>
+                <prop key="/common/appDetail.html">appDetailController</prop>
 
                 <!--管理员部分-->
                 <prop key="/security/adminusers.html">adminUserManageController</prop>
@@ -82,7 +82,7 @@
         <property name="fileRequestHost" value="${application.file.request.path}"/>
         <property name="projectVersion" value="${application.version}"/>
     </bean>
-    <bean id="appFormController" class="com.changhong.app.web.controller.AppFormController">
+    <bean id="appDetailController" class="com.changhong.app.web.controller.AppDetailController">
         <property name="systemService" ref="systemService"/>
         <property name="fileRequestHost" value="${application.file.request.path}"/>
     </bean>
