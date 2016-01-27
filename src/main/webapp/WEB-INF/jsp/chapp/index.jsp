@@ -68,7 +68,7 @@
 
 <%--Javascript部分***********************************************************--%>
 <jsp:include page="/WEB-INF/decorators/jsheader.jsp"/>
-<script src="${pageContext.request.contextPath}/javascript/popup/modal.popup.js" type="text/javascript"></script>
+<script src="${RESOURCE_PATH}/javascript/popup/modal.popup.js" type="text/javascript"></script>
 <script type="text/javascript">
     window.onload = function() {
         $('.round').roundabout();
