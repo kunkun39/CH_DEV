@@ -88,7 +88,7 @@ jQuery(function() {
 		});
 
 	});
-function openCategoryDialog(id) {
+function openDetailDialog(id) {
 		settings.source = '${pageContext.request.contextPath}/common/appForm.html?appId=' + id;
 		openModalPopup(settings);
 	}
