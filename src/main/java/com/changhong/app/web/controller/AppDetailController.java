@@ -38,7 +38,7 @@ public class AppDetailController extends AbstractController {
 
         model.put("app", dto);
         model.put("fileRequestHost", fileRequestHost);
-        return new ModelAndView("common/appDetail", model);
+        return new ModelAndView("common/appdetail", model);
     }
 
     /**
