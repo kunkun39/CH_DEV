@@ -52,8 +52,6 @@
         </div>
     </div>
 </div>
-<%--点击放大***********************************************************--%>
-<jsp:include page="/WEB-INF/jsp/common/popup.jsp"/>
 
 <%--结尾菜单部分***********************************************************--%>
 
@@ -91,7 +89,7 @@ jQuery(function() {
 
 	});
 function openCategoryDialog(id) {
-		settings.source = '${pageContext.request.contextPath}/common/popup.html?appId=' + id;
+		settings.source = '${pageContext.request.contextPath}/common/appForm.html?appId=' + id;
 		openModalPopup(settings);
 	}
 function openModalPopup(obj) {
