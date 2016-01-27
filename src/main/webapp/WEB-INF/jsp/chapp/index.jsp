@@ -97,7 +97,7 @@ jQuery(function() {
 
 	});
 function openDetailDialog(id) {
-		settings.source = '${pageContext.request.contextPath}/common/appDetail.html?appId=' + id;
+		settings.source = '${pageContext.request.contextPath}/common/appdetail.html?appId=' + id;
 		openModalPopup(settings);
 	}
 function openModalPopup(obj) {
