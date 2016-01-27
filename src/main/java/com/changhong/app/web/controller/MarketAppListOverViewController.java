@@ -20,6 +20,7 @@ import java.util.Map;
  * Time: 下午4:52
  */
 public class MarketAppListOverViewController extends AbstractController {
+
      private SystemService systemService;
 
      private String projectVersion;
@@ -32,7 +33,6 @@ public class MarketAppListOverViewController extends AbstractController {
 
          //如果页面中无名为"current"的参数存在,则返回默认值int default value
         int currentPage = ServletRequestUtils.getIntParameter(httpServletRequest, "current", 1);
-        System.out.println(currentPage);
 
          //trim()去除字符串空格
         String appName = ServletRequestUtils.getStringParameter(httpServletRequest, "appName", "").trim();

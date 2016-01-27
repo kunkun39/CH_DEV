@@ -36,8 +36,6 @@ public class MarketAppOverviewPaging extends AbstractPaging<MarketAppDTO> {
     public long getTotalItemSize() {
         if (totalItemSize < 0) {
             totalItemSize = systemService.obtainMarketAppSize(appName, AppStatus.SHELVES.name());
-
-            System.out.println(totalItemSize);
         }
 
         return totalItemSize;
